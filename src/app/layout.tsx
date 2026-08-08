@@ -46,7 +46,16 @@ export default function RootLayout({
       lang="en"
       className={`${sora.variable} ${archivo.variable} ${plexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {/* Marca la pagina come "JavaScript attivo". Le comparse in scroll si
+            attivano solo da qui in poi: senza JS nulla viene mai nascosto. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
