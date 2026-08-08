@@ -81,7 +81,7 @@ export default function DigitizationEn() {
                 {t.process.lead}
               </p>
             </Reveal>
-            <Process steps={t.process.steps} />
+            <Process steps={t.process.steps} caption={t.process.caption} />
           </Section>
 
           <Section id="markets" eyebrow={t.markets.eyebrow} aside="02">

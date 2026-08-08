@@ -68,22 +68,23 @@ export const home = {
           label: "ISO certifications",
           note: "9001 · 27001 · 27017 · 27018",
         },
-        { value: "2", label: "operating countries", note: "Italy · Albania" },
       ],
     },
 
     map: {
       eyebrow: "Operations",
-      title: "Two shores, one operation.",
-      lead: "Seventy-two kilometres of open water separate the two sides of the Strait of Otranto. Both are within a day's reach of the same team.",
+      title: "Run from Lecce.",
+      lead: "Headquarters, laboratory and operations centre in one place, within reach of the archives we work on. The originals never leave the building that holds them.",
+      /* Le sedi previste stanno solo qui, sulla mappa: nessun'altra parte
+         del sito le nomina, ed e' voluto. */
       nodes: {
-        primary: {
-          name: "Lecce, Italy",
-          role: "Headquarters and operations centre",
-        },
-        secondary: { name: "Albania", role: "Operational office" },
+        lecce: { name: "Lecce, Italy", role: "Headquarters and operations centre" },
+        albania: { name: "Albania", role: "Operational office" },
+        rome: { name: "Rome", role: "Planned" },
+        nice: { name: "Nice", role: "Planned" },
+        zagreb: { name: "Zagreb", role: "Planned" },
       },
-      strait: "Strait of Otranto — 72 km",
+      legend: { hq: "Headquarters", office: "Operational office", planned: "Planned" },
     },
 
     work: {
@@ -123,6 +124,38 @@ export const home = {
       alsoLabel: "Also on record",
       also: "Maglie · Otranto",
       cta: { label: "All customers", href: "/en/customers" },
+    },
+
+    /* Fotografie proprietarie dell'info day ARCHILIVES. Titolo dell'evento
+       e sede presi dalla scheda del programma. `available` va a true quando
+       i quattro file sono in public/img/archilives/. */
+    photos: {
+      eyebrow: "In the field",
+      caption:
+        "ARCHILIVES info day, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Greece-Italy 2021-2027",
+      source: "June 2026",
+      available: false,
+      pending: "photograph reserved",
+      items: [
+        {
+          src: "/img/archilives/01.jpg",
+          alt: "Pierluigi Vantaggiato presenting beside the ARCHILIVES roll-up at the Koreja info day.",
+          credit: "Pierluigi Vantaggiato · Co-Founder",
+        },
+        {
+          src: "/img/archilives/02.jpg",
+          alt: "The room during the ARCHILIVES presentation at Cantieri Teatrali Koreja.",
+        },
+        {
+          src: "/img/archilives/03.jpg",
+          alt: "Linda Perrone, senior archivist, speaking at the ARCHILIVES info day.",
+          credit: "Linda Perrone · Senior archivist",
+        },
+        {
+          src: "/img/archilives/04.jpg",
+          alt: "Attendees at the ARCHILIVES info day in Lecce.",
+        },
+      ],
     },
 
     cta: {
@@ -186,19 +219,25 @@ export const home = {
           label: "certificazioni ISO",
           note: "9001 · 27001 · 27017 · 27018",
         },
-        { value: "2", label: "paesi operativi", note: "Italia · Albania" },
       ],
     },
 
     map: {
       eyebrow: "Operatività",
-      title: "Due sponde, una sola operazione.",
-      lead: "Settantadue chilometri di mare aperto separano le due sponde del Canale d'Otranto. Entrambe sono raggiungibili in giornata dalla stessa squadra.",
+      title: "Si governa da Lecce.",
+      lead: "Sede, laboratorio e centro operativo in un solo luogo, a portata degli archivi su cui lavoriamo. Gli originali non lasciano mai l'edificio che li custodisce.",
       nodes: {
-        primary: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
-        secondary: { name: "Albania", role: "Sede operativa" },
+        lecce: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
+        albania: { name: "Albania", role: "Sede operativa" },
+        rome: { name: "Roma", role: "Prossima apertura" },
+        nice: { name: "Nizza", role: "Prossima apertura" },
+        zagreb: { name: "Zagabria", role: "Prossima apertura" },
       },
-      strait: "Canale d'Otranto — 72 km",
+      legend: {
+        hq: "Sede",
+        office: "Sede operativa",
+        planned: "Prossima apertura",
+      },
     },
 
     work: {
@@ -239,6 +278,35 @@ export const home = {
       alsoLabel: "Inoltre a referenza",
       also: "Maglie · Otranto",
       cta: { label: "Tutti i clienti", href: "/it/clienti" },
+    },
+
+    photos: {
+      eyebrow: "Sul campo",
+      caption:
+        "Info day ARCHILIVES, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Grecia-Italia 2021-2027",
+      source: "Giugno 2026",
+      available: false,
+      pending: "fotografia riservata",
+      items: [
+        {
+          src: "/img/archilives/01.jpg",
+          alt: "Pierluigi Vantaggiato presenta accanto al roll-up ARCHILIVES all'info day di Koreja.",
+          credit: "Pierluigi Vantaggiato · Co-Founder",
+        },
+        {
+          src: "/img/archilives/02.jpg",
+          alt: "La sala durante la presentazione ARCHILIVES ai Cantieri Teatrali Koreja.",
+        },
+        {
+          src: "/img/archilives/03.jpg",
+          alt: "Linda Perrone, archivista senior, interviene all'info day ARCHILIVES.",
+          credit: "Linda Perrone · Archivista senior",
+        },
+        {
+          src: "/img/archilives/04.jpg",
+          alt: "Il pubblico all'info day ARCHILIVES di Lecce.",
+        },
+      ],
     },
 
     cta: {

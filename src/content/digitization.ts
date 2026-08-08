@@ -26,6 +26,7 @@ export const digitization = {
       eyebrow: "The process",
       title: "Six phases. None of them optional.",
       lead: "The first is the one operators in this field skip most often.",
+      caption: "Each phase leaves documentation behind. Nothing moves to the next one on trust.",
       steps: [
         {
           n: "01",
@@ -133,6 +134,7 @@ export const digitization = {
       eyebrow: "Il metodo",
       title: "Sei fasi, nessuna omissibile.",
       lead: "La prima è quella che gli operatori del settore omettono con maggiore frequenza.",
+      caption: "Ogni fase lascia documentazione. Alla successiva non si passa sulla fiducia.",
       steps: [
         {
           n: "01",

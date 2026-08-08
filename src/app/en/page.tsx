@@ -9,6 +9,7 @@ import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
 import { OperationsMap } from "@/components/home/OperationsMap";
 import { SelectedWork } from "@/components/home/SelectedWork";
+import { EventPhotos } from "@/components/home/EventPhotos";
 import { home } from "@/content/home";
 
 const t = home.en;
@@ -116,27 +117,19 @@ export default function HomeEn() {
 
           {/* ---------------- MAPPA OPERATIVA ---------------- */}
           <Section id="operations" eyebrow={t.map.eyebrow} aside="03">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
               <Reveal>
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
                 <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
-                <dl className="mt-10 space-y-6">
-                  <div className="border-t border-line pt-4">
-                    <dt className="eyebrow text-max">{t.map.nodes.primary.name}</dt>
-                    <dd className="mt-1 text-small text-mute">
-                      {t.map.nodes.primary.role}
-                    </dd>
-                  </div>
-                  <div className="border-t border-line pt-4">
-                    <dt className="eyebrow text-max">{t.map.nodes.secondary.name}</dt>
-                    <dd className="mt-1 text-small text-mute">
-                      {t.map.nodes.secondary.role}
-                    </dd>
-                  </div>
-                </dl>
+                <div className="mt-10 border-t border-line pt-4">
+                  <span className="eyebrow block text-max">{t.map.nodes.lecce.name}</span>
+                  <span className="mt-1 block text-small text-mute">
+                    {t.map.nodes.lecce.role}
+                  </span>
+                </div>
               </Reveal>
               <Reveal delay={120}>
-                <OperationsMap nodes={t.map.nodes} strait={t.map.strait} />
+                <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
               </Reveal>
             </div>
           </Section>
@@ -156,8 +149,21 @@ export default function HomeEn() {
             </Reveal>
           </Section>
 
+          {/* ---------------- FOTOGRAFIE DELL'EVENTO ---------------- */}
+          <Section id="field" eyebrow={t.photos.eyebrow} aside="05">
+            <Reveal>
+              <EventPhotos
+                caption={t.photos.caption}
+                source={t.photos.source}
+                photos={t.photos.items}
+                available={t.photos.available}
+                pending={t.photos.pending}
+              />
+            </Reveal>
+          </Section>
+
           {/* ---------------- CHIAMATA ALL'AZIONE ---------------- */}
-          <Section id="contact" eyebrow={t.cta.eyebrow} aside="05">
+          <Section id="contact" eyebrow={t.cta.eyebrow} aside="06">
             <Reveal>
               <h2 className="text-d2 font-display font-bold">{t.cta.title}</h2>
               <p className="measure-wide mt-8 text-body-l text-copy">{t.cta.lead}</p>
