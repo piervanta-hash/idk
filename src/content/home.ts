@@ -6,9 +6,8 @@
    Fase 3 pubblica solo l'inglese, ma il testo italiano e' gia' qui e in
    Fase 6 va solo collegato.
 
-   Nessun contenuto e' inventato: viene dal sito attuale o dal brief. Le voci
-   marcate DA CONFERMARE non sono ancora state validate — vedi il riepilogo
-   di fase in docs/fase-3-home.md.
+   Nessun contenuto e' inventato: viene dal sito attuale o dal brief. Le
+   cifre sono state confermate.
    ========================================================================== */
 
 export type Locale = "en" | "it";
@@ -25,7 +24,7 @@ export const home = {
          misura di dato. Le due cifre hanno una provenienza (vedi note). */
       readout: [
         { key: "Measured in", value: "shelf metres" },
-        { key: "Digitized", value: "10M+ pages" }, // DA CONFERMARE — brief, §1
+        { key: "Digitized", value: "10M+ pages" },
         { key: "Retrieved in", value: "4 s" }, // sito attuale, dimostrazione Anamnesis
       ],
       scanLabels: { paper: "Paper", data: "Structured data", replay: "Replay" },
@@ -60,9 +59,9 @@ export const home = {
     measurements: {
       eyebrow: "Measurements",
       items: [
-        { value: "10", unit: "M+", label: "pages digitized to date" }, // DA CONFERMARE
-        { value: "20", unit: "+", label: "archivists, engineers, developers" }, // DA CONFERMARE
-        { value: "EU", label: "data residency", note: "AI models run locally" }, // DA CONFERMARE
+        { value: "10", unit: "M+", label: "pages digitized to date" },
+        { value: "20", unit: "+", label: "archivists, engineers, developers" },
+        { value: "EU", label: "data residency", note: "AI models run locally" },
         {
           value: "4",
           label: "ISO certifications",
