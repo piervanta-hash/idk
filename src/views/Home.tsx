@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
-import { Rule } from "@/components/ui/Rule";
 import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { LinearMetre } from "@/components/home/LinearMetre";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
@@ -12,73 +12,51 @@ import { SelectedWork } from "@/components/home/SelectedWork";
 import { EventPhotos } from "@/components/home/EventPhotos";
 import { home } from "@/content/home";
 import { present } from "@/lib/photos";
-
-const t = home.en;
-
-export const metadata: Metadata = {
-  title: "Paloryn — data, extracted from paper",
-  description: t.hero.lead,
-  alternates: {
-    canonical: "/en",
-    languages: { en: "/en", it: "/it" },
-  },
-  openGraph: {
-    title: "Paloryn — data, extracted from paper",
-    description: t.hero.lead,
-    locale: "en",
-    type: "website",
-  },
-};
+import { alternates, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
-   HOME — INGLESE
+   HOME
 
-   L'unico momento orchestrato forte e' l'hero, come prescritto dal brief.
-   Tutto il resto e' silenzioso: comparse sobrie all'ingresso di sezione, un
-   contatore sulle misure, un impulso lento sulla rotta della mappa.
+   L'unico momento orchestrato forte e' l'hero. Tutto il resto e' silenzioso:
+   comparse sobrie in ingresso, un contatore sulle misure, un impulso lento
+   sulla rotta della mappa.
 
    Ogni sezione si apre con un'etichetta mono su una hairline e poi da'
-   subito la cosa concreta. Nessun paragrafo introduttivo di raccordo.
+   subito la cosa concreta: nessun paragrafo introduttivo di raccordo.
    ========================================================================== */
 
-function Section({
-  id,
-  eyebrow,
-  aside,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  aside?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24 py-24 md:py-32 lg:py-40">
-      <Reveal as="header" className="mb-12 md:mb-16">
-        <div className="flex items-baseline justify-between gap-6">
-          <span className="eyebrow">{eyebrow}</span>
-          {aside && <span className="eyebrow text-right">{aside}</span>}
-        </div>
-        <Rule className="mt-3" />
-      </Reveal>
-      {children}
-    </section>
-  );
+const TITLE = {
+  en: "Paloryn — data, extracted from paper",
+  it: "Paloryn — dati, estratti dalla carta",
+};
+
+export function homeMetadata(locale: Locale): Metadata {
+  const t = home[locale];
+  return {
+    title: TITLE[locale],
+    description: t.hero.lead,
+    alternates: alternates("home", locale),
+    openGraph: {
+      title: TITLE[locale],
+      description: t.hero.lead,
+      locale,
+      type: "website",
+    },
+  };
 }
 
-export default function HomeEn() {
+export function HomeView({ locale }: { locale: Locale }) {
+  const t = home[locale];
+
   return (
     <>
-      <Header />
+      <Header locale={locale} page="home" />
 
       <main id="main">
-        {/* ---------------- HERO ---------------- */}
         <section className="shell pt-16 pb-24 md:pt-24 md:pb-32">
           <span className="eyebrow">{t.hero.eyebrow}</span>
 
-          <h1 className="mt-8 text-d1 font-display font-bold text-max">
-            {t.hero.title}
-          </h1>
+          <h1 className="mt-8 text-d1 font-display font-bold text-max">{t.hero.title}</h1>
 
           <p className="measure-wide mt-8 text-body-l text-copy">{t.hero.lead}</p>
 
@@ -99,8 +77,7 @@ export default function HomeEn() {
         </section>
 
         <div className="shell">
-          {/* ---------------- DOPPIA MATRICE ---------------- */}
-          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside="01">
+          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside="01" size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.matrix.title}
@@ -109,15 +86,13 @@ export default function HomeEn() {
             </Reveal>
           </Section>
 
-          {/* ---------------- MISURE ---------------- */}
-          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside="02">
+          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside="02" size="lg">
             <Reveal>
               <Measurements items={t.measurements.items} />
             </Reveal>
           </Section>
 
-          {/* ---------------- MAPPA OPERATIVA ---------------- */}
-          <Section id="operations" eyebrow={t.map.eyebrow} aside="03">
+          <Section id="operations" eyebrow={t.map.eyebrow} aside="03" size="lg">
             <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
               <Reveal>
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
@@ -135,8 +110,7 @@ export default function HomeEn() {
             </div>
           </Section>
 
-          {/* ---------------- PROVA SOCIALE ---------------- */}
-          <Section id="work" eyebrow={t.work.eyebrow} aside="04">
+          <Section id="work" eyebrow={t.work.eyebrow} aside="04" size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.work.title}
@@ -150,8 +124,7 @@ export default function HomeEn() {
             </Reveal>
           </Section>
 
-          {/* ---------------- FOTOGRAFIE DELL'EVENTO ---------------- */}
-          <Section id="field" eyebrow={t.photos.eyebrow} aside="05">
+          <Section id="field" eyebrow={t.photos.eyebrow} aside="05" size="lg">
             <Reveal>
               <EventPhotos
                 caption={t.photos.caption}
@@ -164,8 +137,7 @@ export default function HomeEn() {
             </Reveal>
           </Section>
 
-          {/* ---------------- CHIAMATA ALL'AZIONE ---------------- */}
-          <Section id="contact" eyebrow={t.cta.eyebrow} aside="06">
+          <Section id="contact" eyebrow={t.cta.eyebrow} aside="06" size="lg">
             <Reveal>
               <h2 className="text-d2 font-display font-bold">{t.cta.title}</h2>
               <p className="measure-wide mt-8 text-body-l text-copy">{t.cta.lead}</p>
@@ -182,7 +154,7 @@ export default function HomeEn() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

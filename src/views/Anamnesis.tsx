@@ -2,59 +2,34 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
-import { Rule } from "@/components/ui/Rule";
 import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { Extraction } from "@/components/pages/Extraction";
 import { Interop } from "@/components/pages/Interop";
 import { ParcelMap } from "@/components/pages/ParcelMap";
 import { Retrieval } from "@/components/pages/Retrieval";
 import { anamnesis } from "@/content/anamnesis";
+import { alternates, type Locale } from "@/lib/routes";
 
-const t = anamnesis.en;
-
-export const metadata: Metadata = {
-  title: t.meta.title,
-  description: t.meta.description,
-  alternates: {
-    canonical: "/en/anamnesis",
-    languages: { en: "/en/anamnesis", it: "/it/anamnesis" },
-  },
-  openGraph: { title: t.meta.title, description: t.meta.description, locale: "en" },
-};
-
-function Section({
-  id,
-  eyebrow,
-  aside,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  aside?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24 py-24 md:py-32">
-      <Reveal as="header" className="mb-12 md:mb-16">
-        <div className="flex items-baseline justify-between gap-6">
-          <span className="eyebrow">{eyebrow}</span>
-          {aside && <span className="eyebrow">{aside}</span>}
-        </div>
-        <Rule className="mt-3" />
-      </Reveal>
-      {children}
-    </section>
-  );
+export function anamnesisMetadata(locale: Locale): Metadata {
+  const t = anamnesis[locale];
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    alternates: alternates("anamnesis", locale),
+    openGraph: { title: t.meta.title, description: t.meta.description, locale },
+  };
 }
 
-export default function AnamnesisEn() {
+export function AnamnesisView({ locale }: { locale: Locale }) {
+  const t = anamnesis[locale];
   /* Il record agganciato all'esploso di mappa e' lo stesso campo catastale
      estratto piu' sopra: e' la stessa informazione che prosegue. */
   const cadastral = t.extraction.fields[3];
 
   return (
     <>
-      <Header />
+      <Header locale={locale} page="anamnesis" />
 
       <main id="main">
         <section className="shell pt-16 pb-20 md:pt-24 md:pb-28">
@@ -174,7 +149,7 @@ export default function AnamnesisEn() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

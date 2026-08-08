@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Rule } from "@/components/ui/Rule";
+import { LEGAL, NAV, PAGES, href, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
    FOOTER
@@ -8,50 +9,62 @@ import { Rule } from "@/components/ui/Rule";
    La titolarita' resta a Cosma Alessandro, come da indicazione.
    ========================================================================== */
 
-const CERTS = [
-  { code: "ISO 9001", scope: "quality" },
-  { code: "ISO/IEC 27001", scope: "information security" },
-  { code: "ISO/IEC 27017", scope: "cloud security" },
-  { code: "ISO/IEC 27018", scope: "personal data in cloud" },
-];
+const CERTS = {
+  en: [
+    { code: "ISO 9001", scope: "quality" },
+    { code: "ISO/IEC 27001", scope: "information security" },
+    { code: "ISO/IEC 27017", scope: "cloud security" },
+    { code: "ISO/IEC 27018", scope: "personal data in cloud" },
+  ],
+  it: [
+    { code: "ISO 9001", scope: "qualità" },
+    { code: "ISO/IEC 27001", scope: "sicurezza delle informazioni" },
+    { code: "ISO/IEC 27017", scope: "sicurezza dei servizi cloud" },
+    { code: "ISO/IEC 27018", scope: "dati personali nel cloud" },
+  ],
+} as const;
 
-const SITEMAP = [
-  { href: "/en/digitization", label: "Digitization" },
-  { href: "/en/anamnesis", label: "Anamnesis" },
-  { href: "/en/customers", label: "Customers" },
-  { href: "/en/investors", label: "Investors" },
-  { href: "/en/about", label: "About" },
-];
+const COPY = {
+  en: {
+    blurb:
+      "Paloryn turns paper archives into structured, queryable data and connects them to public digital infrastructure.",
+    site: "Site",
+    office: "Office",
+    certs: "Certifications",
+    rights: "all rights reserved",
+  },
+  it: {
+    blurb:
+      "Paloryn trasforma gli archivi cartacei in dati strutturati e interrogabili, e li collega all'infrastruttura digitale pubblica.",
+    site: "Sito",
+    office: "Sede",
+    certs: "Certificazioni",
+    rights: "tutti i diritti riservati",
+  },
+} as const;
 
-const LEGAL = [
-  { href: "/en/legal/privacy", label: "Privacy" },
-  { href: "/en/legal/cookie", label: "Cookie" },
-  { href: "/en/legal/accessibility", label: "Accessibility" },
-];
+export function Footer({ locale = "en" }: { locale?: Locale }) {
+  const t = COPY[locale];
 
-export function Footer() {
   return (
     <footer className="mt-32 border-t border-line pt-16 pb-12">
       <div className="shell">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <Logo height={28} className="text-max" />
-            <p className="measure mt-6 text-body text-copy">
-              Paloryn turns paper archives into structured, queryable data and connects
-              them to public digital infrastructure.
-            </p>
+            <p className="measure mt-6 text-body text-copy">{t.blurb}</p>
           </div>
 
           <nav aria-label="Sitemap" className="md:col-span-2">
-            <span className="eyebrow">Site</span>
+            <span className="eyebrow">{t.site}</span>
             <ul className="mt-4 space-y-2">
-              {SITEMAP.map((l) => (
-                <li key={l.href}>
+              {NAV.map((key) => (
+                <li key={key}>
                   <Link
-                    href={l.href}
-                    className="text-data font-mono text-copy transition-colors hover:text-max"
+                    href={href(key, locale)}
+                    className="font-mono text-data text-copy transition-colors hover:text-max"
                   >
-                    {l.label}
+                    {PAGES[key].label[locale]}
                   </Link>
                 </li>
               ))}
@@ -59,19 +72,16 @@ export function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <span className="eyebrow">Office</span>
-            <address className="mt-4 not-italic font-mono text-data text-copy">
+            <span className="eyebrow">{t.office}</span>
+            <address className="mt-4 font-mono text-data text-copy not-italic">
               Via D. Cantatore 1/3
               <br />
-              73100 Lecce (LE), Italy
+              73100 Lecce (LE), Italia
               <br />
               <br />
-              VAT 04522160755
+              P. IVA 04522160755
               <br />
-              <a
-                href="mailto:info@paloryn.com"
-                className="transition-colors hover:text-max"
-              >
+              <a href="mailto:info@paloryn.com" className="transition-colors hover:text-max">
                 info@paloryn.com
               </a>
               <br />
@@ -82,9 +92,9 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <span className="eyebrow">Certifications</span>
+            <span className="eyebrow">{t.certs}</span>
             <ul className="mt-4 space-y-2">
-              {CERTS.map((c) => (
+              {CERTS[locale].map((c) => (
                 <li key={c.code} className="font-mono text-data">
                   <span className="text-strong">{c.code}</span>{" "}
                   <span className="text-mute">— {c.scope}</span>
@@ -98,13 +108,16 @@ export function Footer() {
 
         <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <span className="eyebrow">
-            &copy; {new Date().getFullYear()} Cosma Alessandro — all rights reserved
+            &copy; {new Date().getFullYear()} Cosma Alessandro — {t.rights}
           </span>
           <ul className="flex flex-wrap gap-6">
             {LEGAL.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="eyebrow transition-colors hover:text-max">
-                  {l.label}
+              <li key={l.key}>
+                <Link
+                  href={l.path[locale]}
+                  className="eyebrow transition-colors hover:text-max"
+                >
+                  {l.label[locale]}
                 </Link>
               </li>
             ))}

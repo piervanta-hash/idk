@@ -21,6 +21,11 @@ export function hasPhoto(base: string): boolean {
   );
 }
 
-export function present<T extends { base: string }>(shots: readonly T[]): T[] {
+/** La forma di una fotografia in pagina. Volutamente larga: i contenuti
+ *  sono dichiarati `as const`, e un tipo stretto non accetterebbe insieme
+ *  la versione inglese e quella italiana. */
+export type Shot = { base: string; alt: string; credit?: string };
+
+export function present(shots: readonly Shot[]): Shot[] {
   return shots.filter((s) => hasPhoto(s.base));
 }

@@ -2,52 +2,28 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
-import { Rule } from "@/components/ui/Rule";
 import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { CaseGrid } from "@/components/pages/CaseGrid";
 import { customers } from "@/content/customers";
+import { alternates, type Locale } from "@/lib/routes";
 
-const t = customers.en;
-
-export const metadata: Metadata = {
-  title: t.meta.title,
-  description: t.meta.description,
-  alternates: {
-    canonical: "/en/customers",
-    languages: { en: "/en/customers", it: "/it/clienti" },
-  },
-  openGraph: { title: t.meta.title, description: t.meta.description, locale: "en" },
-};
-
-function Section({
-  id,
-  eyebrow,
-  aside,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  aside?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24 py-24 md:py-32">
-      <Reveal as="header" className="mb-12 md:mb-16">
-        <div className="flex items-baseline justify-between gap-6">
-          <span className="eyebrow">{eyebrow}</span>
-          {aside && <span className="eyebrow">{aside}</span>}
-        </div>
-        <Rule className="mt-3" />
-      </Reveal>
-      {children}
-    </section>
-  );
+export function customersMetadata(locale: Locale): Metadata {
+  const t = customers[locale];
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    alternates: alternates("customers", locale),
+    openGraph: { title: t.meta.title, description: t.meta.description, locale },
+  };
 }
 
-export default function CustomersEn() {
+export function CustomersView({ locale }: { locale: Locale }) {
+  const t = customers[locale];
+
   return (
     <>
-      <Header />
+      <Header locale={locale} page="customers" />
 
       <main id="main">
         <section className="shell pt-16 pb-16 md:pt-24 md:pb-20">
@@ -64,12 +40,9 @@ export default function CustomersEn() {
 
             <div className="mt-8 flex flex-col gap-4 border-t border-line pt-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
               <p className="eyebrow">
-                {t.also.label}{" "}
-                <span className="text-copy">{t.also.items.join(" · ")}</span>
+                {t.also.label} <span className="text-copy">{t.also.items.join(" · ")}</span>
               </p>
-              <p className="text-small text-mute sm:max-w-md sm:text-right">
-                {t.also.note}
-              </p>
+              <p className="text-small text-mute sm:max-w-md sm:text-right">{t.also.note}</p>
             </div>
           </div>
 
@@ -95,7 +68,7 @@ export default function CustomersEn() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

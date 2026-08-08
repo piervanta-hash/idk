@@ -1,55 +1,29 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Rule } from "@/components/ui/Rule";
 import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { TextField, TextArea } from "@/components/ui/Field";
 import { investors } from "@/content/investors";
+import { alternates, type Locale } from "@/lib/routes";
 
-const t = investors.en;
-
-export const metadata: Metadata = {
-  title: t.meta.title,
-  description: t.meta.description,
-  alternates: {
-    canonical: "/en/investors",
-    languages: { en: "/en/investors", it: "/it/investitori" },
-  },
-  openGraph: { title: t.meta.title, description: t.meta.description, locale: "en" },
-  /* Non e' una pagina da posizionare: si arriva perche' si e' cercata. */
-  robots: { index: true, follow: true },
-};
-
-function Section({
-  id,
-  eyebrow,
-  aside,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  aside?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24 py-24 md:py-32">
-      <Reveal as="header" className="mb-12 md:mb-16">
-        <div className="flex items-baseline justify-between gap-6">
-          <span className="eyebrow">{eyebrow}</span>
-          {aside && <span className="eyebrow">{aside}</span>}
-        </div>
-        <Rule className="mt-3" />
-      </Reveal>
-      {children}
-    </section>
-  );
+export function investorsMetadata(locale: Locale): Metadata {
+  const t = investors[locale];
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    alternates: alternates("investors", locale),
+    openGraph: { title: t.meta.title, description: t.meta.description, locale },
+  };
 }
 
-export default function InvestorsEn() {
+export function InvestorsView({ locale }: { locale: Locale }) {
+  const t = investors[locale];
+
   return (
     <>
-      <Header />
+      <Header locale={locale} page="investors" />
 
       <main id="main">
         <section className="shell pt-16 pb-16 md:pt-24 md:pb-20">
@@ -154,7 +128,7 @@ export default function InvestorsEn() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

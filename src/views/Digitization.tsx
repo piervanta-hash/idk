@@ -2,53 +2,29 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
-import { Rule } from "@/components/ui/Rule";
 import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
 import { Process } from "@/components/pages/Process";
 import { LabPlate } from "@/components/pages/LabPlate";
 import { digitization } from "@/content/digitization";
+import { alternates, type Locale } from "@/lib/routes";
 
-const t = digitization.en;
-
-export const metadata: Metadata = {
-  title: t.meta.title,
-  description: t.meta.description,
-  alternates: {
-    canonical: "/en/digitization",
-    languages: { en: "/en/digitization", it: "/it/dematerializzazione" },
-  },
-  openGraph: { title: t.meta.title, description: t.meta.description, locale: "en" },
-};
-
-function Section({
-  id,
-  eyebrow,
-  aside,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  aside?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24 py-24 md:py-32">
-      <Reveal as="header" className="mb-12 md:mb-16">
-        <div className="flex items-baseline justify-between gap-6">
-          <span className="eyebrow">{eyebrow}</span>
-          {aside && <span className="eyebrow">{aside}</span>}
-        </div>
-        <Rule className="mt-3" />
-      </Reveal>
-      {children}
-    </section>
-  );
+export function digitizationMetadata(locale: Locale): Metadata {
+  const t = digitization[locale];
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    alternates: alternates("digitization", locale),
+    openGraph: { title: t.meta.title, description: t.meta.description, locale },
+  };
 }
 
-export default function DigitizationEn() {
+export function DigitizationView({ locale }: { locale: Locale }) {
+  const t = digitization[locale];
+
   return (
     <>
-      <Header />
+      <Header locale={locale} page="digitization" />
 
       <main id="main">
         <section className="shell pt-16 pb-20 md:pt-24 md:pb-28">
@@ -133,7 +109,7 @@ export default function DigitizationEn() {
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }
