@@ -11,3 +11,6 @@ next-env.d.ts
 # pubblico (vedi photos-sorgente/LEGGIMI.md). Le versioni lavorate stanno
 # in public/img/archilives/ e quelle sì sono versionate.
 photos-sorgente/*.png
+
+# Anteprima impacchettata: si rigenera con scripts/build-anteprima.mjs
+anteprima-home.html
