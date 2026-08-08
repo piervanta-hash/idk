@@ -20,6 +20,8 @@ export const home = {
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · European Union",
+      stacks:
+        "Drawn elevation of archival shelving: file boxes, envelopes and bound volumes on six shelves, indexed one by one.",
       title: "From matter to data",
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
@@ -185,6 +187,8 @@ export const home = {
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · Unione Europea",
+      stacks:
+        "Alzato disegnato di una scaffalatura d'archivio: faldoni, buste e volumi rilegati su sei ripiani, censiti uno a uno.",
       title: "Dalla materia al dato",
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },

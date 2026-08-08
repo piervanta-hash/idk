@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/home/Headline";
+import { Stacks } from "@/components/home/Stacks";
 import { Conversion } from "@/components/home/Conversion";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
@@ -60,12 +61,11 @@ export function HomeView({ locale }: { locale: Locale }) {
             si legge come un documento stampato, non come l'apertura di un
             sito: la cornice era l'errore, non le parole.
 
-            Adesso la prima schermata e' fatta di tre cose e basta - una
-            riga sottile di intestazione, il titolo alla scala del
-            manifesto, e la conversione da bordo a bordo - e di un solo
-            movimento in due tempi: prima si risolve la frase, poi si
-            risolve il documento. Il titolo dice «dalla materia al dato» e
-            nel dirlo lo fa.
+            Adesso la prima schermata e' fatta di quattro cose: una riga
+            sottile di intestazione, il titolo alla scala del manifesto, la
+            scaffalatura disegnata che gli sta a fianco, e la conversione da
+            bordo a bordo. Il titolo dice «materia» e la materia e' li'
+            accanto; dice «dato» e il dato sta sotto.
 
             Nota per chi tocchera' il titolo: e' volutamente concettuale e
             non contiene nessuna parola per cui qualcuno cerchi. Il peso
@@ -80,18 +80,40 @@ export function HomeView({ locale }: { locale: Locale }) {
               <span className="eyebrow text-right">{t.hero.place}</span>
             </div>
 
-            <div className="pt-14 pb-16 md:pt-24 md:pb-24">
-              <Headline text={t.hero.title} />
+            {/* Due colonne. A sinistra le parole, a destra l'archivio
+                disegnato: il titolo dice «materia» e accanto c'e' la
+                materia, sei ripiani di faldoni.
 
-              <p className="measure mt-10 text-body-l text-copy md:mt-12">{t.hero.lead}</p>
+                Le colonne non sono uguali: il testo prende sette parti su
+                dodici e il disegno cinque. Meta' e meta' avrebbero fatto
+                due blocchi che si guardano; cosi' invece si legge prima il
+                titolo e il disegno gli sta a fianco.
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
-                  {t.hero.primary.label}
-                </ButtonLink>
-                <ButtonLink href={t.hero.secondary.href} variant="secondary" size="lg" arrow>
-                  {t.hero.secondary.label}
-                </ButtonLink>
+                Sul telefono il disegno va sotto, non sparisce: e' la
+                seconda cosa che si vede scorrendo, e regge da sola. */}
+            <div className="grid items-start gap-12 pt-12 pb-16 md:pt-20 md:pb-24 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-7">
+                <Headline text={t.hero.title} />
+
+                <p className="measure mt-10 text-body-l text-copy md:mt-12">{t.hero.lead}</p>
+
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                  <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
+                    {t.hero.primary.label}
+                  </ButtonLink>
+                  <ButtonLink
+                    href={t.hero.secondary.href}
+                    variant="secondary"
+                    size="lg"
+                    arrow
+                  >
+                    {t.hero.secondary.label}
+                  </ButtonLink>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 lg:pt-2">
+                <Stacks label={t.hero.stacks} />
               </div>
             </div>
           </div>

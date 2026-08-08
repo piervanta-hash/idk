@@ -24,7 +24,9 @@
   --color-accent: #00c2d1; /* 9,1:1 su bg / 2,2:1 su bianco → mai testo su bianco */
 
   /* --- TIPOGRAFIA ------------------------------------------------------- */
-  --font-display: var(--ff-sora), system-ui, sans-serif; /* Sora 600/700 */
+  /* Stessa famiglia per titoli e testo. Cambiano peso e larghezza, non
+     disegno: e' quello che tiene insieme la pagina. */
+  --font-display: var(--ff-archivo), system-ui, sans-serif;
   --font-text: var(--ff-archivo), system-ui, sans-serif; /* Archivo 400/500 */
   --font-mono: var(--ff-plex-mono), ui-monospace, monospace; /* IBM Plex Mono 400 */
 
@@ -135,6 +137,11 @@
   h5 {
     font-family: var(--font-display);
     font-weight: 600;
+    /* I titoli sono leggermente piu' larghi del testo: 106 su 100. Non si
+       nota come «un altro carattere», si nota come titoli che tengono la
+       riga. E' il vantaggio dell'asse di larghezza — dove servirebbe un
+       secondo carattere basta spostare un numero. */
+    font-variation-settings: "wdth" 106;
     color: var(--color-max);
     margin: 0;
     text-wrap: balance;
@@ -250,74 +257,49 @@
     opacity: 0;
   }
 
-  /* IL TITOLO SI RISOLVE.
+  /* LO SCAFFALE SI FA CENSIRE.
 
-     Il titolo dice «dalla materia al dato», quindi lo fa. Sotto c'e' la
-     stessa frase in grigio - la materia, leggibile ma non ancora risolta -
-     e sopra la stessa frase in bianco, scoperta da sinistra a destra da
-     una lama che la attraversa.
+     Il disegno esiste due volte: sotto lo scaffale com'e', sopra lo stesso
+     scaffale censito, scoperto da sinistra a destra da una lama.
 
-     Stato di riposo: la frase bianca e' scoperta del tutto e la lama non
-     c'e'. E' anche lo stato senza JavaScript e con meno animazioni, ed e'
-     il motivo per cui il titolo non parte mai da opacita' zero: se
-     partisse invisibile ritarderebbe la prima pittura utile, che e' la
-     misura su cui si giudica la velocita' di un sito. */
-  .hd-fill {
-    clip-path: inset(0 0 0 0);
+     Stato di riposo — senza JavaScript e con meno animazioni: lo scaffale
+     e' censito del tutto e la lama non c'e'. Lo strato di sotto e' dipinto
+     al primo fotogramma a piena opacita': niente parte mai invisibile, o
+     si ritarderebbe la prima pittura utile. */
+  .st-clip {
+    width: 100%;
   }
-  /* A riposo lo strato grigio non c'e' affatto: chi ha chiesto meno
-     animazioni, o non ha JavaScript, vede un titolo bianco e basta. Il
-     grigio esiste solo per la durata della risoluzione. */
-  .hd-ghost {
-    opacity: 0;
-  }
-  .hd-blade {
+  .st-blade {
     opacity: 0;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hd-run .hd-ghost {
-      animation: hd-ghost 1250ms linear both;
+    .st-run .st-clip {
+      animation: st-clip 2400ms cubic-bezier(0.3, 0.6, 0.4, 1) both;
     }
-    .hd-run .hd-fill {
-      animation: hd-fill 1100ms cubic-bezier(0.3, 0.6, 0.4, 1) both;
-    }
-    .hd-run .hd-blade {
-      animation: hd-blade 1100ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    .st-run .st-blade {
+      animation: st-blade 2400ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
     }
   }
 
-  /* Il grigio resta pieno finche' il bianco non lo ha coperto tutto, poi
-     si spegne: sotto al bianco non deve restare niente, o sui bordi delle
-     lettere si vedrebbe un alone. */
-  @keyframes hd-ghost {
-    0%,
-    88% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes hd-fill {
+  @keyframes st-clip {
     from {
-      clip-path: inset(0 100% 0 0);
+      width: 0%;
     }
     to {
-      clip-path: inset(0 0 0 0);
+      width: 100%;
     }
   }
 
-  @keyframes hd-blade {
+  @keyframes st-blade {
     0% {
       left: 0;
       opacity: 0;
     }
-    10% {
+    6% {
       opacity: 1;
     }
-    85% {
+    90% {
       opacity: 1;
     }
     100% {
