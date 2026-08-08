@@ -86,6 +86,42 @@ il file, manca la foto, senza riquadri vuoti da spegnere a mano.
 
 ---
 
+## Come si fa arrivare la posta dei moduli
+
+I moduli del sito (contatti e investitori) **non aprono il programma di
+posta di chi scrive**: il messaggio parte dal server e arriva nella
+casella dell'azienda con dentro solo i campi compilati.
+
+Perché funzioni servono cinque valori, quelli del fornitore di posta su
+cui gira già `info@paloryn.com`. Si copia `.env.example` in `.env.local`
+e si riempiono:
+
+| valore | che cos'è |
+|---|---|
+| `SMTP_HOST` | il server di posta in uscita |
+| `SMTP_PORT` | `465` con TLS diretto, oppure `587` con STARTTLS |
+| `SMTP_USER` | la casella da cui il sito spedisce |
+| `SMTP_PASS` | la sua password — meglio una password per applicazioni |
+| `CONTACT_TO` | dove consegnare (se manca, si usa `SMTP_USER`) |
+
+`.env.local` non finisce in git, ed è giusto così: sono credenziali.
+
+**Il mittente è il sito, non chi scrive.** Un server non può firmare la
+posta a nome di un dominio altrui: provarci significa finire nello spam.
+Chi ha compilato il modulo compare come «rispondi a», quindi premere
+Rispondi nella casella scrive direttamente a lui.
+
+**Senza questi valori il sito resta in piedi**: i moduli dicono che il
+messaggio non è partito e mostrano l'indirizzo da copiare a mano. Non
+fingono mai di aver spedito.
+
+Contro i moduli compilati in automatico ci sono tre difese, nessuna
+visibile a chi scrive davvero: un campo esca fuori dallo schermo, un
+controllo sul tempo di compilazione (sotto i tre secondi non è una
+persona) e un freno di dieci invii all'ora per indirizzo di rete.
+
+---
+
 ## Come è fatto dentro
 
 | cartella | cosa contiene |

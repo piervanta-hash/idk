@@ -99,72 +99,79 @@ export function Conversion({
   }, []);
 
   return (
-    <div ref={ref} className="border-t border-line">
-      <div className="flex items-baseline justify-between gap-6 border-b border-line px-5 py-3 md:px-8">
-        <span className="eyebrow">{note}</span>
-        <button
-          type="button"
-          onClick={() => {
-            setRun(true);
-            setKey((k) => k + 1);
-          }}
-          className="eyebrow inline-flex min-h-11 items-center transition-colors hover:text-accent"
-        >
-          {replay}
-        </button>
+    /* Da bordo a bordo. Le righe orizzontali e la lama di scansione
+       attraversano tutto lo schermo — e' da li' che viene la forza — ma il
+       contenuto resta dentro la colonna del sito, allineato a tutto il
+       resto della pagina. Bordi larghi e testo allineato: le due cose non
+       sono in contraddizione, vanno solo annidate nell'ordine giusto. */
+    <div ref={ref} className="border-y border-line">
+      <div className="shell">
+        <div className="flex items-baseline justify-between gap-6 border-b border-line py-3">
+          <span className="eyebrow">{note}</span>
+          <button
+            type="button"
+            onClick={() => {
+              setRun(true);
+              setKey((k) => k + 1);
+            }}
+            className="eyebrow inline-flex min-h-11 items-center transition-colors hover:text-accent"
+          >
+            {replay}
+          </button>
+        </div>
       </div>
 
-      <div
-        key={key}
-        className={`relative overflow-hidden ${run ? "rs-run" : ""}`}
-      >
-        {/* La riga di scansione. Sta sopra tutto, non intercetta il
-            puntatore, e sparisce da sola quando ha finito. */}
+      <div key={key} className={`relative overflow-hidden ${run ? "rs-run" : ""}`}>
+        {/* La lama attraversa tutta la larghezza dello schermo, non la
+            colonna: sopra a tutto, senza intercettare il puntatore, e
+            sparisce da sola quando ha finito. */}
         <span
           aria-hidden="true"
           className="rs-scan pointer-events-none absolute inset-y-0 z-10 w-0.5 bg-accent"
         />
 
-        <div className="grid md:grid-cols-2">
-          {/* LA CARTA */}
-          <div className="border-b border-line px-5 py-8 md:border-r md:border-b-0 md:px-8 md:py-10">
-            <span className="eyebrow">{from}</span>
-            <div className="mt-6 flex flex-col gap-2" aria-hidden="true">
-              {PAGE.map((l, i) => (
-                <span
-                  key={i}
-                  className={
-                    "rs-dash block " +
-                    (l.head ? "h-2.5 bg-mute " : "h-1.5 bg-line ") +
-                    (l.gap ? "mt-4 " : "") +
-                    (i === 1 ? "mb-5 " : "")
-                  }
-                  style={{
-                    width: `${l.w}%`,
-                    animationDelay: `${120 + i * 26}ms`,
-                  }}
-                />
-              ))}
+        <div className="shell">
+          <div className="grid md:grid-cols-2">
+            {/* IL DOCUMENTO */}
+            <div className="border-b border-line py-10 pr-0 md:border-r md:border-b-0 md:py-14 md:pr-10">
+              <span className="eyebrow">{from}</span>
+              <div className="mt-8 flex flex-col gap-2" aria-hidden="true">
+                {PAGE.map((l, i) => (
+                  <span
+                    key={i}
+                    className={
+                      "rs-dash block " +
+                      (l.head ? "h-2.5 bg-mute " : "h-1.5 bg-line ") +
+                      (l.gap ? "mt-4 " : "") +
+                      (i === 1 ? "mb-5 " : "")
+                    }
+                    style={{
+                      width: `${l.w}%`,
+                      animationDelay: `${120 + i * 26}ms`,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* IL RECORD */}
-          <div className="px-5 py-8 md:px-8 md:py-10">
-            <span className="eyebrow">{to}</span>
-            <dl className="mt-6 flex flex-col gap-5">
-              {fields.map((f, i) => (
-                <div
-                  key={f.label}
-                  className="rs-field border-t border-line pt-3"
-                  /* I ritardi seguono la riga: il campo compare quando la
-                     riga lo ha appena superato. */
-                  style={{ animationDelay: `${820 + i * 210}ms` }}
-                >
-                  <dt className="eyebrow">{f.label}</dt>
-                  <dd className="mt-2 font-mono text-data text-max">{f.value}</dd>
-                </div>
-              ))}
-            </dl>
+            {/* IL RECORD */}
+            <div className="py-10 md:py-14 md:pl-10">
+              <span className="eyebrow">{to}</span>
+              <dl className="mt-8 flex flex-col gap-6">
+                {fields.map((f, i) => (
+                  <div
+                    key={f.label}
+                    className="rs-field border-t border-line pt-3"
+                    /* I ritardi seguono la lama: il campo compare quando la
+                       lama lo ha appena superato. */
+                    style={{ animationDelay: `${820 + i * 210}ms` }}
+                  >
+                    <dt className="eyebrow">{f.label}</dt>
+                    <dd className="mt-2 font-mono text-data text-max">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </div>
       </div>

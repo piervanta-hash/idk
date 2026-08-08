@@ -73,11 +73,6 @@ export const home = {
         { value: "10", unit: "M+", label: "pages digitized to date" },
         { value: "20", unit: "+", label: "archivists, engineers, developers" },
         { value: "EU", label: "data residency", note: "AI models run locally" },
-        {
-          value: "4",
-          label: "ISO certifications",
-          note: "9001 · 27001 · 27017 · 27018",
-        },
       ],
     },
 
@@ -98,7 +93,7 @@ export const home = {
     },
 
     work: {
-      eyebrow: "Selected work",
+      eyebrow: "Clients",
       title: "Clients and volumes.",
       items: [
         {
@@ -241,11 +236,6 @@ export const home = {
         { value: "10", unit: "M+", label: "pagine digitalizzate a oggi" },
         { value: "20", unit: "+", label: "archivisti, ingegneri, sviluppatori" },
         { value: "EU", label: "residenza dei dati", note: "modelli AI eseguiti in locale" },
-        {
-          value: "4",
-          label: "certificazioni ISO",
-          note: "9001 · 27001 · 27017 · 27018",
-        },
       ],
     },
 
@@ -268,7 +258,7 @@ export const home = {
     },
 
     work: {
-      eyebrow: "Progetti",
+      eyebrow: "Clienti",
       title: "Committenti e volumi.",
       items: [
         {

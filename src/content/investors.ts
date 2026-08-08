@@ -84,6 +84,10 @@ export const investors = {
         interest: "What you would like to see",
         interestHint: "Business model, traction, infrastructure, governance — or all of it.",
         send: "Send request",
+        sending: "Sending…",
+        sent: "Request received.",
+        sentNote: "The address is read by the founders. We answer with the materials that apply, under confidentiality.",
+        failed: "The message did not go through. Write to the address below and we will answer just the same.",
         subject: "Investor materials",
         alt: "Or write to",
         privacy:
@@ -165,6 +169,10 @@ export const investors = {
         interest: "Che cosa vorreste vedere",
         interestHint: "Modello di business, trazione, infrastruttura, governance — o tutto.",
         send: "Invia richiesta",
+        sending: "Invio in corso…",
+        sent: "Richiesta ricevuta.",
+        sentNote: "L'indirizzo è letto dai fondatori. Rispondiamo con i materiali che servono, sotto riservatezza.",
+        failed: "Il messaggio non è partito. Scrivi all'indirizzo qui sotto: rispondiamo lo stesso.",
         subject: "Materiali per investitori",
         alt: "Oppure scrivere a",
         privacy:

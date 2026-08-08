@@ -38,6 +38,24 @@
   --text-d1--line-height: 0.98;
   --text-d1--letter-spacing: -0.03em;
 
+  /* Corpo dedicato alla sola testata della home. Non e' un d1 piu' grande
+     per capriccio: e' l'unico posto del sito dove il titolo non descrive
+     ma dichiara, e una dichiarazione di quattro parole regge - anzi
+     pretende - la scala del manifesto.
+
+     Il minimo, 76px, e' misurato non stimato: a 390px la colonna utile e'
+     350px e la parola piu' larga del titolo, «materia», occupa 303px a
+     questo corpo. In inglese la parola piu' larga e' «matter», che sta
+     dentro con piu' margine. Il massimo, 132px, e' quello che tiene
+     «Dalla materia» su una riga sola dentro la colonna da 1200px.
+
+     Se un giorno il titolo cambia, questi due numeri vanno rimisurati,
+     non indovinati: una parola che non entra viene tagliata via dal bordo
+     senza dire niente a nessuno. */
+  --text-hero: clamp(4.75rem, 3.45rem + 5.3333vw, 8.25rem); /* 76 → 132 */
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.035em;
+
   --text-d2: clamp(2.5rem, 1.9429rem + 2.286vw, 4rem); /* 40 → 64 */
   --text-d2--line-height: 1.02;
   --text-d2--letter-spacing: -0.025em;
@@ -230,6 +248,82 @@
         il risultato, che e' la cosa che conta. */
   .rs-scan {
     opacity: 0;
+  }
+
+  /* IL TITOLO SI RISOLVE.
+
+     Il titolo dice «dalla materia al dato», quindi lo fa. Sotto c'e' la
+     stessa frase in grigio - la materia, leggibile ma non ancora risolta -
+     e sopra la stessa frase in bianco, scoperta da sinistra a destra da
+     una lama che la attraversa.
+
+     Stato di riposo: la frase bianca e' scoperta del tutto e la lama non
+     c'e'. E' anche lo stato senza JavaScript e con meno animazioni, ed e'
+     il motivo per cui il titolo non parte mai da opacita' zero: se
+     partisse invisibile ritarderebbe la prima pittura utile, che e' la
+     misura su cui si giudica la velocita' di un sito. */
+  .hd-fill {
+    clip-path: inset(0 0 0 0);
+  }
+  /* A riposo lo strato grigio non c'e' affatto: chi ha chiesto meno
+     animazioni, o non ha JavaScript, vede un titolo bianco e basta. Il
+     grigio esiste solo per la durata della risoluzione. */
+  .hd-ghost {
+    opacity: 0;
+  }
+  .hd-blade {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hd-run .hd-ghost {
+      animation: hd-ghost 1250ms linear both;
+    }
+    .hd-run .hd-fill {
+      animation: hd-fill 1100ms cubic-bezier(0.3, 0.6, 0.4, 1) both;
+    }
+    .hd-run .hd-blade {
+      animation: hd-blade 1100ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+  }
+
+  /* Il grigio resta pieno finche' il bianco non lo ha coperto tutto, poi
+     si spegne: sotto al bianco non deve restare niente, o sui bordi delle
+     lettere si vedrebbe un alone. */
+  @keyframes hd-ghost {
+    0%,
+    88% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hd-fill {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes hd-blade {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {

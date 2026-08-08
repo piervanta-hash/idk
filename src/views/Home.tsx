@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { Headline } from "@/components/home/Headline";
 import { Conversion } from "@/components/home/Conversion";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
@@ -53,40 +54,36 @@ export function HomeView({ locale }: { locale: Locale }) {
       <Header locale={locale} page="home" />
 
       <main id="main">
-        {/* LA TESTATA E' UNA SCHEDA, non un annuncio.
+        {/* LA TESTATA.
 
-            Intestazione in alto come su una scheda di catalogo, poi il
-            concetto - dalla materia al dato - poi la riga che dice chi
-            siamo e che cosa facciamo, poi, dentro la stessa cornice, la
-            cosa stessa: un documento che diventa un record, sotto gli
-            occhi di chi legge.
+            Niente cornice. Un riquadro con dentro titolo, testo e diagramma
+            si legge come un documento stampato, non come l'apertura di un
+            sito: la cornice era l'errore, non le parole.
 
-            Testo e grafica non sono due blocchi affiancati, sono lo stesso
-            oggetto: per questo la pagina non somiglia a una qualunque
-            pagina di lancio.
+            Adesso la prima schermata e' fatta di tre cose e basta - una
+            riga sottile di intestazione, il titolo alla scala del
+            manifesto, e la conversione da bordo a bordo - e di un solo
+            movimento in due tempi: prima si risolve la frase, poi si
+            risolve il documento. Il titolo dice «dalla materia al dato» e
+            nel dirlo lo fa.
 
-            Nota per chi tocchera' questo titolo: e' volutamente concettuale
-            e non contiene nessuna parola per cui qualcuno cerchi. Il peso
-            descrittivo lo portano il titolo del documento (il <title>, che
-            dice «societa' di dati per gli archivi cartacei») e la riga di
-            testo subito sotto. Se un giorno si toglie una delle due, la
-            pagina smette di dire di che cosa parla. */}
-        <section className="shell pt-10 pb-24 md:pt-14 md:pb-32">
-          <div className="border border-line">
-            <div className="flex items-baseline justify-between gap-6 border-b border-line px-5 py-3 md:px-8">
+            Nota per chi tocchera' il titolo: e' volutamente concettuale e
+            non contiene nessuna parola per cui qualcuno cerchi. Il peso
+            descrittivo lo portano il titolo del documento - che dice
+            «societa' di dati per gli archivi cartacei» - e la riga di testo
+            sotto il titolo. Se si toglie una delle due, la pagina smette di
+            dire di che cosa parla. */}
+        <section>
+          <div className="shell">
+            <div className="flex items-baseline justify-between gap-6 border-b border-line pt-4 pb-3">
               <span className="eyebrow">{t.hero.mark}</span>
               <span className="eyebrow text-right">{t.hero.place}</span>
             </div>
 
-            <div className="px-5 py-12 md:px-8 md:py-16">
-              {/* Il titolo e' un concetto, non una descrizione, e i concetti
-                  vanno grandi: torna al corpo display pieno. La descrizione
-                  la fa la riga sotto, che nomina l'azienda e il mestiere. */}
-              <h1 className="measure-wide text-d1 font-display font-bold text-max">
-                {t.hero.title}
-              </h1>
+            <div className="pt-14 pb-16 md:pt-24 md:pb-24">
+              <Headline text={t.hero.title} />
 
-              <p className="measure-wide mt-8 text-body-l text-copy">{t.hero.lead}</p>
+              <p className="measure mt-10 text-body-l text-copy md:mt-12">{t.hero.lead}</p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
@@ -97,15 +94,17 @@ export function HomeView({ locale }: { locale: Locale }) {
                 </ButtonLink>
               </div>
             </div>
-
-            <Conversion
-              from={t.hero.convert.from}
-              to={t.hero.convert.to}
-              replay={t.hero.convert.replay}
-              note={t.hero.convert.note}
-              fields={t.hero.convert.fields}
-            />
           </div>
+
+          {/* Da bordo a bordo: la conversione non e' un'illustrazione messa
+              accanto al testo, e' il pavimento su cui la pagina poggia. */}
+          <Conversion
+            from={t.hero.convert.from}
+            to={t.hero.convert.to}
+            replay={t.hero.convert.replay}
+            note={t.hero.convert.note}
+            fields={t.hero.convert.fields}
+          />
         </section>
 
         <div className="shell">

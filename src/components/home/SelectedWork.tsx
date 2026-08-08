@@ -9,6 +9,17 @@ import Link from "next/link";
    Regola del brief rispettata: volumi e risultati, mai importi contrattuali.
    ========================================================================== */
 
+/* Il ritmo delle larghezze, su dodici colonne. Si ripete ogni cinque
+   schede: se un giorno ne arriva una sesta, riparte da 5 e la griglia
+   resta piena. */
+const SPANS = [
+  "md:col-span-5",
+  "md:col-span-7",
+  "md:col-span-7",
+  "md:col-span-5",
+  "md:col-span-12",
+];
+
 type Item = {
   index: string;
   sector: string;
@@ -30,22 +41,33 @@ export function SelectedWork({
 }) {
   return (
     <div>
+      {/* VARIETA' SENZA GERARCHIA.
+
+          Le committenze pesano tutte uguale — sono quasi tutti comuni, e
+          ognuna e' un lavoro a se' — ma cinque riquadri identici in fila
+          si leggono come un listino. Su schermo largo le schede alternano
+          larghezza su dodici colonne: 5+7, 7+5, 12. Nessuna e' piu'
+          importante di un'altra, ma il ritmo cambia a ogni riga e
+          l'occhio non scivola via.
+
+          Sul telefono restano una fila che si scorre col pollice, con
+          aggancio a ogni scheda: lo scorrimento sta dentro il proprio
+          contenitore, la pagina non scorre mai in orizzontale. */}
       <ul
         className={
           "-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 " +
-          "md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 " +
-          /* Tre colonne, non quattro: con cinque schede la seconda riga
-             ne porta due invece di lasciarne tre vuote, e le schede
-             respirano di piu'. */
-          "lg:grid-cols-3"
+          "md:mx-0 md:grid md:grid-cols-12 md:gap-6 md:overflow-visible md:px-0 md:pb-0"
         }
       >
-        {items.map((item) => (
+        {items.map((item, i) => (
           <li
             key={item.client}
-            className="w-[78vw] max-w-xs shrink-0 snap-start md:w-auto md:max-w-none"
+            className={
+              "w-[78vw] max-w-xs shrink-0 snap-start md:w-auto md:max-w-none " +
+              SPANS[i % SPANS.length]
+            }
           >
-            <article className="flex h-full flex-col border border-line bg-surface-2 p-6">
+            <article className="flex h-full flex-col border border-line bg-surface-2 p-6 md:p-8">
               <div className="flex items-baseline justify-between gap-4">
                 <span className="eyebrow tabular">{item.index}</span>
                 <span className="eyebrow border border-line px-2 py-1">{item.sector}</span>

@@ -83,6 +83,10 @@ export const about = {
         extentHint: "Even roughly, in linear metres: it is only for the order of magnitude.",
         notes: "Description of the archive",
         send: "Send",
+        sending: "Sending…",
+        sent: "Request received.",
+        sentNote: "We read every request and answer within two working days. If the work is not feasible, we say so.",
+        failed: "The message did not go through. Write to the address below and we will answer just the same.",
         subject: "Survey request",
         privacy:
           "Data sent through this form is used only to answer the request. It is not used for marketing and is not passed to third parties.",
@@ -165,6 +169,10 @@ export const about = {
           "Anche approssimativa, in metri lineari: serve solo per l'ordine di grandezza.",
         notes: "Descrizione dell'archivio",
         send: "Invia",
+        sending: "Invio in corso…",
+        sent: "Richiesta ricevuta.",
+        sentNote: "Leggiamo ogni richiesta e rispondiamo entro due giorni lavorativi. Se l'intervento non è praticabile, lo diciamo.",
+        failed: "Il messaggio non è partito. Scrivi all'indirizzo qui sotto: rispondiamo lo stesso.",
         subject: "Richiesta di sopralluogo",
         privacy:
           "I dati inviati con questo modulo servono solo a rispondere alla richiesta. Non vengono usati per marketing né ceduti a terzi.",

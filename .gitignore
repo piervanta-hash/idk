@@ -2,6 +2,8 @@ node_modules/
 .next/
 out/
 .env*
+# ...tranne il modello senza segreti, che serve a sapere quali valori servono
+!.env.example
 *.tsbuildinfo
 next-env.d.ts
 
