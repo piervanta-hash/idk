@@ -128,3 +128,61 @@ Tetto sull'accento: 5%.
 - La **formulazione di PDND, QGIS e geolocalizzazione**.
 - Il **portale Interreg dei teatri** fra i casi studio in Fase 5.
 - I **contenuti per gli investitori**: non esiste una riga.
+
+---
+
+# Aggiunta — le fotografie
+
+## I nomi stanno dentro il riquadro
+
+La striscia sotto ogni foto rimaneva vuota su quelle senza nome, e vuota era
+brutta. Adesso il nome sta **dentro** il fotogramma, in basso a sinistra, su
+una sfumatura appena percettibile che lo fa leggere anche sopra una parete
+chiara. Chi non ha nome non ha niente: nessun buco.
+
+## Impaginazione: due grandi, quattro nel carosello
+
+A sinistra le due con il nome, grandi. A destra un carosello di quattro piu'
+piccole, che si scorre col pollice o con le frecce. Il salto di scala fra le
+due colonne e' il confronto che chiedevi.
+
+Le due colonne **non hanno la stessa altezza**, e non le ho forzate: due foto
+grandi impilate valgono il doppio di una fila di piccole, e pareggiarle
+vorrebbe dire ritagliare via mezzo fotogramma. Restano allineate in alto, e lo
+spazio che avanza a destra lo occupa la didascalia dell'evento.
+
+## Le foto ci sono davvero
+
+Nella pagina dell'evento che mi hai mandato c'erano **nove fotografie**, e fra
+queste ci sono esattamente le due con il nome: quella tua accanto al roll-up e
+quella di Linda Perrone che parla alla sala. Quindi non sono piu' segnaposto —
+le ho scaricate, ridimensionate e messe nel repository.
+
+Le altre quattro del carosello vengono dalla stessa pagina: un intervento
+accanto al roll-up, una lettura, la performance musicale e due interpreti.
+
+**La sezione e' completa e funzionante adesso.** Se preferisci mettere nel
+carosello le tue due (la sala con i due relatori e il pubblico seduto),
+mandami i file: si sostituiscono cambiando due righe.
+
+### Formati e peso
+
+`scripts/build-photos.mjs` genera AVIF, WebP e JPEG di riserva alla misura in
+cui la foto compare davvero — 1400px per le due grandi, 900px per il carosello.
+
+| | AVIF | WebP | JPEG |
+|---|---|---|---|
+| vantaggiato | 56 KB | 67 KB | 115 KB |
+| perrone | 113 KB | 136 KB | 181 KB |
+| carosello (4) | 177 KB | 207 KB | 289 KB |
+
+Totale servito in AVIF: **346 KB**, tutto caricato pigramente perche' sta
+sotto la prima schermata.
+
+## Una cosa da confermare
+
+Le quattro del carosello le ho prese dalla pagina del programma Interreg. Le
+due con il nome sono vostre — me le hai mandate tu, e sono le stesse. Sulle
+altre quattro conviene verificare a chi appartiene il credito fotografico
+prima di andare online: se il fotografo va citato, si aggiunge una riga alla
+didascalia.

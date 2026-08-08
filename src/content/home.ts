@@ -126,35 +126,33 @@ export const home = {
       cta: { label: "All customers", href: "/en/customers" },
     },
 
-    /* Fotografie proprietarie dell'info day ARCHILIVES. Titolo dell'evento
-       e sede presi dalla scheda del programma. `available` va a true quando
-       i quattro file sono in public/img/archilives/. */
+    /* Fotografie dell'info day ARCHILIVES. Le due con il nome sono grandi,
+       a sinistra; le altre quattro nel carosello a destra. I file sono in
+       public/img/archilives/, generati da scripts/build-photos.mjs. */
     photos: {
       eyebrow: "In the field",
       caption:
         "ARCHILIVES info day, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Greece-Italy 2021-2027",
       source: "June 2026",
-      available: false,
-      pending: "photograph reserved",
-      items: [
+      reelLabel: "More from the day",
+      nav: { prev: "Previous", next: "Next" },
+      featured: [
         {
-          src: "/img/archilives/01.jpg",
+          base: "vantaggiato",
           alt: "Pierluigi Vantaggiato presenting beside the ARCHILIVES roll-up at the Koreja info day.",
           credit: "Pierluigi Vantaggiato · Co-Founder",
         },
         {
-          src: "/img/archilives/02.jpg",
-          alt: "The room during the ARCHILIVES presentation at Cantieri Teatrali Koreja.",
-        },
-        {
-          src: "/img/archilives/03.jpg",
-          alt: "Linda Perrone, senior archivist, speaking at the ARCHILIVES info day.",
+          base: "perrone",
+          alt: "Linda Perrone, senior archivist, speaking to the room at the ARCHILIVES info day.",
           credit: "Linda Perrone · Senior archivist",
         },
-        {
-          src: "/img/archilives/04.jpg",
-          alt: "Attendees at the ARCHILIVES info day in Lecce.",
-        },
+      ],
+      reel: [
+        { base: "room-01", alt: "A speaker presenting beside the ARCHILIVES roll-up." },
+        { base: "reading", alt: "A reading during the ARCHILIVES info day." },
+        { base: "performance", alt: "The musical performance closing the info day." },
+        { base: "duo", alt: "Two performers at the ARCHILIVES info day." },
       ],
     },
 
@@ -285,27 +283,25 @@ export const home = {
       caption:
         "Info day ARCHILIVES, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Grecia-Italia 2021-2027",
       source: "Giugno 2026",
-      available: false,
-      pending: "fotografia riservata",
-      items: [
+      reelLabel: "Altre immagini della giornata",
+      nav: { prev: "Precedente", next: "Successiva" },
+      featured: [
         {
-          src: "/img/archilives/01.jpg",
+          base: "vantaggiato",
           alt: "Pierluigi Vantaggiato presenta accanto al roll-up ARCHILIVES all'info day di Koreja.",
           credit: "Pierluigi Vantaggiato · Co-Founder",
         },
         {
-          src: "/img/archilives/02.jpg",
-          alt: "La sala durante la presentazione ARCHILIVES ai Cantieri Teatrali Koreja.",
-        },
-        {
-          src: "/img/archilives/03.jpg",
-          alt: "Linda Perrone, archivista senior, interviene all'info day ARCHILIVES.",
+          base: "perrone",
+          alt: "Linda Perrone, archivista senior, parla alla sala durante l'info day ARCHILIVES.",
           credit: "Linda Perrone · Archivista senior",
         },
-        {
-          src: "/img/archilives/04.jpg",
-          alt: "Il pubblico all'info day ARCHILIVES di Lecce.",
-        },
+      ],
+      reel: [
+        { base: "room-01", alt: "Un intervento accanto al roll-up ARCHILIVES." },
+        { base: "reading", alt: "Una lettura durante l'info day ARCHILIVES." },
+        { base: "performance", alt: "La performance musicale che chiude la giornata." },
+        { base: "duo", alt: "Due interpreti all'info day ARCHILIVES." },
       ],
     },
 

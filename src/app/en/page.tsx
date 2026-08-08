@@ -155,9 +155,10 @@ export default function HomeEn() {
               <EventPhotos
                 caption={t.photos.caption}
                 source={t.photos.source}
-                photos={t.photos.items}
-                available={t.photos.available}
-                pending={t.photos.pending}
+                featured={t.photos.featured}
+                reel={t.photos.reel}
+                reelLabel={t.photos.reelLabel}
+                nav={t.photos.nav}
               />
             </Reveal>
           </Section>
