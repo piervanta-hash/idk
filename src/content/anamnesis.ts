@@ -46,7 +46,7 @@ export const anamnesis = {
 
     interop: {
       eyebrow: "Interoperability",
-      title: "It talks to what the agency already runs.",
+      title: "Connected to the agency's own systems.",
       lead: "Anamnesis is not a silo with an export button. It sits between the citizen and the agency's own systems, and speaks the national interoperability layer.",
       chain: ["Citizen", "Agency", "Anamnesis"],
       endpoints: [
@@ -86,7 +86,7 @@ export const anamnesis = {
 
     geo: {
       eyebrow: "Geolocation",
-      title: "Every parcel, on the ground.",
+      title: "Parcels on the map.",
       lead: "Cadastral references extracted from paper are placed on the map. The exploded view separates a sheet into its parcels, so a request can be resolved by pointing at the ground instead of by reading a register.",
       layers: ["Sheet", "Parcels", "Extracted record"],
       note: "Schematic. Parcel geometry shown is illustrative.",
@@ -126,7 +126,7 @@ export const anamnesis = {
 
     licence: {
       eyebrow: "Licence",
-      title: "The same engine, under your own name.",
+      title: "Licence and white-label.",
       lead: "Extraction engine, confidence scoring, geolocation and APIs are available under licence or white-label, for operators who do not run a development team.",
       items: [
         { k: "Already in production", v: "on public contracts" },
@@ -137,7 +137,7 @@ export const anamnesis = {
 
     cta: {
       eyebrow: "Contact",
-      title: "See it against your own archive.",
+      title: "Demonstration on a real sample.",
       lead: "A demonstration on a real sample says more than a specification. Tell us what the holding is and we will show you what comes out of it.",
       primary: { label: "Request a demonstration", href: "/en/about#contact" },
       secondary: { label: "Investor materials", href: "/en/investors" },
@@ -179,7 +179,7 @@ export const anamnesis = {
 
     interop: {
       eyebrow: "Interoperabilità",
-      title: "Parla con quello che l'ente ha già in esercizio.",
+      title: "Collegato ai sistemi che l'ente ha già in esercizio.",
       lead: "Anamnesis non è un silo con un bottone di esportazione. Sta fra il cittadino e i sistemi dell'ente, e parla l'infrastruttura nazionale di interoperabilità.",
       chain: ["Cittadino", "Ente", "Anamnesis"],
       endpoints: [
@@ -219,7 +219,7 @@ export const anamnesis = {
 
     geo: {
       eyebrow: "Geolocalizzazione",
-      title: "Ogni particella, sul terreno.",
+      title: "Le particelle sulla mappa.",
       lead: "I riferimenti catastali estratti dalla carta vengono collocati sulla mappa. L'esploso separa il foglio nelle sue particelle, così un'istanza si risolve indicando il terreno invece di leggere un registro.",
       layers: ["Foglio", "Particelle", "Record estratto"],
       note: "Schema. La geometria delle particelle è illustrativa.",
@@ -259,7 +259,7 @@ export const anamnesis = {
 
     licence: {
       eyebrow: "Licenza",
-      title: "Lo stesso motore, con il vostro nome.",
+      title: "Licenza e white label.",
       lead: "Motore di estrazione, indice di affidabilità, geolocalizzazione e API sono disponibili in licenza o in white label, per operatori che non hanno un reparto di sviluppo.",
       items: [
         { k: "Già in produzione", v: "su commesse pubbliche" },
@@ -270,7 +270,7 @@ export const anamnesis = {
 
     cta: {
       eyebrow: "Contatti",
-      title: "Provalo sul vostro archivio.",
+      title: "Dimostrazione su un campione reale.",
       lead: "Una dimostrazione su un campione reale dice più di un capitolato. Diteci di che fondo si tratta e vi mostriamo che cosa ne esce.",
       primary: { label: "Richiedi una dimostrazione", href: "/it/azienda#contatti" },
       secondary: { label: "Materiali per investitori", href: "/it/investitori" },

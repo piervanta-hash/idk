@@ -31,24 +31,24 @@ if (!SRC) {
    qualunque sia la risoluzione dell'originale, telefono o reflex. */
 const JOBS = [
   { out: "vantaggiato", src: "full-4.png", w: 1400 },
-  { out: "perrone", src: "full-6.png", w: 1400 },
 
-  /* Martino Castellana. L'originale e' verticale e mal inquadrato: il
-     soggetto sta nel terzo sinistro, sotto c'e' mezzo metro di pavimento
-     vuoto e sopra un'ampia fascia di parete.
-
-     Il taglio prende la fascia alta a tutta larghezza e la porta a un
-     formato orizzontale vicino al 4:3, coerente con le altre. Tiene la
-     testa a circa un sesto dall'alto, chiude all'altezza della coscia, e
-     soprattutto **tiene lo schermo con il portale d'archivio**, che e' la
-     cosa piu' preziosa dell'inquadratura: mostra il prodotto in funzione.
-     Via il pavimento vuoto, via la parete morta. */
+  /* Linda Perrone. Nell'originale la sala e' ripresa da dietro e lei sta
+     in fondo, alta un centimetro: accanto ai ritratti degli altri due
+     sembrava la foto di un'altra cosa. Il taglio la porta in primo piano
+     e tiene dietro di lei il roll-up e il muro dell'evento, cosi' resta
+     chiaro dove siamo. Si perde risoluzione, ma si guadagna una persona
+     riconoscibile: e' lo scambio giusto. */
   {
-    out: "castellana",
-    src: "martino",
+    out: "perrone",
+    src: "full-6.png",
     w: 1400,
-    crop: { left: 0, top: 0.11, width: 1, height: 0.57 },
+    crop: { left: 0.29, top: 0.324, width: 0.48, height: 0.48 },
   },
+
+  /* Martino Castellana. Il file arriva gia' tagliato, orizzontale e con il
+     soggetto al posto giusto: qui non si ritaglia altro, si ridimensiona
+     e basta. */
+  { out: "castellana", src: "martino", w: 1400 },
 
   { out: "room-01", src: "2.png", w: 900 },
   { out: "reading", src: "7.png", w: 900 },

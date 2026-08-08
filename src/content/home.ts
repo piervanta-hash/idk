@@ -16,7 +16,7 @@ export const home = {
   en: {
     hero: {
       eyebrow: "Data company · Lecce, IT",
-      title: "Data, extracted from paper.",
+      title: "From paper archives to queryable data.",
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
@@ -32,7 +32,7 @@ export const home = {
 
     matrix: {
       eyebrow: "Two capabilities × two markets",
-      title: "One company, two halves — and both serve both markets.",
+      title: "Both halves serve both markets.",
       columns: ["Public sector", "Private"],
       rows: [
         {
@@ -72,7 +72,7 @@ export const home = {
 
     map: {
       eyebrow: "Operations",
-      title: "Run from Lecce.",
+      title: "Operations from Lecce.",
       lead: "Headquarters, laboratory and operations centre in one place, within reach of the archives we work on. The originals never leave the building that holds them.",
       /* Le sedi previste stanno solo qui, sulla mappa: nessun'altra parte
          del sito le nomina, ed e' voluto. */
@@ -88,7 +88,7 @@ export const home = {
 
     work: {
       eyebrow: "Selected work",
-      title: "Named clients, real volumes.",
+      title: "Clients and volumes.",
       items: [
         {
           index: "01",
@@ -125,16 +125,16 @@ export const home = {
       cta: { label: "All customers", href: "/en/customers" },
     },
 
-    /* Fotografie dell'info day ARCHILIVES. Le due con il nome sono grandi,
-       a sinistra; le altre quattro nel carosello a destra. I file sono in
-       public/img/archilives/, generati da scripts/build-photos.mjs. */
+    /* Fotografie dell'info day ARCHILIVES: l'unico posto del sito dove
+       compaiono facce. Sopra le tre persone, con il nome dentro il
+       riquadro; sotto le quattro immagini della giornata, piu' piccole.
+       I file stanno in public/img/archilives/, generati da
+       scripts/build-photos.mjs. */
     photos: {
       eyebrow: "In the field",
       caption:
         "ARCHILIVES info day, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Greece-Italy 2021-2027",
       source: "June 2026",
-      reelLabel: "More from the day",
-      nav: { prev: "Previous", next: "Next" },
       featured: [
         {
           base: "vantaggiato",
@@ -162,7 +162,7 @@ export const home = {
 
     cta: {
       eyebrow: "Contact",
-      title: "Describe your archive.",
+      title: "Survey request.",
       lead: "Five answers are enough to establish whether the work is feasible and at what order of magnitude. If it is not, we say so immediately.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "Investor materials", href: "/en/investors" },
@@ -172,7 +172,7 @@ export const home = {
   it: {
     hero: {
       eyebrow: "Società di dati · Lecce, IT",
-      title: "Dati, estratti dalla carta.",
+      title: "Dagli archivi di carta al dato interrogabile.",
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
@@ -186,7 +186,7 @@ export const home = {
 
     matrix: {
       eyebrow: "Due offerte × due mercati",
-      title: "Un'azienda, due metà — e servono entrambe i due mercati.",
+      title: "Entrambe le anime servono entrambi i mercati.",
       columns: ["Pubblica amministrazione", "Privati"],
       rows: [
         {
@@ -226,7 +226,7 @@ export const home = {
 
     map: {
       eyebrow: "Operatività",
-      title: "Si governa da Lecce.",
+      title: "Operatività da Lecce.",
       lead: "Sede, laboratorio e centro operativo in un solo luogo, a portata degli archivi su cui lavoriamo. Gli originali non lasciano mai l'edificio che li custodisce.",
       nodes: {
         lecce: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
@@ -244,7 +244,7 @@ export const home = {
 
     work: {
       eyebrow: "Progetti",
-      title: "Committenti con nome, volumi reali.",
+      title: "Committenti e volumi.",
       items: [
         {
           index: "01",
@@ -287,8 +287,6 @@ export const home = {
       caption:
         "Info day ARCHILIVES, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Grecia-Italia 2021-2027",
       source: "Giugno 2026",
-      reelLabel: "Altre immagini della giornata",
-      nav: { prev: "Precedente", next: "Successiva" },
       featured: [
         {
           base: "vantaggiato",
@@ -316,7 +314,7 @@ export const home = {
 
     cta: {
       eyebrow: "Contatti",
-      title: "Descrivi il tuo archivio.",
+      title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Materiali per investitori", href: "/it/investitori" },

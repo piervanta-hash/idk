@@ -131,8 +131,6 @@ export function HomeView({ locale }: { locale: Locale }) {
                 source={t.photos.source}
                 featured={present(t.photos.featured)}
                 reel={present(t.photos.reel)}
-                reelLabel={t.photos.reelLabel}
-                nav={t.photos.nav}
               />
             </Reveal>
           </Section>

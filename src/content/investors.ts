@@ -25,7 +25,7 @@ export const investors = {
 
     profile: {
       eyebrow: "Profile",
-      title: "What the company is.",
+      title: "Company profile.",
       items: [
         {
           k: "Business",
@@ -61,7 +61,7 @@ export const investors = {
 
     materials: {
       eyebrow: "Materials",
-      title: "What is available on request.",
+      title: "Available materials.",
       items: [
         "Company profile and organisational structure",
         "Business model and revenue composition",
@@ -74,7 +74,7 @@ export const investors = {
 
     contact: {
       eyebrow: "Reserved contact",
-      title: "Write directly.",
+      title: "Direct contact.",
       lead: "One address, read by the founders. Tell us who you are and what you need to see; we answer with the materials that apply.",
       email: "investors@paloryn.com",
       form: {
@@ -104,7 +104,7 @@ export const investors = {
 
     profile: {
       eyebrow: "Profilo",
-      title: "Che cos'è l'azienda.",
+      title: "Profilo dell'azienda.",
       items: [
         {
           k: "Attività",
@@ -140,7 +140,7 @@ export const investors = {
 
     materials: {
       eyebrow: "Materiali",
-      title: "Che cosa è disponibile su richiesta.",
+      title: "Materiali disponibili.",
       items: [
         "Profilo societario e struttura organizzativa",
         "Modello di business e composizione dei ricavi",
@@ -153,7 +153,7 @@ export const investors = {
 
     contact: {
       eyebrow: "Contatto riservato",
-      title: "Scrivere direttamente.",
+      title: "Contatto diretto.",
       lead: "Un solo indirizzo, letto dai fondatori. Dite chi siete e che cosa vi serve vedere: rispondiamo con i materiali che servono.",
       email: "investors@paloryn.com",
       form: {

@@ -18,7 +18,7 @@ export const customers = {
     },
     hero: {
       eyebrow: "Customers",
-      title: "Named clients, real volumes.",
+      title: "Clients and volumes.",
       lead: "Both halves of the company serve both markets. The filter below is the same one used on the home page and on the two service pages: it is how the work is actually divided.",
     },
 
@@ -136,7 +136,7 @@ export const customers = {
 
     cta: {
       eyebrow: "Contact",
-      title: "Describe your archive.",
+      title: "Survey request.",
       lead: "Five answers are enough to establish whether the work is feasible and at what order of magnitude. If it is not, we say so immediately.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
@@ -151,7 +151,7 @@ export const customers = {
     },
     hero: {
       eyebrow: "Clienti",
-      title: "Committenti con nome, volumi reali.",
+      title: "Committenti e volumi.",
       lead: "Entrambe le anime dell'azienda servono entrambi i mercati. Il filtro qui sotto è lo stesso della home e delle due pagine di servizio: è il modo in cui il lavoro è davvero diviso.",
     },
 
@@ -271,7 +271,7 @@ export const customers = {
 
     cta: {
       eyebrow: "Contatti",
-      title: "Descrivi il tuo archivio.",
+      title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },

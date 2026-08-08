@@ -29,7 +29,12 @@
   --font-mono: var(--ff-plex-mono), ui-monospace, monospace; /* IBM Plex Mono 400 */
 
   /* Scala dichiarata. Ogni valore e' fluido fra 390px e 1440px di viewport. */
-  --text-d1: clamp(3.5rem, 2.5714rem + 3.81vw, 6rem); /* 56 → 96 */
+  /* Il minimo e' sceso da 56 a 44px per l'italiano. «Interrogabile»,
+     «dematerializzazione», «interoperabilita'» sono parole da quattordici
+     e venti lettere: a 56px su uno schermo da 390px non ci stanno su una
+     riga, e finivano tagliate dal bordo. Non e' un capriccio tipografico,
+     e' la lingua in cui il sito deve funzionare. */
+  --text-d1: clamp(2.75rem, 1.5429rem + 4.9524vw, 6rem); /* 44 → 96 */
   --text-d1--line-height: 0.98;
   --text-d1--letter-spacing: -0.03em;
 
@@ -115,6 +120,14 @@
     color: var(--color-max);
     margin: 0;
     text-wrap: balance;
+    /* Rete di sicurezza. Il corpo della pagina ritaglia lo scorrimento
+       orizzontale, quindi una parola troppo lunga per la riga non sfonda
+       lo schermo: sparisce oltre il bordo, in silenzio, e nessuno se ne
+       accorge finche' non manca mezza parola nel titolo.
+       Questa regola interviene solo quando una parola non entrerebbe
+       nemmeno da sola su una riga: sul testo normale non ha alcun
+       effetto, ma garantisce che niente venga mai tagliato via. */
+    overflow-wrap: break-word;
   }
 
   p {

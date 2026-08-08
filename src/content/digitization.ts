@@ -25,7 +25,7 @@ export const digitization = {
     process: {
       eyebrow: "The process",
       title: "Six phases. None of them optional.",
-      lead: "The first is the one operators in this field skip most often.",
+      lead: "The first one determines all the others.",
       caption: "Each phase leaves documentation behind. Nothing moves to the next one on trust.",
       steps: [
         {
@@ -109,7 +109,7 @@ export const digitization = {
 
     cta: {
       eyebrow: "Contact",
-      title: "Describe your archive.",
+      title: "Survey request.",
       lead: "Five answers are enough to establish whether the work is feasible and at what order of magnitude. If it is not, we say so immediately.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "All customers", href: "/en/customers" },
@@ -133,7 +133,7 @@ export const digitization = {
     process: {
       eyebrow: "Il metodo",
       title: "Sei fasi, nessuna omissibile.",
-      lead: "La prima è quella che gli operatori del settore omettono con maggiore frequenza.",
+      lead: "La prima determina tutte le altre.",
       caption: "Ogni fase lascia documentazione. Alla successiva non si passa sulla fiducia.",
       steps: [
         {
@@ -217,7 +217,7 @@ export const digitization = {
 
     cta: {
       eyebrow: "Contatti",
-      title: "Descrivi il tuo archivio.",
+      title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Tutti i clienti", href: "/it/clienti" },

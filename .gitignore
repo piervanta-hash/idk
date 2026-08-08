@@ -4,3 +4,8 @@ out/
 .env*
 *.tsbuildinfo
 next-env.d.ts
+
+# Originali dell'evento: PNG da megabyte, riscaricabili dall'articolo
+# pubblico (vedi photos-sorgente/LEGGIMI.md). Le versioni lavorate stanno
+# in public/img/archilives/ e quelle sì sono versionate.
+photos-sorgente/*.png

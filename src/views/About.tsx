@@ -5,7 +5,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/pages/ContactForm";
 import { about } from "@/content/about";
-import { hasPhoto } from "@/lib/photos";
 import { alternates, type Locale } from "@/lib/routes";
 
 export function aboutMetadata(locale: Locale): Metadata {
@@ -52,57 +51,7 @@ export function AboutView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="people" eyebrow={t.people.eyebrow} aside="02">
-            <Reveal>
-              <h2 className="text-d3 font-display font-semibold">{t.people.title}</h2>
-              <p className="measure-wide mt-6 text-body-l text-copy">{t.people.lead}</p>
-
-              <ul className="m-0 mt-12 grid list-none gap-px bg-line p-0 sm:grid-cols-3">
-                {t.people.items.map((p) => (
-                  /* Nome e ruolo stanno in fondo alla cella. Chi non ha
-                     ancora la fotografia lascia lo spazio sopra vuoto, ma
-                     i tre nomi restano allineati fra loro: sembra una
-                     scelta, non un buco. */
-                  <li key={p.base} className="flex flex-col bg-bg">
-                    {/* Chi non ha ancora la fotografia compare lo stesso:
-                        nome e ruolo sono la cosa che conta. */}
-                    {hasPhoto(p.base) && (
-                      <div className="aspect-[4/3] overflow-hidden bg-surface-1">
-                        <picture>
-                          <source
-                            srcSet={`/img/archilives/${p.base}.avif`}
-                            type="image/avif"
-                          />
-                          <source
-                            srcSet={`/img/archilives/${p.base}.webp`}
-                            type="image/webp"
-                          />
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={`/img/archilives/${p.base}.jpg`}
-                            alt={p.name}
-                            width={1400}
-                            height={1050}
-                            loading="lazy"
-                            decoding="async"
-                            className="h-full w-full object-cover grayscale-[85%] brightness-90 contrast-[1.05]"
-                          />
-                        </picture>
-                      </div>
-                    )}
-                    <div className="mt-auto p-5 md:p-6">
-                      <span className="block font-display text-h5 font-semibold text-max">
-                        {p.name}
-                      </span>
-                      <span className="eyebrow mt-2 block">{p.role}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </Section>
-
-          <Section id="certifications" eyebrow={t.certifications.eyebrow} aside="03">
+          <Section id="certifications" eyebrow={t.certifications.eyebrow} aside="02">
             <Reveal>
               <h2 className="text-d3 font-display font-semibold">
                 {t.certifications.title}
@@ -121,7 +70,7 @@ export function AboutView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="contact" eyebrow={t.contact.eyebrow} aside="04">
+          <Section id="contact" eyebrow={t.contact.eyebrow} aside="03">
             <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
               <Reveal>
                 <h2 className="text-d2 font-display font-bold">{t.contact.title}</h2>

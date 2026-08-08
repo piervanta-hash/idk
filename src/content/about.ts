@@ -6,8 +6,12 @@
    chiunque cerchi «chi siete».
 
    Le credenziali sono quelle gia' pubblicate sul sito attuale, verificabili
-   una per una. Le persone sono le tre di cui ho nome e ruolo confermati:
-   nessun organigramma inventato.
+   una per una.
+
+   Qui non ci sono persone: nomi e volti stanno tutti nel blocco ARCHILIVES
+   della home, dove le fotografie hanno un contesto — un evento vero, con
+   una data. Ripeterli qui in una griglia di ritratti sarebbe la pagina
+   «il team» di qualunque sito, e non aggiungerebbe niente.
 
    Il modulo a tre profili viene dal sito attuale, dove funziona bene: chi
    scrive dichiara subito che cosa e', e la risposta cambia di conseguenza.
@@ -28,7 +32,7 @@ export const about = {
 
     credentials: {
       eyebrow: "Credentials",
-      title: "Verifiable.",
+      title: "Current programmes and mandates.",
       items: [
         {
           n: "01",
@@ -49,19 +53,6 @@ export const about = {
       ],
     },
 
-    people: {
-      eyebrow: "People",
-      title: "Who answers.",
-      lead: "Over twenty archivists, engineers and developers. These three sign the work.",
-      /* `base` combacia con i file in public/img/archilives/: chi non ha
-         ancora la fotografia compare comunque, con nome e ruolo. */
-      items: [
-        { base: "vantaggiato", name: "Pierluigi Vantaggiato", role: "Co-Founder" },
-        { base: "castellana", name: "Martino Castellana", role: "CTO" },
-        { base: "perrone", name: "Linda Perrone", role: "Senior archivist" },
-      ],
-    },
-
     certifications: {
       eyebrow: "Certifications",
       title: "Certified management systems.",
@@ -76,7 +67,7 @@ export const about = {
 
     contact: {
       eyebrow: "Contact",
-      title: "Describe your archive.",
+      title: "Survey request.",
       lead: "Five answers are enough to establish whether the work is feasible and at what order of magnitude. If it is not, we say so immediately.",
       profileLabel: "Who is writing",
       profiles: [
@@ -121,7 +112,7 @@ export const about = {
 
     credentials: {
       eyebrow: "Credenziali",
-      title: "Verificabili.",
+      title: "Programmi e incarichi in corso.",
       items: [
         {
           n: "01",
@@ -142,17 +133,6 @@ export const about = {
       ],
     },
 
-    people: {
-      eyebrow: "Persone",
-      title: "Chi risponde.",
-      lead: "Oltre venti fra archivisti, ingegneri e sviluppatori. Questi tre firmano il lavoro.",
-      items: [
-        { base: "vantaggiato", name: "Pierluigi Vantaggiato", role: "Co-Founder" },
-        { base: "castellana", name: "Martino Castellana", role: "CTO" },
-        { base: "perrone", name: "Linda Perrone", role: "Archivista senior" },
-      ],
-    },
-
     certifications: {
       eyebrow: "Certificazioni",
       title: "Sistemi di gestione certificati.",
@@ -167,7 +147,7 @@ export const about = {
 
     contact: {
       eyebrow: "Contatti",
-      title: "Descrivi il tuo archivio.",
+      title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
       profileLabel: "Chi scrive",
       profiles: [
