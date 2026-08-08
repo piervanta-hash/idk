@@ -14,6 +14,8 @@ griglia e componenti, in una pagina di stile isolata.
 | Footer | titolarita' «© Cosma Alessandro», come indicato |
 | Codice | ricostruito da zero: Next.js 16 (App Router) + Tailwind CSS v4 + TypeScript |
 | Signature element | proposta A — «Il metro lineare». Si costruisce in Fase 3 |
+| Marchio | il segno gia' in uso accanto alla scritta Dematerializzare, ripreso alla geometria originale |
+| Albania | sede operativa. Il nodo sulla mappa si etichetta come tale, non come espansione futura |
 
 ---
 
@@ -56,14 +58,15 @@ Bottoni (3 varianti, 2 misure, minimo 48px di altezza), card, tabella dati, camp
 di form, filtro a due stati PA/Privati, metriche, indice di affidabilita', header
 con menu mobile a tutto schermo, footer.
 
-Due scelte da confermare, entrambe visibili nella pagina di stile:
+**Il marchio** e' il segno esistente, non una ricostruzione: le coordinate sono
+quelle di `icon.svg` del sito attuale, verificate sovrapponendo il risultato
+all'originale. Cambia solo il colore, che non e' piu' fissato nel file ma
+ereditato dal testo, cosi' lo stesso componente serve il bianco su nero e la
+tessera. La favicon e' generata dallo stesso segno.
 
-1. **Etichette dei bottoni in mono maiuscolo.** Un bottone e' un comando, non uno
-   slogan. E' una scelta di registro: si puo' tornare ad Archivo se non convince.
-2. **Il marchio in due letture.** Il file vettoriale originale non era disponibile,
-   quindi il segno e' stato ridisegnato dalla descrizione del brief («tre punti
-   equidistanti, terminali arrotondati»). Lettura A: tre dischi. Lettura B: tre
-   tratti convergenti. Va scelta una.
+Una scelta da confermare: **le etichette dei bottoni in mono maiuscolo**. Un
+bottone e' un comando, non uno slogan. E' una scelta di registro: si torna ad
+Archivo in dieci minuti se non convince.
 
 ---
 
@@ -100,23 +103,25 @@ Non e' ancora stato fatto l'audit Lighthouse: si fa in Fase 7, su pagine vere.
 
 **Da questa fase**
 
-- **F2.1 — Marchio: lettura A o lettura B?** Da questa scelta discendono favicon,
-  apple-touch-icon e og-image.
-- **F2.2 — Etichette dei bottoni in mono maiuscolo:** confermi il registro?
+- **F2.1 — Etichette dei bottoni in mono maiuscolo:** confermi il registro?
+- **F2.2 — Il marchio sotto i 20px** si salda in una macchia. Se serve leggibilita'
+  a 16px va assottigliato il tratto in una variante dedicata alle dimensioni
+  piccole. Da decidere, non urgente.
 
-**Ancora aperte dalla Fase 1** (non bloccano la Fase 3, tranne D4)
+**Ancora aperte dalla Fase 1** (nessuna blocca la Fase 3)
 
-D4 Albania e residenza dei dati · D5 fotografie · D6 nomi dei clienti ·
-D7 iter a 5 o 6 fasi · D8 conferma delle cinque cifre · D9 App IO ·
-D10 portale Interreg · D12 contenuti investitori.
+D5 fotografie · D6 nomi dei clienti · D7 iter a 5 o 6 fasi · D8 conferma delle
+cinque cifre · D9 App IO · D10 portale Interreg · D12 contenuti investitori.
 
-**D4 blocca la Fase 3**: la mappa operativa Lecce-Albania e' una sezione della home,
-e non posso etichettare il nodo albanese finche' non mi dici cosa c'e' davvero.
+Su D8 resta una cosa da sciogliere prima di pubblicare: il sito attuale ripete su
+ogni pagina che «i dati restano in Italia», il brief chiede di dichiarare «dati
+conservati in Europa». In Fase 3 uso la formula del brief, che le comprende
+entrambe, ma la cifra va confermata come tutte le altre.
 
 ---
 
 ## Prossimo passo
 
 Fase 3 — la home in inglese, desktop e mobile: hero con il metro lineare, la doppia
-matrice offerte × mercati, la mappa operativa, le metriche, la prova sociale, la CTA.
-Parto alla tua conferma su **F2.1** e **D4**.
+matrice offerte × mercati, la mappa operativa Lecce-Albania con il nodo albanese
+etichettato come sede operativa, le metriche, la prova sociale, la CTA.

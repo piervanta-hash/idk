@@ -302,46 +302,47 @@ export default function StyleguidePage() {
         <Block
           n="05"
           title="Marchio"
-          note="Il file originale non era disponibile: il segno e' stato ridisegnato dalla descrizione del brief. Due letture possibili, va scelta una."
+          note="E' il segno gia' in uso accanto alla scritta Dematerializzare, ripreso alla geometria originale. Cambia solo il colore, che ora eredita dal testo."
         >
-          <div className="grid gap-px bg-line md:grid-cols-2">
-            <div className="bg-bg p-8">
-              <span className="eyebrow">Lettura A — Triade</span>
-              <p className="mt-3 text-small text-copy">
-                I tre punti sono tre dischi equidistanti. Lettura piu&apos; letterale del
-                brief, massima leggibilita&apos; alle dimensioni piccole.
-              </p>
-              <div className="mt-8 flex flex-wrap items-end gap-8 text-max">
-                <Logo mark="triad" size={96} />
-                <Logo mark="triad" size={48} />
-                <Logo mark="triad" size={28} />
-                <div className="flex flex-col items-center gap-2">
-                  <Logo mark="triad" size={20} tile />
-                  <span className="eyebrow">tile 20px</span>
-                </div>
+          <div className="grid gap-px bg-line lg:grid-cols-[1.6fr_1fr]">
+            <div className="flex flex-col justify-between gap-10 bg-bg p-8">
+              <div className="flex flex-wrap items-end gap-12 text-max">
+                <Logo height={72} />
+                <Logo height={40} />
+                <Logo height={22} />
+                <Logo height={14} />
+              </div>
+              <div className="flex flex-wrap items-end gap-8 text-max">
+                {[48, 32, 20, 16].map((s) => (
+                  <div key={s} className="flex flex-col items-center gap-3">
+                    <Logo tile size={s} />
+                    <span className="eyebrow">tile {s}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="bg-bg p-8">
-              <span className="eyebrow">Lettura B — Nodo</span>
-              <p className="mt-3 text-small text-copy">
-                I tre punti sono i terminali arrotondati di tre tratti che convergono al
-                centro senza toccarsi. Piu&apos; vicino all&apos;idea di nodo di rete.
+              <span className="eyebrow">Fedelta&apos; all&apos;originale</span>
+              <p className="mt-4 text-body text-copy">
+                Arco a tratto pieno e tre raggi a terminali arrotondati che convergono in
+                un punto sotto l&apos;arco. Le coordinate sono quelle del file esistente,
+                verificate sovrapponendo il risultato all&apos;originale: coincidono. Cambia
+                solo il colore, che non e&apos; piu&apos; fissato nel file ma ereditato dal
+                testo.
               </p>
-              <div className="mt-8 flex flex-wrap items-end gap-8 text-max">
-                <Logo mark="node" size={96} />
-                <Logo mark="node" size={48} />
-                <Logo mark="node" size={28} />
-                <div className="flex flex-col items-center gap-2">
-                  <Logo mark="node" size={20} tile />
-                  <span className="eyebrow">tile 20px</span>
-                </div>
-              </div>
+              <span className="eyebrow mt-8 block">Un limite da sapere</span>
+              <p className="mt-4 text-small text-mute">
+                Sotto i 20px i tratti si saldano fra loro e il segno diventa una macchia:
+                si vede confrontando le tessere qui accanto. Non e&apos; un difetto della
+                riproduzione, e&apos; la geometria del segno. Se serve leggibilita&apos; a
+                16px va assottigliato il tratto in una variante dedicata: dimmi tu.
+              </p>
             </div>
           </div>
           <p className="mt-8 text-small text-mute">
-            Regole valide per entrambe: non ruotare, non deformare, non ricolorare, nessuna
-            ombra. Sotto i 24px si usa la tessera piena. Favicon, apple-touch-icon e
-            og-image si generano dalla lettura scelta.
+            La favicon (<span className="font-mono text-data">icon.svg</span>) e&apos; gia&apos;
+            generata dallo stesso segno. Apple-touch-icon e og-image si fanno in Fase 6,
+            insieme al resto dei metadati nelle due lingue.
           </p>
         </Block>
 

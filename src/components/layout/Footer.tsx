@@ -29,13 +29,13 @@ const LEGAL = [
   { href: "/en/legal/accessibility", label: "Accessibility" },
 ];
 
-export function Footer({ mark = "triad" }: { mark?: "triad" | "node" }) {
+export function Footer() {
   return (
     <footer className="mt-32 border-t border-line pt-16 pb-12">
       <div className="shell">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo mark={mark} size={32} className="text-max" />
+            <Logo height={28} className="text-max" />
             <p className="measure mt-6 text-body text-copy">
               Paloryn turns paper archives into structured, queryable data and connects
               them to public digital infrastructure.

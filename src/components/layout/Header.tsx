@@ -19,7 +19,7 @@ const NAV = [
   { href: "/en/about", label: "About" },
 ];
 
-export function Header({ mark = "triad" }: { mark?: "triad" | "node" }) {
+export function Header() {
   const [open, setOpen] = useState(false);
 
   /* Menu aperto: la pagina sotto non scorre. */
@@ -48,7 +48,7 @@ export function Header({ mark = "triad" }: { mark?: "triad" | "node" }) {
           aria-label="Paloryn — home"
           className="text-max transition-colors hover:text-accent"
         >
-          <Logo mark={mark} size={28} />
+          <Logo height={22} />
         </Link>
 
         {/* Desktop */}
