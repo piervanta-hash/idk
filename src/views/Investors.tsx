@@ -3,8 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
-import { TextField, TextArea } from "@/components/ui/Field";
+import { InvestorForm } from "@/components/pages/InvestorForm";
 import { investors } from "@/content/investors";
 import { alternates, type Locale } from "@/lib/routes";
 
@@ -98,30 +97,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
               </Reveal>
 
               <Reveal delay={120}>
-                {/* Il modulo non e' ancora collegato a nulla: l'invio arriva
-                    in Fase 7 insieme alla verifica anti-abuso. */}
-                <form className="flex flex-col gap-8">
-                  <TextField id="inv-org" label={t.contact.form.org} name="organisation" />
-                  <TextField id="inv-name" label={t.contact.form.name} name="name" />
-                  <TextField
-                    id="inv-mail"
-                    label={t.contact.form.mail}
-                    name="email"
-                    type="email"
-                  />
-                  <TextArea
-                    id="inv-interest"
-                    label={t.contact.form.interest}
-                    hint={t.contact.form.interestHint}
-                    name="interest"
-                  />
-                  <div>
-                    <Button variant="primary" size="lg" type="submit">
-                      {t.contact.form.send}
-                    </Button>
-                  </div>
-                  <p className="text-small text-mute">{t.contact.form.privacy}</p>
-                </form>
+                <InvestorForm form={t.contact.form} to={t.contact.email} />
               </Reveal>
             </div>
           </Section>

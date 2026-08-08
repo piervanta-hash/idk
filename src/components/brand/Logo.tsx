@@ -13,7 +13,8 @@
    fondo nero e nero sulla tessera senza duplicare il file.
 
    Regole: non ruotare, non deformare, non ricolorare, nessuna ombra.
-   Sotto i 24px si usa la tessera piena (`tile`).
+   Sotto i 24px si usa la tessera piena (`tile`); dove la tessera non e'
+   praticabile, sotto i 20px il tratto si assottiglia da solo.
    ========================================================================== */
 
 /* Riquadro utile del segno dentro il sistema di coordinate originale
@@ -22,14 +23,29 @@
 const BOX = { x: 23.5, y: 32.5, w: 53, h: 26 };
 const RATIO = BOX.w / BOX.h;
 
-/* Geometria originale, invariata. */
-function Glyph() {
+/* Spessore del tratto. Sette e' l'originale e vale ovunque il marchio sia
+   leggibile; cinque e' la variante sottile per le misure piccole.
+
+   Il motivo e' geometrico, non estetico: i tre raggi distano undici unita'
+   l'uno dall'altro, quindi con il tratto a sette ne restano quattro di
+   spazio vuoto. Sotto i venti pixel quattro unita' valgono meno di due
+   pixel e mezzo: i raggi si saldano fra loro e il segno diventa una
+   macchia. Con il tratto a cinque lo spazio raddoppia e il segno resta
+   leggibile.
+
+   Rimane preferibile la tessera piena quando lo spazio e' davvero minimo:
+   questa variante serve dove la tessera non si puo' usare, per esempio
+   accanto a del testo. */
+const STROKE = { regular: 7, thin: 5 } as const;
+
+/* Geometria originale, invariata: cambia solo lo spessore del tratto. */
+function Glyph({ weight = STROKE.regular }: { weight?: number }) {
   return (
     <g
       transform="translate(0 -6)"
       fill="none"
       stroke="currentColor"
-      strokeWidth={7}
+      strokeWidth={weight}
       strokeLinecap="round"
     >
       <path d="M28,58 Q50,28 72,58" />
@@ -47,6 +63,8 @@ type LogoProps = {
   tile?: boolean;
   /** Lato della tessera in px. Usato solo con `tile`. */
   size?: number;
+  /** Forza il tratto sottile. Se non specificato lo decide l'altezza. */
+  thin?: boolean;
   className?: string;
   title?: string;
 };
@@ -55,9 +73,14 @@ export function Logo({
   height = 20,
   tile = false,
   size = 32,
+  thin,
   className,
   title = "Paloryn",
 }: LogoProps) {
+  /* Sotto i venti pixel il tratto si assottiglia da solo: chi usa il
+     marchio non deve ricordarsi una regola, la regola e' nel componente. */
+  const weight = (thin ?? height < 20) ? STROKE.thin : STROKE.regular;
+
   if (tile) {
     /* Il segno e' sottratto dal quadrato, non sovrapposto: sotto i 24px la
        silhouette piena e' l'unica cosa che resta leggibile. Ingrandito di
@@ -94,7 +117,7 @@ export function Logo({
       role="img"
       aria-label={title}
     >
-      <Glyph />
+      <Glyph weight={weight} />
     </svg>
   );
 }

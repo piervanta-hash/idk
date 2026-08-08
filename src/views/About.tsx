@@ -106,6 +106,7 @@ export function AboutView({ locale }: { locale: Locale }) {
                   profileLabel={t.contact.profileLabel}
                   profiles={t.contact.profiles}
                   form={t.contact.form}
+                  to={t.contact.office.mail}
                 />
               </Reveal>
             </div>

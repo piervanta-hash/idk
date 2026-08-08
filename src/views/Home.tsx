@@ -124,8 +124,12 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="field" eyebrow={t.photos.eyebrow} aside="05" size="lg">
-            <Reveal>
+          {/* ARCHILIVES e' una commessa fra le altre, non il mestiere
+              dell'azienda: sta piu' in basso dei progetti, occupa una
+              colonna piu' stretta e ha il respiro verticale normale
+              invece di quello ampio. Le fotografie restano, il peso no. */}
+          <Section id="field" eyebrow={t.photos.eyebrow} aside="05">
+            <Reveal className="max-w-3xl">
               <EventPhotos
                 caption={t.photos.caption}
                 source={t.photos.source}

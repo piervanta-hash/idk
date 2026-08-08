@@ -16,7 +16,7 @@ export const home = {
   en: {
     hero: {
       eyebrow: "Data company · Lecce, IT",
-      title: "From paper archives to queryable data.",
+      title: "From shelf metres to structured data.",
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
@@ -40,7 +40,7 @@ export const home = {
           role: "the service",
           href: "/en/digitization",
           cells: [
-            "Municipalities and unions of municipalities. Building and cadastral archives, administrative records, personnel files.",
+            "Municipalities and unions of municipalities. Building and cadastral archives, demographic records, administrative files.",
             "Law and notary firms, companies, theatres, libraries, dioceses, museums.",
           ],
         },
@@ -59,6 +59,7 @@ export const home = {
     measurements: {
       eyebrow: "Measurements",
       items: [
+        { value: "1", unit: "km+", label: "shelf metres under management" },
         { value: "10", unit: "M+", label: "pages digitized to date" },
         { value: "20", unit: "+", label: "archivists, engineers, developers" },
         { value: "EU", label: "data residency", note: "AI models run locally" },
@@ -113,11 +114,18 @@ export const home = {
         },
         {
           index: "04",
+          sector: "Public",
+          client: "Comune di Matino",
+          scope: "Registry office and civil status archives.",
+          note: "Demographic records",
+        },
+        {
+          index: "05",
           sector: "Private",
-          client: "Biblioteca Innocenziana",
+          client: "Archives and libraries of historical interest",
           scope:
-            "Seven early volumes and manuscripts for the Archdiocese of Lecce. TIFF masters and PDF/A for long-term preservation.",
-          note: "~2,750 pages · 210 plates",
+            "Early volumes and manuscripts, among them the Biblioteca Innocenziana for the Archdiocese of Lecce. TIFF masters and PDF/A for long-term preservation.",
+          note: "Under ministerial protection",
         },
       ],
       alsoLabel: "Also on record",
@@ -172,7 +180,7 @@ export const home = {
   it: {
     hero: {
       eyebrow: "Società di dati · Lecce, IT",
-      title: "Dagli archivi di carta al dato interrogabile.",
+      title: "Dai metri lineari al dato strutturato.",
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
@@ -194,7 +202,7 @@ export const home = {
           role: "il servizio",
           href: "/it/dematerializzazione",
           cells: [
-            "Comuni e unioni di comuni. Archivi edilizi e catastali, atti amministrativi, fascicoli del personale.",
+            "Comuni e unioni di comuni. Archivi edilizi e catastali, archivi demografici, atti amministrativi.",
             "Studi legali e notarili, imprese, teatri, biblioteche, diocesi, musei.",
           ],
         },
@@ -213,6 +221,7 @@ export const home = {
     measurements: {
       eyebrow: "Misure",
       items: [
+        { value: "1", unit: "km+", label: "metri lineari in gestione" },
         { value: "10", unit: "M+", label: "pagine digitalizzate a oggi" },
         { value: "20", unit: "+", label: "archivisti, ingegneri, sviluppatori" },
         { value: "EU", label: "residenza dei dati", note: "modelli AI eseguiti in locale" },
@@ -270,11 +279,18 @@ export const home = {
         },
         {
           index: "04",
+          sector: "PA",
+          client: "Comune di Matino",
+          scope: "Archivi dell'anagrafe e dello stato civile.",
+          note: "Archivi demografici",
+        },
+        {
+          index: "05",
           sector: "Privati",
-          client: "Biblioteca Innocenziana",
+          client: "Archivi e biblioteche di interesse storico-culturale",
           scope:
-            "Sette volumi antichi e manoscritti per l'Arcidiocesi di Lecce. Master TIFF e PDF/A per la conservazione a norma.",
-          note: "~2.750 pagine · 210 tavole",
+            "Fondi antichi e manoscritti, tra cui la Biblioteca Innocenziana per l'Arcidiocesi di Lecce. Master TIFF e PDF/A per la conservazione a norma.",
+          note: "Fondi sottoposti a tutela",
         },
       ],
       alsoLabel: "Inoltre a referenza",

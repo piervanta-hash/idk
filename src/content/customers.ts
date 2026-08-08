@@ -104,14 +104,32 @@ export const customers = {
         programme: "PR Puglia 1.8.3",
         tag: "Joint procurement",
       },
+      /* Matino: la commessa e' confermata, i numeri no. I campi vuoti
+         escono come «not published» in grigio corsivo — meglio un dato
+         mancante dichiarato che un dato inventato. */
+      {
+        id: "matino",
+        sector: "public",
+        index: "05",
+        name: "Comune di Matino",
+        client: "Comune di Matino",
+        summary: "Registry office and civil status archives.",
+        scope:
+          "Ordering and digitization of the municipality's demographic archives — registry office and civil status.",
+        volumes: "",
+        tech: "Ordering · capture",
+        outcome: "",
+        programme: "",
+        tag: "Demographic records",
+      },
       {
         id: "innocenziana",
         sector: "private",
-        index: "05",
+        index: "06",
         name: "Biblioteca Innocenziana",
         client: "Biblioteca Arcivescovile «Innocenziana», Archdiocese of Lecce",
         summary:
-          "Seven early volumes and manuscripts from a library declared of exceptional cultural interest.",
+          "Early volumes and manuscripts from a library declared of exceptional cultural interest — one of the protected holdings the laboratory is equipped for.",
         scope:
           "Contactless capture with the laboratory set up in the room that holds the works: adjustable cradles, cold lighting free of UV and IR, colour targets at every session. The volumes never left their shelf.",
         volumes: "~2,750 pages · 210 plates · 7 volumes",
@@ -239,13 +257,28 @@ export const customers = {
         tag: "Forma associata",
       },
       {
+        id: "matino",
+        sector: "public",
+        index: "05",
+        name: "Comune di Matino",
+        client: "Comune di Matino",
+        summary: "Archivi dell'anagrafe e dello stato civile.",
+        scope:
+          "Ordinamento e digitalizzazione degli archivi demografici del Comune: anagrafe e stato civile.",
+        volumes: "",
+        tech: "Ordinamento · ripresa",
+        outcome: "",
+        programme: "",
+        tag: "Archivi demografici",
+      },
+      {
         id: "innocenziana",
         sector: "private",
-        index: "05",
+        index: "06",
         name: "Biblioteca Innocenziana",
         client: "Biblioteca Arcivescovile «Innocenziana», Arcidiocesi di Lecce",
         summary:
-          "Sette volumi antichi e manoscritti di una biblioteca dichiarata di eccezionale interesse culturale.",
+          "Fondi antichi e manoscritti di una biblioteca dichiarata di eccezionale interesse culturale: uno dei fondi sottoposti a tutela per cui il laboratorio è attrezzato.",
         scope:
           "Ripresa senza contatto con il laboratorio allestito nella stanza che custodisce le opere: culle a supporto regolabile, luce fredda priva di UV e IR, target colorimetrici a ogni sessione. I volumi non hanno mai lasciato il loro scaffale.",
         volumes: "~2.750 pagine · 210 tavole · 7 volumi",

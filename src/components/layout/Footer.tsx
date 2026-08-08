@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Rule } from "@/components/ui/Rule";
-import { LEGAL, NAV, PAGES, href, type Locale } from "@/lib/routes";
+import { NAV, PAGES, href, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
    FOOTER
-   Registro anagrafico: sede, partita IVA, certificazioni, note legali.
+   Registro anagrafico: sede, partita IVA, certificazioni.
    La titolarita' resta a Cosma Alessandro, come da indicazione.
    ========================================================================== */
 
@@ -110,18 +110,11 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <span className="eyebrow">
             &copy; {new Date().getFullYear()} Cosma Alessandro — {t.rights}
           </span>
-          <ul className="flex flex-wrap gap-6">
-            {LEGAL.map((l) => (
-              <li key={l.key}>
-                <Link
-                  href={l.path[locale]}
-                  className="eyebrow transition-colors hover:text-max"
-                >
-                  {l.label[locale]}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Le note legali non si fanno: nessun collegamento, quindi.
+              Un link a una pagina che non esiste e' peggio della sua
+              assenza — promette e non mantiene. L'informativa che serve al
+              modulo di contatto sta accanto al modulo, dove chi invia i
+              propri dati la legge davvero. */}
         </div>
       </div>
     </footer>

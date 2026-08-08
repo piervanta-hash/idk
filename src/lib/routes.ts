@@ -89,24 +89,6 @@ export function alternates(key: PageKey, locale: Locale) {
   };
 }
 
-/* Pagine legali: esistono in entrambe le lingue ma non stanno nel menu. */
-export const LEGAL = [
-  {
-    key: "privacy",
-    path: { en: "/en/legal/privacy", it: "/it/note-legali/privacy" },
-    label: { en: "Privacy", it: "Privacy" },
-  },
-  {
-    key: "cookie",
-    path: { en: "/en/legal/cookie", it: "/it/note-legali/cookie" },
-    label: { en: "Cookie", it: "Cookie" },
-  },
-  {
-    key: "accessibility",
-    path: {
-      en: "/en/legal/accessibility",
-      it: "/it/note-legali/accessibilita",
-    },
-    label: { en: "Accessibility", it: "Accessibilità" },
-  },
-] as const;
+/* Le pagine legali non sono previste: la scelta e' del committente.
+   L'informativa sul trattamento dei dati del modulo di contatto sta
+   accanto al modulo stesso, in src/content/about.ts. */

@@ -34,7 +34,10 @@ export function SelectedWork({
         className={
           "-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 " +
           "md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 " +
-          "lg:grid-cols-4"
+          /* Tre colonne, non quattro: con cinque schede la seconda riga
+             ne porta due invece di lasciarne tre vuote, e le schede
+             respirano di piu'. */
+          "lg:grid-cols-3"
         }
       >
         {items.map((item) => (

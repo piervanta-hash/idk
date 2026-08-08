@@ -40,7 +40,7 @@ export const about = {
         },
         {
           n: "02",
-          body: "Early volumes from a library declared of exceptional cultural interest by ministerial decree, captured on site, without the works being moved.",
+          body: "Archives and libraries of historical and cultural interest under protection, among them a library declared of exceptional cultural interest by ministerial decree, captured on site without the works being moved.",
         },
         {
           n: "03",
@@ -83,6 +83,7 @@ export const about = {
         extentHint: "Even roughly, in linear metres: it is only for the order of magnitude.",
         notes: "Description of the archive",
         send: "Send",
+        subject: "Survey request",
         privacy:
           "Data sent through this form is used only to answer the request. It is not used for marketing and is not passed to third parties.",
         alt: "Or write to",
@@ -120,7 +121,7 @@ export const about = {
         },
         {
           n: "02",
-          body: "Volumi antichi di una biblioteca dichiarata di eccezionale interesse culturale con decreto ministeriale, ripresi in sede, senza movimentazione delle opere.",
+          body: "Archivi e biblioteche di interesse storico-culturale sottoposti a tutela, tra cui una biblioteca dichiarata di eccezionale interesse culturale con decreto ministeriale, ripresa in sede senza movimentazione delle opere.",
         },
         {
           n: "03",
@@ -164,6 +165,7 @@ export const about = {
           "Anche approssimativa, in metri lineari: serve solo per l'ordine di grandezza.",
         notes: "Descrizione dell'archivio",
         send: "Invia",
+        subject: "Richiesta di sopralluogo",
         privacy:
           "I dati inviati con questo modulo servono solo a rispondere alla richiesta. Non vengono usati per marketing né ceduti a terzi.",
         alt: "Oppure scrivere a",

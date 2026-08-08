@@ -76,7 +76,7 @@ export const investors = {
       eyebrow: "Reserved contact",
       title: "Direct contact.",
       lead: "One address, read by the founders. Tell us who you are and what you need to see; we answer with the materials that apply.",
-      email: "investors@paloryn.com",
+      email: "info@paloryn.com",
       form: {
         org: "Organisation",
         name: "Name",
@@ -84,6 +84,8 @@ export const investors = {
         interest: "What you would like to see",
         interestHint: "Business model, traction, infrastructure, governance — or all of it.",
         send: "Send request",
+        subject: "Investor materials",
+        alt: "Or write to",
         privacy:
           "Data sent through this form is used only to answer the request. It is not used for marketing and is not passed to third parties.",
       },
@@ -155,7 +157,7 @@ export const investors = {
       eyebrow: "Contatto riservato",
       title: "Contatto diretto.",
       lead: "Un solo indirizzo, letto dai fondatori. Dite chi siete e che cosa vi serve vedere: rispondiamo con i materiali che servono.",
-      email: "investors@paloryn.com",
+      email: "info@paloryn.com",
       form: {
         org: "Organizzazione",
         name: "Nome",
@@ -163,6 +165,8 @@ export const investors = {
         interest: "Che cosa vorreste vedere",
         interestHint: "Modello di business, trazione, infrastruttura, governance — o tutto.",
         send: "Invia richiesta",
+        subject: "Materiali per investitori",
+        alt: "Oppure scrivere a",
         privacy:
           "I dati inviati con questo modulo servono solo a rispondere alla richiesta. Non vengono usati per marketing né ceduti a terzi.",
       },

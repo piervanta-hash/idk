@@ -312,6 +312,23 @@ export default function StyleguidePage() {
                 <Logo height={22} />
                 <Logo height={14} />
               </div>
+
+              {/* Confronto a parita' di misura: sotto i 20px il tratto pieno
+                  salda i tre raggi, quello sottile no. */}
+              <div className="flex flex-wrap items-end gap-12 text-max">
+                {[18, 16, 14].map((h) => (
+                  <div key={h} className="flex items-end gap-5">
+                    <div className="flex flex-col items-center gap-3">
+                      <Logo height={h} thin={false} />
+                      <span className="eyebrow">{h} pieno</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-3">
+                      <Logo height={h} thin />
+                      <span className="eyebrow">{h} sottile</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
               <div className="flex flex-wrap items-end gap-8 text-max">
                 {[48, 32, 20, 16].map((s) => (
                   <div key={s} className="flex flex-col items-center gap-3">
@@ -333,9 +350,12 @@ export default function StyleguidePage() {
               <span className="eyebrow mt-8 block">Un limite da sapere</span>
               <p className="mt-4 text-small text-mute">
                 Sotto i 20px i tratti si saldano fra loro e il segno diventa una macchia:
-                si vede confrontando le tessere qui accanto. Non e&apos; un difetto della
-                riproduzione, e&apos; la geometria del segno. Se serve leggibilita&apos; a
-                16px va assottigliato il tratto in una variante dedicata: dimmi tu.
+                non e&apos; un difetto della riproduzione, e&apos; la geometria del segno.
+                I tre raggi distano undici unita&apos; e il tratto pieno ne occupa sette,
+                quindi lo spazio vuoto vale meno di due pixel e mezzo. Per questo sotto i
+                20px il tratto si assottiglia da solo, da sette a cinque: il confronto qui
+                sopra e&apos; a parita&apos; di misura. Dove lo spazio e&apos; davvero
+                minimo resta comunque preferibile la tessera piena.
               </p>
             </div>
           </div>

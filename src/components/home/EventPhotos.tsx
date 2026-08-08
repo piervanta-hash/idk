@@ -39,6 +39,9 @@ function Frame({
   height: number;
   sizes: string;
 }) {
+  /* Il contenuto scrive «Nome · Ruolo» in un campo solo; qui si separa. */
+  const [name, role] = (shot.credit ?? "").split(" · ");
+
   return (
     <figure className="group relative m-0 aspect-[4/3] overflow-hidden bg-surface-1">
       <picture>
@@ -59,9 +62,14 @@ function Frame({
       {shot.credit && (
         <figcaption className="absolute inset-x-0 bottom-0">
           {/* Sfumatura appena percettibile: il nome deve leggersi anche su
-              una parete chiara, senza che sembri una didascalia incollata. */}
-          <span className="block bg-gradient-to-t from-bg/90 to-transparent px-4 pt-12 pb-4 font-mono text-data text-max">
-            {shot.credit}
+              una parete chiara, senza che sembri una didascalia incollata.
+
+              Nome e ruolo vanno su due righe decise da noi. Su una riga
+              sola andrebbero a capo dove capita — «Pierluigi Vantaggiato ·
+              / Co-Founder» — e un ritorno a capo casuale si vede. */}
+          <span className="block bg-gradient-to-t from-bg/90 to-transparent px-4 pt-12 pb-4 font-mono text-data">
+            <span className="block text-max">{name}</span>
+            {role && <span className="block text-mute">{role}</span>}
           </span>
         </figcaption>
       )}
