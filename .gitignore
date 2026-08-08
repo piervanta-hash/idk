@@ -14,3 +14,6 @@ photos-sorgente/*.png
 
 # Anteprima impacchettata: si rigenera con scripts/build-anteprima.mjs
 anteprima-home.html
+
+# Esportazione statica per l'anteprima pubblica
+out/

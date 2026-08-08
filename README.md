@@ -8,12 +8,24 @@ Il lavoro procede sul ramo `claude/procedi-allegato-iaok0e`.
 
 ## Come si guarda il sito
 
-Serve **Node.js 20 o successivo**. Si scarica da <https://nodejs.org>
-(prendere la versione «LTS»). Per controllare se c'è già, aprire il
-Terminale e scrivere `node -v`: se risponde con un numero, c'è.
+**Dal telefono o da qualunque computer, senza installare niente:**
 
-Poi, tre comandi. La prima volta serve anche il primo; dalla seconda in
-poi basta l'ultimo.
+### https://piervanta-hash.github.io/idk/
+
+È il sito vero, costruito dal ramo di lavorazione e ripubblicato a ogni
+modifica. Funziona tutto: le animazioni guidate dallo scorrimento, le
+modali, il menu del telefono, il cambio di lingua.
+
+Una sola cosa non può funzionare lì, e lo dichiara: **l'invio dei
+moduli**, che ha bisogno di un server. Su quella pagina il modulo risponde
+che il messaggio non è partito e mostra l'indirizzo da copiare.
+
+---
+
+## Come si lavora sul sito in locale
+
+Serve **Node.js 20 o successivo**, da <https://nodejs.org> (versione
+«LTS»). Per sapere se c'è già: aprire il Terminale e scrivere `node -v`.
 
 ```bash
 # 1. scaricare il progetto (una volta sola)
@@ -28,24 +40,10 @@ npm run dev
 ```
 
 L'ultimo comando stampa un indirizzo, di solito
-**<http://localhost:3000>**. Aprirlo nel browser: quello è il sito.
-Per fermarlo, `Ctrl+C` nella stessa finestra del Terminale.
+**<http://localhost:3000>**. Per fermarlo, `Ctrl+C`.
 
-`localhost` vuol dire «questo computer»: il sito gira sulla macchina di
-chi lancia il comando, non è pubblicato da nessuna parte e nessuno da
-fuori può vederlo.
-
-### Vederlo dal telefono
-
-Con il telefono sulla **stessa rete Wi-Fi** del computer:
-
-```bash
-npm run dev -- -H 0.0.0.0
-```
-
-Poi sul telefono aprire `http://INDIRIZZO-DEL-COMPUTER:3000`.
-L'indirizzo del computer si legge con `ipconfig getifaddr en0` su Mac o
-`ipconfig` su Windows: è un numero tipo `192.168.1.34`.
+Per vederlo dal telefono sulla stessa Wi-Fi: `npm run dev -- -H 0.0.0.0`,
+poi dal telefono `http://indirizzo-del-computer:3000`.
 
 ### Le pagine
 
@@ -60,7 +58,7 @@ L'indirizzo del computer si legge con `ipconfig getifaddr en0` su Mac o
 
 Aprendo la radice `/` si viene mandati alla lingua del browser.
 C'è anche `/styleguide`, che non è una pagina del sito: è il campionario
-di colori, caratteri e componenti, e resta fuori dai motori di ricerca.
+di colori, caratteri e componenti, ed è esclusa dai motori di ricerca.
 
 ---
 
