@@ -186,3 +186,52 @@ due con il nome sono vostre — me le hai mandate tu, e sono le stesse. Sulle
 altre quattro conviene verificare a chi appartiene il credito fotografico
 prima di andare online: se il fotografo va citato, si aggiunge una riga alla
 didascalia.
+
+---
+
+# Aggiunta — Martino Castellana
+
+## Quello che non ho potuto fare, e quello che ho fatto
+
+La fotografia di Martino **non è fra le nove pubblicate sulla pagina
+dell'evento**: le ho controllate tutte. È una foto a parte, e quella l'ho
+soltanto vista — da qui non ho modo di aprirla come file, quindi non posso
+ritagliarla io.
+
+Ho fatto la cosa che serve davvero: **il taglio è deciso e scritto nello
+script**. Quando metti l'originale in `photos-sorgente/martino.jpg` e lanci
+
+    node scripts/build-photos.mjs photos-sorgente
+
+il ritaglio si applica da solo, insieme al ridimensionamento e ai tre formati.
+Non devi aprire nessun editor.
+
+## Il taglio che ho scelto
+
+L'originale è verticale e mal inquadrato: Martino sta nel terzo sinistro,
+sotto c'è mezzo metro di pavimento vuoto e sopra una fascia di parete morta.
+
+Il taglio prende **la fascia dall'11% al 68% dell'altezza, a tutta larghezza**,
+e porta il fotogramma in orizzontale a un rapporto di 1,32 — praticamente 4:3,
+coerente con le altre due. Tiene la testa a circa un sesto dall'alto, chiude
+all'altezza della coscia.
+
+Soprattutto **tiene lo schermo con il portale d'archivio**. È la cosa più
+preziosa di quello scatto e nell'originale rischia di passare inosservata:
+mostra il vostro prodotto in funzione, alle spalle di chi l'ha costruito. Vale
+più della simmetria.
+
+Verificato su un'immagine di prova delle stesse proporzioni: 1200×1600
+verticale entra, 1200×912 orizzontale esce. Se il taglio non convince, i
+quattro numeri stanno su una riga sola dello script.
+
+## Le foto adesso appaiono da sole
+
+Ho tolto di mezzo il meccanismo dei segnaposto. La pagina controlla in fase di
+costruzione quali file esistono e **mostra solo quelli**: niente riquadri
+vuoti, niente interruttori da spostare a mano. Metti il file, ricostruisci, la
+foto entra. Lo togli, sparisce, e la griglia si richiude senza buchi.
+
+In questo momento Martino è nel contenuto ma non nel markup, perché il file
+non c'è. Appena arriva, si mette accanto a Pierluigi e Linda: tre ritratti con
+il nome a sinistra, il carosello a destra.

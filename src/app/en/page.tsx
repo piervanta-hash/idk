@@ -11,6 +11,7 @@ import { OperationsMap } from "@/components/home/OperationsMap";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { EventPhotos } from "@/components/home/EventPhotos";
 import { home } from "@/content/home";
+import { present } from "@/lib/photos";
 
 const t = home.en;
 
@@ -155,8 +156,8 @@ export default function HomeEn() {
               <EventPhotos
                 caption={t.photos.caption}
                 source={t.photos.source}
-                featured={t.photos.featured}
-                reel={t.photos.reel}
+                featured={present(t.photos.featured)}
+                reel={present(t.photos.reel)}
                 reelLabel={t.photos.reelLabel}
                 nav={t.photos.nav}
               />

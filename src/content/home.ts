@@ -142,6 +142,11 @@ export const home = {
           credit: "Pierluigi Vantaggiato · Co-Founder",
         },
         {
+          base: "castellana",
+          alt: "Martino Castellana presenting the theatre archive portal at the ARCHILIVES info day.",
+          credit: "Martino Castellana · CTO",
+        },
+        {
           base: "perrone",
           alt: "Linda Perrone, senior archivist, speaking to the room at the ARCHILIVES info day.",
           credit: "Linda Perrone · Senior archivist",
@@ -289,6 +294,11 @@ export const home = {
           base: "vantaggiato",
           alt: "Pierluigi Vantaggiato presenta accanto al roll-up ARCHILIVES all'info day di Koreja.",
           credit: "Pierluigi Vantaggiato · Co-Founder",
+        },
+        {
+          base: "castellana",
+          alt: "Martino Castellana presenta il portale d'archivio dei teatri all'info day ARCHILIVES.",
+          credit: "Martino Castellana · CTO",
         },
         {
           base: "perrone",
