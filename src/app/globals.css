@@ -251,8 +251,103 @@
     }
   }
 
-  /* 3. Impulso lungo la rotta fra i due nodi della mappa operativa. */
+  /* 3. Estrazione del dato. Lo stato di riposo e' quello finale e completo:
+        l'animazione toglie, non aggiunge. Chi non ha JavaScript o ha
+        disattivato il movimento vede lo schema intero. */
+  .ex-cap,
+  .ex-key {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    fill: var(--color-mute);
+  }
+  .ex-val {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    fill: var(--color-max);
+  }
+  .ex-score {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    fill: var(--color-mute);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Riposo = fotogramma finale: la testa di scansione ha gia' percorso la
+     pagina ed e' ferma in fondo, attenuata. */
+  .ex-scan {
+    transform: translateY(470px);
+    opacity: 0.35;
+  }
+  .ex-scan-tall {
+    transform: translateY(360px);
+    opacity: 0.35;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
+    .ex-run .ex-fade {
+      animation: ex-fade 460ms ease-out backwards;
+    }
+    .ex-run .ex-draw {
+      animation: ex-draw 520ms ease-out backwards;
+      stroke-dasharray: 100;
+    }
+    .ex-run .ex-scan {
+      animation: ex-scan 1900ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+    .ex-run .ex-scan-tall {
+      animation: ex-scan-tall 1900ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+  }
+
+  @keyframes ex-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes ex-draw {
+    from {
+      stroke-dashoffset: 100;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* La testa di scansione si ferma al bordo inferiore della pagina e resta
+     li': e' il fotogramma finale, non sparisce. */
+  @keyframes ex-scan {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(470px);
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes ex-scan-tall {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(360px);
+      opacity: 0.35;
+    }
+  }
+
+  /* 4. Impulso lungo la rotta fra i due nodi della mappa operativa, e lungo
+        le connessioni dello schema di interoperabilita'. */
+  @media (prefers-reduced-motion: no-preference) {
+    .io-pulse {
+      animation: io 4200ms linear infinite;
+    }
     .route-pulse {
       animation: route 3800ms linear infinite;
     }
@@ -271,6 +366,21 @@
     }
     to {
       stroke-dashoffset: 0;
+    }
+  }
+
+  /* Senza movimento l'impulso non deve restare fermo a meta' della linea:
+     lo si porta fuori vista. */
+  .io-pulse {
+    stroke-dashoffset: 160;
+  }
+
+  @keyframes io {
+    from {
+      stroke-dashoffset: 160;
+    }
+    to {
+      stroke-dashoffset: -80;
     }
   }
 
