@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { GeoModal } from "./GeoModal";
 
 /* ==========================================================================
    GEOLOCALIZZAZIONE DELLE PARTICELLE — ESPLOSO DI MAPPA
@@ -29,13 +30,23 @@ export function ParcelMap({
   layers,
   record,
   note,
+  modal,
 }: {
   layers: readonly string[];
   /** L'etichetta del record agganciato: arriva dai campi estratti. */
   record: { label: string; value: string };
   note: string;
+  modal: {
+    open: string;
+    title: string;
+    territory: string;
+    detail: string;
+    note: string;
+    close: string;
+  };
 }) {
   const [active, setActive] = useState(2);
+  const [geoOpen, setGeoOpen] = useState(false);
 
   /* Quote verticali dei tre piani: distanti quando il livello e' selezionato,
      raccolti quando non lo e'. */
@@ -148,9 +159,26 @@ export function ParcelMap({
         </svg>
       </div>
 
-      <figcaption className="mt-3 border-t border-line pt-3">
+      <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-3">
         <span className="eyebrow">{note}</span>
+        {/* Dall'esploso al territorio vero: e' il passo che chiude il
+            racconto — il riferimento catastale diventa un punto sul terreno. */}
+        <button
+          type="button"
+          onClick={() => setGeoOpen(true)}
+          className="eyebrow inline-flex min-h-11 items-center gap-2 transition-colors hover:text-accent"
+        >
+          {modal.open}
+          <span aria-hidden="true">&rarr;</span>
+        </button>
       </figcaption>
+
+      <GeoModal
+        open={geoOpen}
+        onClose={() => setGeoOpen(false)}
+        labels={modal}
+        record={record}
+      />
     </figure>
   );
 }

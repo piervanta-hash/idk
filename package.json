@@ -29,7 +29,9 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "topojson-client": "^3.1.0",
+    "typescript": "^7.0.2",
+    "world-atlas": "^2.0.2"
   },
   "private": true
 }

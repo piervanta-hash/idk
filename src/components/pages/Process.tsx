@@ -4,20 +4,22 @@ import { useEffect, useRef, useState } from "react";
 import { PhaseGlyph } from "./PhaseGlyph";
 
 /* ==========================================================================
-   ITER DI DIGITALIZZAZIONE — SEI FASI
+   ITER DI DIGITALIZZAZIONE — UN SOLO RIQUADRO CHE CAMBIA
 
-   Ripreso dal comportamento del sito attuale: un pannello disegnato che
-   resta fermo a sinistra e cambia figura man mano che si scende da una fase
-   alla successiva. Non sei riquadri affiancati, ma una sequenza connessa che
-   avanza con lo scorrimento.
+   Le sei fasi non si srotolano una sotto l'altra: la pagina diventerebbe
+   lunghissima e il lettore perderebbe il filo. Sta tutto in un riquadro
+   fermo, e scorrendo cambiano insieme il disegno e il testo — come si
+   sfogliano i fotogrammi di una sequenza.
 
-   Rifatto nella palette nuova: schemi a linea grigia con un solo elemento
-   cyan per disegno, quello che nella fase e' vivo. Il cambio e' un dissolvi
-   incrociato breve, piu' una guida verticale che si riempie.
+   Sotto il riquadro, sei trattini: dicono a che punto si e' e permettono di
+   saltare a una fase qualsiasi, avanti o indietro.
 
-   Su mobile il pannello non puo' restare fermo: ogni fase porta il suo
-   disegno in piccolo accanto al titolo, e il testo si apre al tocco. Il
-   disegno resta sempre visibile, anche a pannello chiuso.
+   La sezione e' alta quanto sei schermate; dentro, il riquadro resta
+   incollato. Lo scorrimento non e' decorativo, e' il comando.
+
+   Senza JavaScript resterebbe visibile solo la prima fase: per questo tutte
+   e sei sono nel documento, e sotto c'e' un elenco completo in chiaro che
+   compare solo quando gli script non girano.
    ========================================================================== */
 
 type Step = {
@@ -29,39 +31,24 @@ type Step = {
 };
 
 export function Process({ steps, caption }: { steps: readonly Step[]; caption: string }) {
-  const listRef = useRef<HTMLOListElement>(null);
-  const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [open, setOpen] = useState(0);
 
-  /* Il server rende tutte le fasi aperte: senza JavaScript nessun testo
-     resta chiuso e nascosto. L'accordion si attiva dopo l'idratazione. */
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  /* Una sola misura per fotogramma, agganciata al rendering del browser:
-     nessun lavoro pesante durante lo scorrimento. */
   useEffect(() => {
-    const el = listRef.current;
+    const el = trackRef.current;
     if (!el) return;
 
     let frame = 0;
     const measure = () => {
       frame = 0;
-      const anchor = window.innerHeight * 0.45;
-
       const r = el.getBoundingClientRect();
-      setProgress(Math.max(0, Math.min(1, (anchor - r.top) / r.height)));
-
-      /* La fase attiva e' l'ultima il cui inizio ha superato l'ancora. */
-      let next = 0;
-      itemRefs.current.forEach((li, i) => {
-        if (li && li.getBoundingClientRect().top <= anchor) next = i;
-      });
-      setActive(next);
+      /* Quanta parte della sezione e' gia' passata sopra la finestra. */
+      const span = r.height - window.innerHeight;
+      const p = span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : 0;
+      setProgress(p);
+      setActive(Math.min(steps.length - 1, Math.floor(p * steps.length * 0.999)));
     };
-
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(measure);
     };
@@ -76,106 +63,125 @@ export function Process({ steps, caption }: { steps: readonly Step[]; caption: s
     };
   }, [steps.length]);
 
+  /* Il trattino porta alla porzione di scorrimento della sua fase. */
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const span = el.offsetHeight - window.innerHeight;
+    const y = el.offsetTop + (span * (i + 0.35)) / steps.length;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  const step = steps[active];
+
   return (
-    <div className="lg:grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">
-      {/* --- Il pannello fermo, solo da desktop -------------------------- */}
-      <div className="hidden lg:block">
-        <div className="sticky top-28">
-          <div className="relative aspect-square border border-line bg-surface-1">
-            {steps.map((s, i) => (
-              <div
-                key={s.n}
-                className={
-                  "absolute inset-0 p-10 transition-opacity duration-500 " +
-                  (i === active ? "opacity-100" : "opacity-0")
-                }
-                aria-hidden={i !== active}
-              >
-                <PhaseGlyph index={i} />
-              </div>
-            ))}
+    <>
+      <div ref={trackRef} style={{ height: `${steps.length * 90}vh` }} className="relative">
+        <div className="sticky top-16 flex h-[calc(100dvh-4rem)] flex-col justify-center py-8 md:top-20 md:h-[calc(100dvh-5rem)]">
+          <div className="grid items-center gap-8 md:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] md:gap-16">
+            {/* Il disegno */}
+            <div className="relative mx-auto aspect-square w-40 border border-line bg-surface-1 sm:w-56 md:mx-0 md:w-full">
+              {steps.map((s, i) => (
+                <div
+                  key={s.n}
+                  aria-hidden={i !== active}
+                  className={
+                    "absolute inset-0 p-6 transition-opacity duration-400 md:p-10 " +
+                    (i === active ? "opacity-100" : "opacity-0")
+                  }
+                >
+                  <PhaseGlyph index={i} />
+                </div>
+              ))}
+            </div>
+
+            {/* Il testo, nello stesso riquadro: cambia, non si accumula */}
+            <div className="relative min-h-64 md:min-h-72">
+              {steps.map((s, i) => (
+                <div
+                  key={s.n}
+                  aria-hidden={i !== active}
+                  className={
+                    "transition-opacity duration-400 " +
+                    (i === active
+                      ? "relative opacity-100"
+                      : "pointer-events-none absolute inset-0 opacity-0")
+                  }
+                >
+                  <span className="eyebrow tabular text-max">
+                    {s.n} · {s.name}
+                  </span>
+                  <h3 className="mt-4 text-d3 font-display font-semibold text-max">
+                    {s.title}
+                  </h3>
+                  <p className="measure-wide mt-6 text-body-l text-copy">{s.body}</p>
+                  <p className="mt-6 font-mono text-data text-mute">{s.tags}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-line pt-3">
-            <span className="eyebrow tabular">
-              {steps[active].n} · {steps[active].name}
-            </span>
-            <span className="eyebrow tabular">
-              {steps[active].n} / {String(steps.length).padStart(2, "0")}
+          {/* I sei trattini: dove sono, e dove voglio andare */}
+          <div className="mt-10 flex items-end justify-between gap-6 border-t border-line pt-4">
+            <nav aria-label="Phases" className="flex flex-1 gap-2">
+              {steps.map((s, i) => (
+                <button
+                  key={s.n}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-current={i === active ? "step" : undefined}
+                  className="group flex-1 py-4"
+                  title={`${s.n} · ${s.name}`}
+                >
+                  <span className="sr-only">
+                    {s.n} — {s.name}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className={
+                      "block h-0.5 w-full transition-colors duration-300 " +
+                      (i === active
+                        ? "bg-accent"
+                        : i < active
+                          ? "bg-strong group-hover:bg-max"
+                          : "bg-line group-hover:bg-mute")
+                    }
+                  />
+                </button>
+              ))}
+            </nav>
+            <span className="eyebrow tabular shrink-0 pb-4">
+              {step.n} / {String(steps.length).padStart(2, "0")}
             </span>
           </div>
 
-          {/* Guida di avanzamento */}
-          <div className="mt-4 h-px w-full bg-line">
+          <p className="mt-2 hidden text-small text-mute md:block">{caption}</p>
+
+          {/* Barra di avanzamento continua della sezione */}
+          <div className="mt-4 h-px w-full bg-line" aria-hidden="true">
             <div
               className="h-px bg-accent transition-[width] duration-150 ease-out"
               style={{ width: `${progress * 100}%` }}
             />
           </div>
-
-          <p className="mt-6 text-small text-mute">{caption}</p>
         </div>
       </div>
 
-      {/* --- Le sei fasi ------------------------------------------------- */}
-      <ol ref={listRef} className="m-0 list-none p-0">
-        {steps.map((s, i) => {
-          const isOpen = open === i;
-          const on = i === active;
-          return (
-            <li
-              key={s.n}
-              ref={(el) => {
-                itemRefs.current[i] = el;
-              }}
-              className="border-b border-line lg:min-h-[70vh] lg:py-16"
-            >
-              {/* Mobile: disegno piccolo sempre visibile, testo a fisarmonica */}
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? -1 : i)}
-                aria-expanded={isOpen}
-                className="flex w-full items-center gap-5 py-6 text-left lg:hidden"
-              >
-                <span className="h-20 w-20 shrink-0 border border-line bg-surface-1 p-2">
-                  <PhaseGlyph index={i} />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="eyebrow tabular">
-                    {s.n} · {s.name}
-                  </span>
-                  <span className="mt-2 block text-h4 font-display font-semibold text-max">
-                    {s.title}
-                  </span>
-                </span>
-                <span
-                  aria-hidden="true"
-                  className={`shrink-0 text-h5 text-mute transition-transform duration-200 ${
-                    isOpen ? "rotate-45" : ""
-                  }`}
-                >
-                  +
-                </span>
-              </button>
-
-              {/* Desktop: intestazione statica */}
-              <div className="hidden lg:block">
-                <span className={`eyebrow tabular ${on ? "text-max" : ""}`}>
-                  {s.n} · {s.name}
-                </span>
-                <h3 className="mt-3 text-d3 font-display font-semibold text-max">
-                  {s.title}
-                </h3>
-              </div>
-
-              <div className={`${!mounted || isOpen ? "block" : "hidden"} pb-8 lg:block`}>
-                <p className="measure-wide text-body-l text-copy lg:mt-6">{s.body}</p>
-                <p className="mt-6 font-mono text-data text-mute">{s.tags}</p>
-              </div>
+      {/* Senza JavaScript il riquadro non cambia: qui c'e' tutto in chiaro. */}
+      <noscript>
+        <ol className="m-0 list-none p-0">
+          {steps.map((s) => (
+            <li key={s.n} className="border-t border-line py-8">
+              <span className="eyebrow tabular">
+                {s.n} · {s.name}
+              </span>
+              <h3 className="mt-3 text-h4 font-display font-semibold text-max">{s.title}</h3>
+              <p className="measure-wide mt-4 text-body text-copy">{s.body}</p>
+              <p className="mt-3 font-mono text-data text-mute">{s.tags}</p>
             </li>
-          );
-        })}
-      </ol>
-    </div>
+          ))}
+        </ol>
+      </noscript>
+    </>
   );
 }

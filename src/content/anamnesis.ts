@@ -90,6 +90,14 @@ export const anamnesis = {
       lead: "Cadastral references extracted from paper are placed on the map. The exploded view separates a sheet into its parcels, so a request can be resolved by pointing at the ground instead of by reading a register.",
       layers: ["Sheet", "Parcels", "Extracted record"],
       note: "Schematic. Parcel geometry shown is illustrative.",
+      modal: {
+        open: "Place it on the map",
+        title: "Extracted record, located",
+        territory: "Territory",
+        detail: "Sheet and parcel",
+        note: "Sample record on a demonstration position. Real holdings are placed on their own coordinates.",
+        close: "Close",
+      },
     },
 
     retrieval: {
@@ -215,6 +223,14 @@ export const anamnesis = {
       lead: "I riferimenti catastali estratti dalla carta vengono collocati sulla mappa. L'esploso separa il foglio nelle sue particelle, così un'istanza si risolve indicando il terreno invece di leggere un registro.",
       layers: ["Foglio", "Particelle", "Record estratto"],
       note: "Schema. La geometria delle particelle è illustrativa.",
+      modal: {
+        open: "Collocalo sulla mappa",
+        title: "Record estratto, collocato",
+        territory: "Territorio",
+        detail: "Foglio e particella",
+        note: "Record di esempio su una posizione dimostrativa. I fondi reali vengono collocati sulle loro coordinate.",
+        close: "Chiudi",
+      },
     },
 
     retrieval: {

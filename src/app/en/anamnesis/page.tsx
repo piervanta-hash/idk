@@ -124,6 +124,7 @@ export default function AnamnesisEn() {
                   layers={t.geo.layers}
                   record={{ label: cadastral.label, value: cadastral.value }}
                   note={t.geo.note}
+                  modal={t.geo.modal}
                 />
               </Reveal>
             </div>

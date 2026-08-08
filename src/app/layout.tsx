@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Sora, Archivo, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { Intro } from "@/components/brand/Intro";
 
 /* I tre caratteri ufficiali. Nessun altro font e' ammesso.
    next/font li scarica in fase di build e li serve dal nostro dominio:
@@ -54,6 +55,7 @@ export default function RootLayout({
             __html: "document.documentElement.classList.add('js')",
           }}
         />
+        <Intro />
         {children}
       </body>
     </html>
