@@ -14,20 +14,30 @@ export type Locale = "en" | "it";
 
 export const home = {
   en: {
+    /* La testata non e' un annuncio, e' una scheda: intestazione, una frase
+       che dice che cosa e' l'azienda, e in fondo la cosa vera che facciamo,
+       che avviene sotto gli occhi di chi legge. Niente slogan. */
     hero: {
-      eyebrow: "Data company · Lecce, IT",
-      title: "From shelf metres to structured data.",
+      mark: "Paloryn",
+      place: "Lecce, IT · European Union",
+      title: "A data company working on paper archives.",
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
-      /* Lettura del signature element: la conversione da misura fisica a
-         misura di dato. Le due cifre hanno una provenienza (vedi note). */
-      readout: [
-        { key: "Measured in", value: "shelf metres" },
-        { key: "Digitized", value: "10M+ pages" },
-        { key: "Retrieved in", value: "4 s" }, // sito attuale, dimostrazione Anamnesis
-      ],
-      scanLabels: { paper: "Paper", data: "Structured data", replay: "Replay" },
+      convert: {
+        from: "Paper",
+        to: "Structured record",
+        replay: "Replay",
+        /* Gli stessi quattro campi della pagina Anamnesis: e' un esempio,
+           ed e' dichiarato tale. Non e' la pratica di nessuno. */
+        note: "Example of an extracted record",
+        fields: [
+          { label: "Protocol no.", value: "1962 / 4471" },
+          { label: "Address", value: "via Manzoni 14" },
+          { label: "Permit", value: "Building permit, 1962" },
+          { label: "Cadastral ref.", value: "Sheet 12 · parcel 417" },
+        ],
+      },
     },
 
     matrix: {
@@ -178,17 +188,24 @@ export const home = {
 
   it: {
     hero: {
-      eyebrow: "Società di dati · Lecce, IT",
-      title: "Dai metri lineari al dato strutturato.",
+      mark: "Paloryn",
+      place: "Lecce, IT · Unione Europea",
+      title: "Una società di dati che lavora sugli archivi di carta.",
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
-      readout: [
-        { key: "Si misura in", value: "metri lineari" },
-        { key: "Digitalizzate", value: "10M+ pagine" },
-        { key: "Reperimento in", value: "4 s" },
-      ],
-      scanLabels: { paper: "Carta", data: "Dato strutturato", replay: "Rivedi" },
+      convert: {
+        from: "Carta",
+        to: "Record strutturato",
+        replay: "Rivedi",
+        note: "Esempio di record estratto",
+        fields: [
+          { label: "Protocollo", value: "1962 / 4471" },
+          { label: "Indirizzo", value: "via Manzoni 14" },
+          { label: "Titolo", value: "Concessione edilizia, 1962" },
+          { label: "Catastale", value: "Foglio 12 · particella 417" },
+        ],
+      },
     },
 
     matrix: {

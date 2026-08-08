@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { LinearMetre } from "@/components/home/LinearMetre";
+import { Conversion } from "@/components/home/Conversion";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
 import { OperationsMap } from "@/components/home/OperationsMap";
@@ -26,8 +26,8 @@ import { alternates, type Locale } from "@/lib/routes";
    ========================================================================== */
 
 const TITLE = {
-  en: "Paloryn — data, extracted from paper",
-  it: "Paloryn — dati, estratti dalla carta",
+  en: "Paloryn — a data company for paper archives",
+  it: "Paloryn — società di dati per gli archivi di carta",
 };
 
 export function homeMetadata(locale: Locale): Metadata {
@@ -53,26 +53,45 @@ export function HomeView({ locale }: { locale: Locale }) {
       <Header locale={locale} page="home" />
 
       <main id="main">
-        <section className="shell pt-16 pb-24 md:pt-24 md:pb-32">
-          <span className="eyebrow">{t.hero.eyebrow}</span>
+        {/* LA TESTATA E' UNA SCHEDA, non un annuncio.
 
-          <h1 className="mt-8 text-d1 font-display font-bold text-max">{t.hero.title}</h1>
+            Intestazione in alto come su una scheda di catalogo, poi una
+            frase che dice che cosa e' l'azienda, poi - dentro la stessa
+            cornice - la cosa che l'azienda fa, che avviene sotto gli occhi
+            di chi legge. Testo e grafica non sono due blocchi affiancati:
+            sono lo stesso oggetto, e per questo la pagina non somiglia a
+            una qualunque pagina di lancio. */}
+        <section className="shell pt-10 pb-24 md:pt-14 md:pb-32">
+          <div className="border border-line">
+            <div className="flex items-baseline justify-between gap-6 border-b border-line px-5 py-3 md:px-8">
+              <span className="eyebrow">{t.hero.mark}</span>
+              <span className="eyebrow text-right">{t.hero.place}</span>
+            </div>
 
-          <p className="measure-wide mt-8 text-body-l text-copy">{t.hero.lead}</p>
+            <div className="px-5 py-12 md:px-8 md:py-16">
+              <h1 className="measure-wide text-d2 font-display font-bold text-max">
+                {t.hero.title}
+              </h1>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
-              {t.hero.primary.label}
-            </ButtonLink>
-            <ButtonLink href={t.hero.secondary.href} variant="secondary" size="lg" arrow>
-              {t.hero.secondary.label}
-            </ButtonLink>
-          </div>
+              <p className="measure-wide mt-8 text-body-l text-copy">{t.hero.lead}</p>
 
-          {/* Il signature element prende tutta la larghezza: e' un righello,
-              e un righello si legge per quanto e' lungo. */}
-          <div className="mt-20 md:mt-28">
-            <LinearMetre labels={t.hero.scanLabels} readout={t.hero.readout} />
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
+                  {t.hero.primary.label}
+                </ButtonLink>
+                <ButtonLink href={t.hero.secondary.href} variant="secondary" size="lg" arrow>
+                  {t.hero.secondary.label}
+                </ButtonLink>
+              </div>
+            </div>
+
+            <Conversion
+              from={t.hero.convert.from}
+              to={t.hero.convert.to}
+              replay={t.hero.convert.replay}
+              note={t.hero.convert.note}
+              fields={t.hero.convert.fields}
+            />
           </div>
         </section>
 

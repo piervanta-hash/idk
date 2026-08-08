@@ -217,26 +217,72 @@
    ========================================================================== */
 
 @layer components {
-  /* 1. Il metro lineare. Stato di riposo: scansione ferma a due terzi, con
-        carta e dato entrambi visibili. E' anche lo stato senza JavaScript. */
-  /* --lm-stop e' dichiarato su ogni righello: le due varianti, orizzontale
-     larga e stretta, si fermano a due terzi della propria lunghezza. */
-  .lm-scan {
-    transform: translateX(var(--lm-stop, 620px));
+  /* 1. La conversione in testata: la carta diventa un record.
+
+        E' l'unico momento orchestrato forte del sito, e mostra la cosa vera
+        che l'azienda fa invece di raccontarla. Una riga ciano attraversa la
+        scheda da sinistra a destra; dietro di lei i campi compaiono uno
+        dopo l'altro, nell'ordine in cui la riga li raggiunge.
+
+        STATO DI RIPOSO — che e' anche quello senza JavaScript e quello di
+        chi ha chiesto meno animazioni: i campi ci sono tutti, la riga non
+        c'e'. Chi non vede l'animazione non perde nessuna informazione: vede
+        il risultato, che e' la cosa che conta. */
+  .rs-scan {
+    opacity: 0;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .lm-run .lm-scan {
-      animation: lm-sweep 2200ms cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+    .rs-run .rs-scan {
+      animation: rs-sweep 2000ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+    /* backwards: il campo e' gia' invisibile prima del proprio turno,
+       invece di lampeggiare e poi sparire. */
+    .rs-run .rs-field {
+      animation: rs-field 460ms ease-out backwards;
+    }
+    .rs-run .rs-dash {
+      animation: rs-dash 620ms ease-out backwards;
+      transform-origin: left center;
     }
   }
 
-  @keyframes lm-sweep {
+  @keyframes rs-sweep {
+    0% {
+      left: 0%;
+      opacity: 0;
+    }
+    6% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes rs-field {
     from {
-      transform: translateX(0);
+      opacity: 0;
+      transform: translateY(6px);
     }
     to {
-      transform: translateX(var(--lm-stop, 620px));
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes rs-dash {
+    from {
+      opacity: 0;
+      transform: scaleX(0.15);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 
