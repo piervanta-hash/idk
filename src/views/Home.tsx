@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/home/Headline";
 import { Stacks } from "@/components/home/Stacks";
-import { Conversion } from "@/components/home/Conversion";
+import { Extraction } from "@/components/pages/Extraction";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
 import { OperationsMap } from "@/components/home/OperationsMap";
@@ -61,11 +61,11 @@ export function HomeView({ locale }: { locale: Locale }) {
             si legge come un documento stampato, non come l'apertura di un
             sito: la cornice era l'errore, non le parole.
 
-            Adesso la prima schermata e' fatta di quattro cose: una riga
-            sottile di intestazione, il titolo alla scala del manifesto, la
-            scaffalatura disegnata che gli sta a fianco, e la conversione da
-            bordo a bordo. Il titolo dice «materia» e la materia e' li'
-            accanto; dice «dato» e il dato sta sotto.
+            Adesso la prima schermata e' fatta di tre cose: una riga
+            sottile di intestazione, il titolo alla scala del manifesto e la
+            scaffalatura disegnata che gli sta a fianco. Il titolo dice
+            «materia» e la materia e' li' accanto; dice «dato», e il dato
+            arriva subito sotto, scendendo.
 
             Nota per chi tocchera' il titolo: e' volutamente concettuale e
             non contiene nessuna parola per cui qualcuno cerchi. Il peso
@@ -118,19 +118,29 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          {/* Da bordo a bordo: la conversione non e' un'illustrazione messa
-              accanto al testo, e' il pavimento su cui la pagina poggia. */}
-          <Conversion
-            from={t.hero.convert.from}
-            to={t.hero.convert.to}
-            replay={t.hero.convert.replay}
-            note={t.hero.convert.note}
-            fields={t.hero.convert.fields}
-          />
         </section>
 
+        {/* L'ESTRAZIONE, subito sotto la testata.
+
+            Il titolo dice «al dato»: qui si vede come. E' la stessa
+            animazione della pagina Anamnesis, ed e' giusto che sia la
+            stessa - e' la cosa che l'azienda fa. In home apre il discorso,
+            li' viene spiegata.
+
+            Parte quando arriva sullo schermo, non al caricamento: si vede
+            scendendo, che e' il momento in cui si sta guardando. */}
         <div className="shell">
-          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside="01" size="lg">
+          <Section id="extraction" eyebrow={t.hero.extraction.eyebrow} aside="01">
+            <Extraction
+              fields={t.hero.extraction.fields}
+              labels={t.hero.extraction.labels}
+              note={t.hero.extraction.note}
+            />
+          </Section>
+        </div>
+
+        <div className="shell">
+          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside="02" size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.matrix.title}
@@ -139,13 +149,13 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside="02" size="lg">
+          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside="03" size="lg">
             <Reveal>
               <Measurements items={t.measurements.items} />
             </Reveal>
           </Section>
 
-          <Section id="operations" eyebrow={t.map.eyebrow} aside="03" size="lg">
+          <Section id="operations" eyebrow={t.map.eyebrow} aside="04" size="lg">
             <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
               <Reveal>
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
@@ -163,7 +173,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
           </Section>
 
-          <Section id="work" eyebrow={t.work.eyebrow} aside="04" size="lg">
+          <Section id="work" eyebrow={t.work.eyebrow} aside="05" size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.work.title}
@@ -181,7 +191,7 @@ export function HomeView({ locale }: { locale: Locale }) {
               dell'azienda: sta piu' in basso dei progetti, occupa una
               colonna piu' stretta e ha il respiro verticale normale
               invece di quello ampio. Le fotografie restano, il peso no. */}
-          <Section id="field" eyebrow={t.photos.eyebrow} aside="05">
+          <Section id="field" eyebrow={t.photos.eyebrow} aside="06">
             <Reveal className="max-w-3xl">
               <EventPhotos
                 caption={t.photos.caption}
@@ -192,7 +202,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="contact" eyebrow={t.cta.eyebrow} aside="06" size="lg">
+          <Section id="contact" eyebrow={t.cta.eyebrow} aside="07" size="lg">
             <Reveal>
               <h2 className="text-d2 font-display font-bold">{t.cta.title}</h2>
               <p className="measure-wide mt-8 text-body-l text-copy">{t.cta.lead}</p>

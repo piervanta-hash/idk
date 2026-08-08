@@ -27,11 +27,44 @@ export function PhaseGlyph({ index }: { index: number }) {
     <svg viewBox="0 0 200 200" className="block h-full w-full" aria-hidden="true">
       {index === 0 && <Survey />}
       {index === 1 && <Ordering />}
-      {index === 2 && <Capture />}
-      {index === 3 && <Extraction />}
-      {index === 4 && <Preservation />}
-      {index === 5 && <Publication />}
+      {index === 2 && <Restoration />}
+      {index === 3 && <Capture />}
+      {index === 4 && <Extraction />}
+      {index === 5 && <Preservation />}
+      {index === 6 && <Publication />}
     </svg>
+  );
+}
+
+/* 03 — Restauro: la carta lacerata e la velina che la ricuce.
+
+   L'elemento vivo e' la velina, perche' e' quello che il restauratore
+   aggiunge: il resto del disegno e' il danno. La velina e' un rettangolo a
+   tratto continuo sopra uno strappo a tratto spezzato — si legge come
+   «qualcosa e' stato messo sopra qualcos'altro» anche a 96 pixel. */
+function Restoration() {
+  return (
+    <>
+      {/* Il foglio */}
+      <g {...S}>
+        <rect x={44} y={30} width={112} height={140} />
+        {/* Righe di scrittura, interrotte dallo strappo */}
+        <line x1={58} y1={54} x2={142} y2={54} />
+        <line x1={58} y1={68} x2={126} y2={68} />
+        <line x1={58} y1={124} x2={142} y2={124} />
+        <line x1={58} y1={138} x2={118} y2={138} />
+      </g>
+
+      {/* Lo strappo: spezzato, irregolare, attraversa il foglio */}
+      <g {...S} strokeWidth={1.5} strokeDasharray="5 5">
+        <path d="M44,104 L68,92 L88,110 L112,90 L134,106 L156,96" />
+      </g>
+
+      {/* La velina di restauro: continua, sopra lo strappo */}
+      <g {...ACCENT}>
+        <rect x={60} y={82} width={80} height={34} />
+      </g>
+    </>
   );
 }
 

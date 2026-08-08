@@ -26,18 +26,24 @@ export const home = {
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
-      convert: {
-        from: "Document",
-        to: "Structured record",
-        replay: "Replay",
-        /* Gli stessi quattro campi della pagina Anamnesis: e' un esempio,
-           ed e' dichiarato tale. Non e' la pratica di nessuno. */
-        note: "Example of an extracted record",
+      /* L'estrazione e' la stessa animazione della pagina Anamnesis, ed e'
+         giusto che sia la stessa: e' la cosa che l'azienda fa. In home
+         apre la pagina, li' viene spiegata. Gli stessi quattro campi, con
+         il loro indice di affidabilita': e' un esempio, ed e' dichiarato
+         tale. Non e' la pratica di nessuno. */
+      extraction: {
+        eyebrow: "Extraction",
+        labels: {
+          document: "Document",
+          table: "Structured record",
+          replay: "Replay",
+        },
+        note: "Example of an extracted record. Each field carries the position it was taken from and a readable confidence score.",
         fields: [
-          { label: "Protocol no.", value: "1962 / 4471" },
-          { label: "Address", value: "via Manzoni 14" },
-          { label: "Permit", value: "Building permit, 1962" },
-          { label: "Cadastral ref.", value: "Sheet 12 · parcel 417" },
+          { label: "Protocol no.", value: "1962 / 4471", score: 99 },
+          { label: "Address", value: "via Manzoni 14", score: 94 },
+          { label: "Permit", value: "Building permit, 1962", score: 97 },
+          { label: "Cadastral ref.", value: "Sheet 12 · parcel 417", score: 87 },
         ],
       },
     },
@@ -193,16 +199,19 @@ export const home = {
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
-      convert: {
-        from: "Documento",
-        to: "Record strutturato",
-        replay: "Rivedi",
-        note: "Esempio di record estratto",
+      extraction: {
+        eyebrow: "Estrazione",
+        labels: {
+          document: "Documento",
+          table: "Record strutturato",
+          replay: "Rivedi",
+        },
+        note: "Esempio di record estratto. Ogni campo porta con sé la posizione da cui è stato preso e un indice di affidabilità consultabile.",
         fields: [
-          { label: "Protocollo", value: "1962 / 4471" },
-          { label: "Indirizzo", value: "via Manzoni 14" },
-          { label: "Titolo", value: "Concessione edilizia, 1962" },
-          { label: "Catastale", value: "Foglio 12 · particella 417" },
+          { label: "Protocollo", value: "1962 / 4471", score: 99 },
+          { label: "Indirizzo", value: "via Manzoni 14", score: 94 },
+          { label: "Titolo", value: "Concessione edilizia, 1962", score: 97 },
+          { label: "Catastale", value: "Foglio 12 · particella 417", score: 87 },
         ],
       },
     },

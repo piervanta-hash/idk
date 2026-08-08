@@ -69,7 +69,7 @@ export function Extraction({
   const [runKey, setRunKey] = useState(0);
 
   return (
-    <div ref={ref} className={inView ? "ex-run" : undefined}>
+    <div ref={ref} className={`ex-root ${inView ? "ex-run" : ""}`}>
       <div key={runKey}>
         <Wide fields={fields} labels={labels} />
         <Tall fields={fields} labels={labels} />

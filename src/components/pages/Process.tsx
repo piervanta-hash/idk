@@ -6,7 +6,7 @@ import { PhaseGlyph } from "./PhaseGlyph";
 /* ==========================================================================
    ITER DI DIGITALIZZAZIONE — UN SOLO RIQUADRO CHE CAMBIA
 
-   Le sei fasi non si srotolano una sotto l'altra: la pagina diventerebbe
+   Le fasi non si srotolano una sotto l'altra: la pagina diventerebbe
    lunghissima e il lettore perderebbe il filo. Sta tutto in un riquadro
    fermo, e scorrendo cambiano insieme il disegno e il testo — come si
    sfogliano i fotogrammi di una sequenza.

@@ -23,10 +23,10 @@
    schiariti, una tacca ciano alla base di ogni pezzo — scoperto da sinistra
    a destra da una lama che lo attraversa.
 
-   Non e' l'archivio che diventa altro: e' l'archivio che diventa
-   interrogabile restando dov'e'. E' esattamente quello che l'azienda fa, e
-   il brief lo dice a parole in due punti diversi: gli originali non
-   lasciano mai l'edificio che li custodisce.
+   Qui per un giro c'erano anche le quote: linee di misura, graduazioni,
+   metri in mono. Erano corrette e sbagliate insieme. Una home non e' una
+   scheda di catalogo: chi arriva deve vedere un'immagine, non leggere un
+   rilievo. Tolte.
 
    STATO DI RIPOSO — senza JavaScript, e con meno animazioni: lo scaffale e'
    censito del tutto e la lama non c'e'. Non si perde niente.
@@ -40,20 +40,13 @@ function rng(seed: number) {
   };
 }
 
-/* Il disegno e' piu' largo e piu' alto della scaffalatura: il margine a
-   destra e in basso serve alle quote, che compaiono quando la lama passa.
-   In una tavola tecnica le quote stanno fuori dall'oggetto, non sopra. */
-const W = 646;
-const H = 830;
+const W = 560;
+const H = 762;
 const LEFT = 26;
-const RIGHT = 534;
+const RIGHT = W - 26;
 const TOP = 16;
 const SHELVES = [128, 250, 372, 494, 616, 738]; // quota del piano di ogni ripiano
 const BOTTOM = SHELVES[SHELVES.length - 1];
-
-/* Le due linee di quota. */
-const DIM_X = 590; // quota verticale, a destra dell'oggetto
-const DIM_Y = 790; // quota orizzontale, sotto l'oggetto
 
 /* Tre grigi per i dorsi, e non uno solo. Uno scaffale d'archivio non e' una
    massa uniforme: i faldoni arrivano da forniture diverse e da anni
@@ -234,111 +227,6 @@ function Unit({ indexed }: { indexed: boolean }) {
   );
 }
 
-/* ==========================================================================
-   IL RILIEVO
-
-   Quello che compare dietro la lama non e' un'altra cosa: e' la stessa
-   cosa, misurata. Linee di quota fuori dall'oggetto, linee di richiamo che
-   scendono da ogni pezzo, una tacca per unita' sulla graduazione, e le due
-   misure d'ingombro in mono.
-
-   E' il primo lavoro che l'azienda fa su un archivio — la ricognizione — e
-   il brief dice che e' la fase che gli altri saltano. E' anche la ragione
-   per cui l'unita' di misura di questo mestiere e' il metro lineare.
-
-   Le linee di richiamo sono il dettaglio che decide: senza, sono due righe
-   con dei numeri; con, e' una tavola quotata.
-   ========================================================================== */
-function Survey() {
-  return (
-    <g
-      fill="none"
-      stroke="var(--color-mute)"
-      strokeWidth={1}
-      strokeLinecap="square"
-    >
-      {/* Graduazione sotto ogni ripiano, con una tacca per ogni pezzo che
-          ci sta sopra: ogni unita' e' contata, non stimata. */}
-      {SHELVES.map((y) => (
-        <g key={y}>
-          <line x1={LEFT - 12} y1={y + 9} x2={RIGHT + 12} y2={y + 9} strokeWidth={0.75} />
-          {ITEMS.filter((it) => it.base === y).map((it, i) => (
-            <line key={i} x1={it.x} y1={y + 5} x2={it.x} y2={y + 13} strokeWidth={0.75} />
-          ))}
-        </g>
-      ))}
-
-      {/* Quota verticale, a destra */}
-      <line x1={DIM_X} y1={TOP} x2={DIM_X} y2={BOTTOM} />
-      <line x1={DIM_X - 5} y1={TOP} x2={DIM_X + 5} y2={TOP} />
-      <line x1={DIM_X - 5} y1={BOTTOM} x2={DIM_X + 5} y2={BOTTOM} />
-      {/* Linee di richiamo: dall'oggetto alla quota, sottilissime */}
-      <line
-        x1={RIGHT + 12}
-        y1={TOP}
-        x2={DIM_X}
-        y2={TOP}
-        strokeWidth={0.5}
-        stroke="var(--color-line)"
-      />
-      <line
-        x1={RIGHT + 12}
-        y1={BOTTOM}
-        x2={DIM_X}
-        y2={BOTTOM}
-        strokeWidth={0.5}
-        stroke="var(--color-line)"
-      />
-
-      {/* Quota orizzontale, in basso */}
-      <line x1={LEFT - 12} y1={DIM_Y} x2={RIGHT + 12} y2={DIM_Y} />
-      <line x1={LEFT - 12} y1={DIM_Y - 5} x2={LEFT - 12} y2={DIM_Y + 5} />
-      <line x1={RIGHT + 12} y1={DIM_Y - 5} x2={RIGHT + 12} y2={DIM_Y + 5} />
-      <line
-        x1={LEFT - 12}
-        y1={BOTTOM + 14}
-        x2={LEFT - 12}
-        y2={DIM_Y}
-        strokeWidth={0.5}
-        stroke="var(--color-line)"
-      />
-      <line
-        x1={RIGHT + 12}
-        y1={BOTTOM + 14}
-        x2={RIGHT + 12}
-        y2={DIM_Y}
-        strokeWidth={0.5}
-        stroke="var(--color-line)"
-      />
-
-      {/* Le due misure. Sono le dimensioni standard di una scaffalatura
-          d'archivio: descrivono il disegno, non dichiarano niente
-          sull'azienda. */}
-      <text
-        x={DIM_X + 14}
-        y={(TOP + BOTTOM) / 2}
-        transform={`rotate(-90 ${DIM_X + 14} ${(TOP + BOTTOM) / 2})`}
-        textAnchor="middle"
-        stroke="none"
-        fill="var(--color-mute)"
-        style={{ font: '13px var(--font-mono)', letterSpacing: "0.08em" }}
-      >
-        2,00 m
-      </text>
-      <text
-        x={(LEFT + RIGHT) / 2}
-        y={DIM_Y + 24}
-        textAnchor="middle"
-        stroke="none"
-        fill="var(--color-mute)"
-        style={{ font: '13px var(--font-mono)', letterSpacing: "0.08em" }}
-      >
-        2,40 m
-      </text>
-    </g>
-  );
-}
-
 export function Stacks({ label }: { label: string }) {
   return (
     <div className="st-run relative">
@@ -368,7 +256,6 @@ export function Stacks({ label }: { label: string }) {
         <Unit indexed={false} />
         <g clipPath="url(#st-reveal)">
           <Unit indexed />
-          <Survey />
         </g>
       </svg>
 

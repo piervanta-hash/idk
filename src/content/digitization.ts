@@ -2,7 +2,8 @@
    PAGINA DIGITIZATION / DEMATERIALIZZAZIONE — EN e IT
 
    Il testo viene dal sito attuale, ridotto e riscritto in inglese tecnico.
-   L'iter resta a sei fasi, con la ricognizione preliminare al primo posto:
+   L'iter e' a sette fasi, con la ricognizione preliminare al primo posto e
+   il restauro conservativo subito dopo il riordino:
    e' la fase che il sito attuale indica come quella piu' spesso omessa dagli
    operatori del settore, ed e' un argomento commerciale vero.
    ========================================================================== */
@@ -24,7 +25,7 @@ export const digitization = {
 
     process: {
       eyebrow: "The process",
-      title: "Six phases. None of them optional.",
+      title: "Seven phases. None of them optional.",
       lead: "The first one determines all the others.",
       caption: "Each phase leaves documentation behind. Nothing moves to the next one on trust.",
       steps: [
@@ -44,27 +45,34 @@ export const digitization = {
         },
         {
           n: "03",
+          name: "Conservation",
+          title: "Conservation treatment",
+          body: "Where the medium requires it, treatment is carried out by a qualified conservator: dry cleaning, tear repair with Japanese tissue, flattening, removal of metal fasteners. A sheet that cannot be handled cannot be captured — and treatment comes before capture, never after.",
+          tags: "Qualified conservator · Japanese tissue · dry cleaning",
+        },
+        {
+          n: "04",
           name: "Capture",
           title: "Capture",
           body: "Planetary scanners for bound and fragile material, production scanners for current records. 300 DPI, TIFF masters. Resolution and colour management set by the medium, not by the schedule.",
           tags: "300 DPI · TIFF master · colour target",
         },
         {
-          n: "04",
+          n: "05",
           name: "Extraction",
           title: "Field extraction",
           body: "OCR across the whole holding, then extraction of the relevant fields — protocol number, holder, date, cadastral reference. Every field carries a readable confidence score.",
           tags: "OCR · structured fields · confidence",
         },
         {
-          n: "05",
+          n: "06",
           name: "Preservation",
           title: "Legal preservation",
-          body: "Submission packages built to the technical rules in force, with the prescribed metadata and signatures. Title to the data stays with the client, who can export it in full, in open formats, at any time.",
-          tags: "PDF/A · qualified seal · timestamp",
+          body: "Submission packages built to the technical rules in force, with the prescribed metadata and signatures. What is digitized is preserved in our cloud, with data residency inside the European Union. Title to the data stays with the client, who can export it in full, in open formats, at any time.",
+          tags: "PDF/A · qualified seal · timestamp · EU data residency",
         },
         {
-          n: "06",
+          n: "07",
           name: "Publication",
           title: "Publication and search",
           body: "The holding is loaded into Anamnesis: semantic search, filters on the extracted fields, map placement where relevant, authenticated access. A file that took three working days to find becomes a matter of seconds.",
@@ -132,7 +140,7 @@ export const digitization = {
 
     process: {
       eyebrow: "Il metodo",
-      title: "Sei fasi, nessuna omissibile.",
+      title: "Sette fasi, nessuna omissibile.",
       lead: "La prima determina tutte le altre.",
       caption: "Ogni fase lascia documentazione. Alla successiva non si passa sulla fiducia.",
       steps: [
@@ -152,27 +160,34 @@ export const digitization = {
         },
         {
           n: "03",
+          name: "Restauro",
+          title: "Restauro conservativo",
+          body: "Dove il supporto lo richiede, l'intervento è eseguito da un restauratore abilitato: pulitura a secco, risarcimento degli strappi con carta giapponese, spianatura, rimozione dei mezzi metallici di fissaggio. Un foglio che non si può maneggiare non si può riprendere — e il restauro viene prima della ripresa, mai dopo.",
+          tags: "Restauratore abilitato · carta giapponese · pulitura a secco",
+        },
+        {
+          n: "04",
           name: "Ripresa",
           title: "Ripresa del documento",
           body: "Scanner planetari per il materiale rilegato o fragile, scanner di produzione per la documentazione corrente. 300 DPI, master TIFF. Risoluzione e gestione del colore calibrate sul supporto, non sul cronoprogramma.",
           tags: "300 DPI · master TIFF · target colorimetrico",
         },
         {
-          n: "04",
+          n: "05",
           name: "Estrazione",
           title: "Estrazione dei campi",
           body: "Riconoscimento ottico sull'intera massa documentaria, poi estrazione dei campi rilevanti — numero di protocollo, intestatario, data, riferimenti catastali. A ciascun campo è associato un indice di affidabilità consultabile.",
           tags: "OCR · campi strutturati · indice di affidabilità",
         },
         {
-          n: "05",
+          n: "06",
           name: "Conservazione",
           title: "Versamento in conservazione",
-          body: "Formazione dei pacchetti di versamento secondo le regole tecniche vigenti, con i metadati prescritti e le firme richieste. La titolarità dei dati resta al committente, che può ottenerne in ogni momento l'esportazione integrale in formati aperti.",
-          tags: "PDF/A · sigillo qualificato · marca temporale",
+          body: "Formazione dei pacchetti di versamento secondo le regole tecniche vigenti, con i metadati prescritti e le firme richieste. Ciò che digitalizziamo è conservato nel nostro cloud, con residenza dei dati nell'Unione Europea. La titolarità dei dati resta al committente, che può ottenerne in ogni momento l'esportazione integrale in formati aperti.",
+          tags: "PDF/A · sigillo qualificato · marca temporale · dati in UE",
         },
         {
-          n: "06",
+          n: "07",
           name: "Pubblicazione",
           title: "Pubblicazione e interrogazione",
           body: "Versamento del fondo in Anamnesis: ricerca semantica, filtri sui campi estratti, collocazione cartografica ove pertinente, accesso autenticato. Il fascicolo che richiedeva tre giornate di ricerca diventa questione di secondi.",
