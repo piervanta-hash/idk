@@ -467,7 +467,7 @@ export default function StyleguidePage() {
         >
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <Metric value="10" unit="M+" label="pages digitized" note="da confermare" />
-            <Metric value="20" unit="+" label="archivists, engineers, developers" note="da confermare" />
+            <Metric value="20" unit="+" label="specialists on staff" note="da confermare" />
             <Metric value="4" label="ISO certifications" note="9001 · 27001 · 27017 · 27018" />
             <Metric value="2" label="operating countries" note="da confermare — vedi D4" />
           </div>

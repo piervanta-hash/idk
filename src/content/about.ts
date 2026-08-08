@@ -26,7 +26,7 @@ export const about = {
     },
     hero: {
       eyebrow: "About",
-      title: "Archivists, engineers, developers.",
+      title: "One counterparty for the whole chain.",
       lead: "Paloryn works on paper archives and on the data that comes out of them. One company answers for both: the ordering, the capture, the preservation and the platform that makes the holding queryable.",
     },
 
@@ -111,7 +111,7 @@ export const about = {
     },
     hero: {
       eyebrow: "Azienda",
-      title: "Archivisti, ingegneri, sviluppatori.",
+      title: "Un solo interlocutore per tutto il ciclo.",
       lead: "Paloryn lavora sugli archivi cartacei e sul dato che ne esce. Di entrambi risponde la stessa impresa: l'ordinamento, la ripresa, la conservazione e la piattaforma che rende il fondo interrogabile.",
     },
 

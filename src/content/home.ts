@@ -79,7 +79,7 @@ export const home = {
       items: [
         { value: "1", unit: "km+", label: "shelf metres under management" },
         { value: "10", unit: "M+", label: "pages digitized to date" },
-        { value: "20", unit: "+", label: "archivists, engineers, developers" },
+        { value: "20", unit: "+", label: "specialists on staff" },
         { value: "EU", label: "data residency", note: "AI models run locally" },
       ],
     },
@@ -247,7 +247,7 @@ export const home = {
       items: [
         { value: "1", unit: "km+", label: "metri lineari in gestione" },
         { value: "10", unit: "M+", label: "pagine digitalizzate a oggi" },
-        { value: "20", unit: "+", label: "archivisti, ingegneri, sviluppatori" },
+        { value: "20", unit: "+", label: "specialisti in organico" },
         { value: "EU", label: "residenza dei dati", note: "modelli AI eseguiti in locale" },
       ],
     },
