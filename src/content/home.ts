@@ -20,12 +20,12 @@ export const home = {
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · European Union",
-      title: "A data company working on paper archives.",
+      title: "From matter to data",
       lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
       convert: {
-        from: "Paper",
+        from: "Document",
         to: "Structured record",
         replay: "Replay",
         /* Gli stessi quattro campi della pagina Anamnesis: e' un esempio,
@@ -190,12 +190,12 @@ export const home = {
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · Unione Europea",
-      title: "Una società di dati che lavora sugli archivi di carta.",
+      title: "Dalla materia al dato",
       lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
       convert: {
-        from: "Carta",
+        from: "Documento",
         to: "Record strutturato",
         replay: "Rivedi",
         note: "Esempio di record estratto",

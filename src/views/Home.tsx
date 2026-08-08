@@ -27,7 +27,7 @@ import { alternates, type Locale } from "@/lib/routes";
 
 const TITLE = {
   en: "Paloryn — a data company for paper archives",
-  it: "Paloryn — società di dati per gli archivi di carta",
+  it: "Paloryn — società di dati per gli archivi cartacei",
 };
 
 export function homeMetadata(locale: Locale): Metadata {
@@ -55,12 +55,22 @@ export function HomeView({ locale }: { locale: Locale }) {
       <main id="main">
         {/* LA TESTATA E' UNA SCHEDA, non un annuncio.
 
-            Intestazione in alto come su una scheda di catalogo, poi una
-            frase che dice che cosa e' l'azienda, poi - dentro la stessa
-            cornice - la cosa che l'azienda fa, che avviene sotto gli occhi
-            di chi legge. Testo e grafica non sono due blocchi affiancati:
-            sono lo stesso oggetto, e per questo la pagina non somiglia a
-            una qualunque pagina di lancio. */}
+            Intestazione in alto come su una scheda di catalogo, poi il
+            concetto - dalla materia al dato - poi la riga che dice chi
+            siamo e che cosa facciamo, poi, dentro la stessa cornice, la
+            cosa stessa: un documento che diventa un record, sotto gli
+            occhi di chi legge.
+
+            Testo e grafica non sono due blocchi affiancati, sono lo stesso
+            oggetto: per questo la pagina non somiglia a una qualunque
+            pagina di lancio.
+
+            Nota per chi tocchera' questo titolo: e' volutamente concettuale
+            e non contiene nessuna parola per cui qualcuno cerchi. Il peso
+            descrittivo lo portano il titolo del documento (il <title>, che
+            dice «societa' di dati per gli archivi cartacei») e la riga di
+            testo subito sotto. Se un giorno si toglie una delle due, la
+            pagina smette di dire di che cosa parla. */}
         <section className="shell pt-10 pb-24 md:pt-14 md:pb-32">
           <div className="border border-line">
             <div className="flex items-baseline justify-between gap-6 border-b border-line px-5 py-3 md:px-8">
@@ -69,7 +79,10 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
 
             <div className="px-5 py-12 md:px-8 md:py-16">
-              <h1 className="measure-wide text-d2 font-display font-bold text-max">
+              {/* Il titolo e' un concetto, non una descrizione, e i concetti
+                  vanno grandi: torna al corpo display pieno. La descrizione
+                  la fa la riga sotto, che nomina l'azienda e il mestiere. */}
+              <h1 className="measure-wide text-d1 font-display font-bold text-max">
                 {t.hero.title}
               </h1>
 

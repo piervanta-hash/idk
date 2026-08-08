@@ -31,19 +31,33 @@ import { useEffect, useRef, useState } from "react";
 
 /* Generatore deterministico: nessun Math.random, che darebbe due pagine
    diverse fra server e browser. */
-function lines(seed: number, count: number) {
+function rng(seed: number) {
   let s = seed;
-  const rnd = () => {
+  return () => {
     s = (s * 1103515245 + 12345) % 2147483648;
     return s / 2147483648;
   };
-  return Array.from({ length: count }, (_, i) => ({
-    w: 34 + rnd() * 62, // percentuale di larghezza della riga
-    gap: i === 3 || i === 8, // due stacchi di paragrafo
-  }));
 }
 
-const PAGE = lines(7, 13);
+/* Un documento amministrativo non e' un blocco di righe uguali: ha
+   un'intestazione corta e marcata in alto, un corpo di testo giustificato
+   e degli stacchi di paragrafo. Disegnare tredici trattini identici
+   darebbe un rettangolo tratteggiato, non un documento — e la differenza
+   si vede anche a colpo d'occhio, senza saperla spiegare. */
+const PAGE = (() => {
+  const r = rng(7);
+  return [
+    /* intestazione: due righe corte, tratto piu' spesso e piu' chiaro */
+    { w: 38, head: true, gap: false },
+    { w: 24, head: true, gap: false },
+    /* corpo */
+    ...Array.from({ length: 11 }, (_, i) => ({
+      w: 46 + r() * 50,
+      head: false,
+      gap: i === 3 || i === 7,
+    })),
+  ];
+})();
 
 export function Conversion({
   from,
@@ -119,7 +133,12 @@ export function Conversion({
               {PAGE.map((l, i) => (
                 <span
                   key={i}
-                  className={`rs-dash block h-1.5 bg-line ${l.gap ? "mt-4" : ""}`}
+                  className={
+                    "rs-dash block " +
+                    (l.head ? "h-2.5 bg-mute " : "h-1.5 bg-line ") +
+                    (l.gap ? "mt-4 " : "") +
+                    (i === 1 ? "mb-5 " : "")
+                  }
                   style={{
                     width: `${l.w}%`,
                     animationDelay: `${120 + i * 26}ms`,

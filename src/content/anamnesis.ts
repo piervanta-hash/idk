@@ -87,7 +87,7 @@ export const anamnesis = {
     geo: {
       eyebrow: "Geolocation",
       title: "Parcels on the map.",
-      lead: "Cadastral references extracted from paper are placed on the map. The exploded view separates a sheet into its parcels, so a request can be resolved by pointing at the ground instead of by reading a register.",
+      lead: "Cadastral references extracted from the documents are placed on the map. The exploded view separates a sheet into its parcels, so a request can be resolved by pointing at the ground instead of by reading a register.",
       layers: ["Sheet", "Parcels", "Extracted record"],
       note: "Schematic. Parcel geometry shown is illustrative.",
       modal: {
@@ -220,7 +220,7 @@ export const anamnesis = {
     geo: {
       eyebrow: "Geolocalizzazione",
       title: "Le particelle sulla mappa.",
-      lead: "I riferimenti catastali estratti dalla carta vengono collocati sulla mappa. L'esploso separa il foglio nelle sue particelle, così un'istanza si risolve indicando il terreno invece di leggere un registro.",
+      lead: "I riferimenti catastali estratti dai documenti vengono collocati sulla mappa. L'esploso separa il foglio nelle sue particelle, così un'istanza si risolve indicando il terreno invece di leggere un registro.",
       layers: ["Foglio", "Particelle", "Record estratto"],
       note: "Schema. La geometria delle particelle è illustrativa.",
       modal: {

@@ -108,7 +108,7 @@ export const about = {
     hero: {
       eyebrow: "Azienda",
       title: "Archivisti, ingegneri, sviluppatori.",
-      lead: "Paloryn lavora sugli archivi di carta e sul dato che ne esce. Di entrambi risponde la stessa impresa: l'ordinamento, la ripresa, la conservazione e la piattaforma che rende il fondo interrogabile.",
+      lead: "Paloryn lavora sugli archivi cartacei e sul dato che ne esce. Di entrambi risponde la stessa impresa: l'ordinamento, la ripresa, la conservazione e la piattaforma che rende il fondo interrogabile.",
     },
 
     credentials: {
