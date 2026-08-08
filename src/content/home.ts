@@ -73,8 +73,8 @@ export const home = {
 
     map: {
       eyebrow: "Operations",
-      title: "Operations from Lecce.",
-      lead: "Headquarters, laboratory and operations centre in one place, within reach of the archives we work on. The originals never leave the building that holds them.",
+      title: "Operations in the European Union.",
+      lead: "Headquarters, laboratory and operations centre in Lecce; an operational office in Albania. Data stays inside the European Union and the originals never leave the building that holds them.",
       /* Le sedi previste stanno solo qui, sulla mappa: nessun'altra parte
          del sito le nomina, ed e' voluto. */
       nodes: {
@@ -139,7 +139,7 @@ export const home = {
        I file stanno in public/img/archilives/, generati da
        scripts/build-photos.mjs. */
     photos: {
-      eyebrow: "In the field",
+      eyebrow: "ARCHILIVES",
       caption:
         "ARCHILIVES info day, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Greece-Italy 2021-2027",
       source: "June 2026",
@@ -164,7 +164,6 @@ export const home = {
         { base: "room-01", alt: "A speaker presenting beside the ARCHILIVES roll-up." },
         { base: "reading", alt: "A reading during the ARCHILIVES info day." },
         { base: "performance", alt: "The musical performance closing the info day." },
-        { base: "duo", alt: "Two performers at the ARCHILIVES info day." },
       ],
     },
 
@@ -235,8 +234,8 @@ export const home = {
 
     map: {
       eyebrow: "Operatività",
-      title: "Operatività da Lecce.",
-      lead: "Sede, laboratorio e centro operativo in un solo luogo, a portata degli archivi su cui lavoriamo. Gli originali non lasciano mai l'edificio che li custodisce.",
+      title: "Operatività in Unione Europea.",
+      lead: "Sede, laboratorio e centro operativo a Lecce; sede operativa in Albania. I dati restano nell'Unione Europea e gli originali non lasciano mai l'edificio che li custodisce.",
       nodes: {
         lecce: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
         albania: { name: "Albania", role: "Sede operativa" },
@@ -299,7 +298,7 @@ export const home = {
     },
 
     photos: {
-      eyebrow: "Sul campo",
+      eyebrow: "ARCHILIVES",
       caption:
         "Info day ARCHILIVES, Cantieri Teatrali Koreja, Lecce — Interreg VI-A Grecia-Italia 2021-2027",
       source: "Giugno 2026",
@@ -324,7 +323,6 @@ export const home = {
         { base: "room-01", alt: "Un intervento accanto al roll-up ARCHILIVES." },
         { base: "reading", alt: "Una lettura durante l'info day ARCHILIVES." },
         { base: "performance", alt: "La performance musicale che chiude la giornata." },
-        { base: "duo", alt: "Due interpreti all'info day ARCHILIVES." },
       ],
     },
 

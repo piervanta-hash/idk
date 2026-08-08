@@ -5,10 +5,14 @@
    Teatrali Koreja. Sono le uniche immagini vere del sito, e stanno tutte
    qui — un solo blocco, non sparse per il sito.
 
-   IMPAGINAZIONE. Due file. Sopra le tre persone dell'azienda, piu' grandi,
-   tre per riga; sotto le quattro immagini della giornata, quattro per riga
-   e quindi piu' piccole. Il salto di scala dice da solo chi conta e chi fa
-   da contorno, senza bisogno di scriverlo.
+   IMPAGINAZIONE. Due file, **tre colonne tutte e due**: le cuciture
+   verticali cadono nello stesso punto e la griglia si legge come una
+   griglia. Tre sopra e quattro sotto sfalsavano i tagli di pochi pixel, e
+   uno sfalsamento piccolo non sembra una scelta, sembra un errore.
+
+   La gerarchia non viene dal numero di colonne ma dall'altezza: le persone
+   stanno in un 4:3, le immagini della giornata in un 16:9 basso, che e'
+   una striscia di contorno. Stessa larghezza, meta' peso.
 
    I nomi stanno DENTRO il riquadro, in basso: una striscia sotto la foto
    sarebbe rimasta vuota su quelle senza nome, e le file non avrebbero piu'
@@ -33,17 +37,19 @@ function Frame({
   width,
   height,
   sizes,
+  ratio,
 }: {
   shot: Shot;
   width: number;
   height: number;
   sizes: string;
+  ratio: string;
 }) {
   /* Il contenuto scrive «Nome · Ruolo» in un campo solo; qui si separa. */
   const [name, role] = (shot.credit ?? "").split(" · ");
 
   return (
-    <figure className="group relative m-0 aspect-[4/3] overflow-hidden bg-surface-1">
+    <figure className={`group relative m-0 overflow-hidden bg-surface-1 ${ratio}`}>
       <picture>
         <source srcSet={`/img/archilives/${shot.base}.avif`} type="image/avif" sizes={sizes} />
         <source srcSet={`/img/archilives/${shot.base}.webp`} type="image/webp" sizes={sizes} />
@@ -100,22 +106,25 @@ export function EventPhotos({
               shot={s}
               width={1400}
               height={1050}
+              ratio="aspect-[4/3]"
               sizes="(min-width: 640px) 32vw, 100vw"
             />
           </li>
         ))}
       </ul>
 
-      {/* La giornata. Quattro per riga, quindi piu' piccole: fanno da
-          contorno, non competono con i ritratti. */}
-      <ul className="m-0 mt-px grid list-none grid-cols-2 gap-px bg-line p-0 sm:grid-cols-4">
+      {/* La giornata. Stesse tre colonne, ma basse: una striscia di
+          contorno sotto i ritratti. Sul telefono resta a tre, perche' una
+          striscia impilata peserebbe quanto i ritratti. */}
+      <ul className="m-0 mt-px grid list-none grid-cols-3 gap-px bg-line p-0">
         {reel.map((s) => (
           <li key={s.base}>
             <Frame
               shot={s}
               width={900}
-              height={675}
-              sizes="(min-width: 640px) 24vw, 50vw"
+              height={506}
+              ratio="aspect-[16/9]"
+              sizes="(min-width: 640px) 24vw, 33vw"
             />
           </li>
         ))}
