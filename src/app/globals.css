@@ -274,11 +274,26 @@
     height: auto;
   }
   .js .ex-track {
-    height: calc((var(--ex-n) + 1) * 78vh);
+    height: calc((var(--ex-n) + 1) * 68vh);
   }
+
+  /* MOVIMENTO RIDOTTO: LA SEQUENZA RESTA, L'ANIMAZIONE NO.
+     Qui prima la pista si azzerava e i campi comparivano tutti insieme.
+     Sembrava rispettoso ed era invece la cosa sbagliata: chi ha attivato
+     «riduci movimento» sul telefono — su iOS lo fanno in tanti — non
+     vedeva l'estrazione, vedeva un elenco gia' fatto, cioe' perdeva
+     l'unica cosa che quella sezione ha da dire.
+     La preferenza riguarda quello che si muove da solo. Uno scorrimento
+     comandato dal dito non si muove da solo: il riquadro sta fermo, il
+     contenuto si sostituisce di colpo. Quindi la sequenza resta e sono le
+     transizioni a sparire (piu' sotto, e nel componente), su una pista
+     piu' corta perche' non costi quattro schermate a chi non le vuole. */
   @media (prefers-reduced-motion: reduce) {
     .js .ex-track {
-      height: auto;
+      height: calc((var(--ex-n) + 1) * 42vh);
+    }
+    .ex-fade {
+      transition: none !important;
     }
   }
 
@@ -459,6 +474,27 @@
     font-size: 13px;
     fill: var(--color-mute);
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Il testo stampato sul foglio. Piu' piccolo di quello del record,
+     perche' e' l'originale: si legge, ma si vede che e' la fonte e non il
+     risultato. */
+  .ex-doc-head {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    fill: var(--color-mute);
+  }
+  .ex-doc-key {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    fill: var(--color-mute);
+  }
+  .ex-doc-val {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    fill: var(--color-strong);
   }
 
   /* Riposo = fotogramma finale: la testa di scansione ha gia' percorso la

@@ -30,6 +30,8 @@
    caricate pigramente: stanno sotto la prima schermata.
    ========================================================================== */
 
+import { asset } from "@/lib/asset";
+
 type Shot = { base: string; alt: string; credit?: string };
 
 function Frame({
@@ -51,11 +53,19 @@ function Frame({
   return (
     <figure className={`group relative m-0 overflow-hidden bg-surface-1 ${ratio}`}>
       <picture>
-        <source srcSet={`/img/archilives/${shot.base}.avif`} type="image/avif" sizes={sizes} />
-        <source srcSet={`/img/archilives/${shot.base}.webp`} type="image/webp" sizes={sizes} />
+        <source
+          srcSet={asset(`/img/archilives/${shot.base}.avif`)}
+          type="image/avif"
+          sizes={sizes}
+        />
+        <source
+          srcSet={asset(`/img/archilives/${shot.base}.webp`)}
+          type="image/webp"
+          sizes={sizes}
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/img/archilives/${shot.base}.jpg`}
+          src={asset(`/img/archilives/${shot.base}.jpg`)}
           alt={shot.alt}
           width={width}
           height={height}

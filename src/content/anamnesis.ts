@@ -34,14 +34,40 @@ export const anamnesis = {
       eyebrow: "Extraction",
       title: "The page becomes a record.",
       lead: "OCR runs across the whole holding. The relevant fields are lifted out one by one, each with a readable confidence score and the position on the page it was taken from — so any value can be checked against the original.",
-      labels: { document: "Source page", table: "Extracted record", replay: "Replay" },
+      labels: {
+        document: "Source page",
+        table: "Extracted record",
+        replay: "Replay",
+        locate: "Tap a field to see where it comes from",
+        located: "Shown on the document",
+      },
+      docHead: "MUNICIPALITY OF LECCE · BUILDING CONTROL",
+      /* Lo stesso fascicolo della home, e non due esempi diversi: chi
+         arriva qui dalla home deve riconoscere il documento, non
+         ricominciare a capire. */
       fields: [
-        { label: "Protocol no.", value: "1962 / 4471", score: 99 },
-        { label: "Address", value: "via Manzoni 14", score: 94 },
-        { label: "Permit", value: "Building permit, 1962", score: 97 },
-        { label: "Cadastral ref.", value: "Sheet 12 · parcel 417", score: 87 },
+        { label: "File no.", docLabel: "BUILDING FILE No.", value: "1962 / 4471", score: 99 },
+        { label: "Applicant", docLabel: "APPLICANT", value: "Paloryn", score: 96 },
+        {
+          label: "Address",
+          docLabel: "LOCATION OF THE PROPERTY",
+          value: "Via D. Cantatore 1/3 — Lecce",
+          score: 94,
+        },
+        {
+          label: "Cadastral ref.",
+          docLabel: "CADASTRAL DATA",
+          value: "Sheet 12 · parcels 417, 418",
+          score: 87,
+        },
+        {
+          label: "Subject",
+          docLabel: "SUBJECT OF THE APPLICATION",
+          value: "Extension and change of use",
+          score: 91,
+        },
       ],
-      note: "Sample data, prepared for demonstration. No real archive is queried from this page.",
+      note: "Sample data. No real archive is queried here.",
     },
 
     interop: {
@@ -167,14 +193,37 @@ export const anamnesis = {
       eyebrow: "Estrazione",
       title: "La pagina diventa un record.",
       lead: "Il riconoscimento ottico percorre l'intera massa documentaria. I campi rilevanti vengono estratti uno a uno, ciascuno con un indice di affidabilità consultabile e la posizione sulla pagina da cui è stato preso — così ogni valore è verificabile sull'originale.",
-      labels: { document: "Pagina di origine", table: "Record estratto", replay: "Rivedi" },
+      labels: {
+        document: "Pagina di origine",
+        table: "Record estratto",
+        replay: "Rivedi",
+        locate: "Tocca un campo per vedere da dove viene",
+        located: "Evidenziato sul documento",
+      },
+      docHead: "COMUNE DI LECCE · EDILIZIA PRIVATA",
       fields: [
-        { label: "Protocollo", value: "1962 / 4471", score: 99 },
-        { label: "Indirizzo", value: "via Manzoni 14", score: 94 },
-        { label: "Titolo", value: "Concessione edilizia, 1962", score: 97 },
-        { label: "Catastale", value: "Foglio 12 · particella 417", score: 87 },
+        { label: "Pratica", docLabel: "PRATICA EDILIZIA N.", value: "1962 / 4471", score: 99 },
+        { label: "Intestatario", docLabel: "INTESTATARIO", value: "Paloryn", score: 96 },
+        {
+          label: "Indirizzo",
+          docLabel: "UBICAZIONE DELL'IMMOBILE",
+          value: "Via D. Cantatore 1/3 — Lecce",
+          score: 94,
+        },
+        {
+          label: "Catastale",
+          docLabel: "DATI CATASTALI",
+          value: "Foglio 12 · particelle 417, 418",
+          score: 87,
+        },
+        {
+          label: "Oggetto",
+          docLabel: "OGGETTO DELLA RICHIESTA",
+          value: "Ampliamento e cambio di destinazione d'uso",
+          score: 91,
+        },
       ],
-      note: "Dati di esempio, predisposti a fini dimostrativi. Nessun archivio reale viene interrogato da questa pagina.",
+      note: "Dati di esempio. Nessun archivio reale viene interrogato qui.",
     },
 
     interop: {
