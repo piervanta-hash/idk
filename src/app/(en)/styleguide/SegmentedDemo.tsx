@@ -19,7 +19,7 @@ export function SegmentedDemo() {
           { value: "private", label: "Private" },
         ]}
       />
-      <span className="font-mono text-data text-mute">
+      <span className="font-mono text-data text-label">
         stato attivo: <span className="text-accent">{value}</span>
       </span>
     </div>

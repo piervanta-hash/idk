@@ -159,13 +159,15 @@ export function Extraction({
                   key={f.label}
                   type="button"
                   onClick={() => goTo(i)}
-                  className="group flex-1 py-3"
+                  /* Il trattino e' alto un pixel; l'area che lo raccoglie
+                     dev'essere alta 44, altrimenti da telefono si manca. */
+                  className="group flex min-h-11 flex-1 items-center"
                 >
                   <span className="sr-only">{f.label}</span>
                   <span
                     aria-hidden="true"
                     className={
-                      "block h-px transition-colors duration-300 " +
+                      "block h-px w-full transition-colors duration-300 " +
                       (i === revealed - 1
                         ? "bg-accent"
                         : i < revealed
@@ -182,7 +184,7 @@ export function Extraction({
             </span>
           </div>
 
-          <p className="mt-4 border-t border-line pt-3 text-small text-mute">{note}</p>
+          <p className="mt-4 border-t border-line pt-3 text-small text-label">{note}</p>
         </div>
       </div>
     </>
@@ -387,18 +389,29 @@ function Tall({
       <span className="eyebrow mt-8 block">{labels.table}</span>
       <dl className="mt-3 flex flex-col">
         {fields.map((f, i) => (
-          <div
-            key={f.label}
-            className="border-t border-line pt-3 pb-4"
-            style={{
-              opacity: i < revealed ? 1 : 0.12,
-              transition: "opacity 320ms ease-out",
-            }}
-          >
-            <dt className="eyebrow">{f.label}</dt>
-            <dd className="mt-1 flex items-baseline justify-between gap-4">
+          /* Il campo non ancora uscito tiene il suo posto - la riga non
+             deve saltare - ma il testo sparisce con `visibility`, non con
+             l'opacita'.
+
+             Non e' un dettaglio: del testo a opacita' 0,12 resta testo, e
+             un controllo di accessibilita' lo legge come scritta grigio
+             scurissimo su fondo nero, contrasto 1,09 su 4,5 richiesto. Con
+             `visibility: hidden` il testo esce anche dall'albero di
+             accessibilita': non e' piu' illeggibile, semplicemente non
+             c'e' ancora. */
+          <div key={f.label} className="border-t border-line pt-3 pb-4">
+            <dt
+              className="eyebrow"
+              style={{ visibility: i < revealed ? "visible" : "hidden" }}
+            >
+              {f.label}
+            </dt>
+            <dd
+              className="mt-1 flex items-baseline justify-between gap-4"
+              style={{ visibility: i < revealed ? "visible" : "hidden" }}
+            >
               <span className="font-mono text-data text-max">{f.value}</span>
-              <span className="font-mono text-data text-mute tabular">{f.score}%</span>
+              <span className="font-mono text-data text-label tabular">{f.score}%</span>
             </dd>
             <span
               aria-hidden="true"

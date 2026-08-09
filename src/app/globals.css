@@ -11,7 +11,20 @@
   /* I tre colori ufficiali. Nient'altro e' ammesso oltre ai grigi derivati. */
   --color-bg: #0a0a0a; /* fondo della pagina, sempre e ovunque */
   --color-max: #ffffff; /* display, numeri delle metriche, stato attivo */
-  --color-mute: #707070; /* etichette mono, stati disattivi — MAI paragrafi */
+  /* #707070 e' uno dei tre colori ufficiali del brief e resta quello che e':
+     lo usano bordi, tratti disegnati e stati disattivi — cose che non sono
+     testo.
+
+     Per il testo non basta. Su #0a0a0a sta a 4,00:1, sotto la soglia AA di
+     4,5:1, e la soglia vale anche per le etichette: WCAG non fa sconti al
+     testo piccolo, anzi. La pagina di stile diceva «va bene per le
+     etichette»: era sbagliato, e Lighthouse lo ha segnalato su tutte e sei
+     le pagine. */
+  --color-mute: #707070; /* bordi, tratti, stati disattivi — MAI testo */
+
+  /* Il grigio delle etichette mono. E' un grigio derivato, come il brief
+     consente, ed e' il primo gradino che supera la soglia: 4,61:1. */
+  --color-label: #7a7a7a;
 
   /* Grigi derivati dai tre ufficiali. Un grigio, un mestiere. */
   --color-surface-1: #141414; /* fondo di sezione alternata */
@@ -222,7 +235,7 @@
   line-height: var(--text-label--line-height);
   letter-spacing: var(--text-label--letter-spacing);
   text-transform: uppercase;
-  color: var(--color-mute);
+  color: var(--color-label);
   font-variant-numeric: tabular-nums lining-nums;
 }
 

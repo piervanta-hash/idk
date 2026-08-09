@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { MAP_PATHS, MAP_W, MAP_H, mapX, mapY } from "@/lib/map-data";
+import { useDialog } from "@/lib/useDialog";
 
 /* ==========================================================================
    IL RECORD SUL TERRITORIO
@@ -40,19 +40,8 @@ export function GeoModal({
   };
   record: { label: string; value: string };
 }) {
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [open, onClose]);
+  /* Fuoco che entra, che non esce e che torna: sta tutto qui dentro. */
+  const panelRef = useDialog(open, onClose);
 
   if (!open) return null;
 
@@ -165,7 +154,7 @@ export function GeoModal({
                 </text>
               </svg>
             </div>
-            <p className="mt-4 text-small text-mute">{labels.note}</p>
+            <p className="mt-4 text-small text-label">{labels.note}</p>
           </div>
         </div>
       </div>

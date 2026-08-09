@@ -26,7 +26,7 @@ export function DigitizationView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="digitization" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <section className="shell pt-16 pb-20 md:pt-24 md:pb-28">
           <nav aria-label="Breadcrumb">
             <span className="eyebrow">Paloryn / {t.hero.eyebrow}</span>
@@ -70,7 +70,7 @@ export function DigitizationView({ locale }: { locale: Locale }) {
                   <div key={c.name} className="bg-bg p-6 md:p-10">
                     <h3 className="text-h4 font-display font-semibold text-max">{c.name}</h3>
                     <p className="mt-4 text-body text-copy">{c.body}</p>
-                    <p className="mt-8 border-t border-line pt-4 font-mono text-data text-mute">
+                    <p className="mt-8 border-t border-line pt-4 font-mono text-data text-label">
                       {c.tags}
                     </p>
                   </div>

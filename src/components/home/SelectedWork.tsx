@@ -76,7 +76,7 @@ export function SelectedWork({
                 {item.client}
               </h3>
               <p className="mt-3 text-body text-copy">{item.scope}</p>
-              <p className="mt-auto border-t border-line pt-4 font-mono text-data text-mute tabular">
+              <p className="mt-auto border-t border-line pt-4 font-mono text-data text-label tabular">
                 {item.note}
               </p>
             </article>

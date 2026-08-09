@@ -15,7 +15,7 @@ const base =
   "inline-flex items-center justify-center gap-3 font-mono text-data uppercase " +
   "tracking-[0.08em] whitespace-nowrap select-none " +
   "transition-[background-color,border-color,color] duration-200 ease-out " +
-  "disabled:pointer-events-none disabled:text-mute disabled:border-line";
+  "disabled:pointer-events-none disabled:text-label disabled:border-line";
 
 const sizes: Record<Size, string> = {
   md: "min-h-12 px-6",

@@ -115,7 +115,7 @@ export function Process({ steps, caption }: { steps: readonly Step[]; caption: s
                     {s.title}
                   </h3>
                   <p className="measure-wide mt-6 text-body-l text-copy">{s.body}</p>
-                  <p className="mt-6 font-mono text-data text-mute">{s.tags}</p>
+                  <p className="mt-6 font-mono text-data text-label">{s.tags}</p>
                 </div>
               ))}
             </div>
@@ -130,7 +130,7 @@ export function Process({ steps, caption }: { steps: readonly Step[]; caption: s
                   type="button"
                   onClick={() => goTo(i)}
                   aria-current={i === active ? "step" : undefined}
-                  className="group flex-1 py-4"
+                  className="group flex min-h-11 flex-1 items-center"
                   title={`${s.n} · ${s.name}`}
                 >
                   <span className="sr-only">
@@ -155,7 +155,7 @@ export function Process({ steps, caption }: { steps: readonly Step[]; caption: s
             </span>
           </div>
 
-          <p className="mt-2 hidden text-small text-mute md:block">{caption}</p>
+          <p className="mt-2 hidden text-small text-label md:block">{caption}</p>
 
           {/* Barra di avanzamento continua della sezione */}
           <div className="mt-4 h-px w-full bg-line" aria-hidden="true">
@@ -177,7 +177,7 @@ export function Process({ steps, caption }: { steps: readonly Step[]; caption: s
               </span>
               <h3 className="mt-3 text-h4 font-display font-semibold text-max">{s.title}</h3>
               <p className="measure-wide mt-4 text-body text-copy">{s.body}</p>
-              <p className="mt-3 font-mono text-data text-mute">{s.tags}</p>
+              <p className="mt-3 font-mono text-data text-label">{s.tags}</p>
             </li>
           ))}
         </ol>

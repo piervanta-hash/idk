@@ -24,7 +24,7 @@ export function AboutView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="about" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <section className="shell pt-16 pb-16 md:pt-24 md:pb-20">
           <nav aria-label="Breadcrumb">
             <span className="eyebrow">Paloryn / {t.hero.eyebrow}</span>
@@ -87,13 +87,13 @@ export function AboutView({ locale }: { locale: Locale }) {
                     <span className="mt-4 block">{t.contact.office.vat}</span>
                     <a
                       href={`mailto:${t.contact.office.mail}`}
-                      className="mt-4 block transition-colors hover:text-max"
+                      className="mt-4 flex min-h-11 w-fit items-center transition-colors hover:text-max"
                     >
                       {t.contact.office.mail}
                     </a>
                     <a
                       href={`tel:${t.contact.office.phoneHref}`}
-                      className="block transition-colors hover:text-max"
+                      className="flex min-h-11 w-fit items-center transition-colors hover:text-max"
                     >
                       {t.contact.office.phone}
                     </a>

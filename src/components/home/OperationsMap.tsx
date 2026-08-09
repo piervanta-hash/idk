@@ -193,7 +193,7 @@ export function OperationsMap({
                   >
                     {label.name}
                   </span>
-                  <span className="mt-0.5 block text-small text-mute">{label.role}</span>
+                  <span className="mt-0.5 block text-small text-label">{label.role}</span>
                 </div>
               </div>
             </div>

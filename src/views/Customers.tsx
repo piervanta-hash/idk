@@ -25,7 +25,7 @@ export function CustomersView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="customers" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <section className="shell pt-16 pb-16 md:pt-24 md:pb-20">
           <nav aria-label="Breadcrumb">
             <span className="eyebrow">Paloryn / {t.hero.eyebrow}</span>
@@ -42,7 +42,7 @@ export function CustomersView({ locale }: { locale: Locale }) {
               <p className="eyebrow">
                 {t.also.label} <span className="text-copy">{t.also.items.join(" · ")}</span>
               </p>
-              <p className="text-small text-mute sm:max-w-md sm:text-right">{t.also.note}</p>
+              <p className="text-small text-label sm:max-w-md sm:text-right">{t.also.note}</p>
             </div>
           </div>
 

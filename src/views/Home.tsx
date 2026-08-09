@@ -54,7 +54,7 @@ export function HomeView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="home" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         {/* LA TESTATA.
 
             Niente cornice. Un riquadro con dentro titolo, testo e diagramma
@@ -162,7 +162,7 @@ export function HomeView({ locale }: { locale: Locale }) {
                 <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
                 <div className="mt-10 border-t border-line pt-4">
                   <span className="eyebrow block text-max">{t.map.nodes.lecce.name}</span>
-                  <span className="mt-1 block text-small text-mute">
+                  <span className="mt-1 block text-small text-label">
                     {t.map.nodes.lecce.role}
                   </span>
                 </div>

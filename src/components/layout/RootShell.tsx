@@ -1,5 +1,6 @@
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import { Intro } from "@/components/brand/Intro";
+import { SkipLink } from "@/components/layout/SkipLink";
 import type { Locale } from "@/lib/routes";
 
 /* ==========================================================================
@@ -68,6 +69,7 @@ export function RootShell({
             __html: "document.documentElement.classList.add('js')",
           }}
         />
+        <SkipLink locale={locale} />
         <Intro />
         {children}
       </body>

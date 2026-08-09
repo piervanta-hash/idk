@@ -7,13 +7,22 @@ import type { ComponentProps, ReactNode } from "react";
    Nessun riquadro: solo una hairline sotto il campo, che passa all'accento
    quando il campo e' attivo. Altezza 48px, etichetta sempre visibile
    (mai il segnaposto al posto dell'etichetta: sparisce quando serve).
+
+   IL FUOCO DA TASTIERA. Qui c'erano `focus:outline-none` e
+   `focus-visible:outline-none`: spegnevano il contorno di fuoco che tutto
+   il resto del sito ha. Col mouse non si notava — col mouse il fuoco non
+   serve. Chi compila il modulo da tastiera invece perdeva il segno: cinque
+   campi, e nessun modo di sapere in quale si sta scrivendo, perche' la
+   riga sotto che passa all'accento resta accesa anche quando il fuoco se
+   n'e' andato via (`:focus` sull'ultimo campo toccato non basta a dire
+   "sei qui"). Tolte: adesso vale la regola generale — contorno di 2px, il
+   solo punto del sito in cui l'accento e' obbligatorio.
    ========================================================================== */
 
 const control =
   "w-full min-h-12 bg-transparent border-0 border-b border-line px-0 py-3 " +
-  "font-mono text-data text-strong placeholder:text-mute/60 " +
-  "transition-colors duration-200 " +
-  "focus:border-accent focus:outline-none focus-visible:outline-none";
+  "font-mono text-data text-strong placeholder:text-label/60 " +
+  "transition-colors duration-200 focus:border-accent";
 
 function Shell({
   id,
@@ -32,7 +41,7 @@ function Shell({
         {label}
       </label>
       {children}
-      {hint && <span className="text-small text-mute">{hint}</span>}
+      {hint && <span className="text-small text-label">{hint}</span>}
     </div>
   );
 }
@@ -102,9 +111,16 @@ export function SegmentedControl({
   onChange?: (v: string) => void;
 }) {
   return (
-    /* w-fit e non solo inline-flex: dentro un contenitore flex in colonna
-       un inline-flex viene comunque stirato a tutta larghezza. */
-    <div role="radiogroup" aria-label={name} className="inline-flex w-fit border border-line">
+    /* In colonna sotto i 640px: con etichette lunghe (in italiano
+       "Pubblica amministrazione") tre pulsanti affiancati non stanno in uno
+       schermo da 360px e la pagina si scorre di lato. Sopra i 640 tornano
+       in riga — w-fit e non solo inline-flex, perche' dentro un contenitore
+       flex in colonna un inline-flex viene comunque stirato. */
+    <div
+      role="radiogroup"
+      aria-label={name}
+      className="flex w-full flex-col border border-line sm:inline-flex sm:w-fit sm:flex-row"
+    >
       {options.map((o) => {
         const active = o.value === value;
         return (
@@ -115,9 +131,10 @@ export function SegmentedControl({
             aria-checked={active}
             onClick={() => onChange?.(o.value)}
             className={
-              "min-h-12 px-5 font-mono text-data uppercase tracking-[0.08em] " +
-              "border-r border-line last:border-r-0 transition-colors duration-200 " +
-              (active ? "bg-surface-2 text-max" : "text-mute hover:text-strong")
+              "min-h-12 px-5 text-left font-mono text-data uppercase tracking-[0.08em] " +
+              "border-b border-line last:border-b-0 sm:border-r sm:border-b-0 sm:text-center " +
+              "transition-colors duration-200 " +
+              (active ? "bg-surface-2 text-max" : "text-label hover:text-strong")
             }
           >
             {active && <span className="mr-2 text-accent">&bull;</span>}
