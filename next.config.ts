@@ -32,6 +32,10 @@ const base = process.env.BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  /* Il prefisso deve arrivare anche al browser: `src` e `srcSet` scritti a
+     mano non li tocca nessuno, e senza questo le fotografie sull'anteprima
+     venivano cercate un livello sopra dove stanno. Vedi src/lib/asset.ts. */
+  env: { NEXT_PUBLIC_BASE_PATH: base },
   images: {
     formats: ["image/avif", "image/webp"],
     /* Senza server non c'e' chi ridimensioni le immagini al volo. Le nostre

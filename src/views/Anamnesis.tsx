@@ -70,6 +70,7 @@ export function AnamnesisView({ locale }: { locale: Locale }) {
             <Extraction
               fields={t.extraction.fields}
               labels={t.extraction.labels}
+              docHead={t.extraction.docHead}
               note={t.extraction.note}
             />
           </Section>

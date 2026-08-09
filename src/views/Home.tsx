@@ -134,6 +134,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             <Extraction
               fields={t.hero.extraction.fields}
               labels={t.hero.extraction.labels}
+              docHead={t.hero.extraction.docHead}
               note={t.hero.extraction.note}
             />
           </Section>
