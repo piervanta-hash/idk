@@ -134,7 +134,11 @@ export function LabPlate({ caption, note }: { caption: string; note: string }) {
 
       <figcaption className="mt-3 flex flex-col gap-2 border-t border-line pt-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
         <span className="text-small text-copy">{caption}</span>
-        <span className="eyebrow shrink-0">{note}</span>
+        {/* Niente `shrink-0` qui: era una riga di testo a cui si vietava di
+            stringersi, e a 768px sporgeva di 245px dal riquadro portandosi
+            dietro la barra di scorrimento orizzontale di tutta la pagina.
+            Su uno schermo largo non si vedeva. */}
+        <span className="eyebrow min-w-0 sm:text-right">{note}</span>
       </figcaption>
     </figure>
   );

@@ -31,7 +31,7 @@ export function AnamnesisView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="anamnesis" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <section className="shell pt-16 pb-20 md:pt-24 md:pb-28">
           <nav aria-label="Breadcrumb">
             <span className="eyebrow">Paloryn / {t.hero.eyebrow}</span>

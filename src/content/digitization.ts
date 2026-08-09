@@ -112,7 +112,7 @@ export const digitization = {
       eyebrow: "Laboratory",
       caption:
         "Digitization laboratory: planetary scanner with overhead camera arm, adjustable cradle, cold lighting free of UV and IR.",
-      note: "Drawn schematic. The photographic plate is reserved and swaps in unchanged.",
+      note: "Drawn schematic, not a photograph.",
     },
 
     cta: {
@@ -227,7 +227,7 @@ export const digitization = {
       eyebrow: "Laboratorio",
       caption:
         "Laboratorio di digitalizzazione: scanner planetario con braccio della camera, culla a supporto regolabile, luce fredda priva di UV e IR.",
-      note: "Schema disegnato. Lo spazio per la fotografia è già dimensionato e si sostituisce senza altre modifiche.",
+      note: "Schema disegnato, non fotografia.",
     },
 
     cta: {

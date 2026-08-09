@@ -24,7 +24,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
     <>
       <Header locale={locale} page="investors" />
 
-      <main id="main">
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <section className="shell pt-16 pb-16 md:pt-24 md:pb-20">
           <nav aria-label="Breadcrumb">
             <span className="eyebrow">Paloryn / {t.hero.eyebrow}</span>
@@ -60,7 +60,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
                   </div>
                 ))}
               </dl>
-              <p className="measure-wide mt-10 text-small text-mute">{t.governance.note}</p>
+              <p className="measure-wide mt-10 text-small text-label">{t.governance.note}</p>
             </Reveal>
           </Section>
 
@@ -77,7 +77,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
                   </li>
                 ))}
               </ul>
-              <p className="mt-8 border-t border-line pt-4 font-mono text-data text-mute">
+              <p className="mt-8 border-t border-line pt-4 font-mono text-data text-label">
                 {t.materials.note}
               </p>
             </Reveal>
@@ -90,7 +90,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
                 <p className="measure mt-8 text-body-l text-copy">{t.contact.lead}</p>
                 <a
                   href={`mailto:${t.contact.email}`}
-                  className="mt-10 inline-block border-b border-line pb-1 font-mono text-h5 text-max transition-colors hover:border-accent hover:text-accent"
+                  className="mt-10 flex min-h-11 w-fit items-center border-b border-line pb-1 font-mono text-h5 text-max transition-colors hover:border-accent hover:text-accent"
                 >
                   {t.contact.email}
                 </a>

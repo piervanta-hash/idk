@@ -65,7 +65,7 @@ export function Interop({
                 {!last && (
                   <span
                     aria-hidden="true"
-                    className="flex items-center justify-center py-2 text-mute md:px-3 md:py-0"
+                    className="flex items-center justify-center py-2 text-label md:px-3 md:py-0"
                   >
                     <span className="md:hidden">&darr;</span>
                     <span className="hidden md:inline">&rarr;</span>
@@ -125,7 +125,7 @@ export function Interop({
                       "font-mono text-data uppercase tracking-[0.08em] transition-colors duration-200 " +
                       (on
                         ? "bg-surface-2 text-accent"
-                        : "bg-bg text-mute hover:text-max")
+                        : "bg-bg text-label hover:text-max")
                     }
                   >
                     {e.name}

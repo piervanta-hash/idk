@@ -67,7 +67,7 @@ export function ContactForm({
                 className={
                   "min-h-12 border border-line px-5 font-mono text-data uppercase " +
                   "tracking-[0.08em] transition-colors duration-200 " +
-                  (on ? "bg-surface-2 text-max" : "text-mute hover:text-strong")
+                  (on ? "bg-surface-2 text-max" : "text-label hover:text-strong")
                 }
               >
                 {on && <span className="mr-2 text-accent">&bull;</span>}

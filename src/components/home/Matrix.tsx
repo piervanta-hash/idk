@@ -52,7 +52,7 @@ export function Matrix({
                 </h3>
                 <span
                   aria-hidden="true"
-                  className="text-mute transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
+                  className="text-label transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
                 >
                   &rarr;
                 </span>
@@ -68,9 +68,12 @@ export function Matrix({
 
           {/* Mobile: lo stesso contenuto, in colonna */}
           <div className="py-8 md:hidden">
-            <Link href={row.href} className="flex items-baseline justify-between gap-4">
+            <Link
+              href={row.href}
+              className="flex min-h-11 items-baseline justify-between gap-4"
+            >
               <h3 className="text-d3 font-display font-semibold text-max">{row.name}</h3>
-              <span aria-hidden="true" className="text-mute">
+              <span aria-hidden="true" className="text-label">
                 &rarr;
               </span>
             </Link>

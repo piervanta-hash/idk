@@ -103,7 +103,7 @@ export function FormShell({
         </p>
       )}
 
-      <p className="text-small text-mute">{copy.privacy}</p>
+      <p className="text-small text-label">{copy.privacy}</p>
     </form>
   );
 }

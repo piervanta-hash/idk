@@ -37,7 +37,7 @@ export default function RootRedirect() {
   }, []);
 
   return (
-    <main className="shell flex min-h-dvh items-center">
+    <main id="main" tabIndex={-1} className="shell flex min-h-dvh items-center focus:outline-none">
       <p className="eyebrow">Paloryn</p>
       {/* Senza JavaScript e senza server: restano due collegamenti veri. */}
       <noscript>

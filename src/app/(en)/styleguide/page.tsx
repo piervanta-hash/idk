@@ -71,7 +71,7 @@ export default function StyleguidePage() {
     <div lang="it">
       <Header />
 
-      <main className="shell">
+      <main id="main" tabIndex={-1} className="shell focus:outline-none">
         {/* Intestazione della pagina di stile */}
         <div className="border-b border-line py-20 md:py-28">
           <span className="eyebrow">Paloryn · design system · fase 2</span>
@@ -104,10 +104,10 @@ export default function StyleguidePage() {
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-baseline gap-x-3">
                     <span className="font-mono text-data text-max">{g.token}</span>
-                    <span className="font-mono text-data text-mute tabular">{g.hex}</span>
+                    <span className="font-mono text-data text-label tabular">{g.hex}</span>
                   </div>
                   <p className="mt-1 text-small text-copy">{g.job}</p>
-                  <span className="mt-1 block font-mono text-data text-mute tabular">
+                  <span className="mt-1 block font-mono text-data text-label tabular">
                     contrasto {g.ratio}
                   </span>
                 </div>
@@ -145,7 +145,7 @@ export default function StyleguidePage() {
               <div className="border-t border-line p-6">
                 <div className="flex items-baseline gap-3">
                   <span className="font-mono text-data text-max">accent</span>
-                  <span className="font-mono text-data text-mute">#00C2D1</span>
+                  <span className="font-mono text-data text-label">#00C2D1</span>
                 </div>
                 <ul className="mt-4 space-y-2 text-small text-copy">
                   <li>
@@ -183,7 +183,7 @@ export default function StyleguidePage() {
                 </li>
               </ul>
               <span className="eyebrow mt-8 block">Dove non lo e&apos;</span>
-              <p className="mt-4 text-small text-mute">
+              <p className="mt-4 text-small text-label">
                 titoli · fondi ampi · logo · testo corrente · testo su bianco. Tetto
                 complessivo: 5% della superficie di ogni schermata, verificato in Fase 7.
               </p>
@@ -348,7 +348,7 @@ export default function StyleguidePage() {
                 testo.
               </p>
               <span className="eyebrow mt-8 block">Un limite da sapere</span>
-              <p className="mt-4 text-small text-mute">
+              <p className="mt-4 text-small text-label">
                 Sotto i 20px i tratti si saldano fra loro e il segno diventa una macchia:
                 non e&apos; un difetto della riproduzione, e&apos; la geometria del segno.
                 I tre raggi distano undici unita&apos; e il tratto pieno ne occupa sette,
@@ -359,7 +359,7 @@ export default function StyleguidePage() {
               </p>
             </div>
           </div>
-          <p className="mt-8 text-small text-mute">
+          <p className="mt-8 text-small text-label">
             La favicon (<span className="font-mono text-data">icon.svg</span>) e&apos; gia&apos;
             generata dallo stesso segno. Apple-touch-icon e og-image si fanno in Fase 6,
             insieme al resto dei metadati nelle due lingue.
@@ -394,7 +394,7 @@ export default function StyleguidePage() {
               Secondary md
             </ButtonLink>
           </div>
-          <p className="mt-8 text-small text-mute">
+          <p className="mt-8 text-small text-label">
             Un solo bottone primario per schermata. Il focus da tastiera disegna un
             contorno cyan a 2px con 2px di stacco: e&apos; l&apos;unico uso obbligatorio
             dell&apos;accento. Provalo col tasto Tab.
@@ -453,7 +453,7 @@ export default function StyleguidePage() {
               { phase: "05 · Pubblicazione", output: "Anamnesis", vol: "4 s" },
             ]}
           />
-          <p className="mt-6 text-small text-mute">
+          <p className="mt-6 text-small text-label">
             I volumi qui sono segnaposto di impaginazione: nessuna cifra e&apos; ancora
             confermata (vedi D8 della Fase 1).
           </p>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { useDialog } from "@/lib/useDialog";
 
 /* ==========================================================================
    GRIGLIA DEI CASI STUDIO CON FILTRO A DUE STATI
@@ -57,21 +58,13 @@ export function CaseGrid({
 }) {
   const [sector, setSector] = useState<"all" | "public" | "private">("all");
   const [openId, setOpenId] = useState<string | null>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
 
   const open = useMemo(() => cases.find((c) => c.id === openId) ?? null, [cases, openId]);
 
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenId(null);
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  /* Stabile: se cambiasse a ogni disegno, la finestra si rimonterebbe da
+     sola e il fuoco tornerebbe indietro mentre e' ancora aperta. */
+  const chiudi = useCallback(() => setOpenId(null), []);
+  const panelRef = useDialog(!!open, chiudi);
 
   const options: { value: typeof sector; label: string }[] = [
     { value: "all", label: filter.all },
@@ -84,10 +77,19 @@ export function CaseGrid({
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
+        {/* IN COLONNA FINCHE' NON CI STA IN RIGA.
+            "Pubblica amministrazione" e' lungo: i tre pulsanti affiancati
+            misuravano 380px dentro uno schermo da 360, e la pagina dei
+            clienti si scorreva di lato. In inglese ("Public sector") il
+            difetto non si vedeva — motivo per cui va provato in tutte e
+            due le lingue e non solo in quella in cui si lavora.
+            Sotto i 640px i tre pulsanti si impilano; il bordo passa da
+            destra a sotto perche' il riquadro resti chiuso in entrambi i
+            versi. */}
         <div
           role="radiogroup"
           aria-label={filter.label}
-          className="inline-flex w-fit border border-line"
+          className="flex w-full flex-col border border-line sm:inline-flex sm:w-fit sm:flex-row"
         >
           {options.map((o) => {
             const on = o.value === sector;
@@ -99,9 +101,10 @@ export function CaseGrid({
                 aria-checked={on}
                 onClick={() => setSector(o.value)}
                 className={
-                  "min-h-12 px-5 font-mono text-data uppercase tracking-[0.08em] " +
-                  "border-r border-line last:border-r-0 transition-colors duration-200 " +
-                  (on ? "bg-surface-2 text-max" : "text-mute hover:text-strong")
+                  "min-h-12 px-5 text-left font-mono text-data uppercase tracking-[0.08em] " +
+                  "border-b border-line last:border-b-0 sm:border-r sm:border-b-0 sm:text-center " +
+                  "transition-colors duration-200 " +
+                  (on ? "bg-surface-2 text-max" : "text-label hover:text-strong")
                 }
               >
                 {on && <span className="mr-2 text-accent">&bull;</span>}
@@ -146,10 +149,10 @@ export function CaseGrid({
                 </span>
                 <span className="mt-3 block text-body text-copy">{c.summary}</span>
                 <span className="mt-8 flex items-end justify-between gap-4 border-t border-line pt-4">
-                  <span className="font-mono text-data text-mute">{c.tag}</span>
+                  <span className="font-mono text-data text-label">{c.tag}</span>
                   <span
                     aria-hidden="true"
-                    className="text-mute transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
+                    className="text-label transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
                   >
                     &rarr;
                   </span>
@@ -166,7 +169,7 @@ export function CaseGrid({
           role="dialog"
           aria-modal="true"
           aria-label={open.name}
-          onClick={(e) => e.target === e.currentTarget && setOpenId(null)}
+          onClick={(e) => e.target === e.currentTarget && chiudi()}
         >
           <div
             ref={panelRef}
@@ -179,7 +182,7 @@ export function CaseGrid({
               </span>
               <button
                 type="button"
-                onClick={() => setOpenId(null)}
+                onClick={chiudi}
                 className="eyebrow inline-flex min-h-11 items-center gap-2 transition-colors hover:text-max"
               >
                 {detail.close}
@@ -221,7 +224,7 @@ function Row({
   return (
     <div className={`border-t border-line pt-3 ${full ? "sm:col-span-2" : ""}`}>
       <dt className="eyebrow">{k}</dt>
-      <dd className={`mt-2 text-body ${v ? "text-strong" : "text-mute italic"}`}>
+      <dd className={`mt-2 text-body ${v ? "text-strong" : "text-label italic"}`}>
         {v || pending}
       </dd>
     </div>

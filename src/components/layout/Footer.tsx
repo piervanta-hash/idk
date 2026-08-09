@@ -57,12 +57,16 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
 
           <nav aria-label="Sitemap" className="md:col-span-2">
             <span className="eyebrow">{t.site}</span>
-            <ul className="mt-4 space-y-2">
+            {/* Righe alte 44px invece di 17: da telefono cinque voci di
+                menu incolonnate a distanza di otto pixel si sbagliano di
+                continuo. Il footer si allunga di un centinaio di pixel —
+                un prezzo che si paga volentieri. */}
+            <ul className="mt-2">
               {NAV.map((key) => (
                 <li key={key}>
                   <Link
                     href={href(key, locale)}
-                    className="font-mono text-data text-copy transition-colors hover:text-max"
+                    className="flex min-h-11 w-fit items-center font-mono text-data text-copy transition-colors hover:text-max"
                   >
                     {PAGES[key].label[locale]}
                   </Link>
@@ -81,11 +85,17 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               <br />
               P. IVA 04522160755
               <br />
-              <a href="mailto:info@paloryn.com" className="transition-colors hover:text-max">
+              <a
+                href="mailto:info@paloryn.com"
+                className="flex min-h-11 w-fit items-center transition-colors hover:text-max"
+              >
                 info@paloryn.com
               </a>
               <br />
-              <a href="tel:+393520690071" className="transition-colors hover:text-max">
+              <a
+                href="tel:+393520690071"
+                className="flex min-h-11 w-fit items-center transition-colors hover:text-max"
+              >
                 +39 352 069 0071
               </a>
             </address>
@@ -97,7 +107,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               {CERTS[locale].map((c) => (
                 <li key={c.code} className="font-mono text-data">
                   <span className="text-strong">{c.code}</span>{" "}
-                  <span className="text-mute">— {c.scope}</span>
+                  <span className="text-label">— {c.scope}</span>
                 </li>
               ))}
             </ul>

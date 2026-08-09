@@ -51,7 +51,11 @@ export function Header({
           <Link
             href={href("home", locale)}
             aria-label="Paloryn"
-            className="text-max transition-colors hover:text-accent"
+            /* Il marchio e' alto 22px: come bersaglio da toccare era meta'
+               di quanto serve, ed e' il comando piu' usato del sito (e' il
+               ritorno alla home). L'area sensibile sale a 44px senza che il
+               disegno cambi di un pixel. */
+            className="flex min-h-11 items-center text-max transition-colors hover:text-accent"
           >
             <Logo height={22} />
           </Link>
@@ -66,7 +70,7 @@ export function Header({
                   aria-current={current ? "page" : undefined}
                   className={
                     "font-mono text-data uppercase tracking-[0.08em] transition-colors " +
-                    (current ? "text-max" : "text-mute hover:text-max")
+                    (current ? "text-max" : "text-label hover:text-max")
                   }
                 >
                   {PAGES[key].label[locale]}
@@ -161,7 +165,7 @@ function LangSwitch({ locale, page }: { locale: Locale; page?: PageKey }) {
         href={href(page ?? "home", target)}
         hrefLang={target}
         onClick={remember}
-        className="text-mute transition-colors hover:text-max"
+        className="text-label transition-colors hover:text-max"
       >
         {target}
       </Link>

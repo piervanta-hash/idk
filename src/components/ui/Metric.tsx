@@ -21,10 +21,10 @@ export function Metric({
     <div className="flex flex-col border-t border-line pt-4">
       <div className="flex items-baseline gap-1 font-mono text-metric text-max tabular">
         <span>{value}</span>
-        {unit && <span className="text-d3 text-mute">{unit}</span>}
+        {unit && <span className="text-d3 text-label">{unit}</span>}
       </div>
       <span className="eyebrow mt-4 block">{label}</span>
-      {note && <span className="mt-2 text-small text-mute">{note}</span>}
+      {note && <span className="mt-2 text-small text-label">{note}</span>}
     </div>
   );
 }
@@ -50,7 +50,7 @@ export function Confidence({
     <div className="flex flex-col gap-2 border-t border-line pt-3">
       <div className="flex items-baseline justify-between gap-4">
         <span className="eyebrow">{field}</span>
-        <span className="font-mono text-data text-mute tabular">{pct}%</span>
+        <span className="font-mono text-data text-label tabular">{pct}%</span>
       </div>
       <span className="font-mono text-data text-strong">{value}</span>
       {/* 2px, non 1: a un pixel la barra si confonde con le hairline di

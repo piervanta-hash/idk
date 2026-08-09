@@ -30,10 +30,10 @@ export function Measurements({ items }: { items: readonly Item[] }) {
         <div key={m.label} className="flex flex-col border-t border-line pt-4">
           <div className="flex items-baseline gap-1 font-mono text-metric text-max tabular">
             <Counter value={m.value} run={inView} />
-            {m.unit && <span className="text-d3 text-mute">{m.unit}</span>}
+            {m.unit && <span className="text-d3 text-label">{m.unit}</span>}
           </div>
           <span className="eyebrow mt-4 block">{m.label}</span>
-          {m.note && <span className="mt-2 text-small text-mute">{m.note}</span>}
+          {m.note && <span className="mt-2 text-small text-label">{m.note}</span>}
         </div>
       ))}
     </div>

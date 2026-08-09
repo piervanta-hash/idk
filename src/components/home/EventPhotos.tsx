@@ -75,7 +75,7 @@ function Frame({
               / Co-Founder» — e un ritorno a capo casuale si vede. */}
           <span className="block bg-gradient-to-t from-bg/90 to-transparent px-4 pt-12 pb-4 font-mono text-data">
             <span className="block text-max">{name}</span>
-            {role && <span className="block text-mute">{role}</span>}
+            {role && <span className="block text-label">{role}</span>}
           </span>
         </figcaption>
       )}

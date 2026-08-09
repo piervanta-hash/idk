@@ -36,7 +36,7 @@ export function Card({ index, tag, title, children, href, footer, className = ""
       <h3 className="text-h4 font-display font-semibold text-max">{title}</h3>
       {children && <div className="mt-4 text-body text-copy">{children}</div>}
       {footer && (
-        <div className="mt-8 border-t border-line pt-4 text-data font-mono text-mute tabular">
+        <div className="mt-8 border-t border-line pt-4 text-data font-mono text-label tabular">
           {footer}
         </div>
       )}
@@ -54,7 +54,7 @@ export function Card({ index, tag, title, children, href, footer, className = ""
         {body}
         <span
           aria-hidden="true"
-          className="mt-auto pt-8 font-mono text-data text-mute transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
+          className="mt-auto pt-8 font-mono text-data text-label transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent"
         >
           &rarr;
         </span>

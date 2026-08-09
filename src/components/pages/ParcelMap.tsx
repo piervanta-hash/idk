@@ -64,7 +64,7 @@ export function ParcelMap({
             className={
               "min-h-12 flex-1 px-4 font-mono text-data uppercase tracking-[0.08em] " +
               "transition-colors duration-200 " +
-              (active === i ? "bg-surface-2 text-accent" : "bg-bg text-mute hover:text-max")
+              (active === i ? "bg-surface-2 text-accent" : "bg-bg text-label hover:text-max")
             }
           >
             {l}

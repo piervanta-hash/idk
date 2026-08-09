@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 /* ==========================================================================
    LA SCAFFALATURA
 
@@ -58,6 +60,39 @@ const BOTTOM = SHELVES[SHELVES.length - 1];
 const TONES = ["#161616", "#1e1e1e", "#262626"];
 const TONES_INDEXED = ["#202020", "#292929", "#333333"];
 
+/* IL DISEGNO ESISTE UNA VOLTA SOLA.
+
+   Prima la scaffalatura era disegnata due volte, una per stato: la home
+   pesava 365 KB di HTML contro i 39-81 delle altre pagine, e quasi
+   ottocento nodi finivano nel documento solo per questo riquadro. Su un
+   telefono si vedeva — Lighthouse dava 82 di prestazione contro 97-99
+   altrove.
+
+   Adesso il disegno e' uno, e i colori sono variabili: il secondo strato e'
+   un `<use>` che ridichiara le variabili con i valori dello stato censito.
+   Il browser riusa lo stesso disegno invece di ricostruirlo, e nell'HTML
+   c'e' una riga al posto di quattrocento nodi.
+
+   La tacca ciano vive nello stesso disegno: nello strato di sotto ha
+   `transparent` come colore, quindi non si vede pur essendoci. */
+const VARS_BASE = {
+  "--st-t0": TONES[0],
+  "--st-t1": TONES[1],
+  "--st-t2": TONES[2],
+  "--st-edge": "var(--color-line)",
+  "--st-spine": "var(--color-mute)",
+  "--st-tick": "transparent",
+} as React.CSSProperties;
+
+const VARS_INDEXED = {
+  "--st-t0": TONES_INDEXED[0],
+  "--st-t1": TONES_INDEXED[1],
+  "--st-t2": TONES_INDEXED[2],
+  "--st-edge": "var(--color-mute)",
+  "--st-spine": "var(--color-strong)",
+  "--st-tick": "var(--color-accent)",
+} as React.CSSProperties;
+
 type Item = {
   x: number;
   w: number;
@@ -114,18 +149,25 @@ function build(): Item[] {
 
 const ITEMS = build();
 
-/* Un pezzo, disegnato due volte con due trattamenti diversi. `indexed` e'
-   lo strato di sopra: stesso disegno, dorsi schiariti e tacca alla base. */
-function Piece({ it, indexed }: { it: Item; indexed: boolean }) {
+/* Un pezzo. Non sa in che stato si trova: prende i colori dalle variabili,
+   e chi lo usa decide quali valori abbiano. */
+function Piece({ it }: { it: Item }) {
   const y = it.base - it.h;
-  const spine = indexed ? "var(--color-strong)" : "var(--color-mute)";
-  const face = indexed ? TONES_INDEXED[it.tone] : TONES[it.tone];
-  const edge = indexed ? "var(--color-mute)" : "var(--color-line)";
+  const spine = "var(--st-spine)";
+  const face = `var(--st-t${it.tone})`;
+  const edge = "var(--st-edge)";
+
+  /* Il gruppo serve solo a chi pende: e' li' che vive la rotazione. Per
+     tutti gli altri era un nodo in piu' per niente — centocinquanta nodi
+     nel documento, pagati in tempo di impaginazione e di disegno su ogni
+     telefono. Un frammento non lascia traccia nel DOM. */
+  const Box = it.lean ? "g" : Fragment;
+  const boxProps = it.lean
+    ? { transform: `rotate(${it.lean} ${it.x + it.w / 2} ${it.base})` }
+    : {};
 
   return (
-    <g
-      transform={it.lean ? `rotate(${it.lean} ${it.x + it.w / 2} ${it.base})` : undefined}
-    >
+    <Box {...boxProps}>
       <rect
         x={it.x}
         y={y}
@@ -154,15 +196,6 @@ function Piece({ it, indexed }: { it: Item; indexed: boolean }) {
             x2={it.x + it.w - 7}
             y2={y + 15.5}
             stroke={spine}
-            strokeWidth={1.5}
-          />
-          {/* Presa per le dita, in basso al centro */}
-          <line
-            x1={it.x + it.w / 2 - 5}
-            y1={it.base - 11}
-            x2={it.x + it.w / 2 + 5}
-            y2={it.base - 11}
-            stroke={edge}
             strokeWidth={1.5}
           />
         </>
@@ -201,27 +234,25 @@ function Piece({ it, indexed }: { it: Item; indexed: boolean }) {
         </>
       )}
 
-      {/* La tacca: compare solo sullo strato censito. E' l'unico ciano del
-          disegno, ed e' minuscolo per trenta volte — sotto l'un per cento
-          della superficie, ben dentro il tetto del brief. */}
-      {indexed && (
-        <rect
-          x={it.x + it.w / 2 - 1}
-          y={it.base - 4}
-          width={2}
-          height={3}
-          fill="var(--color-accent)"
-        />
-      )}
-    </g>
+      {/* La tacca. C'e' sempre; nello strato di sotto e' trasparente. E'
+          l'unico ciano del disegno, minuscolo e ripetuto — meno di mezzo
+          punto percentuale della superficie, ben dentro il tetto. */}
+      <rect
+        x={it.x + it.w / 2 - 1}
+        y={it.base - 4}
+        width={2}
+        height={3}
+        fill="var(--st-tick)"
+      />
+    </Box>
   );
 }
 
-function Unit({ indexed }: { indexed: boolean }) {
+function Unit() {
   return (
-    <g>
+    <g id="st-unit">
       {ITEMS.map((it, i) => (
-        <Piece key={i} it={it} indexed={indexed} />
+        <Piece key={i} it={it} />
       ))}
     </g>
   );
@@ -235,6 +266,13 @@ export function Stacks({ label }: { label: string }) {
         className="block h-auto w-full"
         role="img"
         aria-label={label}
+        /* Le variabili stanno qui, sul contenitore, non sul disegno.
+
+           Se stessero sul disegno, il clone se le porterebbe dietro: uno
+           stile in linea sull'originale vince su qualunque valore
+           ereditato dal `<use>`, e lo strato censito resterebbe identico a
+           quello sotto. Un'ora persa a guardare due strati uguali. */
+        style={VARS_BASE}
       >
         <defs>
           {/* Lo strato censito e' scoperto da un rettangolo che si allarga:
@@ -253,9 +291,9 @@ export function Stacks({ label }: { label: string }) {
           ))}
         </g>
 
-        <Unit indexed={false} />
+        <Unit />
         <g clipPath="url(#st-reveal)">
-          <Unit indexed />
+          <use href="#st-unit" style={VARS_INDEXED} />
         </g>
       </svg>
 
