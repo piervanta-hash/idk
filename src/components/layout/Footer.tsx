@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
+import { ClientMarks } from "@/components/layout/ClientMarks";
 import { Rule } from "@/components/ui/Rule";
 import { NAV, PAGES, href, type Locale } from "@/lib/routes";
 
@@ -47,8 +48,15 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
   const t = COPY[locale];
 
   return (
-    <footer className="mt-32 border-t border-line pt-16 pb-12">
-      <div className="shell">
+    <footer className="mt-32">
+      {/* I marchi stanno qui e in nessun altro punto del sito: sempre
+          nell'ultimo respiro prima dei dati anagrafici, uguale su ogni
+          pagina. Sta dentro il footer e non nelle singole pagine proprio
+          per questo — messo pagina per pagina, prima o poi finirebbe in un
+          posto diverso o mancherebbe da qualcuna. */}
+      <ClientMarks />
+
+      <div className="shell border-t border-line pt-16 pb-12">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <Logo height={28} className="text-max" />

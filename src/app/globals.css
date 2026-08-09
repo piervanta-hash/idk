@@ -270,6 +270,85 @@
      senza, sarebbe uno scorrimento a vuoto lungo quattro schermate per
      arrivare a un contenuto che e' gia' tutto li'. Stessa ragione con
      `prefers-reduced-motion`. */
+  /* LA STRISCIA DEI MARCHI.
+
+     Stato di riposo — senza JavaScript e con «riduci movimento»: la
+     seconda copia sparisce e gli otto marchi vanno a capo, centrati. E'
+     questo lo stato scritto qui per primo, e le regole del movimento si
+     aggiungono sopra solo dove il movimento e' ammesso: cosi' chi non lo
+     vuole non riceve mai un'animazione che parte e poi viene spenta. */
+  .mk-track {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+  /* Il display sta qui e non fra le classi di utilita': una `flex` scritta
+     sull'elemento vive in uno strato che vince su questo, e la copia
+     restava visibile anche quando doveva sparire. Fila e copia si
+     governano dallo stesso posto, cosi' non si contraddicono. */
+  .mk-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .mk-copia {
+    display: none;
+  }
+  /* Anche l'opacita' sta qui, per la stessa ragione del display: scritta
+     fra le classi di utilita' vincerebbe sulla regola del passaggio del
+     mouse e i marchi resterebbero spenti anche quando la striscia si
+     ferma. A riposo stanno indietro — sono una prova, non un annuncio; al
+     passaggio del mouse la striscia si ferma e loro si accendono. */
+  .mk-fila img {
+    opacity: 0.7;
+    transition: opacity 300ms ease-out;
+  }
+  .mk:hover .mk-fila img,
+  .mk:focus-within .mk-fila img {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js .mk-track {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      width: max-content;
+      animation: mk-scorre 64s linear infinite;
+    }
+    .js .mk-fila {
+      flex-wrap: nowrap;
+    }
+    .js .mk-copia {
+      display: flex;
+    }
+    /* Ferma a chi la guarda: col mouse sopra, e con il fuoco da tastiera
+       dentro. Una striscia che non si ferma mai e' un cartellone. */
+    .js .mk:hover .mk-track,
+    .js .mk:focus-within .mk-track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Un terzo esatto: le tre copie sono identiche, quindi quando
+     l'animazione riparte la seconda si trova dove stava la prima e non si
+     vede nessun salto.
+
+     Tre e non due. Una fila sola misura circa mille pixel; con due copie,
+     su uno schermo largo, l'ultima finiva prima del bordo destro e per
+     mezzo giro restava un vuoto. Con tre, il pieno regge fino a
+     duemila pixel di larghezza, che copre qualunque schermo vero. */
+  @keyframes mk-scorre {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.3333%);
+    }
+  }
+
   .ex-track {
     height: auto;
   }
