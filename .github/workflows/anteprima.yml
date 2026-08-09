@@ -12,9 +12,12 @@
 
 name: Anteprima
 
+# Pubblica da `main`. L'ambiente di GitHub Pages accetta pubblicazioni solo
+# dal ramo predefinito: da un altro ramo la costruzione riesce e l'ultimo
+# passo viene rifiutato in un secondo, senza spiegare perche'.
 on:
   push:
-    branches: [claude/procedi-allegato-iaok0e]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
