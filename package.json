@@ -1,0 +1,39 @@
+{
+  "name": "paloryn",
+  "version": "0.1.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piervanta-hash/idk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/piervanta-hash/idk/issues"
+  },
+  "homepage": "https://github.com/piervanta-hash/idk#readme",
+  "dependencies": {
+    "@types/nodemailer": "^8.0.1",
+    "next": "^16.3.0",
+    "nodemailer": "^9.0.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3",
+    "topojson-client": "^3.1.0",
+    "typescript": "^7.0.2",
+    "world-atlas": "^2.0.2"
+  },
+  "private": true
+}

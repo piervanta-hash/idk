@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+.env*
+# ...tranne il modello senza segreti, che serve a sapere quali valori servono
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+
+# Originali dell'evento: PNG da megabyte, riscaricabili dall'articolo
+# pubblico (vedi photos-sorgente/LEGGIMI.md). Le versioni lavorate stanno
+# in public/img/archilives/ e quelle sì sono versionate.
+photos-sorgente/*.png
+
+# Anteprima impacchettata: si rigenera con scripts/build-anteprima.mjs
+anteprima-home.html
+
+# Esportazione statica per l'anteprima pubblica
+out/

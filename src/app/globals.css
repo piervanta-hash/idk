@@ -1,0 +1,589 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   PALORYN — DESIGN TOKENS
+   Fase 2. Ogni token ha un solo compito. Un token usato per due compiti
+   diversi e' un errore da correggere, non una variante.
+   ========================================================================== */
+
+@theme {
+  /* --- COLORE ---------------------------------------------------------- */
+  /* I tre colori ufficiali. Nient'altro e' ammesso oltre ai grigi derivati. */
+  --color-bg: #0a0a0a; /* fondo della pagina, sempre e ovunque */
+  --color-max: #ffffff; /* display, numeri delle metriche, stato attivo */
+  --color-mute: #707070; /* etichette mono, stati disattivi — MAI paragrafi */
+
+  /* Grigi derivati dai tre ufficiali. Un grigio, un mestiere. */
+  --color-surface-1: #141414; /* fondo di sezione alternata */
+  --color-surface-2: #1f1f1f; /* card, riga di tabella alternata */
+  --color-line: #3a3a3a; /* hairline e bordi, sempre 1px */
+  --color-copy: #a0a0a0; /* testo corrente — 7,6:1 su bg, AAA */
+  --color-strong: #e5e5e5; /* titoli non display, dati in tabella — 15,7:1 */
+
+  /* Accento unico. Nessuna variante: per attenuarlo si usa l'opacita'. */
+  --color-accent: #00c2d1; /* 9,1:1 su bg / 2,2:1 su bianco → mai testo su bianco */
+
+  /* --- TIPOGRAFIA ------------------------------------------------------- */
+  /* Stessa famiglia per titoli e testo. Cambiano peso e larghezza, non
+     disegno: e' quello che tiene insieme la pagina. */
+  --font-display: var(--ff-archivo), system-ui, sans-serif;
+  --font-text: var(--ff-archivo), system-ui, sans-serif; /* Archivo 400/500 */
+  --font-mono: var(--ff-plex-mono), ui-monospace, monospace; /* IBM Plex Mono 400 */
+
+  /* Scala dichiarata. Ogni valore e' fluido fra 390px e 1440px di viewport. */
+  /* Il minimo e' sceso da 56 a 44px per l'italiano. «Interrogabile»,
+     «dematerializzazione», «interoperabilita'» sono parole da quattordici
+     e venti lettere: a 56px su uno schermo da 390px non ci stanno su una
+     riga, e finivano tagliate dal bordo. Non e' un capriccio tipografico,
+     e' la lingua in cui il sito deve funzionare. */
+  --text-d1: clamp(2.75rem, 1.5429rem + 4.9524vw, 6rem); /* 44 → 96 */
+  --text-d1--line-height: 0.98;
+  --text-d1--letter-spacing: -0.03em;
+
+  /* Corpo dedicato alla sola testata della home. Non e' un d1 piu' grande
+     per capriccio: e' l'unico posto del sito dove il titolo non descrive
+     ma dichiara, e una dichiarazione di quattro parole regge - anzi
+     pretende - la scala del manifesto.
+
+     Il minimo, 76px, e' misurato non stimato: a 390px la colonna utile e'
+     350px e la parola piu' larga del titolo, «materia», occupa 303px a
+     questo corpo. In inglese la parola piu' larga e' «matter», che sta
+     dentro con piu' margine. Il massimo, 132px, e' quello che tiene
+     «Dalla materia» su una riga sola dentro la colonna da 1200px.
+
+     Se un giorno il titolo cambia, questi due numeri vanno rimisurati,
+     non indovinati: una parola che non entra viene tagliata via dal bordo
+     senza dire niente a nessuno. */
+  --text-hero: clamp(4.75rem, 3.45rem + 5.3333vw, 8.25rem); /* 76 → 132 */
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.035em;
+
+  --text-d2: clamp(2.5rem, 1.9429rem + 2.286vw, 4rem); /* 40 → 64 */
+  --text-d2--line-height: 1.02;
+  --text-d2--letter-spacing: -0.025em;
+
+  --text-d3: clamp(1.75rem, 1.4714rem + 1.143vw, 2.5rem); /* 28 → 40 */
+  --text-d3--line-height: 1.08;
+  --text-d3--letter-spacing: -0.02em;
+
+  --text-h4: clamp(1.375rem, 1.2821rem + 0.381vw, 1.625rem); /* 22 → 26 */
+  --text-h4--line-height: 1.15;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-h5: clamp(1.125rem, 1.0786rem + 0.19vw, 1.25rem); /* 18 → 20 */
+  --text-h5--line-height: 1.2;
+  --text-h5--letter-spacing: -0.005em;
+
+  --text-body-l: clamp(1.125rem, 1.0786rem + 0.19vw, 1.25rem); /* 18 → 20 */
+  --text-body-l--line-height: 1.55;
+
+  --text-body: clamp(1rem, 0.9768rem + 0.095vw, 1.0625rem); /* 16 → 17 */
+  --text-body--line-height: 1.6;
+
+  --text-small: 0.875rem; /* 14 */
+  --text-small--line-height: 1.5;
+
+  --text-label: clamp(0.6875rem, 0.6643rem + 0.095vw, 0.75rem); /* 11 → 12 */
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.12em;
+
+  --text-data: clamp(0.8125rem, 0.7893rem + 0.095vw, 0.875rem); /* 13 → 14 */
+  --text-data--line-height: 1.45;
+
+  --text-metric: clamp(2.5rem, 1.7571rem + 3.048vw, 4.5rem); /* 40 → 72 */
+  --text-metric--line-height: 1;
+  --text-metric--letter-spacing: -0.01em;
+
+  /* --- GRIGLIA E RITMO -------------------------------------------------- */
+  /* Spaziatura: si usano solo i passi pari della scala (2, 4, 6, 8, 12, 16,
+     20, 24, 32), cosi' ogni distanza resta un multiplo di 8px. */
+  --container-shell: 82.5rem; /* 1320px — larghezza massima del contenuto */
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-copy);
+    font-family: var(--font-text);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Nessuno scroll orizzontale, mai. */
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    /* I titoli sono leggermente piu' larghi del testo: 106 su 100. Non si
+       nota come «un altro carattere», si nota come titoli che tengono la
+       riga. E' il vantaggio dell'asse di larghezza — dove servirebbe un
+       secondo carattere basta spostare un numero. */
+    font-variation-settings: "wdth" 106;
+    color: var(--color-max);
+    margin: 0;
+    text-wrap: balance;
+    /* Rete di sicurezza. Il corpo della pagina ritaglia lo scorrimento
+       orizzontale, quindi una parola troppo lunga per la riga non sfonda
+       lo schermo: sparisce oltre il bordo, in silenzio, e nessuno se ne
+       accorge finche' non manca mezza parola nel titolo.
+       Questa regola interviene solo quando una parola non entrerebbe
+       nemmeno da sola su una riga: sul testo normale non ha alcun
+       effetto, ma garantisce che niente venga mai tagliato via. */
+    overflow-wrap: break-word;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* Le cifre non ballano mai: larghezza fissa ovunque compaia un numero. */
+  .tabular,
+  [data-mono] {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  /* Focus da tastiera: unico caso in cui l'accento e' obbligatorio. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  /* prefers-reduced-motion: rispettato senza eccezioni. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   UTILITY DI SISTEMA
+   ========================================================================== */
+
+@utility shell {
+  width: 100%;
+  max-width: var(--container-shell);
+  margin-inline: auto;
+  padding-inline: 1.25rem; /* 20px — margine mobile */
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem; /* 32px — tablet */
+  }
+  @media (width >= 90rem) {
+    padding-inline: 3.75rem; /* 60px — desktop */
+  }
+}
+
+/* Etichetta di sezione: mono, maiuscolo, appesa a una hairline.
+   E' il ritmo dichiarato in Fase 1: etichetta → hairline → cosa concreta. */
+/* Nota: nessun `display` dichiarato qui di proposito. L'etichetta si usa anche
+   su `th` e `caption`, e forzare `display: block` smonterebbe la tabella. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label--line-height);
+  letter-spacing: var(--text-label--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-mute);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Misura di lettura. Il testo corrente non supera mai queste larghezze. */
+@utility measure {
+  max-width: 46ch;
+}
+@utility measure-wide {
+  max-width: 68ch;
+}
+
+/* ==========================================================================
+   MOVIMENTO
+   Tre sole animazioni su tutta la home. Ognuna spiega qualcosa e ognuna ha
+   uno stato statico leggibile: se il movimento e' disattivato, non manca
+   nessuna informazione.
+   ========================================================================== */
+
+@layer components {
+  /* 1. La conversione in testata: la carta diventa un record.
+
+        E' l'unico momento orchestrato forte del sito, e mostra la cosa vera
+        che l'azienda fa invece di raccontarla. Una riga ciano attraversa la
+        scheda da sinistra a destra; dietro di lei i campi compaiono uno
+        dopo l'altro, nell'ordine in cui la riga li raggiunge.
+
+        STATO DI RIPOSO — che e' anche quello senza JavaScript e quello di
+        chi ha chiesto meno animazioni: i campi ci sono tutti, la riga non
+        c'e'. Chi non vede l'animazione non perde nessuna informazione: vede
+        il risultato, che e' la cosa che conta. */
+  /* La pista dell'estrazione. L'altezza vale solo con JavaScript attivo:
+     senza, sarebbe uno scorrimento a vuoto lungo quattro schermate per
+     arrivare a un contenuto che e' gia' tutto li'. Stessa ragione con
+     `prefers-reduced-motion`. */
+  .ex-track {
+    height: auto;
+  }
+  .js .ex-track {
+    height: calc((var(--ex-n) + 1) * 78vh);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .ex-track {
+      height: auto;
+    }
+  }
+
+  /* LO SCAFFALE SI FA CENSIRE.
+
+     Il disegno esiste due volte: sotto lo scaffale com'e', sopra lo stesso
+     scaffale censito, scoperto da sinistra a destra da una lama.
+
+     Stato di riposo — senza JavaScript e con meno animazioni: lo scaffale
+     e' censito del tutto e la lama non c'e'. Lo strato di sotto e' dipinto
+     al primo fotogramma a piena opacita': niente parte mai invisibile, o
+     si ritarderebbe la prima pittura utile. */
+  .st-clip {
+    width: 100%;
+  }
+  .st-blade {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .st-run .st-clip {
+      animation: st-clip 2400ms cubic-bezier(0.3, 0.6, 0.4, 1) both;
+    }
+    .st-run .st-blade {
+      animation: st-blade 2400ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+  }
+
+  @keyframes st-clip {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes st-blade {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    6% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  /* 2. Comparsa in ingresso di sezione. Sobria: nessun rimbalzo, nessuna
+        scala, nessun ritardo lungo.
+        Il nascondiglio iniziale e' condizionato alla classe `js`, che mette
+        lo script in testa al body: se JavaScript non gira, il contenuto non
+        viene mai nascosto e la pagina resta leggibile. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 600ms ease-out,
+      transform 600ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* 0. Ingresso. Un gesto solo: la lama di luce percorre il marchio, il
+        segno entra a fuoco, il velo si alza. Il velo comincia a dissolversi
+        a 0,8s per non trattenere il contenuto sotto. */
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background: var(--color-bg);
+    animation: intro-veil 1500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .intro-mark {
+    width: min(38vw, 240px);
+    height: auto;
+    animation: intro-settle 1500ms cubic-bezier(0.5, 0, 0.2, 1) forwards;
+  }
+
+  /* La lama scende, poi si posa e sfuma */
+  .intro-blade {
+    animation: intro-blade 1500ms cubic-bezier(0.35, 0, 0.25, 1) forwards;
+  }
+
+  /* Il rettangolo di ritaglio scende insieme alla lama: dietro di lei il
+     segno passa da grigio a bianco. */
+  .intro-wipe {
+    transform: translateY(-76px);
+    animation: intro-wipe 1500ms cubic-bezier(0.35, 0, 0.25, 1) forwards;
+  }
+
+  @keyframes intro-veil {
+    0%,
+    52% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes intro-settle {
+    0%,
+    60% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.42);
+      opacity: 0;
+    }
+  }
+
+  /* La lama parte sopra il segno e si ferma appena sotto: e' la stessa
+     corsa del rettangolo di ritaglio, sfasata di 200 unita'. */
+  @keyframes intro-blade {
+    0% {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    14% {
+      opacity: 1;
+    }
+    55%,
+    100% {
+      transform: translateY(124px);
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes intro-wipe {
+    0% {
+      transform: translateY(-140px);
+    }
+    55%,
+    100% {
+      transform: translateY(-76px);
+    }
+  }
+
+  /* 3. Estrazione del dato. Lo stato di riposo e' quello finale e completo:
+        l'animazione toglie, non aggiunge. Chi non ha JavaScript o ha
+        disattivato il movimento vede lo schema intero. */
+  .ex-cap,
+  .ex-key {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    fill: var(--color-mute);
+  }
+  .ex-val {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    fill: var(--color-max);
+  }
+  .ex-score {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    fill: var(--color-mute);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Riposo = fotogramma finale: la testa di scansione ha gia' percorso la
+     pagina ed e' ferma in fondo, attenuata. */
+  .ex-scan {
+    transform: translateY(470px);
+    opacity: 0.35;
+  }
+  .ex-scan-tall {
+    transform: translateY(360px);
+    opacity: 0.35;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ex-run .ex-fade {
+      animation: ex-fade 460ms ease-out backwards;
+    }
+    .ex-run .ex-draw {
+      animation: ex-draw 520ms ease-out backwards;
+      stroke-dasharray: 100;
+    }
+    .ex-run .ex-scan {
+      animation: ex-scan 1900ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+    .ex-run .ex-scan-tall {
+      animation: ex-scan-tall 1900ms cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+    }
+  }
+
+  @keyframes ex-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes ex-draw {
+    from {
+      stroke-dashoffset: 100;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* La testa di scansione si ferma al bordo inferiore della pagina e resta
+     li': e' il fotogramma finale, non sparisce. */
+  @keyframes ex-scan {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(470px);
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes ex-scan-tall {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(360px);
+      opacity: 0.35;
+    }
+  }
+
+  /* 4. Impulso lungo la rotta fra i due nodi della mappa operativa, e lungo
+        le connessioni dello schema di interoperabilita'. */
+  @media (prefers-reduced-motion: no-preference) {
+    .io-pulse {
+      animation: io 4200ms linear infinite;
+    }
+    .route-pulse {
+      animation: route 3800ms linear infinite;
+    }
+    .node-pulse {
+      animation: node 3800ms ease-out infinite;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+  }
+
+  /* 323 e' la lunghezza esatta della rotta fra i due nodi in unita' di
+     disegno: l'impulso parte da un capo e arriva all'altro, non a caso. */
+  @keyframes route {
+    from {
+      stroke-dashoffset: 323;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Senza movimento l'impulso non deve restare fermo a meta' della linea:
+     lo si porta fuori vista. */
+  .io-pulse {
+    stroke-dashoffset: 160;
+  }
+
+  @keyframes io {
+    from {
+      stroke-dashoffset: 160;
+    }
+    to {
+      stroke-dashoffset: -80;
+    }
+  }
+
+  @keyframes node {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    70%,
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+}
+
+/* Grana leggera: profondita' senza colore, come prescritto dal brief. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}

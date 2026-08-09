@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="256" height="256">
+  <!-- Favicon Paloryn. Stessa geometria del marchio, su tessera piena:
+       alla scala della scheda del browser i tratti sottili spariscono e
+       serve la silhouette. Tessera nera e segno bianco, cosi' regge sia
+       sulle interfacce chiare sia su quelle scure. -->
+  <rect width="100" height="100" fill="#0A0A0A"/>
+  <g transform="translate(50 45.55) scale(1.35) translate(-50 -45.55)">
+    <g transform="translate(0 -6)" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
+      <path d="M28,58 Q50,28 72,58"/>
+      <line x1="39" y1="47" x2="39" y2="61" transform="rotate(-29.7 39 54)"/>
+      <line x1="50" y1="42" x2="50" y2="56"/>
+      <line x1="61" y1="47" x2="61" y2="61" transform="rotate(29.7 61 54)"/>
+    </g>
+  </g>
+</svg>

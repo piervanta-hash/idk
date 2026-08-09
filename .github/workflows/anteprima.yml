@@ -1,0 +1,66 @@
+# ==========================================================================
+# ANTEPRIMA PUBBLICA
+#
+# A ogni spinta sul ramo di lavorazione costruisce il sito come file statici
+# e lo pubblica su GitHub Pages. Serve a guardare il lavoro da qualunque
+# dispositivo, senza installare niente e senza fare accessi.
+#
+# Non e' il sito in produzione: e' lo stesso codice servito senza server.
+# L'invio dei moduli, che ha bisogno di un server, li' dichiara di non
+# essere riuscito e mostra l'indirizzo da copiare.
+# ==========================================================================
+
+name: Anteprima
+
+# Pubblica da `main`. L'ambiente di GitHub Pages accetta pubblicazioni solo
+# dal ramo predefinito: da un altro ramo la costruzione riesce e l'ultimo
+# passo viene rifiutato in un secondo, senza spiegare perche'.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una pubblicazione per volta: se ne arriva un'altra, quella in corso finisce.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  costruisci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Il percorso di base e' il nome del repository: su GitHub Pages un
+      # progetto vive dentro una sottocartella, non sulla radice del dominio.
+      - run: node scripts/esporta-statico.mjs "/${{ github.event.repository.name }}"
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  pubblica:
+    needs: costruisci
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

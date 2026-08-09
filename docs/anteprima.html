@@ -1,0 +1,198 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paloryn — come vedere il sito</title>
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --max: #ffffff;
+    --strong: #e5e5e5;
+    --copy: #a0a0a0;
+    --mute: #707070;
+    --line: #3a3a3a;
+    --surface: #141414;
+    --accent: #00c2d1;
+    --mono: ui-monospace, "SF Mono", "IBM Plex Mono", Menlo, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--copy);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 5rem;
+  }
+  @media (min-width: 48rem) {
+    .shell { padding: 5rem 2rem 7rem; }
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: var(--max);
+    margin: 1.5rem 0 0;
+    text-wrap: balance;
+  }
+
+  .lead { margin: 1.5rem 0 0; }
+  .lead strong { color: var(--strong); font-weight: 500; }
+
+  hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0 0; }
+
+  .via { margin-top: 2.5rem; }
+  .via h2 {
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--max);
+    margin: 0.75rem 0 0;
+    letter-spacing: -0.01em;
+  }
+  .via p { margin: 0.75rem 0 0; }
+
+  pre {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--strong);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 1rem 1.15rem;
+    margin: 1.25rem 0 0;
+    overflow-x: auto;
+  }
+  pre .c { color: var(--mute); }
+
+  .nota {
+    margin-top: 3rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.15rem;
+  }
+  .nota p { margin: 0; font-size: 15.5px; }
+  .nota p + p { margin-top: 0.75rem; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    color: var(--strong);
+  }
+
+  .fatto { margin-top: 3rem; }
+  .fatto ul { margin: 1rem 0 0; padding: 0; list-style: none; }
+  .fatto li {
+    border-top: 1px solid var(--line);
+    padding: 0.7rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    font-size: 15.5px;
+  }
+  .fatto li span:first-child {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    flex: 0 0 1.4rem;
+  }
+</style>
+
+<div class="shell">
+  <span class="eyebrow">Paloryn · anteprima</span>
+
+  <h1>Questa pagina non è il sito.</h1>
+
+  <p class="lead">
+    Qui c'era una copia della home senza JavaScript: si vedeva, ma non
+    rispondeva. <strong>Le fasi non cambiavano scorrendo, i trattini non
+    facevano niente, le modali non si aprivano, i numeri restavano a
+    zero.</strong> Non era il sito a essere rotto — era questa copia a non
+    poter funzionare.
+  </p>
+
+  <p class="lead">
+    L'ho tolta. Il sito funziona, ed è verificato: sotto c'è come
+    guardarlo davvero.
+  </p>
+
+  <hr>
+
+  <div class="via">
+    <span class="eyebrow">La strada breve</span>
+    <h2>Rendere pubblico il repository</h2>
+    <p>
+      La pubblicazione automatica è già pronta e la costruzione riesce: si
+      ferma solo perché <code>piervanta-hash/idk</code> è privato, e GitHub
+      Pages sui repository privati richiede un piano a pagamento.
+    </p>
+    <p>
+      Su GitHub: <strong>Settings → General → Change repository
+      visibility → Public</strong>. Da lì, entro un paio di minuti, il sito
+      vive su <code>piervanta-hash.github.io/idk/</code> e si apre da
+      qualunque telefono, senza accessi. Ogni modifica lo aggiorna da sola.
+    </p>
+  </div>
+
+  <div class="via">
+    <span class="eyebrow">La strada senza toccare niente</span>
+    <h2>Farlo girare sul proprio computer</h2>
+    <p>
+      Serve Node.js da <code>nodejs.org</code>, versione LTS. Poi tre
+      comandi: i primi due una volta sola.
+    </p>
+<pre><span class="c"># scaricare il progetto</span>
+git clone -b claude/procedi-allegato-iaok0e \
+  https://github.com/piervanta-hash/idk.git
+cd idk
+
+<span class="c"># installare (un minuto)</span>
+npm install
+
+<span class="c"># avviare</span>
+npm run dev</pre>
+    <p>
+      Stampa un indirizzo, di solito <code>http://localhost:3000</code>.
+      Per vederlo dal telefono sulla stessa Wi-Fi:
+      <code>npm run dev -- -H 0.0.0.0</code>.
+    </p>
+  </div>
+
+  <div class="fatto">
+    <span class="eyebrow">Verificato sul sito, a 1440 e a 390 pixel</span>
+    <ul>
+      <li><span>✓</span><span>Estrazione dei campi comandata dallo scorrimento, uno alla volta, 00 → 04</span></li>
+      <li><span>✓</span><span>Trattini che portano al campo giusto, avanti e indietro</span></li>
+      <li><span>✓</span><span>Le sette fasi che scorrono 01 → 07, e il trattino Restauro che porta alla 03</span></li>
+      <li><span>✓</span><span>Modale della particella che si apre e si chiude con Esc</span></li>
+      <li><span>✓</span><span>Menu del telefono, navigazione fra le pagine, cambio di lingua</span></li>
+      <li><span>✓</span><span>Zero errori di JavaScript, zero risposte fallite</span></li>
+    </ul>
+  </div>
+
+  <div class="nota">
+    <p>
+      Sul sito pubblicato senza server c'è una sola cosa che non può
+      funzionare, e lo dichiara: <strong>l'invio dei moduli</strong>. Quel
+      pezzo ha bisogno di un server e delle credenziali di posta. Lì il
+      modulo risponde che il messaggio non è partito e mostra l'indirizzo
+      da copiare — non finge mai di aver spedito.
+    </p>
+  </div>
+</div>
