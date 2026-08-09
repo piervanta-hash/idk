@@ -47,8 +47,8 @@ export const digitization = {
           n: "03",
           name: "Conservation",
           title: "Conservation treatment",
-          body: "Where the medium requires it, treatment is carried out by a qualified conservator: dry cleaning, tear repair with Japanese tissue, flattening, removal of metal fasteners. A sheet that cannot be handled cannot be captured — and treatment comes before capture, never after.",
-          tags: "Qualified conservator · Japanese tissue · dry cleaning",
+          body: "Where the medium requires it, treatment is carried out in our own workshop: dry cleaning, tear repair with Japanese tissue, flattening, removal of metal fasteners. A sheet that cannot be handled cannot be captured — and treatment comes before capture, never after.",
+          tags: "In-house workshop · Japanese tissue · dry cleaning",
         },
         {
           n: "04",
@@ -162,8 +162,8 @@ export const digitization = {
           n: "03",
           name: "Restauro",
           title: "Restauro conservativo",
-          body: "Dove il supporto lo richiede, l'intervento è eseguito da un restauratore abilitato: pulitura a secco, risarcimento degli strappi con carta giapponese, spianatura, rimozione dei mezzi metallici di fissaggio. Un foglio che non si può maneggiare non si può riprendere — e il restauro viene prima della ripresa, mai dopo.",
-          tags: "Restauratore abilitato · carta giapponese · pulitura a secco",
+          body: "Dove il supporto lo richiede, l'intervento è eseguito nel nostro laboratorio: pulitura a secco, risarcimento degli strappi con carta giapponese, spianatura, rimozione dei mezzi metallici di fissaggio. Un foglio che non si può maneggiare non si può riprendere — e il restauro viene prima della ripresa, mai dopo.",
+          tags: "Laboratorio interno · carta giapponese · pulitura a secco",
         },
         {
           n: "04",
