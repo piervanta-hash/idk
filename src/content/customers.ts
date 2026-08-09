@@ -104,9 +104,10 @@ export const customers = {
         programme: "PR Puglia 1.8.3",
         tag: "Joint procurement",
       },
-      /* Matino: la commessa e' confermata, i numeri no. I campi vuoti
-         escono come «not published» in grigio corsivo — meglio un dato
-         mancante dichiarato che un dato inventato. */
+      /* Matino: il volume dell'archivio dell'anagrafe e' confermato dal
+         committente. Gli altri campi restano vuoti ed escono come «not
+         published» in grigio corsivo — meglio un dato mancante dichiarato
+         che un dato inventato. */
       {
         id: "matino",
         sector: "public",
@@ -116,7 +117,7 @@ export const customers = {
         summary: "Registry office and civil status archives.",
         scope:
           "Ordering and digitization of the municipality's demographic archives — registry office and civil status.",
-        volumes: "",
+        volumes: "20 linear metres, registry office archive",
         tech: "Ordering · capture",
         outcome: "",
         programme: "",
@@ -265,7 +266,7 @@ export const customers = {
         summary: "Archivi dell'anagrafe e dello stato civile.",
         scope:
           "Ordinamento e digitalizzazione degli archivi demografici del Comune: anagrafe e stato civile.",
-        volumes: "",
+        volumes: "20 metri lineari, archivio dell'anagrafe",
         tech: "Ordinamento · ripresa",
         outcome: "",
         programme: "",

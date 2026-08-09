@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/routes";
 
@@ -30,27 +31,46 @@ function preferred(): Locale | null {
   return null;
 }
 
+/* DA DOVE COMINCIA IL SITO.
+
+   Questa pagina non sa a che indirizzo e' stata messa. Sul dominio vero sta
+   sulla radice; sull'anteprima sta dentro una sottocartella col nome del
+   repository. Se il rimando scrive `/it` secco, sull'anteprima manda a un
+   indirizzo che non esiste — ed e' esattamente quello che succedeva: chi
+   apriva il collegamento trovava la pagina di errore di GitHub.
+
+   Il percorso si legge da dove siamo adesso, invece di darlo per scontato:
+   questa e' la pagina radice, quindi tutto quello che sta prima della barra
+   finale e' il prefisso da tenere. Vale in tutti e due i casi senza doverlo
+   configurare da nessuna parte. */
+function radice() {
+  return window.location.pathname.replace(/\/?(?:index\.html)?$/, "");
+}
+
 export default function RootRedirect() {
   useEffect(() => {
     const locale = remembered() ?? preferred() ?? DEFAULT_LOCALE;
-    window.location.replace(`/${locale}`);
+    window.location.replace(`${radice()}/${locale}`);
   }, []);
 
   return (
     <main id="main" tabIndex={-1} className="shell flex min-h-dvh items-center focus:outline-none">
       <p className="eyebrow">Paloryn</p>
-      {/* Senza JavaScript e senza server: restano due collegamenti veri. */}
+      {/* Senza JavaScript e senza server: restano due collegamenti veri.
+          Con `Link` e non con `<a>`: e' Next a scrivere il prefisso della
+          sottocartella nell'indirizzo, e senza quello questi due
+          collegamenti puntavano fuori dal sito come il rimando qui sopra. */}
       <noscript>
         <ul className="ml-8 flex list-none gap-6 p-0">
           <li>
-            <a href="/en" hrefLang="en" className="eyebrow hover:text-max">
+            <Link href="/en" hrefLang="en" className="eyebrow hover:text-max">
               English
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/it" hrefLang="it" className="eyebrow hover:text-max">
+            <Link href="/it" hrefLang="it" className="eyebrow hover:text-max">
               Italiano
-            </a>
+            </Link>
           </li>
         </ul>
       </noscript>
