@@ -14,15 +14,22 @@
      - l'assenza di statistiche, di script di terze parti e di caratteri
        chiamati da fuori si verifica cercando: non c'e' niente.
 
-   DUE COSE NON LE PUO' DECIDERE CHI SCRIVE IL SITO, e sono segnalate al
-   committente invece di essere inventate:
+   IL TITOLARE E' UNA PERSONA, NON IL MARCHIO. La ragione sociale e' Cosma
+   Alessandro; Paloryn e' il nome con cui l'attivita' si presenta. Sul
+   resto del sito compare solo il marchio, e nel footer la titolarita',
+   come da indicazione.
 
-     1. la ragione sociale esatta del titolare del trattamento. Qui sono
-        riportati i dati gia' pubblicati nel footer — denominazione, sede e
-        partita IVA — che sono quelli veri e verificabili;
-     2. per quanto tempo si tengono le richieste ricevute. Il valore qui
-        sotto e' una scelta prudente e dichiarata, da confermare o
-        cambiare: due anni.
+   Qui pero' serve il nome vero, e non e' una scelta di stile: e' il
+   documento in cui chi consegna i propri dati deve poter leggere a chi li
+   sta consegnando, ed e' il primo dato che l'articolo 13 del GDPR
+   richiede. Un'informativa che indica come titolare un marchio invece di
+   un soggetto e' un'informativa monca. Il marchio resta accanto — «Cosma
+   Alessandro, che opera con il nome Paloryn» — cosi' chi legge ritrova
+   entrambi e non si chiede chi sia questo signore.
+
+   RESTA UNA COSA DA CONFERMARE, segnalata invece che inventata: per
+   quanto tempo si tengono le richieste ricevute. Il valore qui sotto e'
+   una scelta prudente e dichiarata, da confermare o cambiare: due anni.
 
    Non c'e' un responsabile della protezione dei dati indicato perche' non
    ci e' stato detto che esista. Se esiste, va aggiunto.
@@ -46,7 +53,7 @@ export const privacy = {
       {
         n: "01",
         title: "Who is responsible",
-        body: "The data controller is Paloryn, Via D. Cantatore 1/3, 73100 Lecce (LE), Italy — VAT 04522160755. For anything concerning your data, write to info@paloryn.com or call +39 352 069 0071.",
+        body: "The data controller is Cosma Alessandro, trading as Paloryn — Via D. Cantatore 1/3, 73100 Lecce (LE), Italy, VAT 04522160755. For anything concerning your data, write to info@paloryn.com or call +39 352 069 0071.",
       },
       {
         n: "02",
@@ -108,7 +115,7 @@ export const privacy = {
       {
         n: "01",
         title: "Chi risponde",
-        body: "Il titolare del trattamento è Paloryn, Via D. Cantatore 1/3, 73100 Lecce (LE) — P. IVA 04522160755. Per qualunque cosa riguardi i tuoi dati scrivi a info@paloryn.com o chiama il +39 352 069 0071.",
+        body: "Il titolare del trattamento è Cosma Alessandro, che opera con il nome Paloryn — Via D. Cantatore 1/3, 73100 Lecce (LE), P. IVA 04522160755. Per qualunque cosa riguardi i tuoi dati scrivi a info@paloryn.com o chiama il +39 352 069 0071.",
       },
       {
         n: "02",
