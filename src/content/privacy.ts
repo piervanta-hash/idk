@@ -27,9 +27,24 @@
    Alessandro, che opera con il nome Paloryn» — cosi' chi legge ritrova
    entrambi e non si chiede chi sia questo signore.
 
-   RESTA UNA COSA DA CONFERMARE, segnalata invece che inventata: per
-   quanto tempo si tengono le richieste ricevute. Il valore qui sotto e'
-   una scelta prudente e dichiarata, da confermare o cambiare: due anni.
+   DUE CONSERVAZIONI DIVERSE, E QUI SE NE PARLA DI UNA SOLA.
+
+   «Conservazione» in questa azienda vuol dire il servizio: tenere in
+   cloud, per il tempo che il cliente vuole, gli archivi che gli sono stati
+   digitalizzati. Nell'informativa la stessa parola vuol dire un'altra
+   cosa: per quanto tempo restano nome e indirizzo email di chi compila un
+   modulo su questo sito. Sono due cose che non si toccano — una la regola
+   il contratto, l'altra il GDPR — e su un sito che vende la prima, la
+   seconda va detta in modo che non si confondano. Per questo il paragrafo
+   05 chiude distinguendole per nome.
+
+   NON C'E' PIU' UN NUMERO DI ANNI, e non e' un'omissione: l'articolo 13
+   del GDPR chiede il periodo «oppure i criteri utilizzati per
+   determinarlo», e i criteri sono la formulazione piu' onesta quando la
+   durata dipende davvero da come va la conversazione. Un numero fisso
+   scritto sopra una pratica variabile e' una promessa che si rompe da
+   sola: o si cancella una trattativa ancora viva, o si tiene qualcosa che
+   si era detto di aver cancellato.
 
    Non c'e' un responsabile della protezione dei dati indicato perche' non
    ci e' stato detto che esista. Se esiste, va aggiunto.
@@ -73,7 +88,7 @@ export const privacy = {
       {
         n: "05",
         title: "For how long",
-        body: "Requests are kept for two years from the last exchange, then deleted. If a contract follows, the documents belonging to that contract are kept for as long as tax and administrative law requires.",
+        body: "A request is kept for as long as it takes to deal with it: the time to answer, and the time of any discussion that follows. Once that is closed, it is deleted. If a contract follows, the documents belonging to it are kept for as long as tax and administrative law requires. This concerns the data of people who write to us through this site; the preservation of archives entrusted to us is a separate matter, governed by the contract, which sets duration, formats and handover case by case.",
       },
       {
         n: "06",
@@ -135,7 +150,7 @@ export const privacy = {
       {
         n: "05",
         title: "Per quanto tempo",
-        body: "Le richieste si conservano due anni dall'ultimo scambio, poi si cancellano. Se ne nasce un contratto, i documenti che appartengono a quel contratto si conservano per il tempo che impongono le norme fiscali e amministrative.",
+        body: "Una richiesta si conserva finché serve a trattarla: il tempo di rispondere, e quello dell'eventuale trattativa che ne segue. Chiusa quella, si cancella. Se invece nasce un contratto, i documenti che gli appartengono restano per il tempo che impongono le norme fiscali e amministrative. Questo riguarda i dati di chi scrive dal sito; la conservazione degli archivi che ci vengono affidati è un'altra cosa e la regola il contratto, che stabilisce durata, formati e riconsegna caso per caso.",
       },
       {
         n: "06",
