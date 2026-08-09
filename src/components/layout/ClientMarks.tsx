@@ -3,11 +3,20 @@ import { asset } from "@/lib/asset";
 /* ==========================================================================
    LA STRISCIA DEI MARCHI
 
-   Nove committenti, in scala di grigi, che scorrono di continuo appena
-   sopra il footer. Nessun nome sotto: chi riconosce lo stemma del proprio
+   Nove committenti, in scala di grigi, su un livello solo che scorre di
+   continuo appena sopra il footer — come i sottotitoli di un
+   telegiornale. Nessun nome sotto: chi riconosce lo stemma del proprio
    comune lo riconosce, e chi non lo riconosce non lo leggerebbe comunque.
    I nomi per esteso stanno nella griglia dei casi, che e' il posto dove
    servono davvero — qui serve il colpo d'occhio.
+
+   NON SI VEDONO TUTTI INSIEME, ed e' il punto. Con i marchi piccoli e
+   stretti, una fila intera stava dentro uno schermo largo: si vedevano
+   tutti e nove fermi, e lo scorrimento diventava un dettaglio inutile
+   perche' non entrava e non usciva niente. Adesso i marchi sono piu'
+   grandi e il passo fra l'uno e l'altro e' largo: una fila misura piu'
+   dello schermo, quindi qualcuno e' sempre fuori e arriva. E' quello che
+   fa sembrare una striscia una striscia.
 
    PERCHE' SCORRE. Sette stemmi comunali fermi in fila sono sette
    rettangoli simili: corona muraria, scudo, corona d'alloro, e in mezzo un
@@ -33,8 +42,10 @@ import { asset } from "@/lib/asset";
    di schermo i committenti sono nove, non ventisette.
 
    FERMA — con «riduci movimento», e senza JavaScript: le copie spariscono
-   e i nove marchi si dispongono su piu' righe, centrati. Non si
-   perde niente, si perde il movimento.
+   e la fila resta una sola, ferma, che si sposta di lato con il dito. Il
+   livello resta uno anche li': una striscia che va a capo su due righe non
+   e' piu' una striscia. Lo scorrimento e' chiuso nel riquadro, la pagina
+   non si muove.
    ========================================================================== */
 
 const MARCHI = [
@@ -55,7 +66,7 @@ function Fila({ copia = false }: { copia?: boolean }) {
   return (
     <ul
       className={
-        "mk-fila m-0 list-none gap-x-14 gap-y-8 p-0 md:gap-x-20 " + (copia ? "mk-copia" : "")
+        "mk-fila m-0 list-none gap-x-22 p-0 md:gap-x-44 " + (copia ? "mk-copia" : "")
       }
       aria-hidden={copia || undefined}
     >
@@ -75,7 +86,7 @@ function Fila({ copia = false }: { copia?: boolean }) {
               /* Larghezza e altezza dichiarate: la striscia sta in fondo e
                  le immagini arrivano tardi: senza le misure, ognuna che
                  atterra sposterebbe quello che c'e' sotto. */
-              className="block h-8 w-auto md:h-11"
+              className="block h-10 w-auto md:h-14"
             />
           </picture>
         </li>
@@ -86,7 +97,7 @@ function Fila({ copia = false }: { copia?: boolean }) {
 
 export function ClientMarks() {
   return (
-    <div className="mk overflow-hidden border-t border-line py-10 md:py-12">
+    <div className="mk border-t border-line py-10 md:py-12">
       <div className="mk-track">
         <Fila />
         <Fila copia />

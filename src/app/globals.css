@@ -277,12 +277,27 @@
      questo lo stato scritto qui per primo, e le regole del movimento si
      aggiungono sopra solo dove il movimento e' ammesso: cosi' chi non lo
      vuole non riceve mai un'animazione che parte e poi viene spenta. */
+  /* UN LIVELLO SOLO, SEMPRE. La fila non va a capo in nessuna condizione:
+     e' una striscia che scorre, come i sottotitoli di un telegiornale, e
+     una striscia su due righe non e' piu' una striscia.
+
+     Il contenitore quindi non nasconde e basta: quando l'animazione non
+     c'e' — «riduci movimento», oppure niente JavaScript — diventa
+     scorrevole di lato con il dito. Lo scorrimento resta chiuso qui
+     dentro: la pagina non si muove di un pixel, come vuole il brief. */
+  .mk {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .mk::-webkit-scrollbar {
+    display: none;
+  }
   .mk-track {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     align-items: center;
-    width: auto;
+    width: max-content;
   }
   /* Il display sta qui e non fra le classi di utilita': una `flex` scritta
      sull'elemento vive in uno strato che vince su questo, e la copia
@@ -290,9 +305,9 @@
      governano dallo stesso posto, cosi' non si contraddicono. */
   .mk-fila {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .mk-copia {
     display: none;
@@ -312,14 +327,13 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .js .mk-track {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      width: max-content;
-      animation: mk-scorre 64s linear infinite;
+    .js .mk {
+      overflow-x: hidden;
     }
-    .js .mk-fila {
-      flex-wrap: nowrap;
+    .js .mk-track {
+      /* Circa quarantacinque pixel al secondo: la velocita' con cui si
+         legge una striscia senza doverla rincorrere. */
+      animation: mk-scorre 42s linear infinite;
     }
     .js .mk-copia {
       display: flex;
