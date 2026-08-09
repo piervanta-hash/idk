@@ -45,15 +45,33 @@ if (!SRC) {
    alta densita' e non oltre — un marchio non e' una fotografia. */
 const H = 132;
 
-/* nome in uscita → file sorgente.
-   L'ordine e' quello in cui compaiono nella striscia: si alternano il
-   grande e il piccolo, il teatro e i comuni, per non fare un blocco di
-   sette scudi uguali di fila. */
+/* nome in uscita → file sorgente, e dove serve il ritaglio da applicare
+   prima di tutto il resto.
+
+   L'ordine e' quello in cui compaiono nella striscia: i due marchi con un
+   disegno proprio — il teatro e la curia — stanno distanziati, cosi' non
+   si formano blocchi di scudi comunali tutti uguali di fila.
+
+   IL RITAGLIO DELLA CURIA. Il file consegnato dal committente ha il nome
+   scritto sotto l'emblema, su tre righe. Gli altri otto marchi sono soli
+   emblemi, e la striscia non porta nomi: lasciarlo intero avrebbe messo
+   in fila otto figure e una scritta. Si tiene la sola edicola con il
+   vescovo, che e' il segno; il nome per esteso resta dove serve, nella
+   griglia dei casi studio.
+
+   Il ritaglio e' in pixel perche' questo file e' uno solo e non cambia.
+   Se un giorno arriva una versione diversa, il numero va rimisurato: la
+   scritta comincia a 592 pixel dall'alto. */
 const MARCHI = [
   { out: "koreja", src: "koreja-bianco.png" },
   { out: "galatina", src: "Galatina-Stemma.png" },
   { out: "squinzano", src: "Squinzano-Stemma.svg" },
   { out: "matino", src: "Matino-Stemma.svg" },
+  {
+    out: "curia",
+    src: "curia.jpg",
+    crop: { left: 0, top: 0, width: 900, height: 560 },
+  },
   { out: "avetrana", src: "Avetrana-Stemma.svg" },
   { out: "torricella", src: "Torricella-Stemma.png" },
   { out: "maglie", src: "Maglie-Stemma.png" },
@@ -150,6 +168,7 @@ for (const m of MARCHI) {
      un francobollo. */
   const base = sharp(file, { density: 600 });
   const meta = await base.metadata();
+  if (m.crop) base.extract(m.crop);
 
   /* Prima si porta alla misura di lavoro, poi si scontorna, poi si rifila:
      scontornare sull'originale da tremila pixel costerebbe venti volte
