@@ -97,7 +97,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
               </Reveal>
 
               <Reveal delay={120}>
-                <InvestorForm form={t.contact.form} to={t.contact.email} />
+                <InvestorForm locale={locale} form={t.contact.form} to={t.contact.email} />
               </Reveal>
             </div>
           </Section>

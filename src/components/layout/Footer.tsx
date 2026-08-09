@@ -120,11 +120,16 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <span className="eyebrow">
             &copy; {new Date().getFullYear()} Cosma Alessandro — {t.rights}
           </span>
-          {/* Le note legali non si fanno: nessun collegamento, quindi.
-              Un link a una pagina che non esiste e' peggio della sua
-              assenza — promette e non mantiene. L'informativa che serve al
-              modulo di contatto sta accanto al modulo, dove chi invia i
-              propri dati la legge davvero. */}
+          {/* L'unica pagina legale del sito. Sta qui in fondo, piccola, dove
+              la si cerca: nessuno arriva su un sito per leggere
+              un'informativa, ma chi la cerca deve trovarla al primo colpo
+              d'occhio e senza andarla a scovare in un menu. */}
+          <Link
+            href={href("privacy", locale)}
+            className="eyebrow flex min-h-11 w-fit items-center transition-colors hover:text-max"
+          >
+            {PAGES.privacy.label[locale]}
+          </Link>
         </div>
       </div>
     </footer>

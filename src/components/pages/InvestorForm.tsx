@@ -2,6 +2,7 @@
 
 import { TextField, TextArea } from "@/components/ui/Field";
 import { FormShell, type FormCopy } from "@/components/pages/FormShell";
+import type { Locale } from "@/lib/routes";
 
 /* Richiesta di materiali per investitori. Stesso comportamento del modulo
    di contatto — invio dal server, stati veri, protezione anti-abuso — ma
@@ -13,6 +14,7 @@ import { FormShell, type FormCopy } from "@/components/pages/FormShell";
 export function InvestorForm({
   form,
   to,
+  locale,
 }: {
   form: FormCopy & {
     org: string;
@@ -23,12 +25,14 @@ export function InvestorForm({
     subject: string;
   };
   to: string;
+  locale: Locale;
 }) {
   return (
     <FormShell
       copy={form}
       to={to}
       subject={form.subject}
+      locale={locale}
       collect={(d) => [
         [form.org, String(d.get("organisation") ?? "")],
         [form.name, String(d.get("name") ?? "")],
