@@ -27,7 +27,8 @@ export type PageKey =
   | "anamnesis"
   | "customers"
   | "investors"
-  | "about";
+  | "about"
+  | "privacy";
 
 type Entry = {
   path: Record<Locale, string>;
@@ -67,6 +68,14 @@ export const PAGES: Record<PageKey, Entry> = {
     label: { en: "About", it: "Azienda" },
     nav: true,
   },
+  /* Fuori dal menu: il brief ne ammette sei voci e sono gia' cinque piu' la
+     home. L'informativa si raggiunge dal footer e da sotto i due moduli,
+     che e' dove la si cerca davvero. */
+  privacy: {
+    path: { en: "/en/privacy", it: "/it/privacy" },
+    label: { en: "Privacy notice", it: "Informativa privacy" },
+    nav: false,
+  },
 };
 
 export const NAV = (Object.keys(PAGES) as PageKey[]).filter((k) => PAGES[k].nav);
@@ -89,6 +98,7 @@ export function alternates(key: PageKey, locale: Locale) {
   };
 }
 
-/* Le pagine legali non sono previste: la scelta e' del committente.
-   L'informativa sul trattamento dei dati del modulo di contatto sta
-   accanto al modulo stesso, in src/content/about.ts. */
+/* L'unica pagina legale e' l'informativa privacy, e c'e' perche' un modulo
+   che raccoglie nome e indirizzo email la rende dovuta: e' un obbligo, non
+   una scelta di stile. Le altre — note legali, condizioni — restano fuori
+   per decisione del committente. */

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { HONEYPOT_PROPS, submitForm, type SendState } from "@/lib/submit";
+import { PAGES, href, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
    IMPALCATURA COMUNE DEI MODULI
@@ -35,12 +37,14 @@ export function FormShell({
   copy,
   to,
   subject,
+  locale,
   collect,
   children,
 }: {
   copy: FormCopy;
   to: string;
   subject: string;
+  locale: Locale;
   /** Le righe del messaggio, lette dal modulo al momento dell'invio. */
   collect: (data: FormData) => [string, string][];
   children: React.ReactNode;
@@ -103,7 +107,19 @@ export function FormShell({
         </p>
       )}
 
-      <p className="text-small text-label">{copy.privacy}</p>
+      {/* La riga breve dice l'essenziale a chi sta per premere Invia; il
+          collegamento porta al resto per chi lo vuole. Sta sotto il
+          pulsante e non dentro un menu, perche' e' qui che si consegnano i
+          propri dati ed e' qui che la domanda viene in mente. */}
+      <p className="text-small text-label">
+        {copy.privacy}{" "}
+        <Link
+          href={href("privacy", locale)}
+          className="text-strong underline underline-offset-4 transition-colors hover:text-accent"
+        >
+          {PAGES.privacy.label[locale]}
+        </Link>
+      </p>
     </form>
   );
 }

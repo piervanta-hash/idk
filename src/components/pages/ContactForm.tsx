@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { TextField, TextArea } from "@/components/ui/Field";
 import { FormShell, type FormCopy } from "@/components/pages/FormShell";
+import type { Locale } from "@/lib/routes";
 
 /* ==========================================================================
    MODULO DI CONTATTO A TRE PROFILI
@@ -21,6 +22,7 @@ export function ContactForm({
   profiles,
   form,
   to,
+  locale,
 }: {
   profileLabel: string;
   profiles: readonly { value: string; label: string }[];
@@ -34,6 +36,7 @@ export function ContactForm({
     subject: string;
   };
   to: string;
+  locale: Locale;
 }) {
   const [profile, setProfile] = useState(profiles[0].value);
   const chosen = profiles.find((p) => p.value === profile)?.label ?? profile;
@@ -43,6 +46,7 @@ export function ContactForm({
       copy={form}
       to={to}
       subject={form.subject}
+      locale={locale}
       collect={(d) => [
         [profileLabel, chosen],
         [form.org, String(d.get("organisation") ?? "")],

@@ -24,7 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE}${href(key, locale)}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: key === "home" ? 1 : 0.8,
+      /* L'informativa va indicizzata ma non compete con le pagine di
+         servizio: e' una pagina dovuta, non una pagina che vende. */
+      priority: key === "home" ? 1 : key === "privacy" ? 0.3 : 0.8,
       alternates: {
         languages: Object.fromEntries(
           LOCALES.map((l) => [l, `${SITE}${href(key, l)}`]),

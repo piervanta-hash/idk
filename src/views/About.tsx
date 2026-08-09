@@ -103,6 +103,7 @@ export function AboutView({ locale }: { locale: Locale }) {
 
               <Reveal delay={120}>
                 <ContactForm
+                  locale={locale}
                   profileLabel={t.contact.profileLabel}
                   profiles={t.contact.profiles}
                   form={t.contact.form}
