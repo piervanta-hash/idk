@@ -6,6 +6,20 @@ Il lavoro procede sul ramo `claude/procedi-allegato-iaok0e`.
 
 ---
 
+## Mettere il sito online
+
+Le istruzioni per chi si occupa dell'infrastruttura stanno in
+**[`docs/MESSA-IN-LINEA.md`](docs/MESSA-IN-LINEA.md)**: che cosa serve al
+server, le due strade possibili, le variabili d'ambiente, il dominio e la
+lista di verifica da spuntare prima di dire che è online.
+
+In breve: **non c'è niente da scaricare e niente da caricare via FTP.**
+Si prende il repository con `git clone`, ramo `main`, e si costruisce sul
+server. Non va usata la cartella `out/`: è l'anteprima statica, e lì i
+moduli non spediscono.
+
+---
+
 ## Come si guarda il sito
 
 **Dal telefono o da qualunque computer, senza installare niente:**
