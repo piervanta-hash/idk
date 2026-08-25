@@ -12,6 +12,21 @@
    mostra l'indirizzo da copiare a mano.
    ========================================================================== */
 
+/* DOVE VA A FINIRE IL MODULO.
+
+   Sul sito servito da Node e' la rotta interna: src/app/api/contact/.
+   Ma il sito puo' anche essere pubblicato come cartella di file statici su
+   un server Apache — ed e' quello che c'e' oggi su paloryn.com. Li' una
+   rotta di Next non esiste, e infatti /api/contact rispondeva 404: i
+   moduli non potevano spedire.
+
+   L'indirizzo diventa quindi una variabile decisa al momento della
+   costruzione. Vuota: la rotta interna, come prima. Valorizzata: quello
+   che si vuole — per Apache, il piccolo ricevitore in PHP che sta in
+   apache/contact.php. Il modulo non sa e non deve sapere quale dei due
+   ha davanti: manda gli stessi dati e legge la stessa risposta. */
+const ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "/api/contact";
+
 export type SendState = "idle" | "sending" | "sent" | "error";
 
 export type SendResult = { ok: true } | { ok: false; reason: string };
@@ -23,7 +38,7 @@ export async function submitForm(input: {
   elapsed: number;
 }): Promise<SendResult> {
   try {
-    const res = await fetch("/api/contact", {
+    const res = await fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(input),
