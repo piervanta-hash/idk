@@ -189,11 +189,20 @@ export function HomeView({ locale }: { locale: Locale }) {
           </Section>
 
           {/* ARCHILIVES e' una commessa fra le altre, non il mestiere
-              dell'azienda: sta piu' in basso dei progetti, occupa una
-              colonna piu' stretta e ha il respiro verticale normale
-              invece di quello ampio. Le fotografie restano, il peso no. */}
+              dell'azienda: sta piu' in basso dei progetti e ha il respiro
+              verticale normale invece di quello ampio.
+
+              Il peso pero' non si toglie stringendo la colonna. Qui c'era
+              un `max-w-3xl`: su uno schermo largo il blocco si fermava a
+              768 pixel, lasciando mezza pagina vuota alla sua destra, e i
+              sei riquadri diventavano cosi' stretti che `object-cover`
+              tagliava le persone. Un'immagine di 255 pixel di lato non e'
+              «meno importante», e' solo mal ritagliata.
+              La gerarchia la fanno la posizione in pagina e l'altezza dei
+              riquadri — un 4:3 per le persone, un 16:9 basso per la
+              giornata — non una larghezza mozzata. */}
           <Section id="field" eyebrow={t.photos.eyebrow} aside="06">
-            <Reveal className="max-w-3xl">
+            <Reveal>
               <EventPhotos
                 caption={t.photos.caption}
                 source={t.photos.source}
