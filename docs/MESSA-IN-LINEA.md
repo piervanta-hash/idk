@@ -144,6 +144,17 @@ su un server proprio in un file `.env.local` nella cartella del progetto
 
 Il modello è in [`.env.example`](../.env.example).
 
+Per provarli prima di andare online, dalla cartella del progetto:
+
+```bash
+node scripts/prova-posta.mjs           # collegamento e accesso
+node scripts/prova-posta.mjs --invia   # manda anche un messaggio di prova
+```
+
+Dice quale delle cinque cose non va — nome del server, porta, password,
+certificato, mittente non consentito — invece del generico «non è
+partito» che si vede dal sito. Non stampa mai la password.
+
 **Senza questi valori il sito sta in piedi lo stesso**: i moduli
 dichiarano che il messaggio non è partito e mostrano l'indirizzo da
 copiare. Non fingono mai di aver spedito. Si può quindi andare online

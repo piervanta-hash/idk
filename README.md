@@ -118,6 +118,21 @@ e si riempiono:
 
 `.env.local` non finisce in git, ed è giusto così: sono credenziali.
 
+### Provarli prima di scoprire dal sito che non vanno
+
+```bash
+node scripts/prova-posta.mjs           # collegamento e accesso
+node scripts/prova-posta.mjs --invia   # manda anche un messaggio di prova
+```
+
+Un modulo che non spedisce può non spedire per cinque ragioni diverse, e
+dal sito si vede solo «il messaggio non è partito». Lo script dice quale
+delle cinque: nome del server sbagliato, porta che non risponde, password
+rifiutata, certificato che non torna, mittente non consentito.
+
+Non stampa mai la password: solo quanti caratteri ha. Si può lanciare in
+una chiamata con qualcuno che guarda lo schermo.
+
 **Il mittente è il sito, non chi scrive.** Un server non può firmare la
 posta a nome di un dominio altrui: provarci significa finire nello spam.
 Chi ha compilato il modulo compare come «rispondi a», quindi premere
