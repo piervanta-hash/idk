@@ -144,6 +144,22 @@ su un server proprio in un file `.env.local` nella cartella del progetto
 
 Il modello è in [`.env.example`](../.env.example).
 
+**Il fornitore è Register.it**, ricavato dai DNS: `paloryn.com` ha
+`MX = mail.register.it` e `SPF = include:spf.webapps.net`. Quindi
+`SMTP_HOST` è `authsmtp.register.it` (oppure `smtp.register.it`, dipende
+dal piano della casella — lo script di prova lo dice in cinque secondi) e
+`SMTP_USER` è `info@paloryn.com`. L'unico valore che non si ricava da fuori
+è la password, che sta nel pannello di Register.
+
+**Sull'SPF non c'è niente da fare**: il sito spedisce *attraverso* il
+server di Register, quindi l'indirizzo mittente risulta autorizzato dal
+record già presente, ovunque sia ospitato il sito.
+
+**Il DMARC invece manca** — `_dmarc.paloryn.com` non esiste. Non impedisce
+di spedire, ma senza è più facile che i messaggi finiscano fra gli
+indesiderati e chiunque può fingersi il dominio. È un record TXT da
+aggiungere nei DNS, indipendente dal sito.
+
 Per provarli prima di andare online, dalla cartella del progetto:
 
 ```bash
