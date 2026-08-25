@@ -66,7 +66,19 @@ function Fila({ copia = false }: { copia?: boolean }) {
   return (
     <ul
       className={
-        "mk-fila m-0 list-none gap-x-22 p-0 md:gap-x-44 " + (copia ? "mk-copia" : "")
+        /* Il passo finale ripete quello interno. La distanza fra un
+           marchio e l'altro e' `gap`, che pero' vale solo DENTRO una fila:
+           fra l'ultimo marchio di una copia e il primo della copia
+           successiva non c'era niente, e nel punto di giunzione Otranto e
+           Koreja si toccavano. Con la spaziatura in coda la giunta ha lo
+           stesso passo di tutto il resto e non si vede piu' dove finisce
+           una copia e comincia l'altra.
+
+           E' anche il motivo per cui la spaziatura sta in coda alla fila e
+           non fra le file: cosi' una copia misura esattamente un periodo,
+           e lo scorrimento di un terzo esatto ricade al posto giusto. */
+        "mk-fila m-0 list-none gap-x-22 pr-22 pl-0 md:gap-x-44 md:pr-44 " +
+        (copia ? "mk-copia" : "")
       }
       aria-hidden={copia || undefined}
     >
