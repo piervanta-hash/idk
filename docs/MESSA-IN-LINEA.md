@@ -35,22 +35,72 @@ stesso.
 
 ---
 
-## Una cosa da non fare
+## Tre strade, e quella che state già usando
 
-Nel repository c'è uno script che produce una cartella `out/` di file
-statici. **Quella non è la versione di produzione**: serve solo
-all'anteprima su GitHub Pages, e per starci dentro rinuncia a due cose.
+Oggi `paloryn.com` serve l'**esportazione statica** del sito su Apache. È
+la strada C qui sotto: funziona, ed è la meno invasiva. Aveva un solo buco,
+ora chiuso — i moduli non potevano spedire, perché `/api/contact` è una
+rotta di Next e in una cartella di file statici non esiste. Verificato:
+rispondeva 404.
 
-1. **I moduli non spediscono.** L'invio passa da una rotta server
-   (`src/app/api/contact/`) che in una cartella di file statici non esiste.
-2. **Il rimando di lingua sulla radice** avviene nel browser invece che
-   sul server, quindi più lento e visibile.
+| | dove gira | i moduli | il rimando di lingua |
+|---|---|---|---|
+| **A** Vercel | Node, gestito | rotta interna | sul server |
+| **B** server proprio | Node, vostro | rotta interna | sul server |
+| **C** Apache statico | qualunque hosting | `contact.php` | nel browser |
 
-In più ha un prefisso `/idk` in tutti gli indirizzi, che sul dominio vero
-sarebbe sbagliato.
+La C è quella in esercizio. Le altre due restano descritte perché se un
+domani il sito dovesse fare qualcosa di più di quello che fa oggi, servirà
+un server vero.
 
-Per `paloryn.com` serve la costruzione normale, quella descritta qui
-sotto.
+---
+
+## Strada C — esportazione statica su Apache (in esercizio)
+
+### Costruire la cartella
+
+```bash
+git clone https://github.com/piervanta-hash/idk.git
+cd idk
+npm ci
+node scripts/esporta-statico.mjs      # senza argomenti: per la radice del dominio
+```
+
+Nasce la cartella `out/`. Il contenuto va nella radice del sito.
+**L'argomento va passato solo per pubblicare dentro una sottocartella**
+(l'anteprima su GitHub usa `node scripts/esporta-statico.mjs "/idk"`); per
+`paloryn.com` non si passa niente.
+
+Dentro `out/` ci sono già `contact.php` e `contact-config.php.esempio`: li
+copia lo script, non vanno cercati altrove.
+
+### Far funzionare i moduli
+
+1. Sul server, rinominare `contact-config.php.esempio` in
+   **`contact-config.php`** e scriverci la password della casella. Gli
+   altri quattro valori sono già compilati.
+2. Aprire **`https://paloryn.com/contact.php`** con il browser. Risponde
+   con un riepilogo: versione di PHP, se c'è il supporto TLS, quali valori
+   mancano, se il collegamento al server di posta riesce. Non mostra mai la
+   password, solo quanti caratteri ha.
+3. Quando quella pagina dice `"pronto": true`, compilare il modulo dal sito
+   e controllare che il messaggio arrivi.
+
+`contact.php` fa esattamente quello che fa la versione Node: stesse difese
+(campo esca, tempo di compilazione, dieci invii all'ora per indirizzo),
+stesso messaggio, e il mittente è il sito con «rispondi a» impostato su chi
+ha compilato. Non usa `mail()` di PHP — fa l'accesso al server di posta del
+dominio, come farebbe un programma di posta, perché `mail()` consegna al
+server locale e finisce fra gli indesiderati.
+
+**Se l'hosting non avesse PHP**, la pagina al punto 2 non si apre proprio.
+In quel caso l'unica strada è la A o la B.
+
+### Aggiornare il sito
+
+Rifare `git pull`, `npm ci`, `node scripts/esporta-statico.mjs`, e
+ricaricare `out/`. **Senza toccare `contact-config.php`**, che vive solo
+sul server e non viene mai sovrascritto dall'esportazione.
 
 ---
 

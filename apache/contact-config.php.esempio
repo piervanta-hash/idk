@@ -1,0 +1,36 @@
+<?php
+/* ==========================================================================
+   CREDENZIALI DELLA POSTA — hosting Apache
+
+   Copiare questo file come `contact-config.php` nella stessa cartella di
+   `contact.php` (la radice del sito, accanto a index.html) e riempire i
+   valori.
+
+   IL FILE VERO NON VA MESSO SU GIT ne' consegnato a nessuno: contiene la
+   password della casella.
+
+   IL FORNITORE E' REGISTER.IT, ricavato dai DNS del dominio: paloryn.com ha
+   MX = mail.register.it e SPF = include:spf.webapps.net.
+
+   Register espone due server per la posta in uscita, esistono entrambi:
+
+       authsmtp.register.it     relay autenticato
+       smtp.register.it         stesso indirizzo di mail.register.it
+
+   Non serve indovinare quale: si mette il primo e si apre
+   https://paloryn.com/contact.php con il browser. La pagina risponde se il
+   collegamento riesce. Se non riesce, si prova l'altro nome, e poi la
+   porta 587 al posto della 465.
+
+   LA PASSWORD sta nel pannello di Register, nella gestione della casella
+   info@paloryn.com. Se la casella ha la verifica in due passaggi, quella
+   normale non funziona: serve una password dedicata alle applicazioni.
+   ========================================================================== */
+
+return [
+    'SMTP_HOST'  => 'authsmtp.register.it',
+    'SMTP_PORT'  => '465',            // 465 con TLS diretto, 587 con STARTTLS
+    'SMTP_USER'  => 'info@paloryn.com',
+    'SMTP_PASS'  => '',               // ← l'unica cosa che manca
+    'CONTACT_TO' => 'info@paloryn.com',
+];

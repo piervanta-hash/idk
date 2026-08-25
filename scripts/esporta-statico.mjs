@@ -57,14 +57,46 @@ function rimetti_a_posto() {
   fs.rmSync(riparo, { recursive: true, force: true });
 }
 
+/* IL MODULO DEVE SAPERE DOVE BUSSARE.
+
+   Senza server la rotta interna /api/contact non esiste: sul dominio
+   rispondeva 404 e nessuna richiesta partiva. Nell'esportazione il modulo
+   punta quindi al ricevitore PHP che viene copiato qui sotto.
+
+   Chi esporta per un hosting senza PHP puo' passare un indirizzo diverso:
+   `FORM_ENDPOINT=https://…/qualcosa node scripts/esporta-statico.mjs` */
+const FORM_ENDPOINT = process.env.FORM_ENDPOINT ?? `${BASE_PATH}/contact.php`;
+
 metti_al_riparo();
 try {
   execFileSync("npx", ["next", "build"], {
     stdio: "inherit",
-    env: { ...process.env, ANTEPRIMA: "1", BASE_PATH },
+    env: {
+      ...process.env,
+      ANTEPRIMA: "1",
+      BASE_PATH,
+      NEXT_PUBLIC_FORM_ENDPOINT: FORM_ENDPOINT,
+    },
   });
 } finally {
   rimetti_a_posto();
+}
+
+/* Il ricevitore dei moduli e il modello della sua configurazione viaggiano
+   con l'esportazione: chi carica la cartella si trova tutto dentro e non
+   deve sapere che esistevano da un'altra parte.
+
+   Il file con le credenziali vere non e' qui e non ci sara' mai: si crea
+   a mano sul server, una volta, partendo dal modello. */
+for (const [da, a] of [
+  ["apache/contact.php", "contact.php"],
+  ["apache/contact-config.php.esempio", "contact-config.php.esempio"],
+]) {
+  const sorgente = path.join(ROOT, da);
+  if (fs.existsSync(sorgente)) {
+    fs.copyFileSync(sorgente, path.join(ROOT, "out", a));
+    console.log(`copiato: ${a}`);
+  }
 }
 
 /* GitHub Pages passa i file attraverso Jekyll, che ignora tutto quello che
@@ -76,3 +108,4 @@ const pagine = fs
   .readdirSync(path.join(ROOT, "out"), { recursive: true })
   .filter((f) => String(f).endsWith("index.html")).length;
 console.log(`\nesportate ${pagine} pagine in out/${BASE_PATH ? ` (base ${BASE_PATH})` : ""}`);
+console.log(`i moduli invieranno a ${FORM_ENDPOINT}`);
