@@ -15,17 +15,24 @@ export function Section({
   id: string;
   eyebrow: string;
   aside?: string;
-  size?: "md" | "lg";
+  /** `sm` e' il passo stretto della home: con dieci sezioni in fila il
+   *  respiro largo faceva una pagina lunghissima. */
+  size?: "sm" | "md" | "lg";
   children: ReactNode;
 }) {
   return (
     <section
       id={id}
       className={
-        "scroll-mt-24 " + (size === "lg" ? "py-24 md:py-32 lg:py-40" : "py-24 md:py-32")
+        "scroll-mt-24 " +
+        (size === "lg"
+          ? "py-24 md:py-32 lg:py-40"
+          : size === "sm"
+            ? "py-14 md:py-20"
+            : "py-24 md:py-32")
       }
     >
-      <Reveal as="header" className="mb-12 md:mb-16">
+      <Reveal as="header" className={size === "sm" ? "mb-10 md:mb-12" : "mb-12 md:mb-16"}>
         <div className="flex items-baseline justify-between gap-6">
           <span className="eyebrow">{eyebrow}</span>
           {aside && <span className="eyebrow text-right">{aside}</span>}

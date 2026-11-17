@@ -171,18 +171,18 @@ export const home = {
     map: {
       eyebrow: "Operations",
       title: "From Lecce to the Balkans.",
-      lead: "Headquarters, laboratory and operations centre in Lecce. Three offices are about to open: Durrës, Skopje and Belgrade. Data residency stays inside the European Union and the originals never leave the building that holds them.",
+      lead: "Headquarters, laboratory and operations centre in Lecce; an operational office in Durrës. Skopje and Belgrade are about to open. Data stays inside the European Union and the originals never leave the building that holds them.",
       /* Le sedi stanno solo qui, sulla mappa: nessun'altra parte del sito
          le nomina, ed e' voluto. */
       nodes: {
         lecce: { name: "Lecce, Italy", role: "Headquarters and operations centre" },
-        durres: { name: "Durrës", role: "Opening soon" },
+        durres: { name: "Durrës", role: "Operational office" },
         skopje: { name: "Skopje", role: "Opening soon" },
         belgrade: { name: "Belgrade", role: "Opening soon" },
         rome: { name: "Rome", role: "Planned" },
         zagreb: { name: "Zagreb", role: "Planned" },
       },
-      legend: { hq: "Headquarters", soon: "Opening soon", planned: "Planned" },
+      legend: { hq: "Headquarters", office: "Operational office", soon: "Opening soon", planned: "Planned" },
     },
 
     work: {
@@ -237,7 +237,6 @@ export const home = {
        sbagliato sarebbe peggio di nessun numero. */
     team: {
       eyebrow: "People",
-      title: "The people who answer.",
       base: "gruppo",
       alt: "The Paloryn team: people in black Paloryn sweatshirts, standing and crouching among the desks and the archive shelving.",
       caption: "The Paloryn team.",
@@ -420,16 +419,16 @@ export const home = {
     map: {
       eyebrow: "Operatività",
       title: "Da Lecce ai Balcani.",
-      lead: "Sede, laboratorio e centro operativo a Lecce. Tre sedi di prossima apertura: Durazzo, Skopje e Belgrado. I dati restano nell'Unione Europea e gli originali non lasciano mai l'edificio che li custodisce.",
+      lead: "Sede, laboratorio e centro operativo a Lecce; sede operativa a Durazzo. Skopje e Belgrado sono di prossima apertura. I dati restano nell'Unione Europea e gli originali non lasciano mai l'edificio che li custodisce.",
       nodes: {
         lecce: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
-        durres: { name: "Durazzo", role: "Prossima apertura" },
+        durres: { name: "Durazzo", role: "Sede operativa" },
         skopje: { name: "Skopje", role: "Prossima apertura" },
         belgrade: { name: "Belgrado", role: "Prossima apertura" },
         rome: { name: "Roma", role: "In programma" },
         zagreb: { name: "Zagabria", role: "In programma" },
       },
-      legend: { hq: "Sede", soon: "Prossima apertura", planned: "In programma" },
+      legend: { hq: "Sede", office: "Sede operativa", soon: "Prossima apertura", planned: "In programma" },
     },
 
     work: {
@@ -481,12 +480,11 @@ export const home = {
 
     team: {
       eyebrow: "Persone",
-      title: "Le persone che rispondono.",
       base: "gruppo",
 
       alt: "La squadra di Paloryn: persone con la felpa nera Paloryn, in piedi e accovacciate tra i tavoli e gli scaffali d'archivio.",
 
-      caption: "La squadra di Paloryn.",
+      caption: "Il team di Paloryn.",
     },
 
     photos: {

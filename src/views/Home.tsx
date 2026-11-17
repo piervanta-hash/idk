@@ -6,7 +6,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/home/Headline";
 import { Extraction } from "@/components/pages/Extraction";
-import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
 import { OperationsMap } from "@/components/home/OperationsMap";
 import { SelectedWork } from "@/components/home/SelectedWork";
@@ -145,7 +144,7 @@ export function HomeView({ locale }: { locale: Locale }) {
           {/* PALORYN RISPONDE. E INDICA LA FONTE. La frase dei film, e sotto
               l'estrazione che la fa vedere: un campo alla volta, e toccando
               un campo il documento mostra da dove viene. */}
-          <Section id="extraction" eyebrow={t.data.extraction.eyebrow} aside={next()}>
+          <Section id="extraction" eyebrow={t.data.extraction.eyebrow} aside={next()} size="sm">
             <Reveal>
               <h2 className="measure-wide mb-14 text-d2 font-display font-bold text-max text-balance">
                 {t.data.title}
@@ -156,61 +155,47 @@ export function HomeView({ locale }: { locale: Locale }) {
               labels={t.data.extraction.labels}
               docHead={t.data.extraction.docHead}
               note={t.data.extraction.note}
+              pace="40vh"
             />
           </Section>
 
-          {/* LE PERSONE. La foto di gruppo, vera, a tutta colonna, subito
-              dopo l'estrazione: prima si vede che cosa fa il software, poi
-              chi c'e' dietro. Il titolo riprende la domanda del film — «da
-              domani, chi risponde?» — e risponde. Se il file manca la
-              sezione non compare. */}
-          {team && (
-            <Section id="team" eyebrow={t.team.eyebrow} aside={next()}>
-              <Reveal>
-                <h2 className="mb-12 text-d2 font-display font-bold text-max text-balance">
-                  {t.team.title}
-                </h2>
-              </Reveal>
-              <figure className="m-0">
-                <picture>
-                  <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
-                  <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={asset(`/img/archilives/${t.team.base}.jpg`)}
-                    alt={t.team.alt}
-                    width={1125}
-                    height={810}
-                    loading="lazy"
-                    decoding="async"
-                    className="block h-auto w-full border border-line"
-                  />
-                </picture>
-                <figcaption className="py-3 font-mono text-data text-label">{t.team.caption}</figcaption>
-              </figure>
-            </Section>
-          )}
-
-          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()}>
-            <Reveal>
-              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
-                {t.matrix.title}
-              </h2>
-              <Matrix columns={t.matrix.columns} rows={t.matrix.rows} />
-            </Reveal>
-          </Section>
-
-          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside={next()}>
+          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside={next()} size="sm">
             <Reveal>
               <Measurements items={t.measurements.items} />
             </Reveal>
           </Section>
 
-          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()}>
+          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()} size="sm">
             <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
               <Reveal>
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
                 <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
+
+                {/* IL TEAM, IN PICCOLO. La foto di gruppo e' uno scatto da
+                    telefono largo 1125 pixel: a tutta pagina si sgranava.
+                    Sta qui, piccola, con la didascalia accanto, nello spazio
+                    che la mappa lasciava vuoto sotto il testo: le persone
+                    accanto ai posti in cui lavorano, senza una sezione in
+                    piu' da scorrere. */}
+                {team && (
+                  <figure className="m-0 mt-10 flex items-end gap-4 border-t border-line pt-6">
+                    <picture className="block w-40 shrink-0 sm:w-48">
+                      <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
+                      <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset(`/img/archilives/${t.team.base}.jpg`)}
+                        alt={t.team.alt}
+                        width={1125}
+                        height={810}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-auto w-full border border-line"
+                      />
+                    </picture>
+                    <figcaption className="font-mono text-data text-copy">{t.team.caption}</figcaption>
+                  </figure>
+                )}
               </Reveal>
               <Reveal delay={120}>
                 <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
@@ -218,7 +203,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
           </Section>
 
-          <Section id="work" eyebrow={t.work.eyebrow} aside={next()}>
+          <Section id="work" eyebrow={t.work.eyebrow} aside={next()} size="sm">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.work.title}
@@ -237,7 +222,7 @@ export function HomeView({ locale }: { locale: Locale }) {
               verticale normale invece di quello ampio. La gerarchia la fanno
               la posizione e l'altezza dei riquadri, non una larghezza
               mozzata: con un `max-w-3xl` le persone venivano tagliate. */}
-          <Section id="field" eyebrow={t.photos.eyebrow} aside={next()}>
+          <Section id="field" eyebrow={t.photos.eyebrow} aside={next()} size="sm">
             <Reveal>
               <EventPhotos
                 caption={t.photos.caption}
@@ -254,7 +239,7 @@ export function HomeView({ locale }: { locale: Locale }) {
               mercato. Messi in apertura facevano sembrare l'azienda uno spot;
               qui, dopo le foto vere, i clienti e i numeri, raccontano lo
               stesso lavoro in un'altra forma. */}
-          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()}>
+          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()} size="sm">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold text-balance">
                 {t.films.title}

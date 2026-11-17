@@ -11,10 +11,16 @@ import { MAP_PATHS, MAP_W, MAP_H, mapX, mapY } from "@/lib/map-data";
 
    GERARCHIA DEI NODI, e vincolo di verita'.
    Nodo pieno e pulsante: Lecce, sede e centro operativo. Anello cyan
-   tratteggiato: Durazzo, Skopje e Belgrado, le tre sedi di prossima
-   apertura. Cerchietti vuoti grigi: Roma e Zagabria, che sono in programma
-   e non hanno ancora una data. La legenda sotto la mappa dichiara i tre
-   livelli, cosi' la distinzione non resta solo grafica.
+   pieno: Durazzo, sede operativa gia' attiva. Anello cyan tratteggiato:
+   Skopje e Belgrado, di prossima apertura. Cerchietti vuoti grigi: Roma e
+   Zagabria, in programma e senza una data. La legenda sotto la mappa
+   dichiara i quattro livelli, cosi' la distinzione non resta solo grafica.
+
+   LE ETICHETTE SONO SOLO IL NOME, su una riga, con un fondino scuro. Con
+   nome e ruolo su due righe, attorno a Lecce quattro etichette si
+   accavallavano fra loro e con le rotte. Il ruolo lo dice il segno, e la
+   legenda dice che cosa vuol dire ogni segno. Ogni etichetta ha un lato
+   scelto a mano per non toccare le altre: a sinistra, a destra o sotto.
 
    SUL TELEFONO le etichette non galleggiano sulla mappa: a 330 pixel di
    larghezza sei nomi non ci stanno, e un'etichetta che esce dal riquadro
@@ -22,18 +28,18 @@ import { MAP_PATHS, MAP_W, MAP_H, mapX, mapY } from "@/lib/map-data";
    Sotto la mappa c'e' l'elenco, sempre visibile, senza niente da toccare.
    ========================================================================== */
 
-type NodeKind = "hq" | "soon" | "planned";
+type NodeKind = "hq" | "office" | "soon" | "planned";
 type MapNode = {
   id: string;
   kind: NodeKind;
   lat: number;
   lon: number;
-  side: "left" | "right";
+  side: "left" | "right" | "below";
 };
 
 const NODES: MapNode[] = [
-  { id: "lecce", kind: "hq", lat: 40.35, lon: 18.17, side: "right" },
-  { id: "durres", kind: "soon", lat: 41.32, lon: 19.45, side: "left" },
+  { id: "lecce", kind: "hq", lat: 40.35, lon: 18.17, side: "below" },
+  { id: "durres", kind: "office", lat: 41.32, lon: 19.45, side: "left" },
   { id: "skopje", kind: "soon", lat: 42.0, lon: 21.43, side: "right" },
   { id: "belgrade", kind: "soon", lat: 44.8, lon: 20.46, side: "right" },
   { id: "rome", kind: "planned", lat: 41.9, lon: 12.48, side: "left" },
@@ -49,7 +55,7 @@ export function OperationsMap({
   legend,
 }: {
   nodes: Record<string, Label>;
-  legend: { hq: string; soon: string; planned: string };
+  legend: { hq: string; office: string; soon: string; planned: string };
 }) {
   const hq = NODES[0];
   const [hx, hy] = AT(hq);
@@ -114,7 +120,7 @@ export function OperationsMap({
               `pathLength` porta ogni linea a cento unita', cosi' la stessa
               animazione vale per tutte e tre anche se sono lunghe diverse:
               parte da Lecce e arriva al nodo, non a meta' strada. */}
-          {NODES.filter((n) => n.kind === "soon").map((n) => {
+          {NODES.filter((n) => n.kind === "soon" || n.kind === "office").map((n) => {
             const [x, y] = AT(n);
             return (
               <line
@@ -145,6 +151,16 @@ export function OperationsMap({
                 stroke="var(--color-mute)"
                 strokeWidth={1}
               />
+            );
+          })}
+
+          {NODES.filter((n) => n.kind === "office").map((n) => {
+            const [x, y] = AT(n);
+            return (
+              <g key={n.id}>
+                <circle cx={x} cy={y} r={5.5} fill="var(--color-bg)" stroke="var(--color-accent)" strokeWidth={1.5} />
+                <circle cx={x} cy={y} r={2} fill="var(--color-accent)" />
+              </g>
             );
           })}
 
@@ -183,24 +199,32 @@ export function OperationsMap({
           const [x, y] = AT(n);
           const left = `${(x / MAP_W) * 100}%`;
           const top = `${(y / MAP_H) * 100}%`;
-          const pos =
-            n.side === "right" ? { left, top } : { right: `${100 - (x / MAP_W) * 100}%`, top };
+          const place =
+            n.side === "right"
+              ? { style: { left, top }, cls: "ml-3 -translate-y-1/2" }
+              : n.side === "left"
+                ? {
+                    style: { right: `${100 - (x / MAP_W) * 100}%`, top },
+                    cls: "mr-3 -translate-y-1/2",
+                  }
+                : { style: { left, top }, cls: "mt-3 -translate-x-1/2" };
           return (
-            <div
+            <span
               key={n.id}
-              style={pos}
+              style={place.style}
               aria-hidden="true"
-              className="pointer-events-none absolute hidden w-max max-w-32 md:block"
+              className="pointer-events-none absolute hidden md:block"
             >
-              <div
-                className={(n.side === "right" ? "ml-4" : "mr-4 text-right") + " -translate-y-1/2"}
+              <span
+                className={
+                  "eyebrow block bg-bg/85 px-1.5 py-0.5 whitespace-nowrap " +
+                  place.cls +
+                  (n.kind === "hq" ? " text-max" : n.kind === "planned" ? " text-label" : " text-strong")
+                }
               >
-                <span className={`eyebrow block ${n.kind === "hq" ? "text-max" : "text-copy"}`}>
-                  {label.name}
-                </span>
-                <span className="mt-0.5 block text-small text-label">{label.role}</span>
-              </div>
-            </div>
+                {label.name}
+              </span>
+            </span>
           );
         })}
       </div>
@@ -227,6 +251,7 @@ export function OperationsMap({
 
       <figcaption className="mt-3 hidden flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-3 md:flex">
         <LegendMark kind="hq" label={legend.hq} />
+        <LegendMark kind="office" label={legend.office} />
         <LegendMark kind="soon" label={legend.soon} />
         <LegendMark kind="planned" label={legend.planned} />
       </figcaption>
@@ -238,6 +263,12 @@ function Mark({ kind }: { kind: NodeKind }) {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className="shrink-0">
       {kind === "hq" && <circle cx="6" cy="6" r="4" fill="var(--color-accent)" />}
+      {kind === "office" && (
+        <>
+          <circle cx="6" cy="6" r="4" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" />
+          <circle cx="6" cy="6" r="1.5" fill="var(--color-accent)" />
+        </>
+      )}
       {kind === "soon" && (
         <circle
           cx="6"

@@ -30,7 +30,7 @@ export const sr = {
       },
       {
         k: "Sedište",
-        v: "Sedište, laboratorija i operativni centar u Leću, Italija. Kancelarije koje se uskoro otvaraju u Draču, Skoplju i Beogradu.",
+        v: "Sedište, laboratorija i operativni centar u Leću, Italija; operativna kancelarija u Draču. Kancelarije koje se uskoro otvaraju u Skoplju i Beogradu.",
       },
     ],
   },

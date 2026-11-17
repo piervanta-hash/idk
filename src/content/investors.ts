@@ -45,7 +45,7 @@ export const investors = {
         },
         {
           k: "Base",
-          v: "Headquarters, laboratory and operations centre in Lecce, Italy. Offices opening soon in Durrës, Skopje and Belgrade.",
+          v: "Headquarters, laboratory and operations centre in Lecce, Italy; operational office in Durrës. Offices opening soon in Skopje and Belgrade.",
         },
       ],
     },
@@ -131,7 +131,7 @@ export const investors = {
         },
         {
           k: "Sede",
-          v: "Sede legale, laboratorio e centro operativo a Lecce. Sedi di prossima apertura a Durazzo, Skopje e Belgrado.",
+          v: "Sede legale, laboratorio e centro operativo a Lecce; sede operativa a Durazzo. Sedi di prossima apertura a Skopje e Belgrado.",
         },
       ],
     },

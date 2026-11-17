@@ -125,16 +125,16 @@ export const sr = {
   map: {
     eyebrow: "Poslovanje",
     title: "Od Leća do Balkana.",
-    lead: "Sedište, laboratorija i operativni centar u Leću. Tri kancelarije se uskoro otvaraju: Drač, Skoplje i Beograd. Podaci ostaju u Evropskoj uniji, a originali nikada ne napuštaju zgradu u kojoj se čuvaju.",
+    lead: "Sedište, laboratorija i operativni centar u Leću; operativna kancelarija u Draču. Skoplje i Beograd se uskoro otvaraju. Podaci ostaju u Evropskoj uniji, a originali nikada ne napuštaju zgradu u kojoj se čuvaju.",
     nodes: {
       lecce: { name: "Leće, Italija", role: "Sedište i operativni centar" },
-      durres: { name: "Drač", role: "Uskoro otvaranje" },
+      durres: { name: "Drač", role: "Operativna kancelarija" },
       skopje: { name: "Skoplje", role: "Uskoro otvaranje" },
       belgrade: { name: "Beograd", role: "Uskoro otvaranje" },
       rome: { name: "Rim", role: "U planu" },
       zagreb: { name: "Zagreb", role: "U planu" },
     },
-    legend: { hq: "Sedište", soon: "Uskoro otvaranje", planned: "U planu" },
+    legend: { hq: "Sedište", office: "Operativna kancelarija", soon: "Uskoro otvaranje", planned: "U planu" },
   },
 
   work: {
@@ -185,7 +185,6 @@ export const sr = {
 
   team: {
     eyebrow: "Ljudi",
-    title: "Ljudi koji odgovaraju.",
     base: "gruppo",
 
     alt: "Tim kompanije Paloryn: osobe u crnim Paloryn duksevima, stoje i čuče između stolova i arhivskih polica.",

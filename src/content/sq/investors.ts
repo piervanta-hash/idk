@@ -30,7 +30,7 @@ export const sq = {
       },
       {
         k: "Selia",
-        v: "Selia, laboratori dhe qendra operative në Lecce, Itali. Zyra që hapen së shpejti në Durrës, Shkup dhe Beograd.",
+        v: "Selia, laboratori dhe qendra operative në Lecce, Itali; zyrë operative në Durrës. Zyra që hapen së shpejti në Shkup dhe Beograd.",
       },
     ],
   },

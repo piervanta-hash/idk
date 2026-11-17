@@ -370,8 +370,11 @@
   .ex-track {
     height: auto;
   }
+  /* Il passo di scorrimento per campo: 68vh sulla pagina Anamnesis, dove
+     l'estrazione e' il soggetto; la home lo accorcia (--ex-pace) perche' li'
+     e' un passaggio fra gli altri e la pista occupava il 40% della pagina. */
   .js .ex-track {
-    height: calc((var(--ex-n) + 1) * 68vh);
+    height: calc((var(--ex-n) + 1) * var(--ex-pace, 68vh));
   }
 
   /* MOVIMENTO RIDOTTO: LA SEQUENZA RESTA, L'ANIMAZIONE NO.
@@ -387,7 +390,7 @@
      piu' corta perche' non costi quattro schermate a chi non le vuole. */
   @media (prefers-reduced-motion: reduce) {
     .js .ex-track {
-      height: calc((var(--ex-n) + 1) * 42vh);
+      height: calc((var(--ex-n) + 1) * min(var(--ex-pace, 68vh), 42vh));
     }
     .ex-fade {
       transition: none !important;

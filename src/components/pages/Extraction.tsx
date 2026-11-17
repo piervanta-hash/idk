@@ -108,11 +108,14 @@ export function Extraction({
   labels,
   docHead,
   note,
+  pace,
 }: {
   fields: readonly Field[];
   labels: Labels;
   docHead: string;
   note: string;
+  /** Scorrimento per campo, es. "40vh". Senza, quello della pagina Anamnesis. */
+  pace?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const ROW_GAP = 470 / fields.length;
@@ -203,7 +206,14 @@ export function Extraction({
   const shared = { fields, labels, docHead, revealed, p, active, picked, pick, compact };
 
   return (
-    <div ref={trackRef} className="ex-track relative" style={{ ["--ex-n" as string]: fields.length }}>
+    <div
+      ref={trackRef}
+      className="ex-track relative"
+      style={{
+        ["--ex-n" as string]: fields.length,
+        ...(pace ? { ["--ex-pace" as string]: pace } : {}),
+      }}
+    >
       <div
         className={
           "sticky top-16 flex min-h-[calc(100dvh-4rem)] flex-col justify-center md:top-20 md:min-h-[calc(100dvh-5rem)] md:py-8 " +

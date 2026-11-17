@@ -125,16 +125,16 @@ export const sq = {
   map: {
     eyebrow: "Operacionet",
     title: "Nga Lecce te Ballkani.",
-    lead: "Selia, laboratori dhe qendra operative në Lecce. Tri zyra hapen së shpejti: Durrës, Shkup dhe Beograd. Të dhënat mbeten brenda Bashkimit Evropian dhe origjinalet nuk largohen kurrë nga ndërtesa që i ruan.",
+    lead: "Selia, laboratori dhe qendra operative në Lecce; zyrë operative në Durrës. Shkupi dhe Beogradi hapen së shpejti. Të dhënat mbeten brenda Bashkimit Evropian dhe origjinalet nuk largohen kurrë nga ndërtesa që i ruan.",
     nodes: {
       lecce: { name: "Lecce, Itali", role: "Selia dhe qendra operative" },
-      durres: { name: "Durrës", role: "Hapet së shpejti" },
+      durres: { name: "Durrës", role: "Zyrë operative" },
       skopje: { name: "Shkup", role: "Hapet së shpejti" },
       belgrade: { name: "Beograd", role: "Hapet së shpejti" },
       rome: { name: "Romë", role: "Në plan" },
       zagreb: { name: "Zagreb", role: "Në plan" },
     },
-    legend: { hq: "Selia", soon: "Hapet së shpejti", planned: "Në plan" },
+    legend: { hq: "Selia", office: "Zyrë operative", soon: "Hapet së shpejti", planned: "Në plan" },
   },
 
   work: {
@@ -185,7 +185,6 @@ export const sq = {
 
   team: {
     eyebrow: "Njerëzit",
-    title: "Njerëzit që përgjigjen.",
     base: "gruppo",
 
     alt: "Ekipi i Paloryn: persona me bluzë të zezë Paloryn, në këmbë dhe ulur mes tavolinave dhe rafteve të arkivit.",
