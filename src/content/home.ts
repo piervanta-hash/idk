@@ -28,7 +28,7 @@ export const home = {
       mark: "Paloryn",
       place: "Lecce, IT · European Union",
       title: "Memory that answers.",
-      lead: "An organisation's memory cannot retire. Paloryn orders, digitizes and structures large paper archives, then makes them answer — and shows the source.",
+      lead: "An organisation's memory cannot retire. Paloryn orders, digitizes and structures large paper archives, then makes them answer.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
       film: {
@@ -41,14 +41,12 @@ export const home = {
       },
     },
 
-    /* DALLA MATERIA AL DATO. Era il titolo della testata; adesso apre il
-       punto in cui la cosa si vede succedere: la scaffalatura disegnata e,
-       subito sotto, l'estrazione. */
+    /* «PALORYN RISPONDE. E INDICA LA FONTE.» E' la frase dei film, e
+       l'estrazione la fa vedere succedere: si tocca un campo e il
+       documento mostra da dove viene. Ha preso il posto di «Dalla materia
+       al dato» e della scaffalatura disegnata, tolte su indicazione. */
     data: {
-      title: "From matter to data",
-      lead: "Every sheet becomes a structured record. Each field keeps its confidence score and the point on the page it was read from.",
-      stacks:
-        "Drawn elevation of archival shelving: file boxes, envelopes and bound volumes on six shelves, indexed one by one.",
+      title: "Paloryn answers. And shows the source.",
       /* L'estrazione e' la stessa animazione della pagina Anamnesis, ed e'
          giusto che sia la stessa: e' la cosa che l'azienda fa. In home
          apre la pagina, li' viene spiegata. Gli stessi quattro campi, con
@@ -290,7 +288,7 @@ export const home = {
       mark: "Paloryn",
       place: "Lecce, IT · Unione Europea",
       title: "La memoria che risponde.",
-      lead: "La memoria di un ente non può andare in pensione. Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi li fa rispondere — e indica la fonte.",
+      lead: "La memoria di un ente non può andare in pensione. Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi li fa rispondere.",
       primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
       film: {
@@ -304,10 +302,7 @@ export const home = {
     },
 
     data: {
-      title: "Dalla materia al dato",
-      lead: "Ogni foglio diventa un record strutturato. Ogni campo conserva il suo indice di affidabilità e il punto della pagina da cui è stato letto.",
-      stacks:
-        "Alzato disegnato di una scaffalatura d'archivio: faldoni, buste e volumi rilegati su sei ripiani, censiti uno a uno.",
+      title: "Paloryn risponde. E indica la fonte.",
       extraction: {
         eyebrow: "Estrazione",
         labels: {

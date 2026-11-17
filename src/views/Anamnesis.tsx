@@ -9,6 +9,7 @@ import { Interop } from "@/components/pages/Interop";
 import { ParcelMap } from "@/components/pages/ParcelMap";
 import { Retrieval } from "@/components/pages/Retrieval";
 import { anamnesis } from "@/content/anamnesis";
+import { asset } from "@/lib/asset";
 import { alternates, type Locale } from "@/lib/routes";
 
 export function anamnesisMetadata(locale: Locale): Metadata {
@@ -53,7 +54,35 @@ export function AnamnesisView({ locale }: { locale: Locale }) {
             {t.hero.claims.map((c) => (
               <div key={c.k}>
                 <dt className="eyebrow">{c.k}</dt>
-                <dd className="mt-2 font-mono text-data text-strong">{c.v}</dd>
+                {/* LA QUALIFICAZIONE SI MOSTRA CON I MARCHI, non con due
+                    sigle: chi compra per una PA cerca il distintivo
+                    dell'Agenzia, e una sigla in carattere mono non gli
+                    dice niente a colpo d'occhio. I due marchi sono in
+                    scala di grigi come quelli dei clienti — la palette non
+                    si rompe per un logo — e portano il nome per esteso
+                    nell'alternativo, per chi non li vede. */}
+                {"logos" in c ? (
+                  <dd className="mt-3 flex items-center gap-5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset("/img/qualifiche/acn.webp")}
+                      alt="ACN — Agenzia per la Cybersicurezza Nazionale"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12"
+                    />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset("/img/qualifiche/agid.svg")}
+                      alt="AgID — Agenzia per l'Italia Digitale"
+                      width={80}
+                      height={20}
+                      className="h-5 w-auto"
+                    />
+                  </dd>
+                ) : (
+                  <dd className="mt-2 font-mono text-data text-strong">{c.v}</dd>
+                )}
               </div>
             ))}
           </dl>

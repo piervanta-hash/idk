@@ -5,7 +5,6 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/home/Headline";
-import { Stacks } from "@/components/home/Stacks";
 import { Extraction } from "@/components/pages/Extraction";
 import { Matrix } from "@/components/home/Matrix";
 import { Measurements } from "@/components/home/Measurements";
@@ -75,22 +74,22 @@ export function HomeView({ locale }: { locale: Locale }) {
       <main id="main" tabIndex={-1} className="focus:outline-none">
         {/* LA TESTATA.
 
-            La frase della campagna, alla scala del manifesto, e il film
-            nella lingua di chi legge. E' la stessa chiusura dei film —
-            fondo nero, il segno, «Memory that answers» — cosi' chi arriva
-            da un video sui social trova la stessa voce, non un altro
-            marchio.
+            Due righe e il film. In alto la frase della campagna, a sinistra,
+            e accanto — in basso, allineate alla sua ultima riga — la frase
+            che dice che cosa fa l'azienda e i due comandi. Sotto, il film da
+            un bordo all'altro dello schermo.
 
-            Il titolo sta da solo sulla sua riga: e' corto, e diviso in una
-            colonna stretta si spezzerebbe in tre righe di una parola. Sotto,
-            il film prende otto colonne su dodici; le parole e i due comandi
-            stanno nelle quattro rimaste, in alto, dove l'occhio arriva dopo
-            il titolo.
+            Prima il film stava in una colonna, dentro un bordo, sotto un
+            titolo su tre righe: a uno schermo di computer se ne vedeva un
+            quarto, e sembrava una fotografia d'archivio. Adesso la prima
+            schermata e' quasi tutta film, ed e' giusto: e' la cosa piu'
+            forte che l'azienda ha, e dice in quarantasette secondi quello
+            che la pagina dice in tutto il resto.
 
             Nota per chi tocchera' il titolo: e' volutamente concettuale. Il
             peso descrittivo lo portano il titolo del documento e la riga di
-            testo sotto il titolo; se si toglie una delle due, la pagina
-            smette di dire di che cosa parla. */}
+            testo accanto; se si toglie una delle due, la pagina smette di
+            dire di che cosa parla. */}
         <section>
           <div className="shell">
             <div className="flex items-baseline justify-between gap-6 border-b border-line pt-4 pb-3">
@@ -98,58 +97,38 @@ export function HomeView({ locale }: { locale: Locale }) {
               <span className="eyebrow text-right">{t.hero.place}</span>
             </div>
 
-            <div className="pt-12 pb-16 md:pt-20 md:pb-24">
+            {/* Il titolo prende tutta la riga: in una colonna da otto
+                dodicesimi «memoria» non ci stava e il browser la spezzava in
+                «memo-ria». Sotto, in una riga sola, la frase e i comandi. */}
+            <div className="pt-10 pb-10 md:pt-14 lg:pb-12">
               <Headline text={t.hero.title} />
-
-              <div className="mt-10 grid items-start gap-10 md:mt-14 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-4">
-                  <p className="measure text-body-l text-copy">{t.hero.lead}</p>
-                  <div className="mt-10 flex flex-col gap-4">
-                    <ButtonLink
-                      href={t.hero.primary.href}
-                      variant="primary"
-                      size="lg"
-                      className="sm:w-fit"
-                    >
-                      {t.hero.primary.label}
-                    </ButtonLink>
-                    <ButtonLink
-                      href={t.hero.secondary.href}
-                      variant="secondary"
-                      size="lg"
-                      arrow
-                      className="sm:w-fit"
-                    >
-                      {t.hero.secondary.label}
-                    </ButtonLink>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-8">
-                  <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} />
+              <div className="mt-8 flex flex-col gap-8 lg:mt-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+                <p className="measure text-body-l text-copy">{t.hero.lead}</p>
+                <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+                  <ButtonLink href={t.hero.primary.href} variant="primary" size="md">
+                    {t.hero.primary.label}
+                  </ButtonLink>
+                  <ButtonLink href={t.hero.secondary.href} variant="secondary" size="md" arrow>
+                    {t.hero.secondary.label}
+                  </ButtonLink>
                 </div>
               </div>
             </div>
           </div>
+
+          <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} />
         </section>
 
         <div className="shell">
-          {/* DALLA MATERIA AL DATO. Era il titolo della testata, ed e' ancora
-              la frase giusta: qui sta accanto a quello che descrive. La
-              scaffalatura disegnata e' la materia; sotto, l'estrazione e' il
-              dato che ne esce, un campo alla volta. */}
+          {/* PALORYN RISPONDE. E INDICA LA FONTE. La frase dei film, e sotto
+              l'estrazione che la fa vedere: un campo alla volta, e toccando
+              un campo il documento mostra da dove viene. */}
           <Section id="extraction" eyebrow={t.data.extraction.eyebrow} aside={next()}>
-            <div className="mb-16 grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-7">
-                <h2 className="text-d2 font-display font-bold text-max text-balance">
-                  {t.data.title}
-                </h2>
-                <p className="measure mt-8 text-body-l text-copy">{t.data.lead}</p>
-              </Reveal>
-              <div className="lg:col-span-5">
-                <Stacks label={t.data.stacks} />
-              </div>
-            </div>
+            <Reveal>
+              <h2 className="measure-wide mb-14 text-d2 font-display font-bold text-max text-balance">
+                {t.data.title}
+              </h2>
+            </Reveal>
             <Extraction
               fields={t.data.extraction.fields}
               labels={t.data.extraction.labels}
@@ -161,7 +140,7 @@ export function HomeView({ locale }: { locale: Locale }) {
           {/* GLI SCENARI. Quattro film, quattro mercati, la stessa domanda.
               Stanno subito dopo l'estrazione perche' rispondono alla domanda
               che l'estrazione lascia aperta: d'accordo, ma a chi serve? */}
-          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()} size="lg">
+          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()}>
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold text-balance">
                 {t.films.title}
@@ -171,49 +150,10 @@ export function HomeView({ locale }: { locale: Locale }) {
             <p className="mt-4 text-small text-label">{t.films.note}</p>
           </Section>
 
-          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()} size="lg">
-            <Reveal>
-              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
-                {t.matrix.title}
-              </h2>
-              <Matrix columns={t.matrix.columns} rows={t.matrix.rows} />
-            </Reveal>
-          </Section>
-
-          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside={next()} size="lg">
-            <Reveal>
-              <Measurements items={t.measurements.items} />
-            </Reveal>
-          </Section>
-
-          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()} size="lg">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
-              <Reveal>
-                <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
-                <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
-              </Reveal>
-              <Reveal delay={120}>
-                <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
-              </Reveal>
-            </div>
-          </Section>
-
-          <Section id="work" eyebrow={t.work.eyebrow} aside={next()} size="lg">
-            <Reveal>
-              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
-                {t.work.title}
-              </h2>
-              <SelectedWork
-                items={t.work.items}
-                alsoLabel={t.work.alsoLabel}
-                also={t.work.also}
-                cta={t.work.cta}
-              />
-            </Reveal>
-          </Section>
-
           {/* LA SQUADRA. Una fotografia sola, grande, a colori: e' l'unico
-              punto della pagina in cui l'azienda mostra chi la fa. Compare
+              punto della pagina in cui l'azienda mostra chi la fa. Sta
+              subito dopo gli scenari: dopo «che cosa succede» viene «chi lo
+              fa», prima dei numeri. Compare
               solo se il file c'e' — vedi src/lib/photos.ts. */}
           {team && (
             <Section id="team" eyebrow={t.team.eyebrow} aside={next()}>
@@ -241,6 +181,47 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Section>
           )}
 
+          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()}>
+            <Reveal>
+              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
+                {t.matrix.title}
+              </h2>
+              <Matrix columns={t.matrix.columns} rows={t.matrix.rows} />
+            </Reveal>
+          </Section>
+
+          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside={next()}>
+            <Reveal>
+              <Measurements items={t.measurements.items} />
+            </Reveal>
+          </Section>
+
+          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()}>
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
+              <Reveal>
+                <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
+                <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
+              </Reveal>
+              <Reveal delay={120}>
+                <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
+              </Reveal>
+            </div>
+          </Section>
+
+          <Section id="work" eyebrow={t.work.eyebrow} aside={next()}>
+            <Reveal>
+              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
+                {t.work.title}
+              </h2>
+              <SelectedWork
+                items={t.work.items}
+                alsoLabel={t.work.alsoLabel}
+                also={t.work.also}
+                cta={t.work.cta}
+              />
+            </Reveal>
+          </Section>
+
           {/* ARCHILIVES e' una commessa fra le altre, non il mestiere
               dell'azienda: sta piu' in basso dei progetti e ha il respiro
               verticale normale invece di quello ampio. La gerarchia la fanno
@@ -257,7 +238,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="contact" eyebrow={t.cta.eyebrow} aside={next()} size="lg">
+          <Section id="contact" eyebrow={t.cta.eyebrow} aside={next()}>
             <Reveal>
               <h2 className="text-d2 font-display font-bold">{t.cta.title}</h2>
               <p className="measure-wide mt-8 text-body-l text-copy">{t.cta.lead}</p>

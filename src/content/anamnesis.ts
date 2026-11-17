@@ -34,7 +34,7 @@ export const anamnesis = {
         /* Qualificazione per la Pubblica Amministrazione, come da
            indicazione del committente. Il livello esatto della
            qualificazione ACN non e' stato fornito e non viene scritto. */
-        { k: "Qualification", v: "ACN · AgID" },
+        { k: "Qualification", v: "ACN · AgID", logos: true },
       ],
     },
 
@@ -194,7 +194,7 @@ export const anamnesis = {
         { k: "Estrazione", v: "AI, affidabilità per campo" },
         { k: "Provenienza", v: "posizione sulla pagina" },
         { k: "Interoperabilità", v: "PDND · pagoPA · SPID/CIE · App IO" },
-        { k: "Qualificazione", v: "ACN · AgID" },
+        { k: "Qualificazione", v: "ACN · AgID", logos: true },
       ],
     },
 

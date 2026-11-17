@@ -6,7 +6,7 @@ export const sr = {
     mark: "Paloryn",
     place: "Lecce, IT · Evropska unija",
     title: "Memorija koja odgovara.",
-    lead: "Memorija jedne institucije ne može da ode u penziju. Paloryn sređuje, digitalizuje i strukturira velike papirne arhive, a zatim ih navodi da odgovaraju — i navodi izvor.",
+    lead: "Memorija jedne institucije ne može da ode u penziju. Paloryn sređuje, digitalizuje i strukturira velike papirne arhive, a zatim omogućava da te arhive odgovaraju.",
     primary: { label: "Zatražite obilazak", href: "/sr/kompanija#contact" },
     secondary: { label: "Upoznajte Anamnesis", href: "/sr/anamnesis" },
     film: {
@@ -20,10 +20,7 @@ export const sr = {
   },
 
   data: {
-    title: "Od materije do podatka",
-    lead: "Svaki list postaje strukturirani zapis. Svako polje čuva svoj indeks pouzdanosti i mesto na stranici sa kog je pročitano.",
-    stacks:
-      "Nacrt arhivskih polica: kutije sa spisima, koverte i ukoričeni tomovi na šest polica, popisani jedan po jedan.",
+    title: "Paloryn odgovara. I navodi izvor.",
     extraction: {
       eyebrow: "Ekstrakcija",
       labels: {

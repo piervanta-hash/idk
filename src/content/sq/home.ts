@@ -6,7 +6,7 @@ export const sq = {
     mark: "Paloryn",
     place: "Lecce, IT · Bashkimi Evropian",
     title: "Kujtesa që përgjigjet.",
-    lead: "Kujtesa e një institucioni nuk mund të dalë në pension. Paloryn rendit, digjitalizon dhe strukturon arkiva të mëdha në letër, pastaj i bën të përgjigjen — dhe tregon burimin.",
+    lead: "Kujtesa e një institucioni nuk mund të dalë në pension. Paloryn rendit, digjitalizon dhe strukturon arkiva të mëdha në letër, pastaj i bën të përgjigjen.",
     primary: { label: "Kërkoni një inspektim", href: "/sq/kompania#contact" },
     secondary: { label: "Zbuloni Anamnesis", href: "/sq/anamnesis" },
     film: {
@@ -20,10 +20,7 @@ export const sq = {
   },
 
   data: {
-    title: "Nga materia te të dhënat",
-    lead: "Çdo fletë bëhet një regjistrim i strukturuar. Çdo fushë ruan shkallën e vet të besueshmërisë dhe pikën e faqes nga u lexua.",
-    stacks:
-      "Pamje e vizatuar e rafteve të arkivit: kuti dosjesh, zarfe dhe vëllime të lidhura në gjashtë rafte, të inventarizuara një nga një.",
+    title: "Paloryn përgjigjet. Dhe tregon burimin.",
     extraction: {
       eyebrow: "Nxjerrja",
       labels: {

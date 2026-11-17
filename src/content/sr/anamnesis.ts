@@ -16,7 +16,7 @@ export const sr = {
       { k: "Ekstrakcija", v: "AI, pouzdanost po polju" },
       { k: "Poreklo", v: "položaj na stranici" },
       { k: "Interoperabilnost", v: "PDND · pagoPA · SPID/CIE · App IO" },
-      { k: "Kvalifikacija", v: "ACN · AgID" },
+      { k: "Kvalifikacija", v: "ACN · AgID", logos: true },
     ],
   },
 

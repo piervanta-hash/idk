@@ -106,10 +106,18 @@ export function HeroFilm({
 
   return (
     <figure className="m-0">
-      <div className="relative aspect-video overflow-hidden border border-line bg-surface-1">
+      {/* A TUTTA LARGHEZZA. Il film e' la cosa piu' forte che l'azienda ha:
+          in una colonna da 780 pixel, con un bordo intorno, sembrava una
+          foto d'archivio. Qui va da un bordo all'altro dello schermo, come
+          al cinema. Non viene mai ritagliato: i testi impressi stanno in alto
+          e in basso, e un ritaglio li taglierebbe a meta'. Solo sugli
+          schermi piu' larghi del 16:9 (gli ultrawide) il film si ferma
+          all'altezza dello schermo e restano due bande ai lati, nere come
+          il fondo. */}
+      <div className="relative bg-bg">
         <video
           ref={ref}
-          className="block h-full w-full object-cover"
+          className="mx-auto block aspect-video max-h-[100svh] w-full object-contain"
           src={asset(src)}
           poster={asset(poster)}
           width={1280}
@@ -126,7 +134,7 @@ export function HeroFilm({
 
       {/* I comandi stanno sotto il film, non sopra: sopra coprirebbero i
           testi a schermo, che sono meta' del film. */}
-      <figcaption className="flex items-center justify-between gap-4 border-b border-line">
+      <figcaption className="shell flex items-center justify-between gap-4 border-b border-line">
         <button
           type="button"
           onClick={toggle}

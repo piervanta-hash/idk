@@ -18,7 +18,7 @@ export const sq = {
       { k: "Nxjerrja", v: "AI, besueshmëri për çdo fushë" },
       { k: "Proveniensa", v: "pozicioni në faqe" },
       { k: "Ndërveprimi", v: "PDND · pagoPA · SPID/CIE · App IO" },
-      { k: "Kualifikimi", v: "ACN · AgID" },
+      { k: "Kualifikimi", v: "ACN · AgID", logos: true },
     ],
   },
 
