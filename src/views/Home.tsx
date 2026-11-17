@@ -13,6 +13,7 @@ import { SelectedWork } from "@/components/home/SelectedWork";
 import { EventPhotos } from "@/components/home/EventPhotos";
 import { HeroFilm } from "@/components/home/HeroFilm";
 import { Films } from "@/components/home/Films";
+import { HeroLoop } from "@/components/home/HeroLoop";
 import { asset } from "@/lib/asset";
 import { filmFor, heroFilm } from "@/lib/films";
 import { home } from "@/content/home";
@@ -72,78 +73,72 @@ export function HomeView({ locale }: { locale: Locale }) {
       <Header locale={locale} page="home" />
 
       <main id="main" tabIndex={-1} className="focus:outline-none">
-        {/* LA TESTATA.
+        {/* LA TESTATA: IL FILM, CON DENTRO LE PAROLE.
 
-            Due righe e il film. In alto la frase della campagna, a sinistra,
-            e accanto — in basso, allineate alla sua ultima riga — la frase
-            che dice che cosa fa l'azienda e i due comandi. Sotto, il film da
-            un bordo all'altro dello schermo.
+            Il riquadro e' il film, da un bordo all'altro dello schermo, e il
+            titolo, la frase e i pulsanti ci stanno dentro, in basso a
+            sinistra. Il film qui e' il giro muto di sei secondi senza scritte
+            (vedi HeroLoop): con il film intero le frasi impresse finivano
+            sotto il titolo. Il film completo, con l'audio, si apre dal
+            comando «Riproduci il film», che porta alla sezione Campagna.
 
-            Prima il film stava in una colonna, dentro un bordo, sotto un
-            titolo su tre righe: a uno schermo di computer se ne vedeva un
-            quarto, e sembrava una fotografia d'archivio. Adesso la prima
-            schermata e' quasi tutta film, ed e' giusto: e' la cosa piu'
-            forte che l'azienda ha, e dice in quarantasette secondi quello
-            che la pagina dice in tutto il resto.
+            Due velature tengono leggibile il testo: da sinistra sul computer,
+            dove la signora sta a destra; dal basso sul telefono, dove il
+            riquadro e' verticale e il testo sta sotto di lei.
+
+            Sul telefono il riquadro e' alto quasi quanto lo schermo e il
+            film e' ritagliato sulla signora; sul computer ha le proporzioni
+            del film (766 su 1600, cioe' il 47,875% della larghezza), mai meno
+            di 600 pixel e mai piu' del 92% dello schermo. NON usare
+            `aspect-ratio` insieme a un'altezza minima: il browser trasferisce
+            il minimo alla larghezza, e su un tablet il riquadro usciva dallo
+            schermo di 500 pixel.
 
             Nota per chi tocchera' il titolo: e' volutamente concettuale. Il
             peso descrittivo lo portano il titolo del documento e la riga di
-            testo accanto; se si toglie una delle due, la pagina smette di
-            dire di che cosa parla. */}
-        <section>
-          <div className="shell">
-            <div className="flex items-baseline justify-between gap-6 border-b border-line pt-4 pb-3">
-              <span className="eyebrow">{t.hero.mark}</span>
-              <span className="eyebrow text-right">{t.hero.place}</span>
-            </div>
+            testo sotto; se si toglie una delle due, la pagina smette di dire
+            di che cosa parla. */}
+        <section className="relative isolate flex min-h-[86svh] flex-col justify-end overflow-hidden border-b border-line md:h-[clamp(600px,47.875vw,92svh)] md:min-h-0">
+          <HeroLoop />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-bg from-30% via-bg/75 via-60% to-bg/10 md:bg-gradient-to-r md:from-0% md:via-50% md:from-bg/95 md:via-bg/55 md:to-bg/0"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 hidden h-1/3 bg-gradient-to-t from-bg/80 to-bg/0 md:block"
+          />
 
-            {/* Il titolo prende tutta la riga: in una colonna da otto
-                dodicesimi «memoria» non ci stava e il browser la spezzava in
-                «memo-ria». Sotto, in una riga sola, la frase e i comandi. */}
-            <div className="pt-10 pb-10 md:pt-14 lg:pb-12">
-              <Headline text={t.hero.title} />
-              <div className="mt-8 flex flex-col gap-8 lg:mt-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-                <p className="measure text-body-l text-copy">{t.hero.lead}</p>
-                <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-                  <ButtonLink href={t.hero.primary.href} variant="primary" size="md">
-                    {t.hero.primary.label}
-                  </ButtonLink>
-                  <ButtonLink href={t.hero.secondary.href} variant="secondary" size="md" arrow>
-                    {t.hero.secondary.label}
-                  </ButtonLink>
-                </div>
-              </div>
+          <div className="shell relative pt-28 pb-10 md:pb-14">
+            <span className="eyebrow block text-strong">{t.hero.place}</span>
+            <div className="mt-5 max-w-[48rem]">
+              <Headline text={t.hero.title} max="6rem" />
+            </div>
+            <p className="measure mt-6 text-body-l text-strong">{t.hero.lead}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <ButtonLink href={t.hero.primary.href} variant="primary" size="md">
+                {t.hero.primary.label}
+              </ButtonLink>
+              <ButtonLink
+                href={t.hero.secondary.href}
+                variant="secondary"
+                size="md"
+                arrow
+                className="bg-bg/40 backdrop-blur-sm"
+              >
+                {t.hero.secondary.label}
+              </ButtonLink>
+              <a
+                href="#film"
+                className="eyebrow inline-flex min-h-11 items-center gap-2 text-strong transition-colors hover:text-accent sm:ml-4"
+              >
+                <svg width="8" height="10" viewBox="0 0 12 14" aria-hidden="true">
+                  <path d="M0 0 L12 7 L0 14 Z" fill="currentColor" />
+                </svg>
+                {t.hero.film.play} · 0:47
+              </a>
             </div>
           </div>
-
-          {/* LA FOTO VERA, A TUTTA LARGHEZZA. Il laboratorio di Lecce con le
-              persone al lavoro. Qui c'era il film della campagna, che e'
-              girato con attori ricostruiti: come prima cosa del sito diceva
-              «spot», non «azienda». Chi deve affidarci un archivio vuole
-              vedere dove andra' e chi lo tocchera'. Il film resta, piu' in
-              basso, dichiarato per quello che e'.
-
-              E' l'immagine che decide il primo caricamento: si scarica
-              subito e con priorita' alta, in AVIF da 120 KB. */}
-          <figure className="m-0">
-            <picture>
-              <source srcSet={asset("/img/laboratorio/apertura.avif")} type="image/avif" />
-              <source srcSet={asset("/img/laboratorio/apertura.webp")} type="image/webp" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={asset("/img/laboratorio/apertura.jpg")}
-                alt={t.hero.photo.alt}
-                width={2400}
-                height={1088}
-                fetchPriority="high"
-                decoding="async"
-                className="block h-auto max-h-[80svh] w-full object-cover"
-              />
-            </picture>
-            <figcaption className="shell border-b border-line py-3 font-mono text-data text-label">
-              {t.hero.photo.caption}
-            </figcaption>
-          </figure>
         </section>
 
         <div className="shell">
@@ -164,21 +159,19 @@ export function HomeView({ locale }: { locale: Locale }) {
             />
           </Section>
 
-          {/* IL LABORATORIO. Le fotografie vere, a colori, subito dopo
-              l'estrazione: prima si vede che cosa fa il software, poi dove e
-              da chi viene fatto il lavoro. Se c'e' la foto di gruppo, apre
-              il blocco a tutta riga. */}
-          <Section id="lab" eyebrow={t.lab.eyebrow} aside={next()}>
-            <Reveal>
-              <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
-                <h2 className="text-d2 font-display font-bold text-max text-balance lg:col-span-7">
-                  {t.lab.title}
+          {/* LE PERSONE. La foto di gruppo, vera, a tutta colonna, subito
+              dopo l'estrazione: prima si vede che cosa fa il software, poi
+              chi c'e' dietro. Il titolo riprende la domanda del film — «da
+              domani, chi risponde?» — e risponde. Se il file manca la
+              sezione non compare. */}
+          {team && (
+            <Section id="team" eyebrow={t.team.eyebrow} aside={next()}>
+              <Reveal>
+                <h2 className="mb-12 text-d2 font-display font-bold text-max text-balance">
+                  {t.team.title}
                 </h2>
-                <p className="measure text-body-l text-copy lg:col-span-5">{t.lab.lead}</p>
-              </div>
-            </Reveal>
-            {team && (
-              <figure className="m-0 mb-px">
+              </Reveal>
+              <figure className="m-0">
                 <picture>
                   <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
                   <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
@@ -186,42 +179,17 @@ export function HomeView({ locale }: { locale: Locale }) {
                   <img
                     src={asset(`/img/archilives/${t.team.base}.jpg`)}
                     alt={t.team.alt}
-                    width={1600}
-                    height={1000}
+                    width={1125}
+                    height={810}
                     loading="lazy"
                     decoding="async"
-                    className="block h-auto w-full"
+                    className="block h-auto w-full border border-line"
                   />
                 </picture>
                 <figcaption className="py-3 font-mono text-data text-label">{t.team.caption}</figcaption>
               </figure>
-            )}
-            <ul className="m-0 grid list-none gap-px bg-line p-0 sm:grid-cols-3">
-              {t.lab.items.map((it) => (
-                <li key={it.base} className="bg-bg">
-                  <figure className="m-0">
-                    <picture>
-                      <source srcSet={asset(`/img/laboratorio/${it.base}.avif`)} type="image/avif" />
-                      <source srcSet={asset(`/img/laboratorio/${it.base}.webp`)} type="image/webp" />
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={asset(`/img/laboratorio/${it.base}.jpg`)}
-                        alt={it.alt}
-                        width={900}
-                        height={1120}
-                        loading="lazy"
-                        decoding="async"
-                        className="block aspect-[4/5] h-auto w-full object-cover"
-                      />
-                    </picture>
-                    <figcaption className="py-3 font-mono text-data text-label sm:px-3">
-                      {it.caption}
-                    </figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          </Section>
+            </Section>
+          )}
 
           <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()}>
             <Reveal>
@@ -292,7 +260,7 @@ export function HomeView({ locale }: { locale: Locale }) {
                 {t.films.title}
               </h2>
             </Reveal>
-            <div className="mb-px">
+            <div id="film" className="mb-px scroll-mt-24">
               <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} inset />
             </div>
             <div className="mt-10">

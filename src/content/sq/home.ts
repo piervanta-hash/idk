@@ -17,10 +17,6 @@ export const sq = {
       soundOn: "Aktivizo zërin",
       soundOff: "Çaktivizo zërin",
     },
-    photo: {
-      alt: "Laboratori Paloryn në Lecce: kolegë që skanojnë dosje në skanerët e prodhimit, pirgje dosjesh mbi tavolina.",
-      caption: "Laboratori Paloryn, Lecce.",
-    },
   },
 
   data: {
@@ -59,17 +55,6 @@ export const sq = {
         },
       ],
     },
-  },
-
-  lab: {
-    eyebrow: "Laboratori",
-    title: "Ku letra bëhet e dhënë.",
-    lead: "Laboratori ynë në Lecce. Dosjet mbërrijnë, renditen, skanohen dhe kontrollohen nga njerëz që përgjigjen për to.",
-    items: [
-      { base: "lavorazione", caption: "Përpunim dhe kontroll.", alt: "Tavolina të laboratorit me dosje të hapura, laptopë dhe një skaner prodhimi; kolegë në punë në sfond." },
-      { base: "galatina", caption: "Arkivi i ndërtimeve i Galatinës, në laborator.", alt: "Rafte të laboratorit me dosjet e Comune di Galatina, me tabelën mbi raft." },
-      { base: "squadra", caption: "Takim pune.", alt: "Një pjesë e ekipit e mbledhur rreth një tavoline në laborator, mes rafteve plot me dosje." },
-    ],
   },
 
   films: {
@@ -131,7 +116,7 @@ export const sq = {
     eyebrow: "Matje",
     items: [
       { value: "1", unit: "km+", label: "metra lineare arkivi në menaxhim" },
-      { value: "10", unit: "M+", label: "faqe të digjitalizuara deri sot" },
+      { value: "150", unit: "M+", label: "faqe të digjitalizuara deri sot" },
       { value: "20", unit: "+", label: "specialistë në staf" },
       { value: "EU", label: "rezidenca e të dhënave", note: "modelet AI ekzekutohen lokalisht" },
     ],
@@ -200,9 +185,12 @@ export const sq = {
 
   team: {
     eyebrow: "Njerëzit",
+    title: "Njerëzit që përgjigjen.",
     base: "gruppo",
-    alt: "Ekipi i Paloryn, me bluza të zeza Paloryn, së bashku në laboratorin e Lecces mes rafteve të arkivit.",
-    caption: "Ekipi i Paloryn në laboratorin e Lecces.",
+
+    alt: "Ekipi i Paloryn: persona me bluzë të zezë Paloryn, në këmbë dhe ulur mes tavolinave dhe rafteve të arkivit.",
+
+    caption: "Ekipi i Paloryn.",
   },
 
   photos: {

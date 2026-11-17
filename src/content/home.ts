@@ -39,10 +39,6 @@ export const home = {
         soundOn: "Sound on",
         soundOff: "Sound off",
       },
-      photo: {
-        alt: "The Paloryn laboratory in Lecce: colleagues scanning files at production scanners, stacks of folders on the desks.",
-        caption: "The Paloryn laboratory, Lecce.",
-      },
     },
 
     /* «PALORYN RISPONDE. E INDICA LA FONTE.» E' la frase dei film, e
@@ -106,16 +102,6 @@ export const home = {
 
     /* I QUATTRO FILM DI SCENARIO. Qui stanno solo le parole: quale file
        corrisponde a quale lingua lo sa `src/lib/films.ts`. */
-    lab: {
-      eyebrow: "Laboratory",
-      title: "Where paper becomes data.",
-      lead: "Our own laboratory in Lecce. Files arrive, are ordered, scanned and checked by the people who answer for them.",
-      items: [
-        { base: "lavorazione", caption: "Processing and checking.", alt: "Laboratory desks with open files, laptops and a production scanner; colleagues at work in the background." },
-        { base: "galatina", caption: "The Galatina building archive, in the laboratory.", alt: "Laboratory shelving with binders from the Comune di Galatina, labelled on the shelf." },
-        { base: "squadra", caption: "Work meeting.", alt: "Part of the team gathered around a desk in the laboratory, between shelving full of binders." },
-      ],
-    },
 
     films: {
       eyebrow: "Campaign",
@@ -176,7 +162,7 @@ export const home = {
       eyebrow: "Measurements",
       items: [
         { value: "1", unit: "km+", label: "shelf metres under management" },
-        { value: "10", unit: "M+", label: "pages digitized to date" },
+        { value: "150", unit: "M+", label: "pages digitized to date" },
         { value: "20", unit: "+", label: "specialists on staff" },
         { value: "EU", label: "data residency", note: "AI models run locally" },
       ],
@@ -245,14 +231,16 @@ export const home = {
       cta: { label: "All customers", href: "/en/customers" },
     },
 
-    /* LA FOTO DI GRUPPO. Compare solo se il file esiste
-       (public/img/archilives/gruppo.*): finche' non c'e', la sezione non
-       viene disegnata e non lascia buchi. */
+    /* LA FOTO DI GRUPPO, in public/img/archilives/gruppo.* (preparata da
+       scripts/build-photos.mjs). Se il file manca, la sezione non viene
+       disegnata e non lascia buchi. L'alt non conta le persone: un numero
+       sbagliato sarebbe peggio di nessun numero. */
     team: {
       eyebrow: "People",
+      title: "The people who answer.",
       base: "gruppo",
-      alt: "The Paloryn team, in black Paloryn sweatshirts, standing together in the Lecce laboratory among the archive shelving.",
-      caption: "The Paloryn team in the Lecce laboratory.",
+      alt: "The Paloryn team: people in black Paloryn sweatshirts, standing and crouching among the desks and the archive shelving.",
+      caption: "The Paloryn team.",
     },
 
     /* Fotografie dell'info day ARCHILIVES: l'unico posto del sito dove
@@ -314,10 +302,6 @@ export const home = {
         soundOn: "Attiva l'audio",
         soundOff: "Disattiva l'audio",
       },
-      photo: {
-        alt: "Il laboratorio Paloryn a Lecce: colleghe alla scansione dei fascicoli agli scanner di produzione, pile di cartelle sui tavoli.",
-        caption: "Il laboratorio Paloryn, Lecce.",
-      },
     },
 
     data: {
@@ -366,17 +350,6 @@ export const home = {
           },
         ],
       },
-    },
-
-    lab: {
-      eyebrow: "Laboratorio",
-      title: "Dove la carta diventa dato.",
-      lead: "Il nostro laboratorio a Lecce. I fascicoli arrivano, vengono riordinati, scansionati e controllati da persone che ne rispondono.",
-      items: [
-        { base: "lavorazione", caption: "Lavorazione e controllo.", alt: "Tavoli del laboratorio con fascicoli aperti, portatili e uno scanner di produzione; colleghi al lavoro sullo sfondo." },
-        { base: "galatina", caption: "L'archivio edilizio di Galatina, in laboratorio.", alt: "Scaffalature del laboratorio con i faldoni del Comune di Galatina, con il cartello sullo scaffale." },
-        { base: "squadra", caption: "Riunione di lavoro.", alt: "Parte della squadra riunita attorno a un tavolo del laboratorio, tra scaffali pieni di faldoni." },
-      ],
     },
 
     films: {
@@ -438,7 +411,7 @@ export const home = {
       eyebrow: "Misure",
       items: [
         { value: "1", unit: "km+", label: "metri lineari in gestione" },
-        { value: "10", unit: "M+", label: "pagine digitalizzate a oggi" },
+        { value: "150", unit: "M+", label: "pagine digitalizzate a oggi" },
         { value: "20", unit: "+", label: "specialisti in organico" },
         { value: "EU", label: "residenza dei dati", note: "modelli AI eseguiti in locale" },
       ],
@@ -508,9 +481,12 @@ export const home = {
 
     team: {
       eyebrow: "Persone",
+      title: "Le persone che rispondono.",
       base: "gruppo",
-      alt: "La squadra di Paloryn, in felpa nera Paloryn, riunita nel laboratorio di Lecce tra le scaffalature d'archivio.",
-      caption: "La squadra di Paloryn nel laboratorio di Lecce.",
+
+      alt: "La squadra di Paloryn: persone con la felpa nera Paloryn, in piedi e accovacciate tra i tavoli e gli scaffali d'archivio.",
+
+      caption: "La squadra di Paloryn.",
     },
 
     photos: {

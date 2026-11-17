@@ -17,10 +17,6 @@ export const sr = {
       soundOn: "Uključi zvuk",
       soundOff: "Isključi zvuk",
     },
-    photo: {
-      alt: "Laboratorija kompanije Paloryn u Leću: kolege skeniraju spise na produkcionim skenerima, gomile fascikli na stolovima.",
-      caption: "Laboratorija Paloryn, Leće.",
-    },
   },
 
   data: {
@@ -59,17 +55,6 @@ export const sr = {
         },
       ],
     },
-  },
-
-  lab: {
-    eyebrow: "Laboratorija",
-    title: "Gde papir postaje podatak.",
-    lead: "Naša laboratorija u Leću. Spisi stižu, sređuju se, skeniraju i proveravaju ih ljudi koji za njih odgovaraju.",
-    items: [
-      { base: "lavorazione", caption: "Obrada i provera.", alt: "Stolovi u laboratoriji sa otvorenim spisima, laptopovima i produkcionim skenerom; kolege na poslu u pozadini." },
-      { base: "galatina", caption: "Građevinska arhiva opštine Galatina, u laboratoriji.", alt: "Police u laboratoriji sa registratorima opštine Galatina, sa natpisom na polici." },
-      { base: "squadra", caption: "Radni sastanak.", alt: "Deo tima okupljen oko stola u laboratoriji, između polica punih registratora." },
-    ],
   },
 
   films: {
@@ -131,7 +116,7 @@ export const sr = {
     eyebrow: "Mere",
     items: [
       { value: "1", unit: "km+", label: "dužnih metara arhive pod upravljanjem" },
-      { value: "10", unit: "M+", label: "stranica digitalizovano do danas" },
+      { value: "150", unit: "M+", label: "stranica digitalizovano do danas" },
       { value: "20", unit: "+", label: "stručnjaka u timu" },
       { value: "EU", label: "rezidentnost podataka", note: "AI modeli rade lokalno" },
     ],
@@ -200,9 +185,12 @@ export const sr = {
 
   team: {
     eyebrow: "Ljudi",
+    title: "Ljudi koji odgovaraju.",
     base: "gruppo",
-    alt: "Tim kompanije Paloryn, u crnim Paloryn duksevima, zajedno u laboratoriji u Leću među arhivskim policama.",
-    caption: "Tim kompanije Paloryn u laboratoriji u Leću.",
+
+    alt: "Tim kompanije Paloryn: osobe u crnim Paloryn duksevima, stoje i čuče između stolova i arhivskih polica.",
+
+    caption: "Tim kompanije Paloryn.",
   },
 
   photos: {

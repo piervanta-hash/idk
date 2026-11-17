@@ -24,7 +24,7 @@ export function Measurements({ items }: { items: readonly Item[] }) {
   return (
     <div
       ref={ref}
-      className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-5"
+      className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
     >
       {items.map((m) => (
         <div key={m.label} className="flex flex-col border-t border-line pt-4">

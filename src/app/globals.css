@@ -165,10 +165,9 @@
        Questa regola interviene solo quando una parola non entrerebbe
        nemmeno da sola su una riga: sul testo normale non ha alcun
        effetto, ma garantisce che niente venga mai tagliato via.
-       Con la sillabazione attiva, il taglio cade dove la lingua lo
-       prevede (l'attributo `lang` della pagina dice al browser quale). */
+       Niente sillabazione automatica: il browser spezzava anche parole
+       che sarebbero state benissimo intere sulla riga dopo («ser-vono»). */
     overflow-wrap: break-word;
-    hyphens: auto;
   }
 
   p {

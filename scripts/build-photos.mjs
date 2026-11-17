@@ -54,6 +54,16 @@ const JOBS = [
   { out: "reading", src: "7.png", w: 900 },
   { out: "performance", src: "8.png", w: 900 },
   { out: "duo", src: "9.png", w: 900 },
+  /* La foto di gruppo arriva verticale, scattata col telefono: meta'
+     soffitto e un terzo pavimento. Si tiene la fascia con le persone, dalle
+     teste alle scarpe. L'originale e' largo 1125 pixel e non si ingrandisce
+     oltre. */
+  {
+    out: "gruppo",
+    src: "gruppo",
+    w: 1400,
+    crop: { left: 0, top: 0.405, width: 1, height: 0.405 },
+  },
 ];
 
 /* Il sorgente puo' arrivare con qualsiasi estensione: si cerca il nome. */

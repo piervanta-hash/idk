@@ -31,12 +31,11 @@
    con un margine. 2rem sono i due margini laterali della pagina. */
 const CHAR = 0.66;
 
-/* Sugli schermi grandi il titolo si ferma a 112 pixel invece di 132: su
-   due righe a tutta larghezza lascia spazio al film nella prima
-   schermata. */
-const MAX = "min(var(--text-hero), 7rem)";
+/* Sugli schermi grandi il titolo si ferma di norma a 112 pixel invece di
+   132 (`max`): sopra il film deve lasciar vedere il film. */
 
-export function Headline({ text }: { text: string }) {
+
+export function Headline({ text, max = "7rem" }: { text: string; max?: string }) {
   const longest = Math.max(...text.split(/\s+/).map((w) => w.length));
   return (
     <h1
@@ -47,7 +46,7 @@ export function Headline({ text }: { text: string }) {
            errore, non un a capo. Se una parola non sta, scende il corpo
            (vedi sopra), non si spezza la parola. */
         hyphens: "manual",
-        fontSize: `min(${MAX}, calc((100vw - 2rem) / ${(longest * CHAR).toFixed(2)}))`,
+        fontSize: `min(var(--text-hero), ${max}, calc((100vw - 2rem) / ${(longest * CHAR).toFixed(2)}))`,
       }}
     >
       {text}
