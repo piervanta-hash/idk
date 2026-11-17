@@ -43,10 +43,13 @@ export function HeroFilm({
   src,
   poster,
   labels,
+  inset = false,
 }: {
   src: string;
   poster: string;
   labels: Labels;
+  /** Dentro la colonna della pagina invece che da bordo a bordo. */
+  inset?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -114,7 +117,7 @@ export function HeroFilm({
           schermi piu' larghi del 16:9 (gli ultrawide) il film si ferma
           all'altezza dello schermo e restano due bande ai lati, nere come
           il fondo. */}
-      <div className="relative bg-bg">
+      <div className={"relative bg-bg" + (inset ? " border border-line" : "")}>
         <video
           ref={ref}
           className="mx-auto block aspect-video max-h-[100svh] w-full object-contain"
@@ -134,7 +137,11 @@ export function HeroFilm({
 
       {/* I comandi stanno sotto il film, non sopra: sopra coprirebbero i
           testi a schermo, che sono meta' del film. */}
-      <figcaption className="shell flex items-center justify-between gap-4 border-b border-line">
+      <figcaption
+        className={
+          (inset ? "" : "shell ") + "flex items-center justify-between gap-4 border-b border-line"
+        }
+      >
         <button
           type="button"
           onClick={toggle}

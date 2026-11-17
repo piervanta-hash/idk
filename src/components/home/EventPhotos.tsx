@@ -21,9 +21,10 @@
    Niente carosello: quattro immagini stanno in riga senza scorrimento, e
    una cosa che non scorre non puo' sfondare lo schermo in orizzontale.
 
-   TRATTAMENTO, come da brief: sempre dentro un riquadro, mai a pieno
-   formato invasivo, desaturate perche' convivano con la palette. Il colore
-   torna al passaggio del mouse — non decora, dice che la foto e' vera.
+   TRATTAMENTO: sempre dentro un riquadro, a colori appena smorzati. Erano
+   quasi in bianco e nero, e accanto ai film della campagna, che sono a
+   colori, le foto vere sembravano quelle finte: il contrario di quello che
+   devono fare. Il colore pieno torna al passaggio del mouse.
 
    FORMATI. AVIF con ricaduta su WebP e JPEG, generati da
    scripts/build-photos.mjs alla misura in cui compaiono davvero. Tutte
@@ -71,7 +72,7 @@ function Frame({
           height={height}
           loading="lazy"
           decoding="async"
-          className="block h-full w-full object-cover grayscale-[85%] brightness-90 contrast-[1.05] transition-[filter] duration-500 group-hover:grayscale-0"
+          className="block h-full w-full object-cover saturate-[.85] transition-[filter] duration-500 group-hover:saturate-100"
         />
       </picture>
 

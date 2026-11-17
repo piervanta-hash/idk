@@ -116,7 +116,34 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
           </div>
 
-          <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} />
+          {/* LA FOTO VERA, A TUTTA LARGHEZZA. Il laboratorio di Lecce con le
+              persone al lavoro. Qui c'era il film della campagna, che e'
+              girato con attori ricostruiti: come prima cosa del sito diceva
+              «spot», non «azienda». Chi deve affidarci un archivio vuole
+              vedere dove andra' e chi lo tocchera'. Il film resta, piu' in
+              basso, dichiarato per quello che e'.
+
+              E' l'immagine che decide il primo caricamento: si scarica
+              subito e con priorita' alta, in AVIF da 120 KB. */}
+          <figure className="m-0">
+            <picture>
+              <source srcSet={asset("/img/laboratorio/apertura.avif")} type="image/avif" />
+              <source srcSet={asset("/img/laboratorio/apertura.webp")} type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset("/img/laboratorio/apertura.jpg")}
+                alt={t.hero.photo.alt}
+                width={2400}
+                height={1088}
+                fetchPriority="high"
+                decoding="async"
+                className="block h-auto max-h-[80svh] w-full object-cover"
+              />
+            </picture>
+            <figcaption className="shell border-b border-line py-3 font-mono text-data text-label">
+              {t.hero.photo.caption}
+            </figcaption>
+          </figure>
         </section>
 
         <div className="shell">
@@ -137,49 +164,64 @@ export function HomeView({ locale }: { locale: Locale }) {
             />
           </Section>
 
-          {/* GLI SCENARI. Quattro film, quattro mercati, la stessa domanda.
-              Stanno subito dopo l'estrazione perche' rispondono alla domanda
-              che l'estrazione lascia aperta: d'accordo, ma a chi serve? */}
-          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()}>
+          {/* IL LABORATORIO. Le fotografie vere, a colori, subito dopo
+              l'estrazione: prima si vede che cosa fa il software, poi dove e
+              da chi viene fatto il lavoro. Se c'e' la foto di gruppo, apre
+              il blocco a tutta riga. */}
+          <Section id="lab" eyebrow={t.lab.eyebrow} aside={next()}>
             <Reveal>
-              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold text-balance">
-                {t.films.title}
-              </h2>
+              <div className="mb-12 grid gap-6 lg:grid-cols-12 lg:items-end">
+                <h2 className="text-d2 font-display font-bold text-max text-balance lg:col-span-7">
+                  {t.lab.title}
+                </h2>
+                <p className="measure text-body-l text-copy lg:col-span-5">{t.lab.lead}</p>
+              </div>
             </Reveal>
-            <Films items={films} labels={t.films.labels} />
-            <p className="mt-4 text-small text-label">{t.films.note}</p>
+            {team && (
+              <figure className="m-0 mb-px">
+                <picture>
+                  <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
+                  <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={asset(`/img/archilives/${t.team.base}.jpg`)}
+                    alt={t.team.alt}
+                    width={1600}
+                    height={1000}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full"
+                  />
+                </picture>
+                <figcaption className="py-3 font-mono text-data text-label">{t.team.caption}</figcaption>
+              </figure>
+            )}
+            <ul className="m-0 grid list-none gap-px bg-line p-0 sm:grid-cols-3">
+              {t.lab.items.map((it) => (
+                <li key={it.base} className="bg-bg">
+                  <figure className="m-0">
+                    <picture>
+                      <source srcSet={asset(`/img/laboratorio/${it.base}.avif`)} type="image/avif" />
+                      <source srcSet={asset(`/img/laboratorio/${it.base}.webp`)} type="image/webp" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={asset(`/img/laboratorio/${it.base}.jpg`)}
+                        alt={it.alt}
+                        width={900}
+                        height={1120}
+                        loading="lazy"
+                        decoding="async"
+                        className="block aspect-[4/5] h-auto w-full object-cover"
+                      />
+                    </picture>
+                    <figcaption className="py-3 font-mono text-data text-label sm:px-3">
+                      {it.caption}
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
           </Section>
-
-          {/* LA SQUADRA. Una fotografia sola, grande, a colori: e' l'unico
-              punto della pagina in cui l'azienda mostra chi la fa. Sta
-              subito dopo gli scenari: dopo «che cosa succede» viene «chi lo
-              fa», prima dei numeri. Compare
-              solo se il file c'e' — vedi src/lib/photos.ts. */}
-          {team && (
-            <Section id="team" eyebrow={t.team.eyebrow} aside={next()}>
-              <Reveal>
-                <figure className="m-0">
-                  <picture>
-                    <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
-                    <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={asset(`/img/archilives/${t.team.base}.jpg`)}
-                      alt={t.team.alt}
-                      width={1600}
-                      height={1000}
-                      loading="lazy"
-                      decoding="async"
-                      className="block h-auto w-full border border-line"
-                    />
-                  </picture>
-                  <figcaption className="mt-3 font-mono text-data text-label">
-                    {t.team.caption}
-                  </figcaption>
-                </figure>
-              </Reveal>
-            </Section>
-          )}
 
           <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()}>
             <Reveal>
@@ -236,6 +278,27 @@ export function HomeView({ locale }: { locale: Locale }) {
                 reel={present(t.photos.reel)}
               />
             </Reveal>
+          </Section>
+
+          {/* LA CAMPAGNA. I film stanno qui, verso la fine, e si chiamano per
+              quello che sono: film della campagna, con scene ricostruite.
+              Prima il principale, in grande; poi i quattro scenari, uno per
+              mercato. Messi in apertura facevano sembrare l'azienda uno spot;
+              qui, dopo le foto vere, i clienti e i numeri, raccontano lo
+              stesso lavoro in un'altra forma. */}
+          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()}>
+            <Reveal>
+              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold text-balance">
+                {t.films.title}
+              </h2>
+            </Reveal>
+            <div className="mb-px">
+              <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} inset />
+            </div>
+            <div className="mt-10">
+              <Films items={films} labels={t.films.labels} />
+            </div>
+            <p className="mt-4 text-small text-label">{t.films.note}</p>
           </Section>
 
           <Section id="contact" eyebrow={t.cta.eyebrow} aside={next()}>

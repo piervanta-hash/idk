@@ -39,6 +39,10 @@ export const home = {
         soundOn: "Sound on",
         soundOff: "Sound off",
       },
+      photo: {
+        alt: "The Paloryn laboratory in Lecce: colleagues scanning files at production scanners, stacks of folders on the desks.",
+        caption: "The Paloryn laboratory, Lecce.",
+      },
     },
 
     /* «PALORYN RISPONDE. E INDICA LA FONTE.» E' la frase dei film, e
@@ -102,10 +106,21 @@ export const home = {
 
     /* I QUATTRO FILM DI SCENARIO. Qui stanno solo le parole: quale file
        corrisponde a quale lingua lo sa `src/lib/films.ts`. */
+    lab: {
+      eyebrow: "Laboratory",
+      title: "Where paper becomes data.",
+      lead: "Our own laboratory in Lecce. Files arrive, are ordered, scanned and checked by the people who answer for them.",
+      items: [
+        { base: "lavorazione", caption: "Processing and checking.", alt: "Laboratory desks with open files, laptops and a production scanner; colleagues at work in the background." },
+        { base: "galatina", caption: "The Galatina building archive, in the laboratory.", alt: "Laboratory shelving with binders from the Comune di Galatina, labelled on the shelf." },
+        { base: "squadra", caption: "Work meeting.", alt: "Part of the team gathered around a desk in the laboratory, between shelving full of binders." },
+      ],
+    },
+
     films: {
-      eyebrow: "Scenarios",
-      title: "The answer exists. No one can read it.",
-      note: "Dramatised scenarios: the people, figures and documents shown are illustrative.",
+      eyebrow: "Campaign",
+      title: "From tomorrow, who answers?",
+      note: "Paloryn campaign films. Dramatised scenes: the people, figures and documents shown are illustrative.",
       labels: { watch: "Watch the film", close: "Close" },
       items: [
         {
@@ -299,6 +314,10 @@ export const home = {
         soundOn: "Attiva l'audio",
         soundOff: "Disattiva l'audio",
       },
+      photo: {
+        alt: "Il laboratorio Paloryn a Lecce: colleghe alla scansione dei fascicoli agli scanner di produzione, pile di cartelle sui tavoli.",
+        caption: "Il laboratorio Paloryn, Lecce.",
+      },
     },
 
     data: {
@@ -349,10 +368,21 @@ export const home = {
       },
     },
 
+    lab: {
+      eyebrow: "Laboratorio",
+      title: "Dove la carta diventa dato.",
+      lead: "Il nostro laboratorio a Lecce. I fascicoli arrivano, vengono riordinati, scansionati e controllati da persone che ne rispondono.",
+      items: [
+        { base: "lavorazione", caption: "Lavorazione e controllo.", alt: "Tavoli del laboratorio con fascicoli aperti, portatili e uno scanner di produzione; colleghi al lavoro sullo sfondo." },
+        { base: "galatina", caption: "L'archivio edilizio di Galatina, in laboratorio.", alt: "Scaffalature del laboratorio con i faldoni del Comune di Galatina, con il cartello sullo scaffale." },
+        { base: "squadra", caption: "Riunione di lavoro.", alt: "Parte della squadra riunita attorno a un tavolo del laboratorio, tra scaffali pieni di faldoni." },
+      ],
+    },
+
     films: {
-      eyebrow: "Scenari",
-      title: "La risposta esiste. Nessuno riesce a leggerla.",
-      note: "Scenari ricostruiti: le persone, le cifre e i documenti mostrati sono esemplificativi.",
+      eyebrow: "Campagna",
+      title: "Da domani, chi risponde?",
+      note: "Film della campagna Paloryn. Scene ricostruite: le persone, le cifre e i documenti mostrati sono esemplificativi.",
       labels: { watch: "Guarda il film", close: "Chiudi" },
       items: [
         {

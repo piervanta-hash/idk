@@ -17,6 +17,10 @@ export const sq = {
       soundOn: "Aktivizo zërin",
       soundOff: "Çaktivizo zërin",
     },
+    photo: {
+      alt: "Laboratori Paloryn në Lecce: kolegë që skanojnë dosje në skanerët e prodhimit, pirgje dosjesh mbi tavolina.",
+      caption: "Laboratori Paloryn, Lecce.",
+    },
   },
 
   data: {
@@ -57,10 +61,21 @@ export const sq = {
     },
   },
 
+  lab: {
+    eyebrow: "Laboratori",
+    title: "Ku letra bëhet e dhënë.",
+    lead: "Laboratori ynë në Lecce. Dosjet mbërrijnë, renditen, skanohen dhe kontrollohen nga njerëz që përgjigjen për to.",
+    items: [
+      { base: "lavorazione", caption: "Përpunim dhe kontroll.", alt: "Tavolina të laboratorit me dosje të hapura, laptopë dhe një skaner prodhimi; kolegë në punë në sfond." },
+      { base: "galatina", caption: "Arkivi i ndërtimeve i Galatinës, në laborator.", alt: "Rafte të laboratorit me dosjet e Comune di Galatina, me tabelën mbi raft." },
+      { base: "squadra", caption: "Takim pune.", alt: "Një pjesë e ekipit e mbledhur rreth një tavoline në laborator, mes rafteve plot me dosje." },
+    ],
+  },
+
   films: {
-    eyebrow: "Skenarë",
-    title: "Përgjigjja ekziston. Askush nuk mund ta lexojë.",
-    note: "Skenarë të rindërtuar: personat, shifrat dhe dokumentet që shfaqen janë ilustruese.",
+    eyebrow: "Fushata",
+    title: "Nga nesër, kush përgjigjet?",
+    note: "Filma të fushatës Paloryn. Skena të rindërtuara: personat, shifrat dhe dokumentet që shfaqen janë ilustruese.",
     labels: { watch: "Shikoni filmin", close: "Mbyll" },
     items: [
       {

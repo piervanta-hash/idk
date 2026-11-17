@@ -17,6 +17,10 @@ export const sr = {
       soundOn: "Uključi zvuk",
       soundOff: "Isključi zvuk",
     },
+    photo: {
+      alt: "Laboratorija kompanije Paloryn u Leću: kolege skeniraju spise na produkcionim skenerima, gomile fascikli na stolovima.",
+      caption: "Laboratorija Paloryn, Leće.",
+    },
   },
 
   data: {
@@ -57,10 +61,21 @@ export const sr = {
     },
   },
 
+  lab: {
+    eyebrow: "Laboratorija",
+    title: "Gde papir postaje podatak.",
+    lead: "Naša laboratorija u Leću. Spisi stižu, sređuju se, skeniraju i proveravaju ih ljudi koji za njih odgovaraju.",
+    items: [
+      { base: "lavorazione", caption: "Obrada i provera.", alt: "Stolovi u laboratoriji sa otvorenim spisima, laptopovima i produkcionim skenerom; kolege na poslu u pozadini." },
+      { base: "galatina", caption: "Građevinska arhiva opštine Galatina, u laboratoriji.", alt: "Police u laboratoriji sa registratorima opštine Galatina, sa natpisom na polici." },
+      { base: "squadra", caption: "Radni sastanak.", alt: "Deo tima okupljen oko stola u laboratoriji, između polica punih registratora." },
+    ],
+  },
+
   films: {
-    eyebrow: "Scenariji",
-    title: "Odgovor postoji. Niko ne može da ga pročita.",
-    note: "Rekonstruisani scenariji: prikazane osobe, brojke i dokumenti su ilustrativni.",
+    eyebrow: "Kampanja",
+    title: "Od sutra, ko odgovara?",
+    note: "Filmovi kampanje Paloryn. Rekonstruisane scene: prikazane osobe, brojke i dokumenti su ilustrativni.",
     labels: { watch: "Pogledajte film", close: "Zatvori" },
     items: [
       {
