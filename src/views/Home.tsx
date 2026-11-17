@@ -171,15 +171,16 @@ export function HomeView({ locale }: { locale: Locale }) {
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
                 <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
 
-                {/* IL TEAM, IN PICCOLO. La foto di gruppo e' uno scatto da
-                    telefono largo 1125 pixel: a tutta pagina si sgranava.
-                    Sta qui, piccola, con la didascalia accanto, nello spazio
-                    che la mappa lasciava vuoto sotto il testo: le persone
-                    accanto ai posti in cui lavorano, senza una sezione in
-                    piu' da scorrere. */}
+                {/* IL TEAM. La foto di gruppo e' uno scatto da telefono largo
+                    1125 pixel: a tutta pagina si sgranava, in un francobollo
+                    non si riconosceva nessuno. Prende la larghezza della
+                    colonna di sinistra (circa 600 pixel), dove regge, nello
+                    spazio che la mappa lasciava vuoto sotto il testo: le
+                    persone accanto ai posti in cui lavorano, senza una
+                    sezione in piu' da scorrere. */}
                 {team && (
-                  <figure className="m-0 mt-10 flex items-end gap-4 border-t border-line pt-6">
-                    <picture className="block w-40 shrink-0 sm:w-48">
+                  <figure className="m-0 mt-10 border-t border-line pt-6">
+                    <picture className="block">
                       <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
                       <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -193,7 +194,7 @@ export function HomeView({ locale }: { locale: Locale }) {
                         className="block h-auto w-full border border-line"
                       />
                     </picture>
-                    <figcaption className="font-mono text-data text-copy">{t.team.caption}</figcaption>
+                    <figcaption className="mt-3 font-mono text-data text-copy">{t.team.caption}</figcaption>
                   </figure>
                 )}
               </Reveal>
