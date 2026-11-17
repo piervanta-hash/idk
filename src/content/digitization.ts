@@ -8,6 +8,10 @@
    operatori del settore, ed e' un argomento commerciale vero.
    ========================================================================== */
 
+import { sq } from "./sq/digitization";
+import { sr } from "./sr/digitization";
+import { mk } from "./mk/digitization";
+
 export const digitization = {
   en: {
     meta: {
@@ -134,7 +138,7 @@ export const digitization = {
       eyebrow: "Il servizio",
       title: "Prima si ordina, poi si scansiona.",
       lead: "Paloryn prende in carico archivi correnti, di deposito e storici. Ordinamento archivistico, digitalizzazione ad alta produttività, conservazione a norma e pubblicazione — senza che l'originale lasci il luogo in cui è custodito.",
-      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
     },
 
@@ -234,8 +238,11 @@ export const digitization = {
       eyebrow: "Contatti",
       title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
-      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
       secondary: { label: "Tutti i clienti", href: "/it/clienti" },
     },
   },
+  sq,
+  sr,
+  mk,
 } as const;

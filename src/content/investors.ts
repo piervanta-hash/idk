@@ -10,6 +10,10 @@
    altrove sul sito. E' la versione piu' corta e la piu' difendibile.
    ========================================================================== */
 
+import { sq } from "./sq/investors";
+import { sr } from "./sr/investors";
+import { mk } from "./mk/investors";
+
 export const investors = {
   en: {
     meta: {
@@ -41,7 +45,7 @@ export const investors = {
         },
         {
           k: "Base",
-          v: "Headquarters, laboratory and operations centre in Lecce, Italy, with an operational office across the Adriatic.",
+          v: "Headquarters, laboratory and operations centre in Lecce, Italy. Offices opening soon in Durrës, Skopje and Belgrade.",
         },
       ],
     },
@@ -55,6 +59,7 @@ export const investors = {
         { code: "ISO/IEC 27001", scope: "information security" },
         { code: "ISO/IEC 27017", scope: "cloud service security" },
         { code: "ISO/IEC 27018", scope: "personal data in the cloud" },
+        { code: "ACN · AgID", scope: "Anamnesis, public sector qualification" },
       ],
       note: "Ongoing dialogue with the Soprintendenza Archivistica e Bibliografica is standard practice for holdings under protection and for disposal proposals.",
     },
@@ -126,7 +131,7 @@ export const investors = {
         },
         {
           k: "Sede",
-          v: "Sede legale, laboratorio e centro operativo a Lecce, con una sede operativa sull'altra sponda dell'Adriatico.",
+          v: "Sede legale, laboratorio e centro operativo a Lecce. Sedi di prossima apertura a Durazzo, Skopje e Belgrado.",
         },
       ],
     },
@@ -140,6 +145,7 @@ export const investors = {
         { code: "ISO/IEC 27001", scope: "sicurezza delle informazioni" },
         { code: "ISO/IEC 27017", scope: "sicurezza dei servizi cloud" },
         { code: "ISO/IEC 27018", scope: "dati personali nel cloud" },
+        { code: "ACN · AgID", scope: "Anamnesis, qualificazione per la PA" },
       ],
       note: "L'interlocuzione continuativa con la Soprintendenza Archivistica e Bibliografica è prassi ordinaria per i fondi sottoposti a tutela e per le proposte di scarto.",
     },
@@ -180,4 +186,7 @@ export const investors = {
       },
     },
   },
+  sq,
+  sr,
+  mk,
 } as const;

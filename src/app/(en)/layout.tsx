@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import { RootShell } from "@/components/layout/RootShell";
+import { fontsLatin } from "@/lib/fonts";
 import { SITE } from "@/lib/routes";
 
 /* Layout radice per le rotte inglesi. L'unica differenza con l'altro e' la
@@ -21,5 +22,9 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <RootShell locale="en">{children}</RootShell>;
+  return (
+    <RootShell locale="en" fonts={fontsLatin}>
+      {children}
+    </RootShell>
+  );
 }

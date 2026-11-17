@@ -16,12 +16,35 @@ const CERTS = {
     { code: "ISO/IEC 27001", scope: "information security" },
     { code: "ISO/IEC 27017", scope: "cloud security" },
     { code: "ISO/IEC 27018", scope: "personal data in cloud" },
+    { code: "ACN · AgID", scope: "Anamnesis, public sector" },
   ],
   it: [
     { code: "ISO 9001", scope: "qualità" },
     { code: "ISO/IEC 27001", scope: "sicurezza delle informazioni" },
     { code: "ISO/IEC 27017", scope: "sicurezza dei servizi cloud" },
     { code: "ISO/IEC 27018", scope: "dati personali nel cloud" },
+    { code: "ACN · AgID", scope: "Anamnesis, qualificazione PA" },
+  ],
+  sq: [
+    { code: "ISO 9001", scope: "cilësi" },
+    { code: "ISO/IEC 27001", scope: "siguria e informacionit" },
+    { code: "ISO/IEC 27017", scope: "siguria e shërbimeve cloud" },
+    { code: "ISO/IEC 27018", scope: "të dhënat personale në cloud" },
+    { code: "ACN · AgID", scope: "Anamnesis, sektori publik" },
+  ],
+  sr: [
+    { code: "ISO 9001", scope: "kvalitet" },
+    { code: "ISO/IEC 27001", scope: "bezbednost informacija" },
+    { code: "ISO/IEC 27017", scope: "bezbednost cloud usluga" },
+    { code: "ISO/IEC 27018", scope: "lični podaci u cloudu" },
+    { code: "ACN · AgID", scope: "Anamnesis, javni sektor" },
+  ],
+  mk: [
+    { code: "ISO 9001", scope: "квалитет" },
+    { code: "ISO/IEC 27001", scope: "безбедност на информации" },
+    { code: "ISO/IEC 27017", scope: "безбедност на cloud услуги" },
+    { code: "ISO/IEC 27018", scope: "лични податоци во cloud" },
+    { code: "ACN · AgID", scope: "Anamnesis, јавен сектор" },
   ],
 } as const;
 
@@ -41,6 +64,30 @@ const COPY = {
     office: "Sede",
     certs: "Certificazioni",
     rights: "tutti i diritti riservati",
+  },
+  sq: {
+    blurb:
+      "Paloryn i kthen arkivat në letër në të dhëna të strukturuara dhe të kërkueshme, dhe i lidh me infrastrukturën digjitale publike.",
+    site: "Faqja",
+    office: "Selia",
+    certs: "Certifikime",
+    rights: "të gjitha të drejtat e rezervuara",
+  },
+  sr: {
+    blurb:
+      "Paloryn pretvara papirne arhive u strukturirane i pretražive podatke i povezuje ih sa javnom digitalnom infrastrukturom.",
+    site: "Sajt",
+    office: "Sedište",
+    certs: "Sertifikati",
+    rights: "sva prava zadržana",
+  },
+  mk: {
+    blurb:
+      "Paloryn ги претвора хартиените архиви во структурирани и пребарливи податоци и ги поврзува со јавната дигитална инфраструктура.",
+    site: "Сајт",
+    office: "Седиште",
+    certs: "Сертификати",
+    rights: "сите права се задржани",
   },
 } as const;
 

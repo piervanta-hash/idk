@@ -1,7 +1,7 @@
 export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
-import { LOCALES, PAGES, SITE, href, type PageKey } from "@/lib/routes";
+import { HTML_LANG, LOCALES, PAGES, SITE, href, type PageKey } from "@/lib/routes";
 
 /* ==========================================================================
    SITEMAP
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: key === "home" ? 1 : key === "privacy" ? 0.3 : 0.8,
       alternates: {
         languages: Object.fromEntries(
-          LOCALES.map((l) => [l, `${SITE}${href(key, l)}`]),
+          LOCALES.map((l) => [HTML_LANG[l], `${SITE}${href(key, l)}`]),
         ),
       },
     })),

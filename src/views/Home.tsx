@@ -12,9 +12,13 @@ import { Measurements } from "@/components/home/Measurements";
 import { OperationsMap } from "@/components/home/OperationsMap";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { EventPhotos } from "@/components/home/EventPhotos";
+import { HeroFilm } from "@/components/home/HeroFilm";
+import { Films } from "@/components/home/Films";
+import { asset } from "@/lib/asset";
+import { filmFor, heroFilm } from "@/lib/films";
 import { home } from "@/content/home";
-import { present } from "@/lib/photos";
-import { alternates, type Locale } from "@/lib/routes";
+import { hasPhoto, present } from "@/lib/photos";
+import { HTML_LANG, alternates, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
    HOME
@@ -27,9 +31,14 @@ import { alternates, type Locale } from "@/lib/routes";
    subito la cosa concreta: nessun paragrafo introduttivo di raccordo.
    ========================================================================== */
 
-const TITLE = {
-  en: "Paloryn — a data company for paper archives",
-  it: "Paloryn — società di dati per gli archivi cartacei",
+/* Il titolo del documento porta il peso descrittivo che la testata, volutamente
+   concettuale, non porta: e' quello che compare nei risultati di ricerca. */
+const TITLE: Record<Locale, string> = {
+  en: "Paloryn — memory that answers, for paper archives",
+  it: "Paloryn — la memoria che risponde, per gli archivi cartacei",
+  sq: "Paloryn — kujtesa që përgjigjet, për arkivat në letër",
+  sr: "Paloryn — memorija koja odgovara, za papirne arhive",
+  mk: "Paloryn — меморија што одговара, за хартиени архиви",
 };
 
 export function homeMetadata(locale: Locale): Metadata {
@@ -41,7 +50,7 @@ export function homeMetadata(locale: Locale): Metadata {
     openGraph: {
       title: TITLE[locale],
       description: t.hero.lead,
-      locale,
+      locale: HTML_LANG[locale].replace("-", "_"),
       type: "website",
     },
   };
@@ -49,6 +58,15 @@ export function homeMetadata(locale: Locale): Metadata {
 
 export function HomeView({ locale }: { locale: Locale }) {
   const t = home[locale];
+  const film = heroFilm(locale);
+  const films = t.films.items.map((f) => ({ ...f, ...filmFor(f.id, locale) }));
+  const team = hasPhoto(t.team.base);
+
+  /* I numeri a destra delle sezioni si contano, non si scrivono: la foto
+     di gruppo compare solo quando c'e' il file, e senza di lei i numeri
+     non devono saltare da 06 a 08. */
+  let n = 0;
+  const next = () => String(++n).padStart(2, "0");
 
   return (
     <>
@@ -57,22 +75,22 @@ export function HomeView({ locale }: { locale: Locale }) {
       <main id="main" tabIndex={-1} className="focus:outline-none">
         {/* LA TESTATA.
 
-            Niente cornice. Un riquadro con dentro titolo, testo e diagramma
-            si legge come un documento stampato, non come l'apertura di un
-            sito: la cornice era l'errore, non le parole.
+            La frase della campagna, alla scala del manifesto, e il film
+            nella lingua di chi legge. E' la stessa chiusura dei film —
+            fondo nero, il segno, «Memory that answers» — cosi' chi arriva
+            da un video sui social trova la stessa voce, non un altro
+            marchio.
 
-            Adesso la prima schermata e' fatta di tre cose: una riga
-            sottile di intestazione, il titolo alla scala del manifesto e la
-            scaffalatura disegnata che gli sta a fianco. Il titolo dice
-            «materia» e la materia e' li' accanto; dice «dato», e il dato
-            arriva subito sotto, scendendo.
+            Il titolo sta da solo sulla sua riga: e' corto, e diviso in una
+            colonna stretta si spezzerebbe in tre righe di una parola. Sotto,
+            il film prende otto colonne su dodici; le parole e i due comandi
+            stanno nelle quattro rimaste, in alto, dove l'occhio arriva dopo
+            il titolo.
 
-            Nota per chi tocchera' il titolo: e' volutamente concettuale e
-            non contiene nessuna parola per cui qualcuno cerchi. Il peso
-            descrittivo lo portano il titolo del documento - che dice
-            «societa' di dati per gli archivi cartacei» - e la riga di testo
-            sotto il titolo. Se si toglie una delle due, la pagina smette di
-            dire di che cosa parla. */}
+            Nota per chi tocchera' il titolo: e' volutamente concettuale. Il
+            peso descrittivo lo portano il titolo del documento e la riga di
+            testo sotto il titolo; se si toglie una delle due, la pagina
+            smette di dire di che cosa parla. */}
         <section>
           <div className="shell">
             <div className="flex items-baseline justify-between gap-6 border-b border-line pt-4 pb-3">
@@ -80,68 +98,80 @@ export function HomeView({ locale }: { locale: Locale }) {
               <span className="eyebrow text-right">{t.hero.place}</span>
             </div>
 
-            {/* Due colonne. A sinistra le parole, a destra l'archivio
-                disegnato: il titolo dice «materia» e accanto c'e' la
-                materia, sei ripiani di faldoni.
+            <div className="pt-12 pb-16 md:pt-20 md:pb-24">
+              <Headline text={t.hero.title} />
 
-                Le colonne non sono uguali: il testo prende sette parti su
-                dodici e il disegno cinque. Meta' e meta' avrebbero fatto
-                due blocchi che si guardano; cosi' invece si legge prima il
-                titolo e il disegno gli sta a fianco.
-
-                Sul telefono il disegno va sotto, non sparisce: e' la
-                seconda cosa che si vede scorrendo, e regge da sola. */}
-            <div className="grid items-start gap-12 pt-12 pb-16 md:pt-20 md:pb-24 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-7">
-                <Headline text={t.hero.title} />
-
-                <p className="measure mt-10 text-body-l text-copy md:mt-12">{t.hero.lead}</p>
-
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <ButtonLink href={t.hero.primary.href} variant="primary" size="lg">
-                    {t.hero.primary.label}
-                  </ButtonLink>
-                  <ButtonLink
-                    href={t.hero.secondary.href}
-                    variant="secondary"
-                    size="lg"
-                    arrow
-                  >
-                    {t.hero.secondary.label}
-                  </ButtonLink>
+              <div className="mt-10 grid items-start gap-10 md:mt-14 lg:grid-cols-12 lg:gap-16">
+                <div className="lg:col-span-4">
+                  <p className="measure text-body-l text-copy">{t.hero.lead}</p>
+                  <div className="mt-10 flex flex-col gap-4">
+                    <ButtonLink
+                      href={t.hero.primary.href}
+                      variant="primary"
+                      size="lg"
+                      className="sm:w-fit"
+                    >
+                      {t.hero.primary.label}
+                    </ButtonLink>
+                    <ButtonLink
+                      href={t.hero.secondary.href}
+                      variant="secondary"
+                      size="lg"
+                      arrow
+                      className="sm:w-fit"
+                    >
+                      {t.hero.secondary.label}
+                    </ButtonLink>
+                  </div>
                 </div>
-              </div>
 
-              <div className="lg:col-span-5 lg:pt-2">
-                <Stacks label={t.hero.stacks} />
+                <div className="lg:col-span-8">
+                  <HeroFilm src={film.src} poster={film.poster} labels={t.hero.film} />
+                </div>
               </div>
             </div>
           </div>
-
         </section>
 
-        {/* L'ESTRAZIONE, subito sotto la testata.
-
-            Il titolo dice «al dato»: qui si vede come. E' la stessa
-            animazione della pagina Anamnesis, ed e' giusto che sia la
-            stessa - e' la cosa che l'azienda fa. In home apre il discorso,
-            li' viene spiegata.
-
-            Parte quando arriva sullo schermo, non al caricamento: si vede
-            scendendo, che e' il momento in cui si sta guardando. */}
         <div className="shell">
-          <Section id="extraction" eyebrow={t.hero.extraction.eyebrow} aside="01">
+          {/* DALLA MATERIA AL DATO. Era il titolo della testata, ed e' ancora
+              la frase giusta: qui sta accanto a quello che descrive. La
+              scaffalatura disegnata e' la materia; sotto, l'estrazione e' il
+              dato che ne esce, un campo alla volta. */}
+          <Section id="extraction" eyebrow={t.data.extraction.eyebrow} aside={next()}>
+            <div className="mb-16 grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-7">
+                <h2 className="text-d2 font-display font-bold text-max text-balance">
+                  {t.data.title}
+                </h2>
+                <p className="measure mt-8 text-body-l text-copy">{t.data.lead}</p>
+              </Reveal>
+              <div className="lg:col-span-5">
+                <Stacks label={t.data.stacks} />
+              </div>
+            </div>
             <Extraction
-              fields={t.hero.extraction.fields}
-              labels={t.hero.extraction.labels}
-              docHead={t.hero.extraction.docHead}
-              note={t.hero.extraction.note}
+              fields={t.data.extraction.fields}
+              labels={t.data.extraction.labels}
+              docHead={t.data.extraction.docHead}
+              note={t.data.extraction.note}
             />
           </Section>
-        </div>
 
-        <div className="shell">
-          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside="02" size="lg">
+          {/* GLI SCENARI. Quattro film, quattro mercati, la stessa domanda.
+              Stanno subito dopo l'estrazione perche' rispondono alla domanda
+              che l'estrazione lascia aperta: d'accordo, ma a chi serve? */}
+          <Section id="scenarios" eyebrow={t.films.eyebrow} aside={next()} size="lg">
+            <Reveal>
+              <h2 className="measure-wide mb-12 text-d3 font-display font-semibold text-balance">
+                {t.films.title}
+              </h2>
+            </Reveal>
+            <Films items={films} labels={t.films.labels} />
+            <p className="mt-4 text-small text-label">{t.films.note}</p>
+          </Section>
+
+          <Section id="capabilities" eyebrow={t.matrix.eyebrow} aside={next()} size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.matrix.title}
@@ -150,23 +180,17 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside="03" size="lg">
+          <Section id="measurements" eyebrow={t.measurements.eyebrow} aside={next()} size="lg">
             <Reveal>
               <Measurements items={t.measurements.items} />
             </Reveal>
           </Section>
 
-          <Section id="operations" eyebrow={t.map.eyebrow} aside="04" size="lg">
+          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()} size="lg">
             <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
               <Reveal>
                 <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
                 <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
-                <div className="mt-10 border-t border-line pt-4">
-                  <span className="eyebrow block text-max">{t.map.nodes.lecce.name}</span>
-                  <span className="mt-1 block text-small text-label">
-                    {t.map.nodes.lecce.role}
-                  </span>
-                </div>
               </Reveal>
               <Reveal delay={120}>
                 <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
@@ -174,7 +198,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </div>
           </Section>
 
-          <Section id="work" eyebrow={t.work.eyebrow} aside="05" size="lg">
+          <Section id="work" eyebrow={t.work.eyebrow} aside={next()} size="lg">
             <Reveal>
               <h2 className="measure-wide mb-12 text-d3 font-display font-semibold">
                 {t.work.title}
@@ -188,20 +212,41 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
+          {/* LA SQUADRA. Una fotografia sola, grande, a colori: e' l'unico
+              punto della pagina in cui l'azienda mostra chi la fa. Compare
+              solo se il file c'e' — vedi src/lib/photos.ts. */}
+          {team && (
+            <Section id="team" eyebrow={t.team.eyebrow} aside={next()}>
+              <Reveal>
+                <figure className="m-0">
+                  <picture>
+                    <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
+                    <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset(`/img/archilives/${t.team.base}.jpg`)}
+                      alt={t.team.alt}
+                      width={1600}
+                      height={1000}
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-auto w-full border border-line"
+                    />
+                  </picture>
+                  <figcaption className="mt-3 font-mono text-data text-label">
+                    {t.team.caption}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            </Section>
+          )}
+
           {/* ARCHILIVES e' una commessa fra le altre, non il mestiere
               dell'azienda: sta piu' in basso dei progetti e ha il respiro
-              verticale normale invece di quello ampio.
-
-              Il peso pero' non si toglie stringendo la colonna. Qui c'era
-              un `max-w-3xl`: su uno schermo largo il blocco si fermava a
-              768 pixel, lasciando mezza pagina vuota alla sua destra, e i
-              sei riquadri diventavano cosi' stretti che `object-cover`
-              tagliava le persone. Un'immagine di 255 pixel di lato non e'
-              «meno importante», e' solo mal ritagliata.
-              La gerarchia la fanno la posizione in pagina e l'altezza dei
-              riquadri — un 4:3 per le persone, un 16:9 basso per la
-              giornata — non una larghezza mozzata. */}
-          <Section id="field" eyebrow={t.photos.eyebrow} aside="06">
+              verticale normale invece di quello ampio. La gerarchia la fanno
+              la posizione e l'altezza dei riquadri, non una larghezza
+              mozzata: con un `max-w-3xl` le persone venivano tagliate. */}
+          <Section id="field" eyebrow={t.photos.eyebrow} aside={next()}>
             <Reveal>
               <EventPhotos
                 caption={t.photos.caption}
@@ -212,7 +257,7 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="contact" eyebrow={t.cta.eyebrow} aside="07" size="lg">
+          <Section id="contact" eyebrow={t.cta.eyebrow} aside={next()} size="lg">
             <Reveal>
               <h2 className="text-d2 font-display font-bold">{t.cta.title}</h2>
               <p className="measure-wide mt-8 text-body-l text-copy">{t.cta.lead}</p>

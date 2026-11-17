@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Glyph } from "@/components/brand/Logo";
 
 /* ==========================================================================
    ANIMAZIONE D'INGRESSO — «IL SEGNO SCANDISCE»
@@ -94,20 +95,11 @@ export function Intro() {
   );
 }
 
-/* Stessa geometria del marchio, senza riempimenti. */
+/* Stessa geometria del marchio: non una copia, lo stesso disegno. */
 function Mark({ stroke }: { stroke: string }) {
   return (
-    <g
-      transform="translate(0 -6)"
-      fill="none"
-      stroke={stroke}
-      strokeWidth={7}
-      strokeLinecap="round"
-    >
-      <path d="M28,58 Q50,28 72,58" />
-      <line x1="39" y1="47" x2="39" y2="61" transform="rotate(-29.7 39 54)" />
-      <line x1="50" y1="42" x2="50" y2="56" />
-      <line x1="61" y1="47" x2="61" y2="61" transform="rotate(29.7 61 54)" />
+    <g style={{ color: stroke }}>
+      <Glyph />
     </g>
   );
 }

@@ -10,6 +10,10 @@
    formulazione va riletta prima di andare online.
    ========================================================================== */
 
+import { sq } from "./sq/anamnesis";
+import { sr } from "./sr/anamnesis";
+import { mk } from "./mk/anamnesis";
+
 export const anamnesis = {
   en: {
     meta: {
@@ -27,6 +31,10 @@ export const anamnesis = {
         { k: "Extraction", v: "AI, per-field confidence" },
         { k: "Provenance", v: "position on the page" },
         { k: "Interoperability", v: "PDND · pagoPA · SPID/CIE · App IO" },
+        /* Qualificazione per la Pubblica Amministrazione, come da
+           indicazione del committente. Il livello esatto della
+           qualificazione ACN non e' stato fornito e non viene scritto. */
+        { k: "Qualification", v: "ACN · AgID" },
       ],
     },
 
@@ -180,12 +188,13 @@ export const anamnesis = {
       eyebrow: "Il software",
       title: "Anamnesis",
       lead: "Anamnesis trasforma un fondo digitalizzato in un insieme di dati interrogabili, e lo collega all'infrastruttura digitale pubblica che l'ente già utilizza.",
-      primary: { label: "Richiedi una dimostrazione", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi una dimostrazione", href: "/it/azienda#contact" },
       secondary: { label: "Vedi il servizio", href: "/it/dematerializzazione" },
       claims: [
         { k: "Estrazione", v: "AI, affidabilità per campo" },
         { k: "Provenienza", v: "posizione sulla pagina" },
         { k: "Interoperabilità", v: "PDND · pagoPA · SPID/CIE · App IO" },
+        { k: "Qualificazione", v: "ACN · AgID" },
       ],
     },
 
@@ -321,8 +330,11 @@ export const anamnesis = {
       eyebrow: "Contatti",
       title: "Dimostrazione su un campione reale.",
       lead: "Una dimostrazione su un campione reale dice più di un capitolato. Diteci di che fondo si tratta e vi mostriamo che cosa ne esce.",
-      primary: { label: "Richiedi una dimostrazione", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi una dimostrazione", href: "/it/azienda#contact" },
       secondary: { label: "Materiali per investitori", href: "/it/investitori" },
     },
   },
+  sq,
+  sr,
+  mk,
 } as const;

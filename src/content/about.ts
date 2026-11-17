@@ -17,6 +17,10 @@
    scrive dichiara subito che cosa e', e la risposta cambia di conseguenza.
    ========================================================================== */
 
+import { sq } from "./sq/about";
+import { sr } from "./sr/about";
+import { mk } from "./mk/about";
+
 export const about = {
   en: {
     meta: {
@@ -62,6 +66,7 @@ export const about = {
         { code: "ISO/IEC 27001", scope: "information security" },
         { code: "ISO/IEC 27017", scope: "cloud service security" },
         { code: "ISO/IEC 27018", scope: "personal data in the cloud" },
+        { code: "ACN · AgID", scope: "Anamnesis, public sector qualification" },
       ],
     },
 
@@ -147,6 +152,7 @@ export const about = {
         { code: "ISO/IEC 27001", scope: "sicurezza delle informazioni" },
         { code: "ISO/IEC 27017", scope: "sicurezza dei servizi cloud" },
         { code: "ISO/IEC 27018", scope: "dati personali nel cloud" },
+        { code: "ACN · AgID", scope: "Anamnesis, qualificazione per la PA" },
       ],
     },
 
@@ -188,4 +194,7 @@ export const about = {
       },
     },
   },
+  sq,
+  sr,
+  mk,
 } as const;

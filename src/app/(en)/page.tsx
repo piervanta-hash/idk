@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { DEFAULT_LOCALE, LOCALES, type Locale } from "@/lib/routes";
+import { DEFAULT_LOCALE, HTML_LANG, LOCALES, LOCALE_NAME, type Locale } from "@/lib/routes";
 
 /* ==========================================================================
    RADICE — RICADUTA LATO CLIENT
@@ -61,17 +61,14 @@ export default function RootRedirect() {
           sottocartella nell'indirizzo, e senza quello questi due
           collegamenti puntavano fuori dal sito come il rimando qui sopra. */}
       <noscript>
-        <ul className="ml-8 flex list-none gap-6 p-0">
-          <li>
-            <Link href="/en" hrefLang="en" className="eyebrow hover:text-max">
-              English
-            </Link>
-          </li>
-          <li>
-            <Link href="/it" hrefLang="it" className="eyebrow hover:text-max">
-              Italiano
-            </Link>
-          </li>
+        <ul className="ml-8 flex list-none flex-wrap gap-6 p-0">
+          {LOCALES.map((l) => (
+            <li key={l}>
+              <Link href={`/${l}`} hrefLang={HTML_LANG[l]} className="eyebrow hover:text-max">
+                {LOCALE_NAME[l]}
+              </Link>
+            </li>
+          ))}
         </ul>
       </noscript>
     </main>

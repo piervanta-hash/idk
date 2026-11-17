@@ -59,7 +59,7 @@ export function AboutView({ locale }: { locale: Locale }) {
               <p className="measure-wide mt-6 text-body-l text-copy">
                 {t.certifications.lead}
               </p>
-              <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
                 {t.certifications.items.map((c) => (
                   <div key={c.code} className="border-t border-line pt-4">
                     <dt className="font-mono text-data text-max">{c.code}</dt>

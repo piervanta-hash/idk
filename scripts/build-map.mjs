@@ -22,10 +22,11 @@ const require = createRequire(import.meta.url);
 const world = require("world-atlas/countries-50m.json");
 
 /* --- Inquadratura -------------------------------------------------------
-   Deve contenere Nizza a ovest, Zagabria a nord, l'Albania a est e il
-   Salento a sud, con un po' di respiro attorno. */
-const LON0 = 4.5;
-const LON1 = 22.5;
+   Deve contenere Roma a ovest, Zagabria e Belgrado a nord, Skopje a est e
+   il Salento a sud. Il margine a destra e' voluto: le etichette di Skopje
+   e Belgrado si aprono verso est e devono restare dentro il riquadro. */
+const LON0 = 7;
+const LON1 = 26.5;
 const LAT0 = 37.5;
 const LAT1 = 47.5;
 
@@ -57,6 +58,9 @@ const KEEP = new Set([
   "North Macedonia",
   "Greece",
   "Hungary",
+  "Romania",
+  "Bulgaria",
+  "Turkey",
   "Slovakia",
   "Germany",
   "Czechia",

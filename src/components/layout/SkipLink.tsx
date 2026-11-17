@@ -22,6 +22,9 @@ import type { Locale } from "@/lib/routes";
 const TESTO: Record<Locale, string> = {
   it: "Salta al contenuto",
   en: "Skip to content",
+  sq: "Kalo te përmbajtja",
+  sr: "Preskoči na sadržaj",
+  mk: "Прескокни на содржината",
 };
 
 export function SkipLink({ locale }: { locale: Locale }) {

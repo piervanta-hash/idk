@@ -50,6 +50,10 @@
    ci e' stato detto che esista. Se esiste, va aggiunto.
    ========================================================================== */
 
+import { sq } from "./sq/privacy";
+import { sr } from "./sr/privacy";
+import { mk } from "./mk/privacy";
+
 export const privacy = {
   en: {
     meta: {
@@ -63,7 +67,7 @@ export const privacy = {
       lead: "Short, because there is little to say. This site has two forms and one cookie that remembers your language. There is no analytics, no tracking, no advertising, and nothing is passed to third parties.",
     },
     updated: "Last updated",
-    updatedOn: "August 2026",
+    updatedOn: "November 2026",
     sections: [
       {
         n: "01",
@@ -93,7 +97,7 @@ export const privacy = {
       {
         n: "06",
         title: "Cookies",
-        body: "One, called paloryn-lang. It remembers whether you chose English or Italian, so that the site does not ask again, and it lasts one year. It contains two letters and nothing else. It is a technical cookie: it needs no banner and no consent, because it does not track you. There are no analytics or advertising cookies of any kind.",
+        body: "One, called paloryn-lang. It remembers which of the five languages you chose, so that the site does not ask again, and it lasts one year. It contains two letters and nothing else. It is a technical cookie: it needs no banner and no consent, because it does not track you. There are no analytics or advertising cookies of any kind.",
       },
       {
         n: "07",
@@ -103,7 +107,7 @@ export const privacy = {
       {
         n: "08",
         title: "What is not here",
-        body: "No statistics or audience measurement. No social buttons, embedded players or external maps. The typefaces are served from this site, so opening a page makes no request to Google or to any other third party. No automated decision-making, and no transfer of data outside the European Union.",
+        body: "No statistics or audience measurement. No social buttons, third-party video players or external maps. The films and the typefaces are served from this site, so opening a page makes no request to Google, YouTube or any other third party. No automated decision-making, and no transfer of data outside the European Union.",
       },
       {
         n: "09",
@@ -125,7 +129,7 @@ export const privacy = {
       lead: "Breve, perché c'è poco da dire. Questo sito ha due moduli e un cookie che ricorda la lingua. Non ci sono statistiche, non c'è tracciamento, non c'è pubblicità, e niente viene ceduto a terzi.",
     },
     updated: "Ultimo aggiornamento",
-    updatedOn: "Agosto 2026",
+    updatedOn: "Novembre 2026",
     sections: [
       {
         n: "01",
@@ -155,7 +159,7 @@ export const privacy = {
       {
         n: "06",
         title: "Cookie",
-        body: "Uno, si chiama paloryn-lang. Ricorda se hai scelto italiano o inglese, così il sito non te lo richiede, e dura un anno. Contiene due lettere e nient'altro. È un cookie tecnico: non richiede banner né consenso, perché non ti segue. Non ci sono cookie di statistica o di profilazione di nessun tipo.",
+        body: "Uno, si chiama paloryn-lang. Ricorda quale delle cinque lingue hai scelto, così il sito non te lo richiede, e dura un anno. Contiene due lettere e nient'altro. È un cookie tecnico: non richiede banner né consenso, perché non ti segue. Non ci sono cookie di statistica o di profilazione di nessun tipo.",
       },
       {
         n: "07",
@@ -165,7 +169,7 @@ export const privacy = {
       {
         n: "08",
         title: "Cosa non c'è",
-        body: "Nessuna statistica e nessuna misurazione del pubblico. Nessun pulsante social, nessun video incorporato, nessuna mappa esterna. I caratteri tipografici sono serviti da questo sito, quindi aprire una pagina non fa nessuna richiesta a Google né a nessun altro. Nessuna decisione automatizzata, e nessun trasferimento di dati fuori dall'Unione Europea.",
+        body: "Nessuna statistica e nessuna misurazione del pubblico. Nessun pulsante social, nessun lettore video di terzi, nessuna mappa esterna. I film e i caratteri tipografici sono serviti da questo sito, quindi aprire una pagina non fa nessuna richiesta a Google, a YouTube né a nessun altro. Nessuna decisione automatizzata, e nessun trasferimento di dati fuori dall'Unione Europea.",
       },
       {
         n: "09",
@@ -174,4 +178,7 @@ export const privacy = {
       },
     ],
   },
+  sq,
+  sr,
+  mk,
 } as const;

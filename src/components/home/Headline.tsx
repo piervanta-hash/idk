@@ -18,11 +18,28 @@
    normale ingrandito sembra solo ingrandito.
    ========================================================================== */
 
+/* LA PAROLA PIU' LUNGA DEVE STARE IN UNA RIGA.
+
+   A 76 pixel «Memory» sta su un telefono; «përgjigjet» (albanese) e
+   «Меморија» (macedone) no, e una parola che non sta in riga esce dallo
+   schermo e fa scorrere la pagina di lato. Il corpo si calcola quindi
+   sulla parola piu' lunga della frase: resta quello del manifesto finche'
+   c'e' spazio, e scende quanto basta solo dove serve.
+
+   0,66 e' la larghezza media di un carattere minuscolo di questo
+   grottesco, extra-nero e allargato a 112, in frazioni del corpo: misurata,
+   con un margine. 2rem sono i due margini laterali della pagina. */
+const CHAR = 0.66;
+
 export function Headline({ text }: { text: string }) {
+  const longest = Math.max(...text.split(/\s+/).map((w) => w.length));
   return (
     <h1
       className="font-display text-hero font-extrabold text-balance text-max"
-      style={{ fontVariationSettings: '"wdth" 112' }}
+      style={{
+        fontVariationSettings: '"wdth" 112',
+        fontSize: `min(var(--text-hero), calc((100vw - 2rem) / ${(longest * CHAR).toFixed(2)}))`,
+      }}
     >
       {text}
     </h1>

@@ -52,7 +52,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
             <Reveal>
               <h2 className="text-d3 font-display font-semibold">{t.governance.title}</h2>
               <p className="measure-wide mt-6 text-body-l text-copy">{t.governance.lead}</p>
-              <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
                 {t.governance.certs.map((c) => (
                   <div key={c.code} className="border-t border-line pt-4">
                     <dt className="font-mono text-data text-max">{c.code}</dt>

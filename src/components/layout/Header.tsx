@@ -3,7 +3,16 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
-import { NAV, PAGES, href, other, type Locale, type PageKey } from "@/lib/routes";
+import {
+  HTML_LANG,
+  LOCALES,
+  LOCALE_NAME,
+  NAV,
+  PAGES,
+  href,
+  type Locale,
+  type PageKey,
+} from "@/lib/routes";
 
 /* ==========================================================================
    NAVIGAZIONE
@@ -134,8 +143,8 @@ export function Header({
                 </span>
               </Link>
             ))}
-            <div className="mt-auto py-8">
-              <LangSwitch locale={locale} page={page} />
+            <div className="mt-auto py-6">
+              <LangSwitch locale={locale} page={page} grande />
             </div>
           </nav>
         </div>
@@ -144,31 +153,69 @@ export function Header({
   );
 }
 
-function LangSwitch({ locale, page }: { locale: Locale; page?: PageKey }) {
-  const target = other(locale);
+/* IL SELETTORE DI LINGUA, a cinque voci.
 
+   Con due lingue bastava uno scambio: «IT / EN», e l'altra era per forza
+   quella giusta. Con cinque non c'e' piu' "l'altra", quindi stanno tutte in
+   fila, sempre visibili, con quella corrente accesa. Niente menu a
+   tendina: cinque sigle di due lettere occupano meno di un pulsante che le
+   nasconde, e cambiare lingua resta un tocco invece di due.
+
+   La sigla e' quello che si vede; il nome per esteso, scritto come quella
+   lingua chiama se stessa, e' quello che legge un lettore di schermo —
+   «Shqip», non «SQ».
+
+   Ogni voce porta alla STESSA pagina in quella lingua, non alla home: gli
+   indirizzi divergono da lingua a lingua e mandare l'utente a ricominciare
+   sarebbe una piccola scortesia. */
+function LangSwitch({
+  locale,
+  page,
+  grande = false,
+}: {
+  locale: Locale;
+  page?: PageKey;
+  /** Nel menu del telefono: voci alte 44px, perche' li' si toccano. */
+  grande?: boolean;
+}) {
   /* La scelta si ricorda per un anno. Serve solo al rimando dalla radice:
      non profila nulla e non esce dal dominio. */
-  const remember = () => {
+  const remember = (target: Locale) => {
     document.cookie = `${COOKIE}=${target}; path=/; max-age=31536000; samesite=lax`;
   };
 
   return (
-    <div className="flex items-center gap-2 font-mono text-data uppercase tracking-[0.08em]">
-      <span aria-current="true" className="text-max">
-        {locale}
-      </span>
-      <span className="text-line" aria-hidden="true">
-        /
-      </span>
-      <Link
-        href={href(page ?? "home", target)}
-        hrefLang={target}
-        onClick={remember}
-        className="text-label transition-colors hover:text-max"
-      >
-        {target}
-      </Link>
-    </div>
+    <ul
+      className={
+        "m-0 flex list-none items-center p-0 font-mono text-data uppercase tracking-[0.08em] " +
+        (grande ? "gap-1" : "gap-3")
+      }
+    >
+      {LOCALES.map((l) => {
+        const current = l === locale;
+        const box = grande ? "flex min-h-11 min-w-11 items-center justify-center " : "";
+        return (
+          <li key={l}>
+            {current ? (
+              <span aria-current="true" className={box + "text-max"}>
+                <span aria-hidden="true">{l}</span>
+                <span className="sr-only">{LOCALE_NAME[l]}</span>
+              </span>
+            ) : (
+              <Link
+                href={href(page ?? "home", l)}
+                hrefLang={HTML_LANG[l]}
+                lang={HTML_LANG[l]}
+                onClick={() => remember(l)}
+                className={box + "text-label transition-colors hover:text-max"}
+              >
+                <span aria-hidden="true">{l}</span>
+                <span className="sr-only">{LOCALE_NAME[l]}</span>
+              </Link>
+            )}
+          </li>
+        );
+      })}
+    </ul>
   );
 }

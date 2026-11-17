@@ -1,57 +1,49 @@
 /* ==========================================================================
    MARCHIO PALORYN
 
-   Il segno e' quello gia' in uso accanto alla scritta Dematerializzare
-   (`icon.svg` del sito attuale), ripreso qui alla geometria originale:
-   un arco e tre raggi a terminali arrotondati che convergono in un punto
-   sotto l'arco. E' la sagoma di uno scanner planetario — braccio della
-   camera e fascio di luce sul documento — e da quella luce viene anche il
-   cyan d'accento.
+   Il segno e' quello dei film e delle felpe: un arco e tre raggi a terminali
+   arrotondati che partono dall'arco e convergono verso un punto sotto di
+   esso. E' la sagoma di uno scanner planetario — braccio della camera e
+   fascio di luce sul documento — e da quella luce viene anche il cyan
+   d'accento.
 
-   Rispetto all'originale cambia solo il colore, che qui non e' mai fissato:
-   lo eredita dal testo (`currentColor`), cosi' il segno resta bianco sul
-   fondo nero e nero sulla tessera senza duplicare il file.
+   La versione precedente teneva i tre raggi staccati dall'arco. In quella
+   attuale lo toccano e lo attraversano appena: il segno e' un pezzo solo, e
+   regge meglio in piccolo perche' non ha piu' fessure sottili che si
+   chiudono.
+
+   La geometria e' stata ricalcata sul fotogramma finale del film principale
+   (sovrapposizione al 99%), non ridisegnata a occhio.
+
+   Il colore non e' mai fissato: lo eredita dal testo (`currentColor`), cosi'
+   il segno resta bianco sul fondo nero e nero sulla tessera senza duplicare
+   il file.
 
    Regole: non ruotare, non deformare, non ricolorare, nessuna ombra.
-   Sotto i 24px si usa la tessera piena (`tile`); dove la tessera non e'
-   praticabile, sotto i 20px il tratto si assottiglia da solo.
+   Sotto i 24px si usa la tessera piena (`tile`).
    ========================================================================== */
 
-/* Riquadro utile del segno dentro il sistema di coordinate originale
-   (100x100): l'arco e i raggi occupano solo questa porzione. Ritagliare qui
-   evita che il marchio si rimpicciolisca dentro un quadrato mezzo vuoto. */
+/* Riquadro utile del segno dentro il sistema di coordinate (100x100):
+   l'arco e i raggi occupano solo questa porzione. Ritagliare qui evita che
+   il marchio si rimpicciolisca dentro un quadrato mezzo vuoto. */
 const BOX = { x: 23.5, y: 32.5, w: 53, h: 26 };
 const RATIO = BOX.w / BOX.h;
 
-/* Spessore del tratto. Sette e' l'originale e vale ovunque il marchio sia
-   leggibile; cinque e' la variante sottile per le misure piccole.
+/* Spessore del tratto. 5,3 e' quello del marchio; 4,4 e' la variante
+   sottile per le misure piccole, dove un tratto pieno chiuderebbe gli
+   angoli fra i raggi e l'arco. */
+const STROKE = { regular: 5.3, thin: 4.4 } as const;
 
-   Il motivo e' geometrico, non estetico: i tre raggi distano undici unita'
-   l'uno dall'altro, quindi con il tratto a sette ne restano quattro di
-   spazio vuoto. Sotto i venti pixel quattro unita' valgono meno di due
-   pixel e mezzo: i raggi si saldano fra loro e il segno diventa una
-   macchia. Con il tratto a cinque lo spazio raddoppia e il segno resta
-   leggibile.
-
-   Rimane preferibile la tessera piena quando lo spazio e' davvero minimo:
-   questa variante serve dove la tessera non si puo' usare, per esempio
-   accanto a del testo. */
-const STROKE = { regular: 7, thin: 5 } as const;
-
-/* Geometria originale, invariata: cambia solo lo spessore del tratto. */
-function Glyph({ weight = STROKE.regular }: { weight?: number }) {
+/* L'UNICA copia della geometria. L'animazione d'ingresso la importa da qui;
+   l'icona del browser (`src/app/icon.svg`) e' un file statico e ne tiene
+   una copia a mano: se cambia questa, va cambiata anche quella. */
+export function Glyph({ weight = STROKE.regular }: { weight?: number }) {
   return (
-    <g
-      transform="translate(0 -6)"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={weight}
-      strokeLinecap="round"
-    >
-      <path d="M28,58 Q50,28 72,58" />
-      <line x1="39" y1="47" x2="39" y2="61" transform="rotate(-29.7 39 54)" />
-      <line x1="50" y1="42" x2="50" y2="56" />
-      <line x1="61" y1="47" x2="61" y2="61" transform="rotate(29.7 61 54)" />
+    <g fill="none" stroke="currentColor" strokeWidth={weight} strokeLinecap="round">
+      <path d="M26.64,52.91 C32.71,44.99 40.17,37.07 50,37.07 S67.29,44.99 73.36,52.91" />
+      <line x1="34.62" y1="42.22" x2="42.01" y2="55.15" />
+      <line x1="50" y1="35.95" x2="50" y2="50.8" />
+      <line x1="65.38" y1="42.22" x2="57.99" y2="55.15" />
     </g>
   );
 }

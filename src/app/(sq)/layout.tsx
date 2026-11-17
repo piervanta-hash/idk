@@ -1,0 +1,30 @@
+import type { Metadata, Viewport } from "next";
+import "../globals.css";
+import { RootShell } from "@/components/layout/RootShell";
+import { fontsLatin } from "@/lib/fonts";
+import { SITE } from "@/lib/routes";
+
+/* Layout radice per le rotte albanesi. Come gli altri: cambia la lingua
+   dichiarata su <html>, il resto dell'impalcatura e' condiviso. */
+export const metadata: Metadata = {
+  /* Rende assoluti canonical, hreflang e Open Graph. */
+  metadataBase: new URL(SITE),
+  title: "Paloryn",
+  description:
+    "Paloryn i kthen arkivat në letër në të dhëna të kërkueshme: rregullim arkivor, dixhitalizim masiv, nxjerrje me IA dhe ndërveprim me administratën publike.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0A0A",
+  colorScheme: "dark",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <RootShell locale="sq" fonts={fontsLatin}>
+      {children}
+    </RootShell>
+  );
+}

@@ -1,31 +1,54 @@
 /* ==========================================================================
-   CONTENUTI DELLA HOME — EN e IT
+   CONTENUTI DELLA HOME
 
-   Il brief chiede che ogni testo scritto dalla Fase 3 in poi nasca subito in
-   entrambe le lingue: l'italiano non e' una traduzione fatta alla fine. La
-   Fase 3 pubblica solo l'inglese, ma il testo italiano e' gia' qui e in
-   Fase 6 va solo collegato.
+   Inglese e italiano stanno qui; albanese, serbo e macedone in un file per
+   lingua (`sq/home.ts`, `sr/home.ts`, `mk/home.ts`) con la stessa identica
+   forma. Nessuna lingua e' la traduzione subordinata di un'altra: se si
+   aggiunge un campo qui, va aggiunto in tutte e cinque, e il controllo dei
+   tipi lo segnala se manca.
 
-   Nessun contenuto e' inventato: viene dal sito attuale o dal brief. Le
-   cifre sono state confermate.
+   IL TITOLO E LE FRASI DELLA CAMPAGNA. «Memory that answers» e le altre
+   frasi che vengono dai film sono riportate come sono nei film, lingua per
+   lingua: non sono state ritradotte.
+
+   Nessun contenuto e' inventato: viene dal sito, dal brief o dalla
+   campagna. Le cifre sono state confermate.
    ========================================================================== */
 
-export type Locale = "en" | "it";
+import { sq } from "./sq/home";
+import { sr } from "./sr/home";
+import { mk } from "./mk/home";
 
 export const home = {
   en: {
-    /* La testata non e' un annuncio, e' una scheda: intestazione, una frase
-       che dice che cosa e' l'azienda, e in fondo la cosa vera che facciamo,
-       che avviene sotto gli occhi di chi legge. Niente slogan. */
+    /* La testata: la frase della campagna, una riga che dice che cosa fa
+       l'azienda, e il film. Il titolo e' concettuale; il peso descrittivo
+       lo portano il titolo del documento e la riga sotto. */
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · European Union",
-      stacks:
-        "Drawn elevation of archival shelving: file boxes, envelopes and bound volumes on six shelves, indexed one by one.",
-      title: "From matter to data",
-      lead: "Paloryn orders, digitizes and structures large paper archives, then makes the data queryable and interoperable with public digital infrastructure.",
+      title: "Memory that answers.",
+      lead: "An organisation's memory cannot retire. Paloryn orders, digitizes and structures large paper archives, then makes them answer — and shows the source.",
       primary: { label: "Request a survey", href: "/en/about#contact" },
       secondary: { label: "See Anamnesis", href: "/en/anamnesis" },
+      film: {
+        title:
+          "Paloryn film. After thirty-five years the person who knows where everything is retires: from tomorrow, who answers?",
+        play: "Play film",
+        pause: "Pause film",
+        soundOn: "Sound on",
+        soundOff: "Sound off",
+      },
+    },
+
+    /* DALLA MATERIA AL DATO. Era il titolo della testata; adesso apre il
+       punto in cui la cosa si vede succedere: la scaffalatura disegnata e,
+       subito sotto, l'estrazione. */
+    data: {
+      title: "From matter to data",
+      lead: "Every sheet becomes a structured record. Each field keeps its confidence score and the point on the page it was read from.",
+      stacks:
+        "Drawn elevation of archival shelving: file boxes, envelopes and bound volumes on six shelves, indexed one by one.",
       /* L'estrazione e' la stessa animazione della pagina Anamnesis, ed e'
          giusto che sia la stessa: e' la cosa che l'azienda fa. In home
          apre la pagina, li' viene spiegata. Gli stessi quattro campi, con
@@ -79,6 +102,37 @@ export const home = {
       },
     },
 
+    /* I QUATTRO FILM DI SCENARIO. Qui stanno solo le parole: quale file
+       corrisponde a quale lingua lo sa `src/lib/films.ts`. */
+    films: {
+      eyebrow: "Scenarios",
+      title: "The answer exists. No one can read it.",
+      note: "Dramatised scenarios: the people, figures and documents shown are illustrative.",
+      labels: { watch: "Watch the film", close: "Close" },
+      items: [
+        {
+          id: "atti",
+          sector: "Municipalities",
+          title: "A records request, from the application to the certified copy.",
+        },
+        {
+          id: "fiume",
+          sector: "Banks and insurers",
+          title: "After a flood: every mortgage and policy in the area, each with its original contract.",
+        },
+        {
+          id: "reti",
+          sector: "Network operators",
+          title: "Plans, rights of way, maintenance records: a network you can query.",
+        },
+        {
+          id: "viadotto",
+          sector: "Infrastructure",
+          title: "The load capacity of a viaduct, straight from the original drawings.",
+        },
+      ],
+    },
+
     matrix: {
       eyebrow: "Two capabilities × two markets",
       title: "Both halves serve both markets.",
@@ -117,18 +171,19 @@ export const home = {
 
     map: {
       eyebrow: "Operations",
-      title: "Operations in the European Union.",
-      lead: "Headquarters, laboratory and operations centre in Lecce; an operational office in Albania. Data stays inside the European Union and the originals never leave the building that holds them.",
-      /* Le sedi previste stanno solo qui, sulla mappa: nessun'altra parte
-         del sito le nomina, ed e' voluto. */
+      title: "From Lecce to the Balkans.",
+      lead: "Headquarters, laboratory and operations centre in Lecce. Three offices are about to open: Durrës, Skopje and Belgrade. Data residency stays inside the European Union and the originals never leave the building that holds them.",
+      /* Le sedi stanno solo qui, sulla mappa: nessun'altra parte del sito
+         le nomina, ed e' voluto. */
       nodes: {
         lecce: { name: "Lecce, Italy", role: "Headquarters and operations centre" },
-        albania: { name: "Albania", role: "Operational office" },
+        durres: { name: "Durrës", role: "Opening soon" },
+        skopje: { name: "Skopje", role: "Opening soon" },
+        belgrade: { name: "Belgrade", role: "Opening soon" },
         rome: { name: "Rome", role: "Planned" },
-        nice: { name: "Nice", role: "Planned" },
         zagreb: { name: "Zagreb", role: "Planned" },
       },
-      legend: { hq: "Headquarters", office: "Operational office", planned: "Planned" },
+      legend: { hq: "Headquarters", soon: "Opening soon", planned: "Planned" },
     },
 
     work: {
@@ -173,8 +228,18 @@ export const home = {
         },
       ],
       alsoLabel: "Also on record",
-      also: "Maglie · Otranto",
+      also: "Maglie · Otranto · Galatone · Alezio · Veglie · Porto Cesareo · Ex Manifattura Tabacchi Guarino · Ordine degli Ingegneri di Lecce",
       cta: { label: "All customers", href: "/en/customers" },
+    },
+
+    /* LA FOTO DI GRUPPO. Compare solo se il file esiste
+       (public/img/archilives/gruppo.*): finche' non c'e', la sezione non
+       viene disegnata e non lascia buchi. */
+    team: {
+      eyebrow: "People",
+      base: "gruppo",
+      alt: "The Paloryn team, in black Paloryn sweatshirts, standing together in the Lecce laboratory among the archive shelving.",
+      caption: "The Paloryn team in the Lecce laboratory.",
     },
 
     /* Fotografie dell'info day ARCHILIVES: l'unico posto del sito dove
@@ -224,12 +289,25 @@ export const home = {
     hero: {
       mark: "Paloryn",
       place: "Lecce, IT · Unione Europea",
+      title: "La memoria che risponde.",
+      lead: "La memoria di un ente non può andare in pensione. Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi li fa rispondere — e indica la fonte.",
+      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
+      secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
+      film: {
+        title:
+          "Film Paloryn. Dopo trentacinque anni va in pensione la persona che sa dove si trova tutto: da domani, chi risponde?",
+        play: "Riproduci il film",
+        pause: "Metti in pausa",
+        soundOn: "Attiva l'audio",
+        soundOff: "Disattiva l'audio",
+      },
+    },
+
+    data: {
+      title: "Dalla materia al dato",
+      lead: "Ogni foglio diventa un record strutturato. Ogni campo conserva il suo indice di affidabilità e il punto della pagina da cui è stato letto.",
       stacks:
         "Alzato disegnato di una scaffalatura d'archivio: faldoni, buste e volumi rilegati su sei ripiani, censiti uno a uno.",
-      title: "Dalla materia al dato",
-      lead: "Paloryn riordina, digitalizza e struttura grandi archivi cartacei, poi rende il dato interrogabile e interoperabile con l'infrastruttura digitale pubblica.",
-      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
-      secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
       extraction: {
         eyebrow: "Estrazione",
         labels: {
@@ -276,6 +354,35 @@ export const home = {
       },
     },
 
+    films: {
+      eyebrow: "Scenari",
+      title: "La risposta esiste. Nessuno riesce a leggerla.",
+      note: "Scenari ricostruiti: le persone, le cifre e i documenti mostrati sono esemplificativi.",
+      labels: { watch: "Guarda il film", close: "Chiudi" },
+      items: [
+        {
+          id: "atti",
+          sector: "Comuni",
+          title: "Un accesso agli atti, dalla richiesta alla copia conforme.",
+        },
+        {
+          id: "fiume",
+          sector: "Banche e assicurazioni",
+          title: "Dopo un'alluvione: ogni mutuo e ogni polizza dell'area, ciascuno con il contratto originale.",
+        },
+        {
+          id: "reti",
+          sector: "Gestori di reti",
+          title: "Planimetrie, servitù, registri di manutenzione: una rete che si può interrogare.",
+        },
+        {
+          id: "viadotto",
+          sector: "Infrastrutture",
+          title: "La portata di un viadotto, direttamente dai disegni originali.",
+        },
+      ],
+    },
+
     matrix: {
       eyebrow: "Due offerte × due mercati",
       title: "Entrambe le anime servono entrambi i mercati.",
@@ -314,20 +421,17 @@ export const home = {
 
     map: {
       eyebrow: "Operatività",
-      title: "Operatività in Unione Europea.",
-      lead: "Sede, laboratorio e centro operativo a Lecce; sede operativa in Albania. I dati restano nell'Unione Europea e gli originali non lasciano mai l'edificio che li custodisce.",
+      title: "Da Lecce ai Balcani.",
+      lead: "Sede, laboratorio e centro operativo a Lecce. Tre sedi di prossima apertura: Durazzo, Skopje e Belgrado. I dati restano nell'Unione Europea e gli originali non lasciano mai l'edificio che li custodisce.",
       nodes: {
         lecce: { name: "Lecce, Italia", role: "Sede legale e centro operativo" },
-        albania: { name: "Albania", role: "Sede operativa" },
-        rome: { name: "Roma", role: "Prossima apertura" },
-        nice: { name: "Nizza", role: "Prossima apertura" },
-        zagreb: { name: "Zagabria", role: "Prossima apertura" },
+        durres: { name: "Durazzo", role: "Prossima apertura" },
+        skopje: { name: "Skopje", role: "Prossima apertura" },
+        belgrade: { name: "Belgrado", role: "Prossima apertura" },
+        rome: { name: "Roma", role: "In programma" },
+        zagreb: { name: "Zagabria", role: "In programma" },
       },
-      legend: {
-        hq: "Sede",
-        office: "Sede operativa",
-        planned: "Prossima apertura",
-      },
+      legend: { hq: "Sede", soon: "Prossima apertura", planned: "In programma" },
     },
 
     work: {
@@ -373,8 +477,15 @@ export const home = {
         },
       ],
       alsoLabel: "Inoltre a referenza",
-      also: "Maglie · Otranto",
+      also: "Maglie · Otranto · Galatone · Alezio · Veglie · Porto Cesareo · Ex Manifattura Tabacchi Guarino · Ordine degli Ingegneri di Lecce",
       cta: { label: "Tutti i clienti", href: "/it/clienti" },
+    },
+
+    team: {
+      eyebrow: "Persone",
+      base: "gruppo",
+      alt: "La squadra di Paloryn, in felpa nera Paloryn, riunita nel laboratorio di Lecce tra le scaffalature d'archivio.",
+      caption: "La squadra di Paloryn nel laboratorio di Lecce.",
     },
 
     photos: {
@@ -410,8 +521,12 @@ export const home = {
       eyebrow: "Contatti",
       title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
-      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
       secondary: { label: "Materiali per investitori", href: "/it/investitori" },
     },
   },
+
+  sq,
+  sr,
+  mk,
 } as const;

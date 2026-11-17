@@ -76,6 +76,19 @@ const MARCHI = [
   { out: "torricella", src: "Torricella-Stemma.png" },
   { out: "maglie", src: "Maglie-Stemma.png" },
   { out: "otranto", src: "Otranto-Stemma.png" },
+  /* Novembre 2026: sei committenti in piu'. Gli stemmi di Galatone, Veglie
+     e Porto Cesareo vengono da tuttitalia.it perche' Wikimedia rifiutava i
+     download (troppe richieste): sono piccoli, 115 pixel di altezza, e
+     vanno sostituiti con le versioni di Wikimedia appena raggiungibili
+     (Galatone-Stemma, Veglie-Stemma, Porto_Cesareo-Stemma). Il logo
+     dell'Ordine degli Ingegneri viene dal sito dell'Ordine.
+     Manca la ex Manifattura Tabacchi Guarino: nessun marchio pubblico
+     trovato, va fornito dal committente. */
+  { out: "ingegneri", src: "Ingegneri.png" },
+  { out: "galatone", src: "Galatone.png" },
+  { out: "alezio", src: "Alezio-Stemma.svg" },
+  { out: "veglie", src: "Veglie.png" },
+  { out: "portocesareo", src: "PortoCesareo.png" },
 ];
 
 /* La banda di luminosita' in cui devono cadere tutti. Non si arriva mai al

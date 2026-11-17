@@ -9,6 +9,10 @@
    importi non compaiono da nessuna parte, nemmeno nell'area investitori.
    ========================================================================== */
 
+import { sq } from "./sq/customers";
+import { sr } from "./sr/customers";
+import { mk } from "./mk/customers";
+
 export const customers = {
   en: {
     meta: {
@@ -143,7 +147,16 @@ export const customers = {
 
     also: {
       label: "Also on record",
-      items: ["Maglie", "Otranto"],
+      items: [
+        "Maglie",
+        "Otranto",
+        "Galatone",
+        "Alezio",
+        "Veglie",
+        "Porto Cesareo",
+        "Ex Manifattura Tabacchi Guarino",
+        "Ordine degli Ingegneri di Lecce",
+      ],
       note: "Further engagements are covered by confidentiality and are named on request.",
     },
 
@@ -293,7 +306,16 @@ export const customers = {
 
     also: {
       label: "Inoltre a referenza",
-      items: ["Maglie", "Otranto"],
+      items: [
+        "Maglie",
+        "Otranto",
+        "Galatone",
+        "Alezio",
+        "Veglie",
+        "Porto Cesareo",
+        "Ex Manifattura Tabacchi Guarino",
+        "Ordine degli Ingegneri di Lecce",
+      ],
       note: "Altri incarichi sono coperti da riservatezza e vengono nominati su richiesta.",
     },
 
@@ -307,8 +329,11 @@ export const customers = {
       eyebrow: "Contatti",
       title: "Richiesta di sopralluogo.",
       lead: "Cinque risposte bastano a stabilire se l'intervento è praticabile e con quale ordine di grandezza. In caso negativo, lo diciamo subito.",
-      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contatti" },
+      primary: { label: "Richiedi un sopralluogo", href: "/it/azienda#contact" },
       secondary: { label: "Scopri Anamnesis", href: "/it/anamnesis" },
     },
   },
+  sq,
+  sr,
+  mk,
 } as const;

@@ -32,6 +32,9 @@ const base = process.env.BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  /* Next 16 scrive da solo AGENTS.md e CLAUDE.md nella radice del progetto
+     a ogni avvio in sviluppo. Non sono documenti del sito: spenti. */
+  agentRules: false,
   /* Il prefisso deve arrivare anche al browser: `src` e `srcSet` scritti a
      mano non li tocca nessuno, e senza questo le fotografie sull'anteprima
      venivano cercate un livello sopra dove stanno. Vedi src/lib/asset.ts. */

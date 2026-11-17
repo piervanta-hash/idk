@@ -164,8 +164,11 @@
        accorge finche' non manca mezza parola nel titolo.
        Questa regola interviene solo quando una parola non entrerebbe
        nemmeno da sola su una riga: sul testo normale non ha alcun
-       effetto, ma garantisce che niente venga mai tagliato via. */
+       effetto, ma garantisce che niente venga mai tagliato via.
+       Con la sillabazione attiva, il taglio cade dove la lingua lo
+       prevede (l'attributo `lang` della pagina dice al browser quale). */
     overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   p {
@@ -332,8 +335,10 @@
     }
     .js .mk-track {
       /* Circa quarantacinque pixel al secondo: la velocita' con cui si
-         legge una striscia senza doverla rincorrere. */
-      animation: mk-scorre 42s linear infinite;
+         legge una striscia senza doverla rincorrere. La durata segue la
+         lunghezza della fila: con quattordici marchi invece di nove, a
+         42 secondi la striscia correva il 60% piu' veloce. */
+      animation: mk-scorre 66s linear infinite;
     }
     .js .mk-copia {
       display: flex;
@@ -675,14 +680,15 @@
     }
   }
 
-  /* 323 e' la lunghezza esatta della rotta fra i due nodi in unita' di
-     disegno: l'impulso parte da un capo e arriva all'altro, non a caso. */
+  /* Ogni rotta e' portata a cento unita' di lunghezza (`pathLength`):
+     l'impulso, lungo sette, parte appena prima del capo e finisce appena
+     oltre l'altro. Vale per tutte le rotte, lunghe o corte. */
   @keyframes route {
     from {
-      stroke-dashoffset: 323;
+      stroke-dashoffset: 7;
     }
     to {
-      stroke-dashoffset: 0;
+      stroke-dashoffset: -100;
     }
   }
 

@@ -49,7 +49,7 @@ export function AnamnesisView({ locale }: { locale: Locale }) {
             </ButtonLink>
           </div>
 
-          <dl className="mt-16 grid gap-x-8 gap-y-8 border-t border-line pt-8 sm:grid-cols-3">
+          <dl className="mt-16 grid gap-x-8 gap-y-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {t.hero.claims.map((c) => (
               <div key={c.k}>
                 <dt className="eyebrow">{c.k}</dt>

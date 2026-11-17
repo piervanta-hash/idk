@@ -58,6 +58,14 @@ const MARCHI = [
   { file: "torricella", w: 100, name: "Comune di Torricella" },
   { file: "maglie", w: 101, name: "Comune di Maglie" },
   { file: "otranto", w: 91, name: "Comune di Otranto" },
+  { file: "galatone", w: 102, name: "Comune di Galatone" },
+  { file: "alezio", w: 103, name: "Comune di Alezio" },
+  /* Il marchio dell'Ordine e' l'unico con il nome scritto dentro: sta
+     in mezzo agli stemmi nuovi, come la curia fra i vecchi, perche' non
+     si formi una fila di soli scudi. */
+  { file: "ingegneri", w: 232, name: "Ordine degli Ingegneri della Provincia di Lecce" },
+  { file: "veglie", w: 84, name: "Comune di Veglie" },
+  { file: "portocesareo", w: 96, name: "Comune di Porto Cesareo" },
 ];
 
 const H = 132;
