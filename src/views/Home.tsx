@@ -165,22 +165,36 @@ export function HomeView({ locale }: { locale: Locale }) {
             </Reveal>
           </Section>
 
-          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()} size="sm">
-            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
-              <Reveal>
-                <h2 className="text-d3 font-display font-semibold">{t.map.title}</h2>
-                <p className="measure mt-6 text-body text-copy">{t.map.lead}</p>
+          {/* OPERATIVITA'. Due righe, come le altre sezioni: sopra il
+              titolo a sinistra e la frase a destra; sotto la foto del team e
+              la mappa, affiancate.
 
-                {/* IL TEAM. La foto di gruppo e' uno scatto da telefono largo
-                    1125 pixel: a tutta pagina si sgranava, in un francobollo
-                    non si riconosceva nessuno. Prende la larghezza della
-                    colonna di sinistra (circa 600 pixel), dove regge, nello
-                    spazio che la mappa lasciava vuoto sotto il testo: le
-                    persone accanto ai posti in cui lavorano, senza una
-                    sezione in piu' da scorrere. */}
-                {team && (
-                  <figure className="m-0 mt-10 border-t border-line pt-6">
-                    <picture className="block">
+              Foto e mappa sono due quadri della stessa misura: stessa
+              larghezza, stessa altezza, bordi allineati sopra e sotto, e
+              sotto ognuno una riga con lo stesso trattamento — la
+              didascalia sotto la foto, la legenda sotto la mappa. Prima la
+              foto stava nella colonna del testo, sotto un filetto, con una
+              didascalia diversa dalla legenda: due oggetti di altezze
+              diverse che non si allineavano da nessuna parte.
+
+              La foto e' uno scatto da telefono largo 1125 pixel: a meta'
+              pagina (circa 580 pixel) regge anche sugli schermi ad alta
+              densita'. Ha le proporzioni della mappa (900 su 626) e un
+              ritaglio minimo, sopra e sotto: le persone restano tutte. */}
+          <Section id="operations" eyebrow={t.map.eyebrow} aside={next()} size="sm">
+            <Reveal>
+              <div className="mb-10 grid gap-6 lg:mb-12 lg:grid-cols-2 lg:items-end lg:gap-8">
+                <h2 className="text-d2 font-display font-bold text-max text-balance">
+                  {t.map.title}
+                </h2>
+                <p className="measure text-body text-copy">{t.map.lead}</p>
+              </div>
+            </Reveal>
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-8">
+              {team && (
+                <Reveal>
+                  <figure className="m-0">
+                    <picture className="block border border-line">
                       <source srcSet={asset(`/img/archilives/${t.team.base}.avif`)} type="image/avif" />
                       <source srcSet={asset(`/img/archilives/${t.team.base}.webp`)} type="image/webp" />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -191,14 +205,18 @@ export function HomeView({ locale }: { locale: Locale }) {
                         height={810}
                         loading="lazy"
                         decoding="async"
-                        className="block h-auto w-full border border-line"
+                        className="block aspect-[900/626] h-auto w-full object-cover object-[50%_40%]"
                       />
                     </picture>
-                    <figcaption className="mt-3 font-mono text-data text-copy">{t.team.caption}</figcaption>
+                    {/* In maiuscoletto come la legenda accanto: il punto finale
+                        della frase li' starebbe male, e si toglie. */}
+                    <figcaption className="eyebrow mt-3 border-t border-line pt-3 text-strong">
+                      {t.team.caption.replace(/\.$/, "")}
+                    </figcaption>
                   </figure>
-                )}
-              </Reveal>
-              <Reveal delay={120}>
+                </Reveal>
+              )}
+              <Reveal delay={120} className={team ? "" : "lg:col-span-2"}>
                 <OperationsMap nodes={t.map.nodes} legend={t.map.legend} />
               </Reveal>
             </div>
